@@ -1,10 +1,16 @@
 @import "home";
+@import "colors";
+@import "fonts";
 
+body{
+    background-color: $pink;
+}
 .weekplan{
     display: flex;
     border-radius: 5px;
-    border: $border ;
+    
     padding: 5px;
+    background-color: $gray;
 }
 .day-circle {
     background: lightblue;
@@ -14,6 +20,8 @@
     text-align: center;
     line-height: 100px;
     margin: auto;
+    font-family: $montserrat;
+    
     
 }
 .weekplan-buttons-container{
@@ -23,65 +31,51 @@
 }
 .weekplan-btn{
     border-radius: 5px;
-    border: $border;
     margin: 2%;
+    font-family: $montserrat;
+    background-color: $green;
+    color: $gray;
 }
 .btns-bar-body{
     display: flex;
     margin-top: 3%;
-    border: $border; 
     height: 50px;
     border-radius: 5px;
     text-align: center;
     line-height: 50px;
-}
-.btns-bar-body{
-    display: flex;
     justify-content: space-between;  
+    font-family: $montserrat;
 }
-.search-bar{
-    border: $border;
-    border-radius: $border-radius;
-    margin: 2px;
-}
-.foodtype-dropdown{
-    border: $border;
+.bar-body-dropdown{
     border-radius: $border-radius;
     margin: 2px;
     width: 30%;
-}
-.allergies-dropdown{
-    border: $border;
-    border-radius: $border-radius;
-    margin: 2px;
-    width: 30%;
-}
-.timecooking-dropdown{
-    border: $border;
-    border-radius: $border-radius;
-    margin: 2px;
-    width: 30%;
+    font-family: $montserrat;
+    background-color: $gray;
 }
 .results-body{
     display: flex;
     text-align: center;
     line-height: 15vw;
     position: relative;
+    font-family: $montserrat;
+    
 
     .results-search{
-    border: $border;
     border-radius: $border-radius;
     margin-top: 3%;
     margin-right: 0.5%;
     height: 15vw;
+    background-color: #FFFFFF;
     }
     .display-receipt{
     display: flex;
-    border: $border;
     border-radius: $border-radius;
     margin-top: 3%;
     height: 15vw;
     width: 100%;
+    font-family: $montserrat;
+    background-color: #FFFFFF;
 
         .create-receipt-btn{
         background: lightblue;
@@ -110,7 +104,6 @@
     }
 }
 .day-display{
-    border: $border;
     border-radius: $border-radius;
     width: 100%;
     height: 20vw;
@@ -118,6 +111,7 @@
     flex-direction: column;
     position: relative;
     margin-top: 2%;
+    font-family: $montserrat;
 
     .uparrow{
         margin: auto;
@@ -135,12 +129,15 @@
         height: 8vw;
 
             .menu-display-box{
-            border: $border;
             border-radius: $border-radius;
             text-align: center;
             height: 6vw;
             padding-top: 2.5%;
-        }
+            background-color: #FFFFFF;
+            }
+            .day{
+                background-color: $gray;      
+            }
     }
     .downarrow{
         margin: auto;
