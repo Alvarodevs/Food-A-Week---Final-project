@@ -1,4 +1,4 @@
-@import "index";
+@import "home";
 
 .weekplan{
     display: flex;
@@ -108,7 +108,46 @@
         right: 1;
         }
     }
-
 }
+.day-display{
+    border: $border;
+    border-radius: $border-radius;
+    width: 100%;
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 2%;
 
+    .uparrow{
+        margin: auto;
+        margin-top: 0%;
+        top: 0;
+        border-style: solid;
+        border-width: 0 10vw 3vw 10vw;
+        border-color: transparent transparent #007bff transparent;
+    }
+    .menu-display{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 3vw;
+        height: 8vw;
 
+            .menu-display-box{
+            border: $border;
+            border-radius: $border-radius;
+            text-align: center;
+            height: 6vw;
+            padding-top: 2.5%;
+        }
+    }
+    .downarrow{
+        margin: auto;
+        margin-bottom: 0%;
+        bottom: 0;
+        border-style: solid;
+        border-width: 3vw 10vw 0 10vw;
+        border-color: #007bff transparent transparent transparent;
+    }
+}

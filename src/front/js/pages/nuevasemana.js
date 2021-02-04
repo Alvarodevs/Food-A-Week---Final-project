@@ -37,7 +37,18 @@ export const NuevaSemana = () => {
 					</div>
 				</div>
 			</div>
-			<div className="day-display" />
+			<div className="day-display">
+				<div className="uparrow" />
+				<div className="menu-display">
+					<div className="menu-display-box mr-1">Lunes</div>
+					<div className="menu-display-box col-2 mr-1">Desayuno</div>
+					<div className="menu-display-box col-2 mr-1">Snack</div>
+					<div className="menu-display-box col-2 mr-1">Almuerzo</div>
+					<div className="menu-display-box col-2 mr-1">Merienda</div>
+					<div className="menu-display-box col-2">Cena</div>
+				</div>
+				<div className="downarrow" />
+			</div>
 		</div>
 	);
 };
