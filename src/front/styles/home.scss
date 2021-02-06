@@ -1,3 +1,33 @@
-
+@import "colors";
+@import "fonts";
 $border-radius: 5px;
-$border: 1px solid red;
+
+.services-description{
+    background-color: $gray;
+    font-size: 1.7vw;
+    width: 70vw;
+    height: 15vw;
+    border-radius: $border-radius;
+}
+
+.service-circle {
+    background: lightblue;
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+    text-align: center;
+    line-height: 7vw;
+    margin: auto;
+    font-family: $montserrat;
+    font-size: 1.5vw;
+}
+
+.carousel-menus{
+    background-color: $gray;
+    width: 90vw;
+    height: 15vw;
+    border-radius: $border-radius;
+}
+div img{
+    size: 2vw;
+}
