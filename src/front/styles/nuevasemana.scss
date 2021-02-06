@@ -1,4 +1,3 @@
-@import "home";
 @import "colors";
 @import "fonts";
 
@@ -45,7 +44,7 @@ body{
     font-family: $montserrat;
 }
 .bar-body-dropdown{
-    border-radius: $border-radius;
+    border-radius: 5px;
     margin: 2px;
     width: 30%;
     font-family: $montserrat;
@@ -60,7 +59,7 @@ body{
     
 
     .results-search{
-    border-radius: $border-radius;
+    border-radius: 5px;
     margin-top: 3%;
     margin-right: 0.5%;
     height: 15vw;
@@ -68,7 +67,7 @@ body{
     }
     .display-receipt{
     display: flex;
-    border-radius: $border-radius;
+    border-radius: 5px;
     margin-top: 3%;
     height: 15vw;
     width: 100%;
@@ -104,7 +103,7 @@ body{
     }
 }
 .day-display{
-    border-radius: $border-radius;
+    border-radius: 5px;
     width: 100%;
     height: 20vw;
     display: flex;
@@ -133,7 +132,7 @@ body{
         height: 8vw;
 
             .menu-display-box{
-            border-radius: $border-radius;
+            border-radius: 5px;
             text-align: center;
             height: 6vw;
             padding-top: 2.5%;

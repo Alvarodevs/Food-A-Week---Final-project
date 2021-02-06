@@ -17,24 +17,24 @@ export const Home = () => {
 			</div>
 			<div className="services-container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
-				<div className="service-circle">
+				<button className="service-circle">
 					<p>
 						<b>WEEK PLAN</b>
 						{/* Link to=/newweek.js */}
 					</p>
-				</div>
-				<div className="service-circle">
+				</button>
+				<button className="service-circle">
 					<b>CREATE/SHARE RECIPES</b>
 					{/* Link to=/recipe.js */}
-				</div>
-				<div className="service-circle">
+				</button>
+				<button className="service-circle">
 					<b>GROCERY LIST</b>
 					{/* Link to=/grocerylist.js */}
-				</div>
-				<div className="service-circle">
+				</button>
+				<button className="service-circle">
 					<b>LOCAL SHOPS</b>
 					{/* Link to=/xxxxxx.js */}
-				</div>
+				</button>
 			</div>
 			<div className="carousel-menus container-fluid d-flex justify-content-center text-center text-plain mx-auto my-4">
 				RECIPES CAROUSEL

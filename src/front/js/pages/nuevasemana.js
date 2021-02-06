@@ -35,8 +35,8 @@ export const NuevaSemana = () => {
 				<div className="day-circle">
 					<b>Sunday</b>
 				</div>
-				<div className="weekplan-buttons-container">
-					<button className="weekplan-btn btn green-button" type="submit">
+				<div className="weekplan-buttons-container mr-2">
+					<button className="weekplan-btn btn green-button mr-2" type="submit">
 						Save
 					</button>
 					<button className="weekplan-btn btn green-button" type="submit">
