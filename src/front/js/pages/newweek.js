@@ -7,7 +7,7 @@ import "../../styles/nuevasemana.scss";
 export const NewWeek = () => {
 	return (
 		<div className="container-fluid background-pink">
-			<div className="title-section text-center mt-5 ">
+			<div className="title-section text-center mt-2 ">
 				<h1>New week plan</h1>
 				{/* <div className="imageMenu mt-5 mb-5 col-12">
 					<img src="https://dummyimage.com/1200x100&text=selected+menu+image" />
