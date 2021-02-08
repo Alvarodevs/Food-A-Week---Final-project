@@ -13,7 +13,7 @@ export const Home = () => {
 				<h1>{"Food 'A' Week"}</h1>
 			</div>
 			<div className="container services-description d-flex justify-content-center text-center text-plain mb-4 mx-auto py-4">
-				<p>Lorem ipsum dolor... (Description)</p>
+				<p>Description: what to do with this web</p>
 			</div>
 			<div className="services-container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}

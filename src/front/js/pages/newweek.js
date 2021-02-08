@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/nuevasemana.scss";
+import "../../styles/newweek.scss";
 //import { Dropdown } from "react-bootstrap/Dropdown";
 
 export const NewWeek = () => {
 	return (
 		<div className="container-fluid background-pink">
-			<div className="title-section text-center mt-2 ">
+			<div className="title-section text-center my-3 ">
 				<h1>New week plan</h1>
 				{/* <div className="imageMenu mt-5 mb-5 col-12">
 					<img src="https://dummyimage.com/1200x100&text=selected+menu+image" />

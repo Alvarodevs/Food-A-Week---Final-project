@@ -11,12 +11,13 @@
 }
 
 .service-circle {
-    background: lightblue;
+    background: $green;
     border-radius: 50%;
+    border: none;
     width: 15vw;
     height: 15vw;
     text-align: center;
-    line-height: 7vw;
+    line-height: 5vw;
     margin: auto;
     font-family: $montserrat;
     font-size: 1.5vw;
