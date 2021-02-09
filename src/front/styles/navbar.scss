@@ -1,3 +1,14 @@
+@import "colors";
+@import "fonts";
+
 .navbar {
     background-color: $gray;
+    font-family: $montserrat;
+
+    img{
+        height: 7vw;
+    }
+    h2 {
+        font-size: 3vw;
+    }
 }

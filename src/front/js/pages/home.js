@@ -24,13 +24,13 @@ export const Home = () => {
 					</p>
 				</button>
 				<button className="service-circle">
-					<b>CREATE/SHARE RECIPES</b>
+					<b>NEW WEEK MENU</b>
 					{/* Link to=/recipe.js */}
 				</button>
-				<button className="service-circle">
+				{/* <button className="service-circle">
 					<b>GROCERY LIST</b>
-					{/* Link to=/grocerylist.js */}
-				</button>
+					Link to=/grocerylist.js
+				</button> */}
 				<button className="service-circle">
 					<b>LOCAL SHOPS</b>
 					{/* Link to=/xxxxxx.js */}
