@@ -6,6 +6,8 @@ import { Home } from "./pages/home";
 //import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { NewWeek } from "./pages/newweek";
+import { AllWeeks } from "./pages/weeks";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -34,6 +36,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/newweek">
 							<NewWeek />
+						</Route>
+						<Route exact path="/weeks">
+							<AllWeeks />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

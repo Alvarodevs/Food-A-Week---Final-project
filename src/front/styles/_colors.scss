@@ -3,3 +3,41 @@ $brown          : #422d09;
 $green          : #468d5e;
 $yellow         : #ac7c36;
 $gray           : #e3e2df;
+
+$gray-shadow:  #b5b4b2;
+
+
+
+.pink-button{
+    background-color: $pink;
+    color: $gray;
+}
+
+.brown-button{
+    background-color: $brown;
+    color: $gray;
+}
+
+.green-button{
+    background-color: $green;
+    color: $gray;
+}
+.yellow-button{
+    background-color: $yellow ;
+    color: $gray;
+}
+.background-pink{
+    background-color: $pink;
+}
+.background-brown{
+    background-color: $brown;
+}
+.background-green{
+    background-color: $green;
+}
+.background-yellow{
+    background-color: $yellow;
+}
+.background-gray{
+    background-color: $gray;
+}
