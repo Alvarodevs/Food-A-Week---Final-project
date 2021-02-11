@@ -7,6 +7,7 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { NewWeek } from "./pages/newweek";
 import { AllWeeks } from "./pages/weeks";
+import { Map } from "./pages/maps";
 
 import injectContext from "./store/appContext";
 
@@ -39,6 +40,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/weeks">
 							<AllWeeks />
+						</Route>
+						<Route exact path="/map">
+							<Map />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="d-flex  navbar navbar-light background-gray mb-1">
+		<nav className="d-flex  navbar navbar-light background-pink mb-1">
 			<Link to="/">
 				{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
 				<img
