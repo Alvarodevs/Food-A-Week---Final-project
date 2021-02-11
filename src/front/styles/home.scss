@@ -1,5 +1,6 @@
-@import "colors";
-@import "fonts";
+@import '_colors.scss';
+@import '_fonts.scss';
+
 
 
 .services-description{
@@ -32,3 +33,6 @@
 div img{
     size: 2vw;
 }
+
+
+
