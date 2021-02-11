@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-// import Cardesk from "bootstrap";
-// import Cardmenus from "../component/cardweekmenu";
+import { Link } from "react-router-dom";
 import "../../styles/index.scss";
 
 export const Home = () => {
@@ -23,14 +22,11 @@ export const Home = () => {
 						{/* Link to=/newweek.js */}
 					</p>
 				</button>
-				<button className="service-circle">
-					<b>NEW WEEK MENU</b>
-					{/* Link to=/recipe.js */}
-				</button>
-				{/* <button className="service-circle">
-					<b>GROCERY LIST</b>
-					Link to=/grocerylist.js
-				</button> */}
+				<Link to="/newweek">
+					<button className="service-circle">
+						<b>NEW WEEK MENU</b>
+					</button>
+				</Link>
 				<button className="service-circle">
 					<b>LOCAL SHOPS</b>
 					{/* Link to=/xxxxxx.js */}

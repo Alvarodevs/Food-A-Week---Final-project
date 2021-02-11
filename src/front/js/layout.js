@@ -29,7 +29,7 @@ const Layout = () => {
 						<Route exact path="/weekjumbotron">
 							<WeekJumbo />
 						</Route>
-						<Route exact path="/userprofile/:theid">
+						<Route exact path="/userprofile/">
 							<Userprofile />
 						</Route>
 						<Route exact path="/newweek">
