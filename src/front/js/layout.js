@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { WeekJumbo } from "./component/weekjumbotron";
-import { Single } from "./pages/single";
+import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/newweek";
 import injectContext from "./store/appContext";
 
@@ -29,8 +29,8 @@ const Layout = () => {
 						<Route exact path="/weekjumbotron">
 							<WeekJumbo />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/userprofile/:theid">
+							<Userprofile />
 						</Route>
 						<Route exact path="/newweek">
 							<NewWeek />

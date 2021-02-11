@@ -15,7 +15,7 @@ export const Navbar = () => {
 				<h2>{"Choose your recipes, plan your week"}</h2>
 			</div>
 			<div className="mr-1">
-				<Link to="/demo">
+				<Link to="/userprofile">
 					<button className="weekplan-btn btn green-button">User name</button>
 				</Link>
 			</div>
