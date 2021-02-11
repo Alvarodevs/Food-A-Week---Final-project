@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-//import { Demo } from "./pages/demo";
+import { WeekJumbo } from "./component/weekjumbotron";
 import { Single } from "./pages/single";
 import { NewWeek } from "./pages/newweek";
 import injectContext from "./store/appContext";
@@ -26,9 +26,9 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						{/* <Route exact path="/demo">
-							<Demo />
-						</Route> */}
+						<Route exact path="/weekjumbotron">
+							<WeekJumbo />
+						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>

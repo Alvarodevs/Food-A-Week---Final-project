@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat&display=swap');
 
-
 // Font Variables
 $hand: 'Homemade Apple', cursive;
 $montserrat: 'Montserrat', sans-serif;
 
 // Styles
-
 h1 {
+  font-family: $hand;
+  font-weight: normal;
+  font-size:45px;
+}
+h3 {
   font-family: $hand;
   font-weight: normal;
   font-size:45px;
 }
 
 .text-plain{
-    font-family:$montserrat;
-    
+    font-family:$montserrat; 
 }
