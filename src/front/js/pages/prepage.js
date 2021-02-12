@@ -10,8 +10,8 @@ export const Pre = () => {
 			<div className="container">
 				<div className="text-pre-page">
 					<p className="title-web">Food A Week</p>
-					<p className="pre-text">Search, Organize and Reuse your work</p>
-					<p className="pre-text">Make your time more effective & enjoy your food</p>
+					<p className="pre-text ml-5">Search, Organize and Reuse your work</p>
+					<p className="pre-text ml-5">Make your time more effective & enjoy your food</p>
 				</div>
 				<div className="button-group-pre d-flex justify-content-end align-items-end">
 					<button type="submit" className="btn btn-lg green-button mr-2 p-2">
