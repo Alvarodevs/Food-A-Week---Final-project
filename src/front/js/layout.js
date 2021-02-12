@@ -8,6 +8,7 @@ import { Single } from "./pages/single";
 import { NewWeek } from "./pages/newweek";
 import { AllWeeks } from "./pages/weeks";
 import { Map } from "./pages/maps";
+import { Pre } from "./pages/prepage";
 
 import injectContext from "./store/appContext";
 
@@ -29,9 +30,10 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						{/* <Route exact path="/demo">
-							<Demo />
-						</Route> */}
+						<Route exact path="/prepage">
+							<Pre />
+						</Route>
+
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
