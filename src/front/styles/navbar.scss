@@ -6,9 +6,12 @@
     font-family: $montserrat;
 
     img{
-        height: 7vw;
+        height: 5vw;
     }
     h2 {
-        font-size: 3vw;
+        font-size: 2vw;
+    }
+    .dropdown-basic::after {
+    display:none;
     }
 }

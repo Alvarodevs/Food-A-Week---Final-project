@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export const Navbar = () => {
 	return (
@@ -12,12 +13,30 @@ export const Navbar = () => {
 				/>
 			</Link>
 			<div className="text-center mt-3 mx-auto">
-				<h2>{"Choose your recipes, plan your week"}</h2>
+				<h4>{"Choose your recipes, plan your week"}</h4>
 			</div>
 			<div className="mr-1">
-				<Link to="/userprofile">
+				<Dropdown>
+					<Dropdown.Toggle variant="success" className="dropdown-basic">
+						User Name
+					</Dropdown.Toggle>
+
+					<Dropdown.Menu>
+						<Dropdown.Item href="/userprofile">
+							Profile
+							{/* <Link to="/userprofile" /> */}
+						</Dropdown.Item>
+						<Dropdown.Divider />
+						<Dropdown.Item href="/">
+							Logout
+							{/* <Link to="/" /> */}
+						</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+				{/* <Link to="/userprofile">
 					<button className="weekplan-btn btn green-button">User name</button>
-				</Link>
+				</Link> */}
+				{/* INSERTAR DROPDOWN CON 2 LINKS, UNA VEZ LOGEADO EL USER, UNO A USER PROFILE Y UN LOGOUT */}
 			</div>
 		</nav>
 	);
