@@ -10,9 +10,6 @@ export const AllWeeks = () => {
 		<div className="container background-white">
 			<div className="text-center mt-3 d-flex row justify-content-center">
 				<h1>{"All your weeks"}</h1>
-				<button type="submit" className="btn green-button ml-5">
-					Get me out of here! I want to generate a new week
-				</button>
 			</div>
 			<div>
 				<div className="card-deck justify-content-center mt-5">
@@ -29,6 +26,11 @@ export const AllWeeks = () => {
 					<div className="card col-4 menuWeek" />
 					<div className="card col-4 menuWeek" />
 				</div>
+			</div>
+			<div className="d-flex justify-content-end">
+				<button type="submit" className="btn pink-button mt-5 ">
+					Get me out of here! I want to generate a new week
+				</button>
 			</div>
 		</div>
 	);
