@@ -8,7 +8,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container-fluid background-pink">
+		<div className="container-fluid background-white">
 			<div className="text-center mt-3 ">
 				<h1>{"Food 'A' Week"}</h1>
 			</div>

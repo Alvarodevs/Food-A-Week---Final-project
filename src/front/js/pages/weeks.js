@@ -7,7 +7,7 @@ export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container-fluid background-pink">
+		<div className="container-fluid background-white">
 			<div className="text-center mt-3 d-flex row justify-content-center">
 				<h1>{"All your weeks"}</h1>
 				<button type="submit" className="btn green-button ml-5">

@@ -4,7 +4,7 @@ import logo from "../../img/containers.png";
 
 export const Navbar = () => {
 	return (
-		<nav className="d-flex justify-content-around navbar navbar-light background-pink mb-1">
+		<nav className="d-flex justify-content-around navbar navbar-light background-white mb-1">
 			<Link to="/">
 				{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
 				{/* <img
