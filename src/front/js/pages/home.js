@@ -36,6 +36,7 @@ export const Home = () => {
 					{/* Link to=/xxxxxx.js */}
 				</button>
 			</div>
+			<div />
 			{/* <div className="carousel-menus container-fluid d-flex justify-content-center text-center text-plain mx-auto my-4">
 				RECIPES CAROUSEL */}
 			{/* <Cardesk>
