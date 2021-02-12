@@ -7,7 +7,7 @@ export const Map = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container background-pink">
+		<div className="container background-white">
 			<div className="text-center mt-3  d-flex flex-column justify-content-center">
 				<h1 className="mb-5">{"Find your local store"}</h1>
 				<div className="d-flex flex-row">

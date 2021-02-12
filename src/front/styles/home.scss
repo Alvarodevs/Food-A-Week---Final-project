@@ -4,32 +4,58 @@
 
 
 .services-description{
-    background-color: $gray;
+//     box-shadow: 1px 2px 2px 2px $gray;
+//     opacity: 0.9;
     font-size: 1.7vw;
-    width: 70vw;
-    height: 15vw;
-    border-radius: 5px;
+//     width: 70vw;
+//     height: 10vw;
+//     border-radius: 5px;
 }
 
 .service-circle {
-    background: $green;
+   // background: $green;
     border-radius: 50%;
     border: none;
-    width: 15vw;
-    height: 15vw;
+    width: 12vw;
+    height: 12vw;
     text-align: center;
     line-height: 5vw;
     margin: auto;
     font-family: $montserrat;
-    font-size: 1.5vw;
+    font-size: 19px;
+    color:black;
+    box-shadow: 1px 2px 2px 2px $pink;
 }
 
-.carousel-menus{
-    background-color: $gray;
-    width: 90vw;
-    height: 15vw;
-    border-radius: 5px;
+#weeks{
+    background-image: url("https://images.unsplash.com/photo-1463717738788-85fcacb6ac3d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80"); /* La imagen y su ruta */   
+    opacity:0.6;
+    background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
+    background-position: center; /* Para centrar la imagen horizontal y verticalmente en el contenedor */
+    background-repeat: no-repeat; /* Para que no repita la imagen */
 }
+
+#newweek{
+    background-image: url("https://images.unsplash.com/photo-1506485338023-6ce5f36692df?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"); /* La imagen y su ruta */   
+    opacity:0.8;
+    background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
+    background-position: center; /* Para centrar la imagen horizontal y verticalmente en el contenedor */
+    background-repeat: no-repeat; /* Para que no repita la imagen */
+}
+
+#localshops{
+    background-image: url("https://images.unsplash.com/photo-1571349674927-1354c72962ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"); /* La imagen y su ruta */   
+    opacity:0.6;
+    background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
+    background-position: center; /* Para centrar la imagen horizontal y verticalmente en el contenedor */
+    background-repeat: no-repeat; /* Para que no repita la imagen */
+}
+// .carousel-menus{
+//     background-color: $gray;
+//     width: 90vw;
+//     height: 15vw;
+//     border-radius: 5px;
+// }
 div img{
     size: 2vw;
 }
