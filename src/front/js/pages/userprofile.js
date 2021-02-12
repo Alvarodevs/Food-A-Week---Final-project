@@ -13,8 +13,8 @@ export const Userprofile = props => {
 				<h1>{"User profile"}</h1>
 			</div>
 			<div className="d-flex flex-row user-profile-titles mt-2">
-				<div className="col-3 " />
-				<div className="col-3 ">
+				<div className="col-2 " />
+				<div className="col-4 text-center">
 					<h3>{"User info"}</h3>
 				</div>
 				<div className="col-6 text-center">

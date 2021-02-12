@@ -13,13 +13,13 @@ body{
 .day-circle {
     background: $green;
     border-radius: 50%;
-    width: 10vw;
-    height: 10vw;
+    width: 5vw;
+    height: 5vw;
     text-align: center;
-    line-height: 10vw;
+    line-height: 5vw;
     margin: auto;
     font-family: $montserrat;
-    font-size: 1.5vw;
+    font-size: 0.8vw;
 }
 .weekplan-buttons-container{
     display: flex;
@@ -35,7 +35,7 @@ body{
 }
 .btns-bar-body{
     display: flex;
-    margin-top: 3%;
+    margin: 0.5%;
     height: 50px;
     border-radius: 5px;
     text-align: center;
