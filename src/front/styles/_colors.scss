@@ -7,12 +7,13 @@ $gray           : #e3e2df;
 $gray-shadow:  #b5b4b2;
 
 
-   
+
 
 .pink-button{
     background-color: white;
     box-shadow: 2px 2px 2px 1px $pink;
     color: black;
+
 }
 
 .brown-button{
@@ -28,9 +29,12 @@ $gray-shadow:  #b5b4b2;
     background-color: $yellow ;
     color: $gray;
 }
+
 .background-white{
       background-color: white;
 }
+
+
 .background-pink{
     background-color: $pink;
 }

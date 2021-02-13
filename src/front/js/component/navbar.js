@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/containers.png";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export const Navbar = () => {
 	return (
@@ -13,11 +14,36 @@ export const Navbar = () => {
 				/> */}
 				<img src={logo} alt="Logo" className="d-flex navbar-brand mb-0 ml-5" />
 			</Link>
+
 			<div className="text-center mt-3 mx-auto">{/* <h2>{"Choose your recipes, plan your week"}</h2> */}</div>
 			<div className="mr-1">
 				<Link to="/demo">
 					<button className="btn btn-circle user-button mr-5">User name</button>
 				</Link>
+
+			<div className="mr-1">
+				<Dropdown>
+					<Dropdown.Toggle variant="success" className="dropdown-basic green-button">
+						User Name
+					</Dropdown.Toggle>
+
+					<Dropdown.Menu>
+						<Dropdown.Item href="/userprofile">
+							Profile
+							{/* <Link to="/userprofile" /> */}
+						</Dropdown.Item>
+						<Dropdown.Divider />
+						<Dropdown.Item href="/">
+							Logout
+							{/* <Link to="/" /> */}
+						</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+				{/* <Link to="/userprofile">
+					<button className="weekplan-btn btn green-button">User name</button>
+				</Link> */}
+				{/* INSERTAR DROPDOWN CON 2 LINKS, UNA VEZ LOGEADO EL USER, UNO A USER PROFILE Y UN LOGOUT */}
+
 			</div>
 		</nav>
 	);

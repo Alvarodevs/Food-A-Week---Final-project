@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
-//import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { WeekJumbo } from "./component/weekjumbotron";
+import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/newweek";
 import { AllWeeks } from "./pages/weeks";
 import { Map } from "./pages/maps";
@@ -30,12 +30,20 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
+
 						<Route exact path="/prepage">
 							<Pre />
 						</Route>
 
 						<Route exact path="/single/:theid">
 							<Single />
+
+						<Route exact path="/weekjumbotron">
+							<WeekJumbo />
+						</Route>
+						<Route exact path="/userprofile/">
+							<Userprofile />
+
 						</Route>
 						<Route exact path="/newweek">
 							<NewWeek />

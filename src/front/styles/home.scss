@@ -7,17 +7,20 @@
 //     box-shadow: 1px 2px 2px 2px $gray;
 //     opacity: 0.9;
     font-size: 1.7vw;
+
 //     width: 70vw;
 //     height: 10vw;
 //     border-radius: 5px;
+
 }
 
 .service-circle {
    // background: $green;
     border-radius: 50%;
     border: none;
-    width: 12vw;
-    height: 12vw;
+  width: 10vw;
+    height: 10vw;
+
     text-align: center;
     line-height: 5vw;
     margin: auto;
@@ -41,6 +44,8 @@
     background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
     background-position: center; /* Para centrar la imagen horizontal y verticalmente en el contenedor */
     background-repeat: no-repeat; /* Para que no repita la imagen */
+
+  
 }
 
 #localshops{

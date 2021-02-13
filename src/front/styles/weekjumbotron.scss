@@ -1,0 +1,14 @@
+@import "colors";
+@import "fonts";
+
+.body-jumbo{
+    min-height: 25vw;
+    padding: 5em inherit
+}
+.cell{
+    height: 2vw;
+    width: 2vw;
+}
+.delete-button{
+    color: $green;
+}
