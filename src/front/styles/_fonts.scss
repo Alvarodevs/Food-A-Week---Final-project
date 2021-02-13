@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat&display=swap');
 
-// Font Variables
-$hand: 'Homemade Apple', cursive;
-$montserrat: 'Montserrat', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
+
+// Font Variables
+//$hand: 'Homemade Apple', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$hand: 'Sacramento', cursive;
 // Styles
 h1 {
   font-family: $hand;
@@ -21,6 +24,33 @@ h4{
   //font-size:45px; 
 }
 
+h2 {
+  font-family: $hand;
+  font-weight: normal;
+  font-size:40px;
+}
+
+
 .text-plain{
-    font-family:$montserrat; 
+
+    font-family:$montserrat;
+    
+}
+
+.title-web{
+    font-family:$hand;
+    font-weight:bold;
+    font-size:90px;
+    margin-top:10%;
+}
+.pre-text{
+    font-family:$montserrat;
+    font-size:35px;
+    margin-top:2%;
+
+}
+
+.button-text{
+    font-family:$hand;
+    
 }

@@ -1,15 +1,22 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 
+//components
+import { Navbar } from "./component/navbar";
+import { Footer } from "./component/footer";
+import ScrollToTop from "./component/scrollToTop";
+//Pages
+import { Pre } from "./pages/prepage";
 import { Home } from "./pages/home";
 import { WeekJumbo } from "./component/weekjumbotron";
 import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/newweek";
-import injectContext from "./store/appContext";
+import { AllWeeks } from "./pages/weeks";
+import { Map } from "./pages/maps";
+//import { Single} from "";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+//Context
+import injectContext from "./store/appContext";
 
 //create your first component
 const Layout = () => {
@@ -26,6 +33,12 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
+						<Route exact path="/prepage">
+							<Pre />
+						</Route>
+						{/* <Route exact path="/single/:theid">
+							<Single />
+						</Route> */}
 						<Route exact path="/weekjumbotron">
 							<WeekJumbo />
 						</Route>
@@ -35,8 +48,11 @@ const Layout = () => {
 						<Route exact path="/newweek">
 							<NewWeek />
 						</Route>
-						<Route>
-							<h1>Not found!</h1>
+						<Route exact path="/weeks">
+							<AllWeeks />
+						</Route>
+						<Route exact path="/map">
+							<Map />
 						</Route>
 					</Switch>
 					<Footer />

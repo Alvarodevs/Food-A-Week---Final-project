@@ -6,7 +6,7 @@ import "../../styles/newweek.scss";
 
 export const NewWeek = () => {
 	return (
-		<div className="container-fluid background-pink">
+		<div className="container-fluid background-white">
 			<div className="title-section text-center my-3 ">
 				<h1>New week plan</h1>
 				{/* <div className="imageMenu mt-5 mb-5 col-12">
