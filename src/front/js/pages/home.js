@@ -9,23 +9,24 @@ export const Home = () => {
 
 	return (
 		<div className="container">
-			<div className="text-center mt-3 ">{/* <h1>{""}</h1> */}</div>
-			<div className="container services-description d-flex justify-content-center text-center text-plain mb-4 mx-auto py-4">
-				<h1>
+			<div className="text-center ">{/* <h1>{""}</h1> */}</div>
+			<div className="container services-description d-flex justify-content-center text-center text-plain mb-4">
+				<h4>
 					Check the recipes you want and organize your week. When you run out of time, check your saved weeks!
-				</h1>
+				</h4>
 			</div>
 			<div className="services-container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
-				<button className="service-circle" id="weeks">
-					<p>
-						<b>WEEK PLAN</b>
-						{/* Link to=/newweek.js */}
-					</p>
+				<button className="service-circle " id="weeks">
+					<p className="button-text" />
+					<b className="space-button-text">WEEK PLAN</b>
+					{/* Link to=/newweek.js */}
 				</button>
 
 				<button className="service-circle" id="newweek">
-					<b>NEW WEEK MENU</b>
+					<p className="button-text">
+						<b className="space-button-text">NEW WEEK MENU</b>
+					</p>
 					{/* Link to=/recipe.js */}
 				</button>
 				{/* <button className="service-circle">
@@ -33,7 +34,9 @@ export const Home = () => {
 					Link to=/grocerylist.js
 				</button> */}
 				<button className="service-circle" id="localshops">
-					<b>LOCAL SHOPS</b>
+					<p className="button-text">
+						<b className="space-button-text">LOCAL SHOPS</b>{" "}
+					</p>
 					{/* Link to=/xxxxxx.js */}
 				</button>
 			</div>
