@@ -8,13 +8,13 @@ export const Map = () => {
 
 	return (
 		<div className="container background-white">
-			<div className="text-center mt-3  d-flex flex-column justify-content-center">
-				<h1 className="mb-5">{"Find your local store"}</h1>
+			<div className="text-center mt-0 d-flex flex-column justify-content-center">
+				<h1 className="mb-3">{"Find your local store"}</h1>
 				<div className="d-flex flex-row">
 					<p>
 						<img className="col-7 d-flex align-items-stretch" src={planeImageUrl} />
 					</p>
-					<img clasName="mt-5" src="https://dummyimage.com/800x400&text=placeholder+map" />
+					<img clasName="mt-5 map-frame" src="https://dummyimage.com/800x400&text=placeholder+map" />
 				</div>
 			</div>
 

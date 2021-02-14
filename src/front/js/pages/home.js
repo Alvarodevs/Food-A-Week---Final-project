@@ -37,7 +37,7 @@ export const Home = () => {
 					<b>GROCERY LIST</b>
 					Link to=/grocerylist.js
 				</button> */}
-				<Link to="/maps">
+				<Link to="/map">
 					<Button className="service-circle" id="localshops">
 						<div className="button-text">
 							<div className="space-button-text">{"LOCAL SHOPS"}</div>
