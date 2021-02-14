@@ -20,7 +20,9 @@ export const AllWeeks = () => {
 							<div className="card-title">Some information</div>
 						</div>
 						<div className="card-footer">
-							<small className="text-muted">Last updated 3 mins ago</small>
+							<small className="text-muted">
+								<button className="btn green-button">JUMBO</button>
+							</small>
 						</div>
 					</div>
 					<div className="card col-4 menuWeek" />

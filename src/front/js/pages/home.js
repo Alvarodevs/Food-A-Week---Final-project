@@ -18,15 +18,12 @@ export const Home = () => {
 			<div className="services-container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
 				<button className="service-circle " id="weeks">
-					<p className="button-text" />
-					<b className="space-button-text">WEEK PLAN</b>
+					<div className="button-text">WEEK PLAN</div>
 					{/* Link to=/newweek.js */}
 				</button>
-
 				<button className="service-circle" id="newweek">
-					<p className="button-text">
-						<b className="space-button-text">NEW WEEK MENU</b>
-					</p>
+					<div className="button-text">NEW WEEK</div>
+
 					{/* Link to=/recipe.js */}
 				</button>
 				{/* <button className="service-circle">
@@ -34,10 +31,8 @@ export const Home = () => {
 					Link to=/grocerylist.js
 				</button> */}
 				<button className="service-circle" id="localshops">
-					<p className="button-text">
-						<b className="space-button-text">LOCAL SHOPS</b>{" "}
-					</p>
 					{/* Link to=/xxxxxx.js */}
+					<div className="button-text">LOCAL SHOPS</div>{" "}
 				</button>
 			</div>
 			<div />

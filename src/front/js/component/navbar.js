@@ -15,6 +15,7 @@ export const Navbar = () => {
 				/> */}
 					<img src={logo} alt="Logo" className="d-flex navbar-brand mb-0 ml-5" />
 				</Link>
+
 				<div className="text-center mt-3 mx-auto">{/* <h2>{"Choose your recipes, plan your week"}</h2> */}</div>
 				<div className="mr-1">
 					<div className="mr-1">
