@@ -2,22 +2,23 @@
 @import "fonts";
 
 .card{
-    width: 15vw;
-    height: 20vw;
+    // width: 20vw;
+    // height: 20vw;
+    
 }
 .card-title{
     font-size: 1.3vw;
 }
 .menuWeek{
    background: #fff;
-   box-shadow: 2px 2px 2px 1px $pink;
-   
-   height:20vw;
+   box-shadow: 1px 1px 1px 1px $pink;
+   //height:22%;
    //width: 90%;
    //margin: 10px auto;
    padding: 3em 2em 0;
   overflow: visible;
  } 
+
 .weekplan-btn{
     border-radius: 5px;
     font-family: $montserrat;
