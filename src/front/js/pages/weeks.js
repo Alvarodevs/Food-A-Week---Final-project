@@ -15,8 +15,8 @@ export const AllWeeks = () => {
 				<h1>{"All your weeks"}</h1>
 			</div>
 			<div>
-				<div className="card-deck justify-content-between mt-3">
-					<div className="card col-4 menuWeek justify-content-center p-0 m-0">
+				<div className="card-deck justify-content-around mt-3">
+					<div className="card  menuWeek justify-content-center p-0 m-0">
 						<img
 							className="card-img-top p-0 m-0 w-75 h-75"
 							src="https://static01.nyt.com/images/2020/01/24/dining/yk-gochujang-chicken-and-vegetables/merlin_167664060_7435c624-7225-4cb1-b104-4d67761185a4-articleLarge.jpg"
