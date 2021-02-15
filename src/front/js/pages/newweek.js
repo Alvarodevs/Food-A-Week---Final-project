@@ -7,7 +7,7 @@ import "../../styles/newweek.scss";
 export const NewWeek = () => {
 	return (
 		<div className="container-fluid background-white">
-			<div className="title-section text-center my-3 ">
+			<div className="title-section text-center my-1 ">
 				<h1>New week plan</h1>
 				{/* <div className="imageMenu mt-5 mb-5 col-12">
 					<img src="https://dummyimage.com/1200x100&text=selected+menu+image" />
@@ -45,12 +45,12 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="weekplan-body">
-				<div className="btns-bar-body">
+				<div className="btns-bar-body ml-0 mt-2 justify-content-between">
 					{/* AQUI DA ERROR AL METER DROPDOWN-BOOTSTRAP*/}
 					<div className="bar-body-dropdown col-4 ml-0">Search Bar</div>
-					<div className="bar-body-dropdown">Food type</div>
-					<div className="bar-body-dropdown">Allergies</div>
-					<div className="bar-body-dropdown">Time cooking</div>
+					<div className="bar-body-dropdown col-2 ml-1">Food type</div>
+					<div className="bar-body-dropdown col-2">Allergies</div>
+					<div className="bar-body-dropdown col-2 mr-5">Time cooking</div>
 				</div>
 				<div className="results-body">
 					<div className="results-search col-4">Results search container</div>
@@ -65,7 +65,7 @@ export const NewWeek = () => {
 					</div>
 				</div>
 			</div>
-			<div className="day-display">
+			<div className="day-display mt-4">
 				<button className="uparrow" type="submit" />
 
 				<div className="menu-display my-0">

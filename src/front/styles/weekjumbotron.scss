@@ -3,12 +3,17 @@
 
 .body-jumbo{
     min-height: 25vw;
-    padding: 5em inherit
+    padding: 3em inherit;
+    background-color: white;
 }
 .cell{
-    height: 2vw;
-    width: 2vw;
+    height: 1.8vw;
+    width: 2.5vw;
 }
 .delete-button{
     color: $green;
+}
+.green-button{
+    background-color: $green;
+    color: $gray;
 }

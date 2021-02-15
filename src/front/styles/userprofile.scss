@@ -6,21 +6,25 @@
     font-family: $montserrat
 }
 .data-container{
-    background-color: $green;
+    background-color: white;
     font-size: 1.7vw;
     width: 70vw;
     height: 25vw;
     border-radius: 5px;
-    color: $gray
+    color: black;
+    box-shadow: 1px 2px 2px 2px $green;
 }
+
 .avatar {
-    background: $green;
+    background: white;
     border-radius: 50%;
     width: 16vw;
     height: 16vw;
     text-align: center;
     line-height: 10vw;
+    box-shadow: 1px 2px 2px 2px $green
 }
+
 .weekplan-btn{
     border-radius: 5px;
     margin: 2%;
@@ -39,14 +43,15 @@ div img{
 }
 .allergen-icon{
     width: 4vw;
-    height: 4vw;
+    height: 4vw;   
 }
 .text-icon{
     font-size: 1.5vw;
     text-align: center;
 }
 .form{
-    background-color: $gray;
+    background-color: white;
     color: black;
     font-family: $montserrat;
+    box-shadow: 1px 2px 2px 2px $green
 }
