@@ -21,7 +21,7 @@ export const Home = () => {
 				<Link to="/weeks">
 					<Button className="service-circle weeks">
 						<div className="button-text">
-							<div className="space-button-text">{"WEEK PLANS"}</div>
+							<div className="space-button-text mt-4 pt-2">{"WEEK PLANS"}</div>
 						</div>
 					</Button>
 				</Link>
@@ -40,7 +40,7 @@ export const Home = () => {
 				<Link to="/map">
 					<Button className="service-circle" id="localshops">
 						<div className="button-text">
-							<div className="space-button-text">{"LOCAL SHOPS"}</div>
+							<div className="space-button-text mt-4 pt-2">{"LOCAL SHOPS"}</div>
 						</div>
 					</Button>
 				</Link>
