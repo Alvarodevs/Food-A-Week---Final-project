@@ -26,15 +26,9 @@ export const Navbar = () => {
 								User Name
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
-								<Dropdown.Item href="/userprofile">
-									Profile
-									{/* <Link to="/userprofile" /> */}
-								</Dropdown.Item>
+								<Dropdown.Item href="/userprofile">Profile</Dropdown.Item>
 								<Dropdown.Divider />
-								<Dropdown.Item href="/">
-									Logout
-									{/* <Link to="/" /> */}
-								</Dropdown.Item>
+								<Dropdown.Item href="/">Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 						{/* <Link to="/userprofile">
