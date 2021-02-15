@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 import { Context } from "../store/appContext";
 import "../../styles/newweek.scss";
-//import { Dropdown } from "react-bootstrap/Dropdown";
+import { Form, InputGroup } from "react-bootstrap";
 
 export const NewWeek = () => {
 	return (
 		<div className="container-fluid background-white">
 			<div className="title-section text-center my-1 ">
 				<h1>New week plan</h1>
-				{/* <div className="imageMenu mt-5 mb-5 col-12">
-					<img src="https://dummyimage.com/1200x100&text=selected+menu+image" />
-				</div> */}
 			</div>
 			<div className="weekplan">
 				<div className="day-circle">
@@ -46,11 +44,35 @@ export const NewWeek = () => {
 			</div>
 			<div className="weekplan-body">
 				<div className="btns-bar-body ml-0 mt-2 justify-content-between">
-					{/* AQUI DA ERROR AL METER DROPDOWN-BOOTSTRAP*/}
 					<div className="bar-body-dropdown col-4 ml-0">Search Bar</div>
-					<div className="bar-body-dropdown col-2 ml-1">Food type</div>
-					<div className="bar-body-dropdown col-2">Allergies</div>
-					<div className="bar-body-dropdown col-2 mr-5">Time cooking</div>
+
+					<Dropdown className="bar-body-dropdown col-2 ml-1">
+						<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item>Rice</Dropdown.Item>
+							<Dropdown.Item>Pasta</Dropdown.Item>
+							<Dropdown.Item>Fish</Dropdown.Item>
+							<Dropdown.Item>Meat</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					<Dropdown className="bar-body-dropdown col-2 ml-1">
+						<Dropdown.Toggle className="toggle">Allergens</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item>Celery</Dropdown.Item>
+							<Dropdown.Item>Gluten</Dropdown.Item>
+							<Dropdown.Item>Shellfish</Dropdown.Item>
+							<Dropdown.Item>Lactose</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					<Dropdown className="bar-body-dropdown col-2 ml-1">
+						<Dropdown.Toggle className="toggle">Time cooking</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item>{"< 20 minutes"}</Dropdown.Item>
+							<Dropdown.Item>{"20 - 30 minutes"}</Dropdown.Item>
+							<Dropdown.Item>{"30 - 45 minutes"}</Dropdown.Item>
+							<Dropdown.Item>{"> 45 minutes"}</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 				</div>
 				<div className="results-body">
 					<div className="results-search col-4">Results search container</div>
@@ -66,8 +88,12 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="day-display mt-4">
-				<button className="uparrow" type="submit" />
-
+				<div className="d-flex justify-content-around mb-4">
+					<div className="col-5" />
+					<button className="uparrow" type="submit" />
+					<button className="downarrow" type="submit" />
+					<div className="col-5" />
+				</div>
 				<div className="menu-display my-0">
 					<div className="menu-display-box day px-3 mr-1">Lunes</div>
 					<div className="menu-display-box col-2 mr-1">Desayuno</div>
@@ -76,8 +102,6 @@ export const NewWeek = () => {
 					<div className="menu-display-box col-2 mr-1">Merienda</div>
 					<div className="menu-display-box col-2">Cena</div>
 				</div>
-
-				<button className="downarrow" type="submit" />
 			</div>
 		</div>
 	);
