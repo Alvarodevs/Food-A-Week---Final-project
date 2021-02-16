@@ -1,14 +1,21 @@
 @import "colors";
 @import "fonts";
 
+.page-container{
+    width: 85%;
+    height:100%;
+    margin:auto;
+    margin-top:0;
+}
 .card{
-    // width: 20vw;
-    // height: 20vw;
+    width: 15vw;
+    height: 20vw;
     
 }
 .card-title{
     font-size: 1.3vw;
 }
+
 .menuWeek{
    background: #fff;
    box-shadow: 1px 1px 1px 1px $pink;
@@ -19,11 +26,37 @@
   overflow: visible;
  } 
 
+ .align-card-buttons{
+    display:flex;
+    justify-content:center;
+
+}
+
 .weekplan-btn{
     border-radius: 5px;
     font-family: $montserrat;
+    font-size:1vw;
     background-color: $green;
     color: $gray;  
-    font-size: 0.6em;
+    padding:0.5vw;
+ //
     border: none;
 }
+
+.weekplan-btn > a  { color: $gray } /* CSS link color (red) */
+//.weekplan-btn > a:hover { color:$green; } /* CSS link hover (green) */
+
+
+
+.page-order-weeks, .next-previous-weeks{
+    display:flex;
+    justify-content:space-around;
+    margin:auto;
+}
+
+.page-order-weeks > div, .next-previous-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}
+
