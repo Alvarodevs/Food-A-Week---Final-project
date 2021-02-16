@@ -19,8 +19,8 @@ export const Home = () => {
 			<div className="container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
 				<Link to="/weeks">
-					<Button className="service-circle weeks">
-						<div className="button-text mt-4 pt-2">{"WEEK PLANS"}</div>
+					<Button className="service-circle" id="newweek">
+						<div className="button-text">{"WEEK PLANS"}</div>
 					</Button>
 				</Link>
 
