@@ -6,10 +6,10 @@
     display: flex;
     border-radius: 5px;
     padding: 5px;
-    background-color: $gray;
+    background-color: white;
 }
 .day-circle {
-    background: $green;
+    background: white;
     border-radius: 50%;
     width: 5vw;
     height: 5vw;
@@ -18,6 +18,7 @@
     margin: auto;
     font-family: $montserrat;
     font-size: 0.8vw;
+    box-shadow: 1px 2px 2px 2px $green
 }
 .weekplan-buttons-container{
     display: flex;
@@ -29,7 +30,7 @@
     margin: 2%;
     font-family: $montserrat;
     background-color: $green;
-    color: $gray;
+    color: $gray;  
 }
 .btns-bar-body{
     display: flex;
@@ -43,10 +44,21 @@
 }
 .bar-body-dropdown{
     border-radius: 5px;
-    margin: 2px;
+    margin: 1px;
     width: 30%;
     font-family: $montserrat;
-    background-color: $gray;
+    background-color: white;
+    box-shadow: 1px 2px 2px 2px $pink;
+}
+.toggle{
+    color: black;
+    background-color: #FFFFFF;
+    border: none;
+}
+.toggle:hover{
+    color: black;
+    background-color: #FFFFFF;
+    border: none;
 }
 .results-body{
     display: flex;
@@ -55,22 +67,24 @@
     position: relative;
     font-family: $montserrat;
     
-
     .results-search{
     border-radius: 5px;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-right: 0.5%;
-    height: 15vw;
+    height: 20vw;
     background-color: #FFFFFF;
+    box-shadow: 1px 2px 2px 2px $pink;
     }
+
     .display-receipt{
     display: flex;
     border-radius: 5px;
-    margin-top: 3%;
-    height: 15vw;
+    margin-top: 1%;
+    height: 20vw;
     width: 100%;
     font-family: $montserrat;
     background-color: #FFFFFF;
+    box-shadow: 1px 2px 2px 2px $pink;
 
         .create-receipt-btn{
         background: $green;
@@ -114,7 +128,7 @@
         margin: auto;
         margin-top: 0%;
         bottom: 0;
-        background-color: $pink;
+        background-color: white;
         border: solid $green;
         border-width: 0 3px 3px 0;
         display: inline-block;
@@ -135,16 +149,18 @@
             height: 6vw;
             padding-top: 2.5%;
             background-color: #FFFFFF;
+            box-shadow: 1px 2px 2px 2px $green
             }
             .day{
-                background-color: $gray;      
+            background-color: white;
+            box-shadow: 1px 2px 2px 2px $green;     
             }
     }
     .downarrow{
         margin: auto;
         margin-top: 0%;
         top: 0;
-        background-color: $pink;
+        background-color: white;
         border: solid $green;
         border-width: 0 3px 3px 0;
         display: inline-block;
