@@ -2,19 +2,23 @@
 @import "fonts";
 
 .page-container{
-    width: 85%;
-    height:100%;
+    // width: 100%;
+    // height:100%;
     margin:auto;
     margin-top:0;
 }
 .card{
-    width: 15vw;
-    height: 20vw;
+    width: 12vw;
+    height: 17vw;
     
 }
 .card-title{
-    font-size: 1.3vw;
+    font-size: 1.2vw;
 }
+// .card-text{
+//     font-size:1vw;
+
+// }
 
 .menuWeek{
    background: #fff;
@@ -44,7 +48,12 @@
 }
 
 .weekplan-btn > a  { color: $gray } /* CSS link color (red) */
-//.weekplan-btn > a:hover { color:$green; } /* CSS link hover (green) */
+
+// .weekplan-btn :hover { 
+//     color:$green; 
+//     text-decoration: none;
+//     background-color: $green;
+// } /* CSS link hover (green) */
 
 
 

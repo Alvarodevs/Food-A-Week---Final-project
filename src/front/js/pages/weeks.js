@@ -33,19 +33,19 @@ export const AllWeeks = () => {
 									src="https://static01.nyt.com/images/2020/01/24/dining/yk-gochujang-chicken-and-vegetables/merlin_167664060_7435c624-7225-4cb1-b104-4d67761185a4-articleLarge.jpg"
 									alt="Card image cap"
 								/>
-								<div className="card-body py-1 justify-content-between align-middle">
+								<div className=" card-body py-1 justify-content-between align-middle">
 									<div className="card-title pt-2">Semana santa</div>
 									<div className="card-text pt-2">
 										Los menús de esta semana no tienen carne, pero si pescado
 									</div>
 								</div>
 								<div className="align-card-buttons">
-									<Button className=" weekplan-btn btn green-button" type="submit">
+									<Button className=" weekplan-btn green-button" type="submit">
 										<Link to="/weekjumbotron" activeStyle={{ color: "gray" }}>
 											Show
 										</Link>
 									</Button>
-									<Button className="weekplan-btn btn green-button" type="submit">
+									<Button className="weekplan-btn  green-button" type="submit">
 										<Link to="/newweek">Edit</Link>
 									</Button>
 								</div>
