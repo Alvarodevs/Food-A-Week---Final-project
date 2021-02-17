@@ -1,33 +1,83 @@
 @import "colors";
 @import "fonts";
 
-.card{
-    width: 15vw;
-    height: 20vw;
+.page-container{
+    // width: 100%;
+    // height:100%;
+    margin:auto;
+    margin-top:0;
+}
+
+//////page of card information 
+.page-order-weeks{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+}
+.page-order-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}
+//////cards
+.menuWeek{ //aka card
+   background: #fff;
+   box-shadow: 1px 1px 1px 1px $pink;
+   padding: 3em 2em 0;
+    border-radius: 15px 50px;
+   overflow: visible;
+   width: 12.5vw;
+   height: 17vw;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+ } 
+//inside cards
+.card-img-top{
+    border-radius: 15px 50px;
+    width:100%;
+    max-height:50%;
 }
 .card-title{
-    font-size: 1.3vw;
+    font-size: 1.2vw;
+    }
+.card-text{
+    font-size:0.6vw;
+    width:90%;
+    height: 60%;
+    text-overflow: ellipsis;
+ }
+ .align-card-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:65%;
+    margin:auto;
 }
-.menuWeek{
-   background: #fff;
-   box-shadow:
-             0 1px 1px rgba(0, 0, 0, 0.15),
-             -15px 15px 0 -5px #f5f5f5,
-             0 16px 6px -2px rgba(0, 0, 0, 0.2),
-             25px 30px 0 -8px #f5f5f5,
-             20px 29px 20px -8px rgba(0, 0, 0, 0.4);
-   border: 1px solid rgba(200,200,200,.6);
-   height:20vw;
-   //width: 90%;
-   //margin: 10px auto;
-   padding: 3em 2em 0;
-  overflow: visible;
- } 
 .weekplan-btn{
     border-radius: 5px;
     font-family: $montserrat;
+    font-size:1vw;
     background-color: $green;
     color: $gray;  
-    font-size: 0.6em;
+    padding:0.5vw;
     border: none;
 }
+.icon-trash{
+    margin-left:auto;
+}
+.weekplan-btn > a  { color: $gray } /* CSS link color (red) */
+//////page of card information 
+.next-previous-weeks{
+    display:flex;
+    justify-content:space-around;
+    margin:auto;
+}
+.next-previous-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}
+

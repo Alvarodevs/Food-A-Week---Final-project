@@ -15,19 +15,16 @@
 }
 
 .service-circle {
-   // background: $green;
     border-radius: 50%;
     border: none;
     width: 12vw;
     height: 12vw;
-    margin: auto;
-   // font-family: $montserrat;
     box-shadow: 1px 2px 2px 2px $pink;
-    background-color: rgb(245, 243, 243);
-
+    filter: brightness(115%);
+    filter: contrast(110%);
 }
 
-.weeks{
+#weeks{
     background-image: url("https://images.unsplash.com/photo-1463717738788-85fcacb6ac3d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80"); /* La imagen y su ruta */   
     //opacity:0.9;
     background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
@@ -51,26 +48,34 @@
     background-repeat: no-repeat; /* Para que no repita la imagen */
 }
 
-.button-text{
-    // background-color:white;
-    // opacity:0.3;
-    background: rgba(204, 204, 204, 0.5);
-    border-radius: 50%;
-    width: 65%;
-    height: 60%;
-    margin:auto;
-    display:flex;
-    margin-top: 0,9em;
-}
-.space-button-text{
-        text-align: center;
-        line-height: 2vw;
-        font-size: 1.1vw;
-        color:black;
-        margin-top: 0.5em;
-        font-weight: bolder; 
-    }
 
+
+.button-text{
+    text-align: center;
+    line-height: 2vw;
+    font-size: 1.1vw;
+    color:black;
+  
+}
+
+#weeks div{
+      color: white;
+  text-shadow: 
+    1px 0px 1px $gray-shadow, 0px 1px 1px $gray-shadow, 
+    2px 1px 1px black, 1px 2px 1px black,
+}
+#newweek div{
+      color: white;
+  text-shadow: 
+    1px 0px 1px $gray-shadow, 0px 1px 1px $gray-shadow, 
+    2px 1px 1px black, 1px 2px 1px black,
+}
+#localshops div {
+  color: white;
+  text-shadow: 
+    1px 0px 1px $gray-shadow, 0px 1px 1px $gray-shadow, 
+    2px 1px 1px black, 1px 2px 1px black,
+}
 // .carousel-menus{
 //     background-color: $gray;
 //     width: 90vw;

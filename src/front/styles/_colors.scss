@@ -24,7 +24,20 @@ $gray-shadow:  #b5b4b2;
 .green-button{
     background-color: $green;
     color: $gray;
+    border-color: $green;
 }
+.green-button:hover{
+    text-decoration: none;
+    background-color:$green;
+
+}
+.green-button>a{
+    text-decoration: none;
+    background-color:$green;
+  
+    
+}
+
 .yellow-button{
     background-color: $yellow ;
     color: $gray;

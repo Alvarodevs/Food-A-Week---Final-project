@@ -1,19 +1,45 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Context } from "../store/appContext";
+
+import injectContext, { Context } from "../store/appContext";
 import "../../styles/newweek.scss";
 import { Form, InputGroup } from "react-bootstrap";
+import * as Icon from "react-bootstrap-icons";
 
 export const NewWeek = () => {
 	return (
-		<div className="container-fluid background-white">
+		<div className="container">
 			<div className="title-section text-center my-1 ">
 				<h1>New week plan</h1>
 			</div>
 			<div className="weekplan">
 				<div className="day-circle">
-					<b>Monday</b>
+					<Dropdown>
+						<Dropdown.Toggle variant="" className="dropdown-basic day-circle  mr-5">
+							Monday
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
+								Breakfast <Icon.Check2All /> <Icon.Eraser />
+							</Dropdown.Item>
+							<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
+								Lunch <Icon.Circle />
+							</Dropdown.Item>
+							<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
+								Snack
+								<Icon.Check2All /> <Icon.Eraser />{" "}
+							</Dropdown.Item>
+							<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
+								Dinner
+								<Icon.Circle />
+							</Dropdown.Item>
+							<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
+								Others
+								<Icon.Circle />
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 				</div>
 				<div className="day-circle">
 					<b>Tuesday</b>
@@ -46,7 +72,7 @@ export const NewWeek = () => {
 				<div className="btns-bar-body ml-0 mt-2 justify-content-between">
 					<div className="bar-body-dropdown col-4 ml-0">Search Bar</div>
 
-					<Dropdown className="bar-body-dropdown col-2 ml-1">
+					<Dropdown dropup className="bar-body-dropdown col-2 ml-1">
 						<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
 						<Dropdown.Menu>
 							<Dropdown.Item>Rice</Dropdown.Item>
@@ -74,20 +100,47 @@ export const NewWeek = () => {
 						</Dropdown.Menu>
 					</Dropdown>
 				</div>
+
 				<div className="results-body">
 					<div className="results-search col-4">Results search container</div>
-					<div className="display-receipt">
-						Display receipt
-						<div className="create-receipt-btn" type="submit">
-							Create
+					<div className="about-recipe">
+						<div className="display-recipe mb-1">
+							Display recipe
+							{/* <div className="create-receipt-btn" type="submit">
+								Create
+							</div> */}
+							{/* <div className="dragdrop-btn" type="submit">
+								Dragdrop
+							</div> */}
 						</div>
-						<div className="dragdrop-btn" type="submit">
-							Dragdrop
+						<div className=" mt-1 day-assign-recipe ">
+							<form className="form-inline">
+								<div className="form-row align-items-center ">
+									<div className="d-flex row justify-items-around">
+										<select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
+											<option selected>Select day</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
+										<select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
+											<option selected>Select meal</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
+										<button type="submit" className="green-button btn">
+											Submit
+										</button>
+									</div>
+								</div>
+								<div className="col-auto my-1" />
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="day-display mt-4">
+			{/* <div className="day-display mt-4">
 				<div className="d-flex justify-content-around mb-4">
 					<div className="col-5" />
 					<button className="uparrow" type="submit" />
@@ -102,7 +155,7 @@ export const NewWeek = () => {
 					<div className="menu-display-box col-2 mr-1">Merienda</div>
 					<div className="menu-display-box col-2">Cena</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };
