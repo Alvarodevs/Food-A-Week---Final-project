@@ -16,3 +16,23 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/profile/image/<int:user_id>', methods=['PUT'])
+def handle_upload(user_id):
+
+    # validate that the front-end request was built correctly
+    if 'avatar_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['avatar_image'])
+
+        # fetch for the user
+        user1 = User.query.get(user_id)
+        # update the user with the given cloudinary image URL
+        user1.profile_image_url = result['secure_url']
+
+        db.session.add(user1)
+        db.session.commit()
+
+        return jsonify(user1.serialize()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')

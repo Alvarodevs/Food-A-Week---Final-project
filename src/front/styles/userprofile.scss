@@ -18,6 +18,8 @@
 .avatar {
     background: white;
     border-radius: 50%;
+    // margin-top: 2rem;
+    // margin-bottom: 2rem;
     width: 16vw;
     height: 16vw;
     text-align: center;
@@ -31,6 +33,17 @@
     font-family: $montserrat;
     background-color: $green;
     color: $gray;
+    font-size: large;
+}
+.weekplan-buttons-container{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+.avatar-buttons-container{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
 .carousel-menus{
     background-color: $gray;
