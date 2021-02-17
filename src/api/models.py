@@ -35,11 +35,48 @@ class User(db.Model):
 
 #########################################
 
+class Ingredient(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipedetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
+    restriction = db.relationship('Restriction', backref='ingredient', lazy=True)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Ingredient %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "restriction_id": self.restriction_id, #¿NECESARIO?
+            "user_id": self.user_id, #¿NECESARIO?
+        }
+
+##########################################
+
+class Restriction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Restriction %r>' % self.id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "ingredient_id": self.ingredient_id, #¿NECESARIO?           
+        }
+
+##############################################
+
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
-    #image = db.Column(db.String(30), unique=True, nullable=False)
-    recipedetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
     recipedetail = db.relationship('Recipedetail', backref='recipe', lazy=True) 
     is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
 
@@ -59,7 +96,6 @@ class Recipe(db.Model):
 class Recipedetail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
     quantity = db.Column(db.Integer, unique=True, nullable=False)
     unit = db.Column(db.String(50), unique=True, nullable=False)
     servings = db.Column(db.Integer, unique=True, nullable=False)
@@ -98,46 +134,6 @@ class Selectedrecipe(db.Model):
         }
 
 #############################################
-
-class Ingredient(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=False, nullable=False)
-    restriction_id = db.Column(db.Integer, db.ForeignKey('restriction.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    recipedetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
-    restriction = db.relationship('Restriction', backref='ingredient', lazy=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
-    def __repr__(self):
-        return '<Ingredient %r>' % self.name
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "restriction_id": self.restriction_id, #¿NECESARIO?
-            "user_id": self.user_id, #¿NECESARIO?
-        }
-
-##########################################
-
-class Restriction(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-
-    def __repr__(self):
-        return '<Restriction %r>' % self.id
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "user_id": self.user_id,
-            "ingredient_id": self.ingredient_id, #¿NECESARIO?           
-        }
-
-##############################################
 
 class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)

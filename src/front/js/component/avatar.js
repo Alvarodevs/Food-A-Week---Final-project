@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 
 import "../../styles/index.scss";
 
@@ -25,18 +25,20 @@ export const Avatar = () => {
 	// };
 	return (
 		<div>
-			<div className="col-12 d-flex flex-column avatar services-description my-2" />
+			<Image className="col-12 d-flex flex-column avatar services-description my-2" roundedCircle />
 			<div className="avatar-buttons-container flex-row justify-content-around">
 				<Form className="d-flex" onSubmit={uploadAvatar}>
-					<Button
-						className="weekplan-btn btn green-button"
-						type="file"
-						onChange={e => setFiles(e.target.files)}>
-						Change
-					</Button>
-					<Button className="weekplan-btn btn green-button" type="submit">
-						Save
-					</Button>
+					<Form.Group className="d-flex">
+						<Form.File
+							id="input-file-avatar"
+							className="d-flex weekplan-btn btn green-button"
+							onChange={e => setFiles(e.target.files)}
+						/>
+
+						<Button className="weekplan-btn btn green-button d-flex" type="submit">
+							Save
+						</Button>
+					</Form.Group>
 				</Form>
 			</div>
 		</div>
