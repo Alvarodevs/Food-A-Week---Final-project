@@ -67,54 +67,86 @@
     line-height: 15vw;
     position: relative;
     font-family: $montserrat;
+    height:25vw;
+    width:100%;
+    margin-top:1%;
     
     .results-search{
     border-radius: 5px;
-    margin-top: 1%;
+    //margin-top: 1%;
     margin-right: 0.5%;
-    height: 20vw;
+    height: 100%;
     background-color: #FFFFFF;
     box-shadow: 1px 2px 2px 2px $pink;
     }
+    
 
-    .display-receipt{
+    .about-recipe{
     display: flex;
-    border-radius: 5px;
-    margin-top: 1%;
-    height: 20vw;
-    width: 100%;
+    flex-direction:column;
+    text-align: center;
+   // line-height: 15vw;
+    margin-left:3%;
+    width:97%;
+    height:25vw;
+    position: relative;
     font-family: $montserrat;
-    background-color: #FFFFFF;
-    box-shadow: 1px 2px 2px 2px $pink;
 
-        .create-receipt-btn{
-        background: $green;
-        color: $gray;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        line-height: 50px;
-        margin: 5px;
-        position: absolute;
-        top: 2;
-        right: 0;
-        }
-        .dragdrop-btn{
-        background: $green;
-        color: $gray;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        line-height: 50px;
-        margin: 5px;
-        position: absolute;
-        bottom: 0;
-        right: 1;
-        }
+        .display-recipe{
+            display: flex;
+            border-radius: 5px;
+            height: 85%;
+            width: 100%;
+            font-family: $montserrat;
+            background-color: #FFFFFF;
+            box-shadow: 1px 2px 2px 2px $pink;
     }
+     
+    //     .create-recipe-btn{
+    //     background: $green;
+    //     color: $gray;
+    //     border-radius: 50%;
+    //     width: 50px;
+    //     height: 50px;
+    //     text-align: center;
+    //    // line-height: 50px;
+    //     margin: 5px;
+    //     position: absolute;
+    //     top: 2;
+    //     right: 0;
+    //     }
+    //     .dragdrop-btn{
+    //     background: $green;
+    //     color: $gray;
+    //     border-radius: 50%;
+    //     width: 50px;
+    //     height: 50px;
+    //     text-align: center;
+    //     line-height: 50px;
+    //     margin: 5px;
+    //     position: absolute;
+    //     bottom: 0;
+    //     right: 1;
+    //     }
+     .day-assign-recipe{
+    display:flex;
+   //flex-direction:row;
+    justify-content: flex-end;
+    align-items:flex-end;
+    //margin:auto;
+    //height: 10%;
+    //width: 100%;
+    margin-top:3%;
+} 
+      
+       
+    
+  
 }
+    
+}
+
+
 .day-display{
     border-radius: 5px;
     width: 100%;
@@ -170,3 +202,4 @@
         -webkit-transform: rotate(45deg);
     }
 }
+

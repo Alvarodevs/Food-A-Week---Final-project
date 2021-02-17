@@ -7,35 +7,55 @@
     margin:auto;
     margin-top:0;
 }
-.card{
-    width: 12vw;
-    height: 17vw;
-    
+
+//////page of card information 
+.page-order-weeks{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+}
+.page-order-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}
+//////cards
+.menuWeek{ //aka card
+   background: #fff;
+   box-shadow: 1px 1px 1px 1px $pink;
+   padding: 3em 2em 0;
+    border-radius: 15px 50px;
+   overflow: visible;
+   width: 12.5vw;
+   height: 17vw;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+ } 
+//inside cards
+.card-img-top{
+    border-radius: 15px 50px;
+    width:100%;
+    max-height:50%;
 }
 .card-title{
     font-size: 1.2vw;
-}
-// .card-text{
-//     font-size:1vw;
-
-// }
-
-.menuWeek{
-   background: #fff;
-   box-shadow: 1px 1px 1px 1px $pink;
-   //height:22%;
-   //width: 90%;
-   //margin: 10px auto;
-   padding: 3em 2em 0;
-  overflow: visible;
- } 
-
+    }
+.card-text{
+    font-size:0.6vw;
+    width:90%;
+    height: 60%;
+    text-overflow: ellipsis;
+ }
  .align-card-buttons{
     display:flex;
     justify-content:center;
-
+    align-items:center;
+    width:65%;
+    margin:auto;
 }
-
 .weekplan-btn{
     border-radius: 5px;
     font-family: $montserrat;
@@ -43,27 +63,19 @@
     background-color: $green;
     color: $gray;  
     padding:0.5vw;
- //
     border: none;
 }
-
+.icon-trash{
+    margin-left:auto;
+}
 .weekplan-btn > a  { color: $gray } /* CSS link color (red) */
-
-// .weekplan-btn :hover { 
-//     color:$green; 
-//     text-decoration: none;
-//     background-color: $green;
-// } /* CSS link hover (green) */
-
-
-
-.page-order-weeks, .next-previous-weeks{
+//////page of card information 
+.next-previous-weeks{
     display:flex;
     justify-content:space-around;
     margin:auto;
 }
-
-.page-order-weeks > div, .next-previous-weeks > div{
+.next-previous-weeks > div{
     margin-right:2rem;  
     margin-bottom:2rem;
     font-family:$montserrat
