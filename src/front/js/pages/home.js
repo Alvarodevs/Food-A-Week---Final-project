@@ -19,7 +19,7 @@ export const Home = () => {
 			<div className="container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
 				<Link to="/weeks">
-					<Button className="service-circle" id="newweek">
+					<Button className="service-circle" id="weeks">
 						<div className="button-text">{"WEEK PLANS"}</div>
 					</Button>
 				</Link>
