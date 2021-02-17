@@ -10,7 +10,7 @@ import "../../styles/userprofile.scss";
 export const Userprofile = props => {
 	const { store, actions } = useContext(Context);
 	return (
-		<div className="container-fluid">
+		<div className="container">
 			{/* <div className="text-center mb-2 mt-0">
 				<h1>{"User profile"}</h1>
 			</div> */}

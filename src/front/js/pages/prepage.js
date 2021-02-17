@@ -6,7 +6,7 @@ export const Pre = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container-fluid background-white pre-page-img">
+		<div className="container-fluid pre-page-img">
 			<div className="container">
 				<div className="text-pre-page">
 					<p className="title-web ml-5">Food A Week</p>
