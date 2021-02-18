@@ -24,17 +24,17 @@ export const Pre = () => {
 					</button>
 				</div>
 				<div className="d-flex row">
-					<p>Search your favorites recipes</p>
+					<p className="prepage-text">Search your favorites recipes</p>
 					<img className="col-6 " src={PhoneImg} />
-					<p>Assaign recipes for every day</p>
+					<p className="prepage-text">Assaign recipes for every day</p>
 				</div>
 				<div className="d-flex row ">
-					<p className="align-item-start">Search your favorites recipes</p>
+					<p className="prepage-text align-item-start">Search your favorites recipes</p>
 					<img className="col-6 " src={HealthyFoodImg} />
-					<p className="align-item-end">Use & reuse</p>
+					<p className="prepage-text align-item-end">Use & reuse</p>
 				</div>
 				<div className="d-flex justify-content-center">
-					<p>& enjoy your time</p>
+					<p className="prepage-text">& enjoy your time</p>
 				</div>
 			</div>
 			{/* <div>

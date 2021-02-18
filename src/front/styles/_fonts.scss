@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 // Font Variables
 //$hand: 'Homemade Apple', cursive;
 $montserrat: 'Montserrat', sans-serif;
-$hand: 'Sacramento', cursive;
+$hand: 'Dancing Script', cursive;
 // Styles
 h1 {
   font-family: $hand;
@@ -56,4 +56,11 @@ h2 {
     text-align:center;
     margin:auto;
     
+}
+
+.prepage-text{
+    font-family:$hand;
+    text-align:center;
+    margin:auto;
+    font-size:65px;
 }
