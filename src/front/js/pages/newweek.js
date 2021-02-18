@@ -9,10 +9,10 @@ import * as Icon from "react-bootstrap-icons";
 
 export const NewWeek = () => {
 	return (
-		<div className="container">
-			<div className="title-section text-center my-1 ">
+		<div className="container-fluid">
+			{/* <div className="title-section text-center my-1 ">
 				<h1>New week plan</h1>
-			</div>
+			</div> */}
 			<div className="weekplan">
 				<div className="day-circle">
 					<Dropdown>

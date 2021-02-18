@@ -1,0 +1,201 @@
+@import "colors";
+@import "fonts";
+
+.newweek-container{
+    height: 45%;
+}
+
+.weekplan{
+    display: flex;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+}
+.day-circle {
+    background: white;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    text-align: center;
+    line-height: 5vw;
+    
+    font-family: $montserrat;
+    font-size: 0.8vw;
+    box-shadow: 1px 2px 2px 2px $green
+}
+.weekplan-buttons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.weekplan-btn{
+    border-radius: 5px;
+    margin: 2%;
+    font-family: $montserrat;
+    background-color: $green;
+    color: $gray;  
+}
+.btns-bar-body{
+    display: flex;
+    margin: 0.5%;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    justify-content: space-between;  
+    font-family: $montserrat;
+}
+.bar-body-dropdown{
+    border-radius: 5px;
+    //margin: 1px;
+    font-family: $montserrat;
+    background-color: white;
+    box-shadow: 1px 2px 2px 2px $pink;
+}
+.toggle{
+    color: black;
+    background-color: #FFFFFF;
+    border: none;
+}
+.toggle:hover{
+    color: black;
+    background-color: #FFFFFF;
+    border: none;
+}
+.results-body{
+    display: flex;
+    text-align: center;
+    font-family: $montserrat;
+    height:25vw;
+    margin-top:1%;
+    
+    .results-search{
+    border-radius: 5px;
+    height: 75%;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 2px 2px $pink;
+    }
+    
+
+    .about-recipe{
+    display: flex;
+    flex-direction:column;
+    text-align: center;
+   // line-height: 15vw;
+    margin-left:3%;
+    width:97%;
+    height:25vw;
+    position: relative;
+    font-family: $montserrat;
+
+        .display-recipe{
+            display: flex;
+            border-radius: 5px;
+            height: 85%;
+            width: 100%;
+            font-family: $montserrat;
+            background-color: #FFFFFF;
+            box-shadow: 1px 2px 2px 2px $pink;
+    }
+     
+    //     .create-recipe-btn{
+    //     background: $green;
+    //     color: $gray;
+    //     border-radius: 50%;
+    //     width: 50px;
+    //     height: 50px;
+    //     text-align: center;
+    //    // line-height: 50px;
+    //     margin: 5px;
+    //     position: absolute;
+    //     top: 2;
+    //     right: 0;
+    //     }
+    //     .dragdrop-btn{
+    //     background: $green;
+    //     color: $gray;
+    //     border-radius: 50%;
+    //     width: 50px;
+    //     height: 50px;
+    //     text-align: center;
+    //     line-height: 50px;
+    //     margin: 5px;
+    //     position: absolute;
+    //     bottom: 0;
+    //     right: 1;
+    //     }
+     .day-assign-recipe{
+    display:flex;
+   //flex-direction:row;
+    justify-content: flex-end;
+    align-items:flex-end;
+    //margin:auto;
+    //height: 10%;
+    //width: 100%;
+    margin-top:3%;
+} 
+      
+       
+    
+  
+}
+    
+}
+
+
+.day-display{
+    border-radius: 5px;
+    width: 100%;
+    height: 20vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 4%;
+    font-family: $montserrat;
+
+    .uparrow{
+        margin: auto;
+        margin-top: 0%;
+        bottom: 0;
+        background-color: white;
+        border: solid $green;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 2%;
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+    
+    .menu-display{
+        display: flex;
+        justify-content: space-between;
+        margin: 3vw;
+        height: 8vw;
+
+            .menu-display-box{
+            border-radius: 5px;
+            text-align: center;
+            height: 6vw;
+            padding-top: 2.5%;
+            background-color: #FFFFFF;
+            box-shadow: 1px 2px 2px 2px $green
+            }
+            .day{
+            background-color: white;
+            box-shadow: 1px 2px 2px 2px $green;     
+            }
+    }
+    .downarrow{
+        margin: auto;
+        margin-top: 0%;
+        top: 0;
+        background-color: white;
+        border: solid $green;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 2%;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+}
+
