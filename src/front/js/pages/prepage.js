@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/index.scss";
-
+import HealthyFoodImg from "../../img/eating.png";
+import PhoneImg from "../../img/phone.png";
+// import { Footer } from "./component/footer";
 export const Pre = () => {
 	const { store, actions } = useContext(Context);
 
@@ -21,7 +23,23 @@ export const Pre = () => {
 						Sign in
 					</button>
 				</div>
+				<div className="d-flex row">
+					<p className="prepage-text">Search your favorites recipes</p>
+					<img className="col-6 " src={PhoneImg} />
+					<p className="prepage-text">Assaign recipes for every day</p>
+				</div>
+				<div className="d-flex row ">
+					<p className="prepage-text align-item-start">Search your favorites recipes</p>
+					<img className="col-6 " src={HealthyFoodImg} />
+					<p className="prepage-text align-item-end">Use & reuse</p>
+				</div>
+				<div className="d-flex justify-content-center">
+					<p className="prepage-text">& enjoy your time</p>
+				</div>
 			</div>
+			{/* <div>
+				{/* <Footer />
+			</div> */}
 		</div>
 	);
 };
