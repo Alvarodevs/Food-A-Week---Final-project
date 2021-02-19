@@ -1,6 +1,8 @@
 /* General Styles */
 @import '_colors.scss';
 @import '_fonts.scss';
+@import 'buttons&borders';
+
 /* Components */
 @import 'navbar.scss';
 @import 'footer.scss';

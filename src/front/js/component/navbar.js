@@ -23,7 +23,7 @@ export const Navbar = () => {
 						<Dropdown>
 							<Dropdown.Toggle
 								variant="success"
-								className="dropdown-basic green-button btn btn-circle user-button mr-5">
+								className="dropdown-basic pink-button btn btn-circle-user user-button mr-5">
 								User Name
 							</Dropdown.Toggle>
 							<Dropdown.Menu>

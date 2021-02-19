@@ -13,7 +13,7 @@ export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
+		<div className="container-fluid">
 			<div className="page-container d-flex">
 				{/* <div className="text-center mt-0 d-flex row justify-content-center">
 				<h1>{"All your weeks"}</h1>
@@ -22,7 +22,6 @@ export const AllWeeks = () => {
 					<div>
 						<div className="row">
 							<div className="page-order-weeks">
-								<div> Page 1 of 2 </div>
 								<Dropdown>
 									<Dropdown.Toggle variant="success" className="dropdown-basic pink-button">
 										Order by
@@ -158,17 +157,6 @@ export const AllWeeks = () => {
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div className="row">
-				<div className="next-previous-weeks">
-					<div>
-						<Icon.ArrowLeft /> Previous page
-					</div>
-					<div> or </div>
-					<div>
-						Next page <Icon.ArrowRight />
 					</div>
 				</div>
 			</div>
