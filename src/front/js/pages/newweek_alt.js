@@ -50,43 +50,36 @@ export const NewWeekAlt = () => {
 					<div className="results-search w-100 mr-0">Results search container</div>
 				</div>
 			</div>
-			<div className="d-flex flex-column col-6 mt-5">
-				<div className="weekplan d-flex container-fluid justify-content-center">
-					<div className="day-circle mx-4 align-items-middle">
-						<Dropdown>
-							<Dropdown.Toggle variant="" className="dropdown-basic p-0 align-items-middle">
-								Monday
-							</Dropdown.Toggle>
-							<Dropdown.Menu>
-								<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
-									Breakfast <Icon.Check2All /> <Icon.Eraser />
-								</Dropdown.Item>
-								<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
-									Lunch <Icon.Circle />
-								</Dropdown.Item>
-								<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
-									Snack
-									<Icon.Check2All /> <Icon.Eraser />{" "}
-								</Dropdown.Item>
-								<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
-									Dinner
-									<Icon.Circle />
-								</Dropdown.Item>
-								<Dropdown.Item href="" className="d-flex row align-items-center justify-content-around">
-									Others
-									<Icon.Circle />
-								</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
+			<div className="d-flex flex-column col-6">
+				<div className="weekplan d-flex container-fluid justify-content-center mt-3">
+					<div className="day-circle mx-4">
+						<b>Monday</b>
 					</div>
-					<div className="day-circle  mx-5">
+					<div className="day-circle mx-4">
 						<b>Tuesday</b>
 					</div>
 					<div className="day-circle mx-4">
 						<b>Wednesday</b>
 					</div>
 				</div>
-				<div className="weekplan d-flex container-fluid justify-content-between mt-5">
+				<div className="d-flex container justify-content-between mt-0 w-75">
+					<div className="day-button flex-row ml-4">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+					<div className="day-button flex-row ml-3">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+					<div className="day-button flex-row pl-3">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+				</div>
+				<div className="weekplan d-flex container-fluid justify-content-between mt-3">
 					<div className="day-circle">
 						<b>Thursday</b>
 					</div>
@@ -98,6 +91,31 @@ export const NewWeekAlt = () => {
 					</div>
 					<div className="day-circle">
 						<b>Sunday</b>
+					</div>
+				</div>
+				<div className="d-flex container-fluid justify-content-around ml-4 mt-0 p-0">
+					<div className="day-button flex-row ml-4 pl-2">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+
+					<div className="day-button flex-row ml-4 pl-2">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+
+					<div className="day-button flex-row ml-4 pl-1">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
+					</div>
+
+					<div className="day-button flex-row ml-4 pl-1">
+						<Icon.Save />
+						<Icon.Eraser />
+						<Icon.Pencil />
 					</div>
 				</div>
 			</div>

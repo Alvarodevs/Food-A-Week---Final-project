@@ -39,7 +39,7 @@ class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    recipeDetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
+    recipedetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
     restriction = db.relationship('Restriction', backref='ingredient', lazy=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -77,7 +77,7 @@ class Restriction(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
-    recipeDetail = db.relationship('Recipedetail', backref='recipe', lazy=True) 
+    recipeDetail = db.relationship('RecipeDetail', backref='recipe', lazy=True) 
     is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
 
     def __repr__(self):
@@ -96,6 +96,7 @@ class Recipe(db.Model):
 class RecipeDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
     quantity = db.Column(db.Integer, unique=True, nullable=False)
     unit = db.Column(db.String(50), unique=True, nullable=False)
     servings = db.Column(db.Integer, unique=True, nullable=False)
