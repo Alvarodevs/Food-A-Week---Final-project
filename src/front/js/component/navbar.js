@@ -21,9 +21,7 @@ export const Navbar = () => {
 				<div className="mr-1">
 					<div className="mr-1">
 						<Dropdown>
-							<Dropdown.Toggle
-								variant="success"
-								className="dropdown-basic pink-button btn btn-circle-user user-button mr-5">
+							<Dropdown.Toggle variant="success" className="dropdown-basic pink-button user-button mr-5">
 								User Name
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
