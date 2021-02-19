@@ -4,13 +4,13 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
+    userName = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
-    lastname = db.Column(db.String(30), unique=False, nullable=False)
+    lastName = db.Column(db.String(30), unique=False, nullable=False)
     address = db.Column(db.String(120), unique=False, nullable=False)
-    postalcode = db.Column(db.String(20), unique=False, nullable=False)
+    postalCode = db.Column(db.String(20), unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=True)
     #avatar = db.Column(db.String(20), unique=True, nullable=False)
     menu = db.relationship('Menu', backref='user', lazy=True)
@@ -18,17 +18,17 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.userName
 
     def serialize(self):
         return {
             "id": self.id,
-            "username": self.username,
+            "userName": self.userName,
             "email": self.email,
             "name": self.name,
-            "lastname": self.lastname,
+            "lastName": self.lastName,
             "address": self.address,
-            "postalcode": self.postalcode,
+            "postalCode": self.postalCode,
             "phone": self.phone,
         }
             # do not serialize the password, its a security breach
@@ -39,12 +39,12 @@ class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    recipedetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
+    recipeDetail_id = db.Column(db.Integer, db.ForeignKey('recipedetail.id'))
     restriction = db.relationship('Restriction', backref='ingredient', lazy=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<Ingredient %r>' % self.name
+        return '<Ingredient %r>' % self.id
 
     def serialize(self):
         return {
@@ -77,7 +77,7 @@ class Restriction(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
-    recipedetail = db.relationship('Recipedetail', backref='recipe', lazy=True) 
+    recipeDetail = db.relationship('Recipedetail', backref='recipe', lazy=True) 
     is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
 
     def __repr__(self):
@@ -88,12 +88,12 @@ class Recipe(db.Model):
             "id": self.id,
             "name": self.name,
             "image": self.image,
-            "recipedetail_id": self.recipedetail_id,
+            "recipeDetail_id": self.recipeDetail_id,
         }
 
 ##########################################
 
-class Recipedetail(db.Model):
+class RecipeDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
     quantity = db.Column(db.Integer, unique=True, nullable=False)
@@ -117,14 +117,14 @@ class Recipedetail(db.Model):
 
 ##########################################
 
-class Selectedrecipe(db.Model):
+class SelectedRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day_id = db.Column(db.Integer, db.ForeignKey('day.id'))
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<Selectedrecipe %r>' % self.id
+        return '<SelectedRecipe %r>' % self.id
 
     def serialize(self):
         return {

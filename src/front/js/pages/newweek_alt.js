@@ -52,9 +52,9 @@ export const NewWeekAlt = () => {
 			</div>
 			<div className="d-flex flex-column col-6 mt-5">
 				<div className="weekplan d-flex container-fluid justify-content-center">
-					<div className="day-circle mx-4">
+					<div className="day-circle mx-4 align-items-middle">
 						<Dropdown>
-							<Dropdown.Toggle variant="" className="dropdown-basic">
+							<Dropdown.Toggle variant="" className="dropdown-basic p-0 align-items-middle">
 								Monday
 							</Dropdown.Toggle>
 							<Dropdown.Menu>

@@ -7,18 +7,17 @@
 
 .weekplan{
     display: flex;
-    border-radius: 5px;
-    padding: 5px;
+    //border-radius: 5px;
+    //padding: 2rem;
+    height: 10vw;
     background-color: white;
 }
 .day-circle {
     background: white;
     border-radius: 50%;
-    width: 10rem;
-    height: 10rem;
     text-align: center;
-    line-height: 5vw;
-    
+    width: 20%;
+    height: 100%;
     font-family: $montserrat;
     font-size: 0.8vw;
     box-shadow: 1px 2px 2px 2px $green
