@@ -34,7 +34,7 @@ export const AllWeeks = () => {
 								</Dropdown>
 							</div>
 						</div>
-						<div className="row">
+						<div className="row all-cards ">
 							<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 								<img
 									className="card-img-top p-0 m-0"
@@ -96,8 +96,8 @@ export const AllWeeks = () => {
 									<Icon.Trash className="icon-trash" />
 								</div>
 							</div>
-						</div>
-						<div className="row">
+							{/* </div>
+						<div className="row"> */}
 							<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 								<img
 									className="card-img-top p-0 m-0"

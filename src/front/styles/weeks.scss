@@ -21,6 +21,15 @@
     margin-bottom:2rem;
     font-family:$montserrat
 }
+
+//////allcards
+.all-cards{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    margin:auto;
+}
+
 //////cards
 .menuWeek{ //aka card
    background: #fff;
