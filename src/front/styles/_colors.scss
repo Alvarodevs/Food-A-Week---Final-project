@@ -11,7 +11,7 @@ $gray-shadow:  #b5b4b2;
 
 .pink-button{
     background-color: white;
-    box-shadow: 2px 2px 2px 1px $pink;
+    box-shadow: 2px 2px 2px 2px $pink;
     color: black;
     border: none;
 }
@@ -22,20 +22,20 @@ $gray-shadow:  #b5b4b2;
 }
 
 .green-button{
-    background-color: $green;
-    color: $gray;
-    border-color: $green;
+    color: black;
+    border: none;
+    box-shadow: 2px 2px 2px 2px $green;
+    background-color: white;
 }
 .green-button:hover{
     text-decoration: none;
     background-color:$green;
-
+    color: black;
 }
+
 .green-button>a{
     text-decoration: none;
     background-color:$green;
-  
-    
 }
 
 .yellow-button{

@@ -56,6 +56,12 @@ class Ingredient(db.Model):
 
 ##########################################
 
+tags = db.Table('tags',
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
+    db.Column('page_id', db.Integer, db.ForeignKey('page.id'), primary_key=True)
+)
+
+##########################################
 class Restriction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

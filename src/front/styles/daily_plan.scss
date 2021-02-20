@@ -1,0 +1,21 @@
+@import "colors";
+@import "fonts";
+
+.white-bg{
+    background-color: white;
+}
+.accordion{
+    background-color: white;
+    border: none;
+}
+.accord-container{
+    box-shadow: 2px 2px 2px 2px $pink;
+    border-radius: 10px;
+}
+.menu-title{
+    color: black;
+    border: none;
+    border-radius: none;
+    box-shadow: 2px 2px 2px 2px $green;
+    background-color: white;
+}

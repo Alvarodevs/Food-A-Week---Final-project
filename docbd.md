@@ -23,7 +23,7 @@ base_url = api/v1
 
 CRUD - USERS
 
-GET /user : User list
+GET /users/:user_id
 
 QUERY PARAMS -> /user?name=John&lastName=Smith
 - id
@@ -51,12 +51,12 @@ RESPONSE:
     restrictions: "restriction_id"
   },
 ]
------------------------------------
+############################
 POST /users
 
 BODY REQUEST: ->  Header : 'Content-Type': 'application/json'
 {
-  id: "1",
+    id: "1",
     username: "Foodie",
     email: "okok@okok.com", 
     name: "John", 
@@ -67,10 +67,45 @@ BODY REQUEST: ->  Header : 'Content-Type': 'application/json'
     restrictions: "restriction_id"
 }
 RESPONSE: CODE 201
-RESPONSE:
-GET /users/:user_id
-PATCH/PUT /users/:user_id
+
+############################
+PUT(UPDATE) /user/:user_id
+
+QUERY PARAMS -> /user?name=John&lastName=Smith
+
+BODY REQUEST: ->  Header : 'Content-Type': 'application/json'
+{
+    id: "1",
+    username: "Foodie",
+    email: "okok@okok.com", 
+    name: "John", 
+    lastname: "Smith",
+    address: "Whatever St.3",
+    postalcode: "654654",
+    phone: "123123121123",
+    restrictions: "restriction_id"
+}
+RESPONSE: 201
+
+############################
 DELETE /users/:user_id
+
+QUERY PARAMS -> /user?name=John&lastName=Smith
+
+BODY REQUEST: ->  Header : 'Content-Type': 'application/json'
+{
+    
+}
+RESPONSE: 200
+
+############################
+
+
+
+
+
+
+
 Nested Routes 
 User's projects
 GET /api/v1/users/:user_id/projects
@@ -82,6 +117,8 @@ RESPONSE:
     name: "proyecto B"
   }
 ]
+############################
+
 CRUD - PROJECTS
 GET /api/v1/projects
 GET /api/v1/projects/:project_id
