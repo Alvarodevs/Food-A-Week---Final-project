@@ -1,0 +1,45 @@
+.pink-button{
+    background-color: white;
+    //border-radius:1px;
+   // border-color:$pink;
+    border: 2px solid $pink;
+    padding: 2px;
+    //border-radius: 25px;
+    //box-shadow: 2px 2px 2px 1px $pink;
+    color: black;
+    border: none;
+}
+
+.brown-button{
+    background-color: $brown;
+    color: $gray;
+}
+
+.green-button{
+    background-color: $green;
+    color: $gray;
+    //border-color: $green;
+     border: 2px solid $green;
+    padding: 2px;
+    
+}
+.green-button:hover{
+    text-decoration: none;
+    background-color:$green;
+
+}
+.green-button>a{
+    text-decoration: none;
+    background-color:$green;
+  
+    
+}
+
+.yellow-button{
+    background-color: $yellow ;
+    color: $gray;
+}
+
+
+
+

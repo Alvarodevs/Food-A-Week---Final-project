@@ -29,13 +29,16 @@
     border: none;
     width: 4vw;
     height: 4vw;
+    margin-top:1vw;
     text-align: center;
     line-height: 5vw;
     margin: auto;
     font-family: $montserrat;
     font-size: 19px;
     color:black;
-    box-shadow: 1px 2px 2px 2px $pink;
+        border: 2px solid $pink;
+    padding: 2px;
+    //box-shadow: 1px 2px 2px 2px $pink;
     background-image: url("https://images.unsplash.com/photo-1571680322279-a226e6a4cc2a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=805&q=80"); /* La imagen y su ruta */   
     opacity:0.6;
     background-size: cover; /* Usamos cover para que nuestra imagen no se deforme al adaptarse a cada pantalla */
