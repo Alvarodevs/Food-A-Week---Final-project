@@ -20,7 +20,8 @@
     height: 100%;
     font-family: $montserrat;
     font-size: 0.8vw;
-    box-shadow: 1px 2px 2px 2px $green
+    // box-shadow: 1px 2px 2px 2px $green
+    border: 2px solid $green;
 }
 .day-button{
     width: 20%;
@@ -56,7 +57,8 @@
     //margin: 1px;
     font-family: $montserrat;
     background-color: white;
-    box-shadow: 2px 2px 2px 2px $pink;
+    // box-shadow: 2px 2px 2px 2px $pink;
+    border: 2px solid $pink;
 }
 .toggle{
     color: black;
@@ -75,7 +77,8 @@
     margin-top:1%;
     border-radius: 5px;
     background-color: #FFFFFF;
-    box-shadow: 2px 2px 2px 2px $pink;
+    // box-shadow: 2px 2px 2px 2px $pink;
+    border: 2px solid $pink;
 
     .icons-bar{
     height:3rem !important;
@@ -113,7 +116,8 @@
             width: 100%;
             font-family: $montserrat;
             background-color: #FFFFFF;
-            box-shadow: 1px 2px 2px 2px $pink;
+            // box-shadow: 1px 2px 2px 2px $pink;
+            border: 2px solid $pink;
     }
      
     //     .create-recipe-btn{
