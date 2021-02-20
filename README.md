@@ -3,6 +3,29 @@
 This is the final project of <a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> and <a href="https://github.com/nitlara"> Anna Lara </a> in the <a href="https://github.com/4GeeksAcademy">4geeksAcademy </a> FullStackDeveloper program.
 
 
+
+# About FoodAWeek 
+![freepik storyset](./src/front/img/eating.png)
+
+What is it ?
+
+Why now!?
+
+For whom it is? & User profile
+
+Technologies used for the project
+
+# Project extensions
+
+# About us
+<a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> twitter/ linkedin
+
+Breve
+
+<a href="https://github.com/nitlara"> Anna Lara </a> twitter/ linkedin
+
+Breve
+
 # WebApp boilerplate with React JS
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
 
