@@ -5,15 +5,51 @@ This is the final project of <a href="https://github.com/Alvarodevs"> Alvaro Gar
 
 
 # About FoodAWeek 
-![freepik storyset](./src/front/img/eating.png)
 
-What is it ?
+<img src="./src/front/img/eating.png" width="300">![freepik storyset]
 
-Why now!?
+## What is it ?
 
-For whom it is? & User profile
+FoodAWeek is a tool to systematize the creation of weekly menus with many recipes at your fingertips.
 
-Technologies used for the project
+Look for recipes! Make your menus! Save them! reuse them!
+**Save time to eat great.**
+
+## Why now!?
+
+Why not? You are what you eat, fill your fridge with a plan for your stomach! And when you don't feel like it, save a week saved.
+
+
+## For whom it is? & User profile
+
+Insert here some snaps from IU
+
+## Technologies used for the project
+
+### Frontend
+
+CSS
+SASS
+BOOTSTRAP
+REACT JS
+
+### Backend
+
+Alchemy
+
+### Design 
+
+Draw io
+Canva
+
+#### Resources
+
+# How we organize the project
+
+Agile 
+
+
+<img src="./src/front/img/kanbanFAW.jpg" width="800">
 
 # Project extensions
 
