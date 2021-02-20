@@ -69,30 +69,42 @@
     border: none;
 }
 .results-body{
-    display: flex;
-    text-align: center;
+    // display: flex;
     font-family: $montserrat;
-    height:25vw;
+    // height:25vw;
     margin-top:1%;
-    
-    .results-search{
     border-radius: 5px;
-    height: 75%;
     background-color: #FFFFFF;
     box-shadow: 2px 2px 2px 2px $pink;
+
+    .icons-bar{
+    height:3rem !important;
+
+        img{
+        height: 2rem;
+        }    
     }
+}
+
+
+
+//     .results-search{
+//     border-radius: 5px;
+//     background-color: #FFFFFF;
+//     box-shadow: 2px 2px 2px 2px $pink;
+//     }
     
 
-    .about-recipe{
-    display: flex;
-    flex-direction:column;
-    text-align: center;
-   // line-height: 15vw;
-    margin-left:3%;
-    width:97%;
-    height:25vw;
-    position: relative;
-    font-family: $montserrat;
+//     .about-recipe{
+//     display: flex;
+//     flex-direction:column;
+//     text-align: center;
+//    // line-height: 15vw;
+//     margin-left:3%;
+//     width:97%;
+//     height:25vw;
+//     position: relative;
+//     font-family: $montserrat;
 
         .display-recipe{
             display: flex;
@@ -144,64 +156,64 @@
        
     
   
-}
+
     
-}
 
 
-.day-display{
-    border-radius: 5px;
-    width: 100%;
-    height: 20vw;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-top: 4%;
-    font-family: $montserrat;
 
-    .uparrow{
-        margin: auto;
-        margin-top: 0%;
-        bottom: 0;
-        background-color: white;
-        border: solid $green;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 2%;
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-    }
+// .day-display{
+//     border-radius: 5px;
+//     width: 100%;
+//     height: 20vw;
+//     display: flex;
+//     flex-direction: column;
+//     position: relative;
+//     margin-top: 4%;
+//     font-family: $montserrat;
+
+//     .uparrow{
+//         margin: auto;
+//         margin-top: 0%;
+//         bottom: 0;
+//         background-color: white;
+//         border: solid $green;
+//         border-width: 0 3px 3px 0;
+//         display: inline-block;
+//         padding: 2%;
+//         transform: rotate(-135deg);
+//         -webkit-transform: rotate(-135deg);
+//     }
     
-    .menu-display{
-        display: flex;
-        justify-content: space-between;
-        margin: 3vw;
-        height: 8vw;
+//     .menu-display{
+//         display: flex;
+//         justify-content: space-between;
+//         margin: 3vw;
+//         height: 8vw;
 
-            .menu-display-box{
-            border-radius: 5px;
-            text-align: center;
-            height: 6vw;
-            padding-top: 2.5%;
-            background-color: #FFFFFF;
-            box-shadow: 1px 2px 2px 2px $green
-            }
-            .day{
-            background-color: white;
-            box-shadow: 1px 2px 2px 2px $green;     
-            }
-    }
-    .downarrow{
-        margin: auto;
-        margin-top: 0%;
-        top: 0;
-        background-color: white;
-        border: solid $green;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 2%;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-    }
-}
+//             .menu-display-box{
+//             border-radius: 5px;
+//             text-align: center;
+//             height: 6vw;
+//             padding-top: 2.5%;
+//             background-color: #FFFFFF;
+//             box-shadow: 1px 2px 2px 2px $green
+//             }
+//             .day{
+//             background-color: white;
+//             box-shadow: 1px 2px 2px 2px $green;     
+//             }
+//     }
+//     .downarrow{
+//         margin: auto;
+//         margin-top: 0%;
+//         top: 0;
+//         background-color: white;
+//         border: solid $green;
+//         border-width: 0 3px 3px 0;
+//         display: inline-block;
+//         padding: 2%;
+//         transform: rotate(45deg);
+//         -webkit-transform: rotate(45deg);
+//     }
+// }
 

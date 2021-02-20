@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
+import person from "../../img/person.png";
+import danger from "../../img/danger.png";
 import "../../styles/newweek_alt.scss";
 import { Form, InputGroup } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
@@ -11,9 +13,11 @@ export const NewWeekAlt = () => {
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
-				<div className="weekplan-body ">
-					<div className="bar-body-dropdown col-12 p-3 m-auto w-100">Search Bar</div>
-					<div className="btns-bar-body mx-0 w-100 justify-content-between my-2">
+				<div className="weekplan-body">
+					<Form>
+						<Form.Control placeholder="Search Bar" className="bar-body-dropdown col-12 p-3 m-auto w-100" />
+					</Form>
+					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<Dropdown dropup className="bar-body-dropdown">
 							<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
 							<Dropdown.Menu>
@@ -43,8 +47,12 @@ export const NewWeekAlt = () => {
 						</Dropdown>
 					</div>
 				</div>
-				<div className="results-body">
-					<div className="results-search w-100 mr-0">Results search container</div>
+				<div className="results-body mr-0 flex-column">
+					<div className="icons-bar">
+						<img src={person} alt="Servings" />
+						<img src={danger} alt="Servings" />
+					</div>
+					<div className="search-result" />
 				</div>
 			</div>
 			<div className="d-flex col-6">

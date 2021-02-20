@@ -12,7 +12,8 @@ import {
 	TabPane,
 	Button,
 	InputGroup,
-	FormControl
+	FormControl,
+	Form
 } from "react-bootstrap";
 import { DailyPlan } from "./daily_plan";
 
@@ -20,55 +21,62 @@ export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
 	return (
 		<div className="container-fluid">
-			<div className="w-100">
-				<InputGroup className="mb-3">
-					<FormControl className="menu-title" placeholder="Week menu title" aria-label="text" />
-					<Button className="green-button ml-3">SAVE</Button>
-				</InputGroup>
+			<div className="w-100 ">
+				<Form className="mb-3 d-flex">
+					<FormControl
+						variant="success"
+						className="menu-title"
+						placeholder="Week menu title"
+						aria-label="text"
+					/>
+					<Button variant="success" className="green-button ml-3">
+						Save
+					</Button>
+				</Form>
 			</div>
 			<Tab.Container id="left-tabs-example" defaultActiveKey="first">
 				<Row>
 					<Col sm={3}>
-						<Nav variant="pills" className="flex-column mt-3">
+						<Nav variant="pills" className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="first">
+								<Nav.Link className="pill green-button my-2" eventKey="first">
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="second">
+								<Nav.Link className="pill green-button my-2" eventKey="second">
 									{"Tueday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="third">
+								<Nav.Link className="pill green-button my-2" eventKey="third">
 									{"Wedneday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="fourth">
+								<Nav.Link className="pill green-button my-2" eventKey="fourth">
 									{"Thursday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="fifth">
+								<Nav.Link className="pill green-button my-2" eventKey="fifth">
 									{"Friday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="sixth">
+								<Nav.Link className="pill green-button my-2" eventKey="sixth">
 									{"Saturday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-1" eventKey="seventh">
+								<Nav.Link className="pill green-button my-2" eventKey="seventh">
 									{"Sunday"}
 								</Nav.Link>
 							</Nav.Item>
 						</Nav>
 					</Col>
 					<Col sm={9}>
-						<Tab.Content className="mt-4 accord-container">
+						<Tab.Content className="mt-2 accord-container">
 							<Tab.Pane eventKey="first" className="accordion">
 								<DailyPlan />
 							</Tab.Pane>

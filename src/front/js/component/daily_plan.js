@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Context } from "../store/appContext";
+import injectContext, { Context } from "../store/appContext";
 import { Card, Accordion, Button } from "react-bootstrap";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
+import * as Icon from "react-bootstrap-icons";
 
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
@@ -15,8 +16,12 @@ export const DailyPlan = props => {
 							{"Breakfast"} <ChevronDown />
 						</Accordion.Toggle>
 					</Card.Header>
-					<Accordion.Collapse eventKey="0">
-						<Card.Body>{"Recipe name from display"}</Card.Body>
+					<Accordion.Collapse eventKey="0" className="justify-content-between">
+						<Card.Body>
+							<Icon.Save className="mr-3" />
+							<Icon.Eraser className="mr-3" />
+							{"Recipe name from display"}
+						</Card.Body>
 					</Accordion.Collapse>
 				</Card>
 				<Card>
@@ -26,7 +31,11 @@ export const DailyPlan = props => {
 						</Accordion.Toggle>
 					</Card.Header>
 					<Accordion.Collapse eventKey="1">
-						<Card.Body>{"Recipe name from display"}</Card.Body>
+						<Card.Body>
+							<Icon.Save className="mr-3" />
+							<Icon.Eraser className="mr-3" />
+							{"Recipe name from display"}
+						</Card.Body>
 					</Accordion.Collapse>
 				</Card>
 				<Card>
@@ -36,7 +45,11 @@ export const DailyPlan = props => {
 						</Accordion.Toggle>
 					</Card.Header>
 					<Accordion.Collapse eventKey="2">
-						<Card.Body>{"Recipe name from display"}</Card.Body>
+						<Card.Body>
+							<Icon.Save className="mr-3" />
+							<Icon.Eraser className="mr-3" />
+							{"Recipe name from display"}
+						</Card.Body>
 					</Accordion.Collapse>
 				</Card>
 				<Card>
@@ -46,7 +59,11 @@ export const DailyPlan = props => {
 						</Accordion.Toggle>
 					</Card.Header>
 					<Accordion.Collapse eventKey="3">
-						<Card.Body>{"Recipe name from display"}</Card.Body>
+						<Card.Body>
+							<Icon.Save className="mr-3" />
+							<Icon.Eraser className="mr-3" />
+							{"Recipe name from display"}
+						</Card.Body>
 					</Accordion.Collapse>
 				</Card>
 				<Card>
@@ -56,7 +73,11 @@ export const DailyPlan = props => {
 						</Accordion.Toggle>
 					</Card.Header>
 					<Accordion.Collapse eventKey="4">
-						<Card.Body>{"Recipe name from display"}</Card.Body>
+						<Card.Body>
+							<Icon.Save className="mr-3" />
+							<Icon.Eraser className="mr-3" />
+							{"Recipe name from display"}
+						</Card.Body>
 					</Accordion.Collapse>
 				</Card>
 			</Accordion>
