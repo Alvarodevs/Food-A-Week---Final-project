@@ -50,7 +50,7 @@ export const NewWeekAlt = () => {
 				<div className="results-body mr-0 flex-column">
 					<div className="icons-bar">
 						<img src={person} alt="Servings" />
-						<img src={danger} alt="Servings" />
+						<img src={danger} alt="Allergens" />
 					</div>
 					<div className="search-result" />
 				</div>

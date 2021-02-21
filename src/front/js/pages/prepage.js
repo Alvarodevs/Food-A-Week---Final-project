@@ -3,7 +3,8 @@ import { Context } from "../store/appContext";
 import "../../styles/index.scss";
 import HealthyFoodImg from "../../img/eating.png";
 import PhoneImg from "../../img/phone.png";
-// import { Footer } from "./component/footer";
+//import { LoginForm } from "..component/login_form";
+
 export const Pre = () => {
 	const { store, actions } = useContext(Context);
 
