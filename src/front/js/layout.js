@@ -46,10 +46,10 @@ const Layout = () => {
 						<Route exact path="/userprofile/">
 							<Userprofile />
 						</Route>
-						<Route exact path="/newweek">
+						{/* <Route exact path="/newweek">
 							<NewWeek />
-						</Route>
-						<Route exact path="/newweek_alt">
+						</Route> */}
+						<Route exact path="/newweek">
 							<NewWeekAlt />
 						</Route>
 						<Route exact path="/weeks">

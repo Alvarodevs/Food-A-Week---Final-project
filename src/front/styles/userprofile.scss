@@ -11,7 +11,8 @@
     height: 25vw;
     border-radius: 5px;
     color: black;
-    box-shadow: 1px 2px 2px 2px $green;
+    // box-shadow: 1px 2px 2px 2px $green;
+    border: 2px solid $green;
 }
 .avatar {
     background: white;
@@ -22,7 +23,8 @@
     height: 16vw;
     text-align: center;
     line-height: 10vw;
-    box-shadow: 1px 2px 2px 2px $green
+    //box-shadow: 1px 2px 2px 2px $green
+    border: 2px solid $green;
 }
 #input-file-avatar{
     border-radius: 5px;
@@ -72,5 +74,6 @@ div img{
     background-color: white;
     color: black;
     font-family: $montserrat;
-    box-shadow: 1px 2px 2px 2px $green
+    //box-shadow: 1px 2px 2px 2px $green
+    border: 2px solid $green;
 }

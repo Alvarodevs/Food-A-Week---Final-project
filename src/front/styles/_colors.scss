@@ -11,10 +11,10 @@ $gray-shadow:  #b5b4b2;
 .bg-pills{
     background-color: $green;
 }
-
 .pink-button{
     background-color: white;
-    box-shadow: 2px 2px 2px 2px $pink;
+    //box-shadow: 2px 2px 2px 2px $pink;
+    border: 2px solid $pink;
     color: black;
     border: none;
 }
@@ -27,7 +27,8 @@ $gray-shadow:  #b5b4b2;
 .green-button{
     color: black;
     border: none;
-    box-shadow: 2px 2px 2px 2px $green;
+    //box-shadow: 2px 2px 2px 2px $green;
+    border: 2px solid $green;
     background-color: white;
 }
 .green-button:hover{
@@ -45,6 +46,7 @@ $gray-shadow:  #b5b4b2;
     background-color: $yellow ;
     color: $gray;
 }
+
 
 .background-white{
       background-color: white;
@@ -66,3 +68,5 @@ $gray-shadow:  #b5b4b2;
 .background-gray{
     background-color: $gray;
 }
+
+
