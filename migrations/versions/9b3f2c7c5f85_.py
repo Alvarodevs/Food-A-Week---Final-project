@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 26b99e62a4fc
+Revision ID: 9b3f2c7c5f85
 Revises: 
-Create Date: 2021-02-17 18:43:30.431513
+Create Date: 2021-02-22 19:14:07.031298
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '26b99e62a4fc'
+revision = '9b3f2c7c5f85'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,20 +25,36 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+    op.create_table('role',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=120), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
+    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=20), nullable=False),
+    sa.Column('userName', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=80), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
-    sa.Column('lastname', sa.String(length=30), nullable=False),
+    sa.Column('lastName', sa.String(length=30), nullable=False),
     sa.Column('address', sa.String(length=120), nullable=False),
-    sa.Column('postalcode', sa.String(length=20), nullable=False),
+    sa.Column('postalCode', sa.String(length=20), nullable=False),
     sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.Column('role_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('username')
+    sa.UniqueConstraint('userName')
+    )
+    op.create_table('ingredient',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('menu',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -47,46 +63,39 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('recipedetail',
+    op.create_table('day',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('position', sa.Integer(), nullable=True),
+    sa.Column('menu_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['menu_id'], ['menu.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('recipe_detail',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('recipe_id', sa.Integer(), nullable=True),
+    sa.Column('ingredient_id', sa.Integer(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('unit', sa.String(length=50), nullable=False),
     sa.Column('servings', sa.Integer(), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.ForeignKeyConstraint(['ingredient_id'], ['ingredient.id'], ),
     sa.ForeignKeyConstraint(['recipe_id'], ['recipe.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('quantity'),
     sa.UniqueConstraint('servings'),
     sa.UniqueConstraint('unit')
     )
-    op.create_table('day',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('menu_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['menu_id'], ['menu.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('ingredient',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=50), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('recipedetail_id', sa.Integer(), nullable=True),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
-    sa.ForeignKeyConstraint(['recipedetail_id'], ['recipedetail.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
     op.create_table('restriction',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('ingredient_id', sa.Integer(), nullable=False),
+    sa.Column('ingredient_id', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['ingredient_id'], ['ingredient.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('selectedrecipe',
+    op.create_table('selected_recipe',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('day_id', sa.Integer(), nullable=True),
     sa.Column('recipe_id', sa.Integer(), nullable=True),
@@ -100,12 +109,13 @@ def upgrade():
 
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
-    op.drop_table('selectedrecipe')
+    op.drop_table('selected_recipe')
     op.drop_table('restriction')
-    op.drop_table('ingredient')
+    op.drop_table('recipe_detail')
     op.drop_table('day')
-    op.drop_table('recipedetail')
     op.drop_table('menu')
+    op.drop_table('ingredient')
     op.drop_table('user')
+    op.drop_table('role')
     op.drop_table('recipe')
     # ### end Alembic commands ###
