@@ -6,7 +6,7 @@ import { Weekplan } from "../component/weekplan";
 import person from "../../img/person.png";
 import danger from "../../img/danger.png";
 import "../../styles/newweek_alt.scss";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form, Image } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 
 export const NewWeekAlt = () => {
@@ -18,7 +18,7 @@ export const NewWeekAlt = () => {
 						<Form.Control placeholder="Search Bar" className="bar-body-dropdown col-12 p-3 m-auto w-100" />
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
-						<Dropdown dropup className="bar-body-dropdown">
+						<Dropdown className="bar-body-dropdown">
 							<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
 							<Dropdown.Menu>
 								<Dropdown.Item>Rice</Dropdown.Item>
@@ -47,10 +47,14 @@ export const NewWeekAlt = () => {
 						</Dropdown>
 					</div>
 				</div>
-				<div className="results-body mr-0 flex-column">
-					<div className="icons-bar">
-						<img src={person} alt="Servings" />
-						<img src={danger} alt="Allergens" />
+				<div className="results-body mr-0">
+					<div className="d-flex">
+						<div>
+							<img src={person} alt="Servings" className="mr-4 mt-2" />
+						</div>
+						<div>
+							<img src={danger} alt="Allergens" className="mr-2 mt-2" />
+						</div>
 					</div>
 					<div className="search-result" />
 				</div>

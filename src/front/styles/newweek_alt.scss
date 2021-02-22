@@ -54,7 +54,7 @@
 }
 .bar-body-dropdown{
     border-radius: 5px;
-    //margin: 1px;
+    width: 30%;
     font-family: $montserrat;
     background-color: white;
     // box-shadow: 2px 2px 2px 2px $pink;
@@ -73,23 +73,21 @@
 .results-body{
     // display: flex;
     font-family: $montserrat;
-    // height:25vw;
+    height:25vw;
     margin-top:1%;
     border-radius: 5px;
     background-color: #FFFFFF;
     // box-shadow: 2px 2px 2px 2px $pink;
     border: 2px solid $pink;
-
-    .icons-bar{
-    height:3rem !important;
-
-        img{
-        height: 2rem;
-        }    
-    }
+    
+    img{
+    height: 1rem;
+    width: 1rem;
+}  
 }
-
-
+.icons-bar{
+    height:3rem !important;  
+}
 
 //     .results-search{
 //     border-radius: 5px;

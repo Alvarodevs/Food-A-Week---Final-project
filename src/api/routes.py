@@ -17,6 +17,20 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+####################################
+
+@api.route('/users', methods=['POST', 'GET'])
+def handle_users():
+
+    response_body = {
+        "id" : 1,
+        "email": "example@test.com"
+    }
+
+    return jsonify(response_body), 200
+
+####################################
+
 @api.route('/profile/image/<int:user_id>', methods=['PUT'])
 def handle_upload(user_id):
 

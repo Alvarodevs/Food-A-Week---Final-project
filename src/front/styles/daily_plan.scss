@@ -7,11 +7,12 @@
 .accordion{
     background-color: white;
     border: none;
+    border-radius: 5px;
 }
 .accord-container{
     // box-shadow: 2px 2px 2px 2px $pink;
     border: 2px solid $pink;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 .menu-title{
     color: black;

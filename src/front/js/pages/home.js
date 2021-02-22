@@ -35,7 +35,7 @@ export const Home = () => {
 				</button> */}
 				<Link to="/map">
 					<Button className="service-circle" id="localshops">
-						<div className="button-text mt-4 pt-2">{"LOCAL SHOPS"}</div>
+						<div className="button-text">{"LOCAL SHOPS"}</div>
 					</Button>
 				</Link>
 			</div>

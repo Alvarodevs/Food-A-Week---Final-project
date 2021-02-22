@@ -56,10 +56,10 @@ class Ingredient(db.Model):
 
 ##########################################
 
-tags = db.Table('tags',
-    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
-    db.Column('page_id', db.Integer, db.ForeignKey('page.id'), primary_key=True)
-)
+# tags = db.Table('tags',
+#     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
+#     db.Column('page_id', db.Integer, db.ForeignKey('page.id'), primary_key=True)
+# )
 
 ##########################################
 class Restriction(db.Model):
@@ -102,7 +102,7 @@ class Recipe(db.Model):
 class RecipeDetail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-    ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
+    #ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'))
     quantity = db.Column(db.Integer, unique=True, nullable=False)
     unit = db.Column(db.String(50), unique=True, nullable=False)
     servings = db.Column(db.Integer, unique=True, nullable=False)

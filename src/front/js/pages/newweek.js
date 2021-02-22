@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import injectContext, { Context } from "../store/appContext";
-import "../../styles/newweek.scss";
+//import "../../styles/newweek.scss";
 import { Form, InputGroup } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 

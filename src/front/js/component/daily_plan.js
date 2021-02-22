@@ -9,7 +9,7 @@ export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
 	return (
 		<div className="container-fluid p-0">
-			<Accordion>
+			<Accordion className="accordion">
 				<Card>
 					<Card.Header className="white-bg">
 						<Accordion.Toggle as={Button} variant="link" eventKey="0">

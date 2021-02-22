@@ -1,20 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-import {
-	Tab,
-	Row,
-	Col,
-	Nav,
-	Sonnet,
-	TabContainer,
-	TabContent,
-	TabPane,
-	Button,
-	InputGroup,
-	FormControl,
-	Form
-} from "react-bootstrap";
+import { Tab, Row, Col, Nav, Button, FormControl, Form } from "react-bootstrap";
 import { DailyPlan } from "./daily_plan";
 
 export const Weekplan = props => {
@@ -29,7 +16,7 @@ export const Weekplan = props => {
 						placeholder="Week menu title"
 						aria-label="text"
 					/>
-					<Button variant="success" className="green-button ml-3">
+					<Button variant="none" className="green-button ml-3">
 						Save
 					</Button>
 				</Form>
@@ -37,7 +24,7 @@ export const Weekplan = props => {
 			<Tab.Container id="left-tabs-example" defaultActiveKey="first">
 				<Row>
 					<Col sm={3}>
-						<Nav variant="pills" className="nav-pills flex-column">
+						<Nav className="nav-pills flex-column">
 							<Nav.Item>
 								<Nav.Link className="pill green-button my-2" eventKey="first">
 									{"Monday"}
