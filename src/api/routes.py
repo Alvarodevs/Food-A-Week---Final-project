@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
-from api.utils import generate_sitemap, APIException
+from api.utils import generate_sitemap, APIException, seed_data
 
 api = Blueprint('api', __name__)
 
@@ -30,6 +30,12 @@ def handle_users():
     return jsonify(response_body), 200
 
 ####################################
+
+@api.route('/seed_data', methods=['GET'])
+def handle_users():
+    seed_data()
+
+    return jsonify(response_body), 200
 
 @api.route('/profile/image/<int:user_id>', methods=['PUT'])
 def handle_upload(user_id):
