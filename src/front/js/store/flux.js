@@ -13,9 +13,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+            ],
+            recipeFullData: [
+                {
+                    label: "",
+                    image: "",
+                    ingredients:
+                        {
+                            text: "",
+                            weight: ""
+                        },
+                    totalTime: "",
+                    healthLabels: "",
+                    url: ""
+                }
+            ],
 		},
 		actions: {
+			getRecipes: async () => {
+				const response = await fetch(
+					`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}`
+				);
+				const data = await response.json();
+				setRecipes(data.hits);
+				console.log(data.hits);
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

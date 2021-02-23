@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
+import { Edamam } from "../component/edamam";
 import person from "../../img/person.png";
 import danger from "../../img/danger.png";
 import "../../styles/newweek_alt.scss";
 import { Form, Image } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
+
+const [recipes, setRecipes] = useState([]);
 
 export const NewWeek = () => {
 	return (
@@ -48,16 +51,17 @@ export const NewWeek = () => {
 					</div>
 				</div>
 				<div className="results-body mr-0">
-					{/* CONTENEDOR RESULTADOS, SOLO <LI>, Y TRIGGER JUMBOTRON ONCLICK RECETA */}
-					<div className="d-flex">
-						<div>
-							<img src={person} alt="Servings" className="mr-4 mt-2" />
-						</div>
-						<div>
-							<img src={danger} alt="Allergens" className="mr-2 mt-2" />
+					<div className="search-result">
+						<div className="recipes">
+							{recipes.map(recipe => (
+								<Edamam
+									key={recipe.recipe.label}
+									title={recipe.recipe.label}
+									image={recipe.recipe.image}
+								/>
+							))}
 						</div>
 					</div>
-					<div className="search-result" />
 				</div>
 			</div>
 			<div className="d-flex col-6">

@@ -49,7 +49,7 @@ const Layout = () => {
 							<NewWeek />
 						</Route> */}
 						<Route exact path="/newweek">
-							<NewWeekAlt />
+							<NewWeek />
 						</Route>
 						<Route exact path="/weeks">
 							<AllWeeks />
