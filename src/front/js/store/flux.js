@@ -13,8 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+
 			],
 			hits: []
+
 		},
 		actions: {
 			getRecipes: props => {
