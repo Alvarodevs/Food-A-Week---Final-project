@@ -13,7 +13,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			],
+            ],
+            
+            APP_KEY: "62b671a1e444b07116376c2722805bd3",
+            APP_ID: "ae68e508", 
+
 			recipeFullData: [
 				{
 					label: "",

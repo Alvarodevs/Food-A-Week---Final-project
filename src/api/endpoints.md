@@ -56,12 +56,12 @@ Class Menu
 
             "id": self.id,
             "name": self.name,
-            #order
 
 Class Day
 
             "id": self.id,
             "name": self.name,
+            "position": self.position,
 
 
 
