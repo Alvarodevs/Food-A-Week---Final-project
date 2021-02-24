@@ -14,28 +14,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			recipeFullData: [
-				{
-					label: "",
-					image: "",
-					ingredients: {
-						text: "",
-						weight: ""
-					},
-					totalTime: "",
-					healthLabels: "",
-					url: ""
-				}
-			]
+			hits: []
 		},
 		actions: {
-			getRecipes: async () => {
-				const response = await fetch(
-					`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}`
-				);
-				const data = await response.json();
-				setRecipes(data.hits);
-				console.log(data.hits);
+			getRecipes: props => {
+				console.log(props);
+				//APP_ID = "";
+				//APP_KEY = "";
+				// url='https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}'
+				const store = getStore();
+				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3`;
+				console.log(url);
+				fetch(url)
+					.then(resp => resp.json())
+					.then(data => setStore({ hits: data.hits }))
+					.catch(error => console.log("Error loading message from backend", error));
 			},
 
 			// Use getActions to call a function within a fuction

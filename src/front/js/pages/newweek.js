@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
@@ -12,12 +13,38 @@ import * as Icon from "react-bootstrap-icons";
 //const [recipes, setRecipes] = useState([]);
 
 export const NewWeek = () => {
+	const { store, actions } = useContext(Context);
+	const [value, setValue] = useState("");
+	const [query] = useDebounce(value, 1000);
+
+	// const handleSubmit = event => {
+	// 	event.preventDefault();
+	// 	actions.getRecipes(value);
+	// };
+
+	const handleInput = event => {
+		setValue(event.target.value);
+	};
+
+	useEffect(
+		() => {
+			actions.getRecipes(query);
+		},
+		[query]
+	);
+
+	console.log(store.hits);
+
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
 				<div className="weekplan-body">
 					<Form>
-						<Form.Control placeholder="Search Bar" className="bar-body-dropdown col-12 p-3 m-auto w-100" />
+						<Form.Control
+							placeholder="Search Bar"
+							onChange={handleInput}
+							className="bar-body-dropdown col-12 p-3 m-auto w-100"
+						/>
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<Dropdown className="bar-body-dropdown">
