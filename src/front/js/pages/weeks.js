@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 
-import "../../styles/index.scss";
+//import "../../styles/index.scss";
 
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);

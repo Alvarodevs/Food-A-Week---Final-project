@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 import { Link } from "react-router-dom";
-import "../../styles/index.scss";
+//import "../../styles/index.scss";
 import { Button } from "react-bootstrap";
 
 export const Home = () => {
@@ -19,13 +19,13 @@ export const Home = () => {
 			<div className="container d-flex flex-row justify-content-around text-align-center">
 				{/* LINKS A PAGES: NEWWEEK / RECIPE / GROCERYLIST / LOCALSHOPS */}
 				<Link to="/weeks">
-					<Button className="service-circle" id="weeks">
+					<Button variant="success" className="service-circle" id="weeks">
 						<div className="button-text">{"WEEK PLANS"}</div>
 					</Button>
 				</Link>
 
 				<Link to="/newweek">
-					<Button className="service-circle" id="newweek">
+					<Button variant="success" className="service-circle" id="newweek">
 						<div className="button-text">{"NEW WEEK MENU"}</div>
 					</Button>
 				</Link>
@@ -34,7 +34,7 @@ export const Home = () => {
 					Link to=/grocerylist.js
 				</button> */}
 				<Link to="/map">
-					<Button className="service-circle" id="localshops">
+					<Button variant="success" className="service-circle" id="localshops">
 						<div className="button-text">{"LOCAL SHOPS"}</div>
 					</Button>
 				</Link>

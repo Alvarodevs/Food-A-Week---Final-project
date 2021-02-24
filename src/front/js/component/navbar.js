@@ -31,10 +31,6 @@ export const Navbar = () => {
 								<Dropdown.Item href="/">Logout</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
-						{/* <Link to="/userprofile">
-					<button className="weekplan-btn btn green-button">User name</button>
-				</Link> */}
-						{/* INSERTAR DROPDOWN CON 2 LINKS, UNA VEZ LOGEADO EL USER, UNO A USER PROFILE Y UN LOGOUT */}
 					</div>
 				</div>
 			</div>

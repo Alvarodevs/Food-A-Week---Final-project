@@ -26,37 +26,37 @@ export const Weekplan = props => {
 					<Col sm={3}>
 						<Nav className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="first">
+								<Nav.Link className="green-button my-2" eventKey="first">
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="second">
+								<Nav.Link className="green-button my-2" eventKey="second">
 									{"Tueday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="third">
+								<Nav.Link className="green-button my-2" eventKey="third">
 									{"Wedneday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="fourth">
+								<Nav.Link className="green-button my-2" eventKey="fourth">
 									{"Thursday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="fifth">
+								<Nav.Link className="green-button my-2" eventKey="fifth">
 									{"Friday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="sixth">
+								<Nav.Link className="green-button my-2" eventKey="sixth">
 									{"Saturday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="pill green-button my-2" eventKey="seventh">
+								<Nav.Link className="green-button my-2" eventKey="seventh">
 									{"Sunday"}
 								</Nav.Link>
 							</Nav.Item>

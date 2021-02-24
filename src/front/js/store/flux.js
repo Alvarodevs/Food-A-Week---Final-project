@@ -13,21 +13,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-            ],
-            recipeFullData: [
-                {
-                    label: "",
-                    image: "",
-                    ingredients:
-                        {
-                            text: "",
-                            weight: ""
-                        },
-                    totalTime: "",
-                    healthLabels: "",
-                    url: ""
-                }
-            ],
+			],
+			recipeFullData: [
+				{
+					label: "",
+					image: "",
+					ingredients: {
+						text: "",
+						weight: ""
+					},
+					totalTime: "",
+					healthLabels: "",
+					url: ""
+				}
+			]
 		},
 		actions: {
 			getRecipes: async () => {

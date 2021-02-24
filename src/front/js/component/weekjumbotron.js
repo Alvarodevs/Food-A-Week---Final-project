@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Button, Jumbotron } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "../../styles/index.scss";
+//import "../../styles/index.scss";
 
 export const WeekJumbo = () => {
 	//const { store, actions } = useContext(Context);

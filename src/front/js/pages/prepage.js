@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/index.scss";
+//import "../../styles/index.scss";
 import HealthyFoodImg from "../../img/eating.png";
 import PhoneImg from "../../img/phone.png";
 //import { LoginForm } from "..component/login_form";

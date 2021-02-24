@@ -9,6 +9,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Pre } from "./pages/prepage";
 import { Home } from "./pages/home";
 import { WeekJumbo } from "./component/weekjumbotron";
+import { RecipeDetail } from "./component/recipe_detail_jumbo";
 import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/newweek";
 import { AllWeeks } from "./pages/weeks";
@@ -41,6 +42,9 @@ const Layout = () => {
 						</Route> */}
 						<Route exact path="/weekjumbotron">
 							<WeekJumbo />
+						</Route>
+						<Route exact path="/recipe_detail_jumbo">
+							<RecipeDetail />
 						</Route>
 						<Route exact path="/userprofile/">
 							<Userprofile />

@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 import { UserData } from "../component/user_info_form";
 import { AllergensTable } from "../component/allergenstable";
 import { Avatar } from "../component/avatar";
-import "../../styles/userprofile.scss";
+//import "../../styles/userprofile.scss";
 
 export const Userprofile = props => {
 	const { store, actions } = useContext(Context);

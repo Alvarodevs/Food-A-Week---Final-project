@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Form, Button, Image } from "react-bootstrap";
 
-import "../../styles/index.scss";
+//import "../../styles/index.scss";
 
 export const Avatar = () => {
 	const { store, actions } = useContext(Context);

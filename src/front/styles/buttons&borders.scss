@@ -16,25 +16,78 @@
 }
 
 .green-button{
-    background-color: white;
-    color: black;
-    //border-color: $green;
+    background-color: $green;
+    color: $gray;
+    border-color: $green;
     border: 2px solid $green;
     padding: 2px;
-    
+    text-decoration: none;    
 }
 .green-button:hover{
     text-decoration: none;
     background-color:$green;
-
+    color: black;
 }
-// .green-button>a{
-//     text-decoration: none;
-//     background-color:$green;
-  
-    
-// }
+.weekplan-body{
+    .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: $pink;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgb(240,142,136 / 1%);
+    }
+}
 
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: $green;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgb(70,141,94 / 1%);
+}
+.nav-pills {
+    .nav-link.active{   
+        background-color: $green;
+        box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
+    }
+}
+.btn:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(70,141,94 / 1%);
+}
+.btns-bar-body{
+    .btn-primary:focus, .btn-primary.focus {
+        color: black;
+        background-color: white;
+        border-color: white;
+    }
+    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+    }
+    .btn-primary:not(:disabled):not(.disabled):active {
+    color: black;
+    background-color: white;
+    border-color: white;
+    }
+    .btn:focus {
+    box-shadow: none;
+    }
+}
+.accordion{
+    .btn-link {
+    font-weight: 400;
+    color: black;
+    text-decoration: none;
+    }
+    .btn:active{
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(240,142,136 / 1%);
+    }
+    .btn:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(240,142,136 / 1%);
+    }
+}
 .yellow-button{
     background-color: $yellow ;
     color: $gray;

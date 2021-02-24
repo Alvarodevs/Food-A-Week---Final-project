@@ -7,10 +7,15 @@ $gray           : #e3e2df;
 
 $gray-shadow:  #b5b4b2;
 
-
-.bg-pills{
+.btn-primary:not(:disabled):not(.disabled):active{
+    color: #fff; 
     background-color: $green;
+    border-color: $green;
 }
+// .bg-pills{
+//     background-color: $green;
+// }
+
 .pink-button{
     background-color: white;
     //box-shadow: 2px 2px 2px 2px $pink;
@@ -24,18 +29,18 @@ $gray-shadow:  #b5b4b2;
     color: $gray;
 }
 
-.green-button{
-    color: black;
-    border: none;
-    //box-shadow: 2px 2px 2px 2px $green;
-    border: 2px solid $green;
-    background-color: white;
-}
-.green-button:hover{
-    text-decoration: none;
-    background-color:$green;
-    color: black;
-}
+// .green-button{
+//     color: black;
+//     border: none;
+//     //box-shadow: 2px 2px 2px 2px $green;
+//     border: 2px solid $green;
+//     background-color: white;
+// }
+// .green-button:hover{
+//     text-decoration: none;
+//     background-color:$green;
+//     color: black;
+// }
 
 // .green-button>a{
 //     text-decoration: none;

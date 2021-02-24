@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
-import { Edamam } from "../component/edamam";
-import person from "../../img/person.png";
-import danger from "../../img/danger.png";
-import "../../styles/newweek_alt.scss";
-import { Form, Image } from "react-bootstrap";
+//import { Edamam } from "../component/edamam";
+import { RecipeDetail } from "../component/recipe_detail_jumbo";
+//import "../../styles/newweek.scss";
+import { Form, Button } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 
-const [recipes, setRecipes] = useState([]);
+//const [recipes, setRecipes] = useState([]);
 
 export const NewWeek = () => {
 	return (
@@ -52,7 +51,11 @@ export const NewWeek = () => {
 				</div>
 				<div className="results-body mr-0">
 					<div className="search-result">
-						<div className="recipes">
+						{/* <Button variant="primary" onClick={<RecipeDetail />}>
+							Launch demo modal
+						</Button> */}
+
+						{/* <div className="recipes">
 							{recipes.map(recipe => (
 								<Edamam
 									key={recipe.recipe.label}
@@ -60,7 +63,7 @@ export const NewWeek = () => {
 									image={recipe.recipe.image}
 								/>
 							))}
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
