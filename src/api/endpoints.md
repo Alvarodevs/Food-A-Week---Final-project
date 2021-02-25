@@ -11,8 +11,6 @@ Class User
             "postalCode"
             "phone"
    
-
-
 Class Ingredient
 
             "id"

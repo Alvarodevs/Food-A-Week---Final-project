@@ -7,7 +7,7 @@ import { Weekplan } from "../component/weekplan";
 //import { Edamam } from "../component/edamam";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
 //import "../../styles/newweek.scss";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ListGroup } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 
 //const [recipes, setRecipes] = useState([]);
@@ -32,6 +32,10 @@ export const NewWeek = () => {
 		},
 		[query]
 	);
+
+	var searchResult = store.hits.map((item, index) => (
+		<ListGroup.Item key={index}>{item.recipe.label}</ListGroup.Item>
+	));
 
 	console.log(store.hits);
 
@@ -78,19 +82,7 @@ export const NewWeek = () => {
 				</div>
 				<div className="results-body mr-0">
 					<div className="search-result">
-						{/* <Button variant="primary" onClick={<RecipeDetail />}>
-							Launch demo modal
-						</Button> */}
-
-						{/* <div className="recipes">
-							{recipes.map(recipe => (
-								<Edamam
-									key={recipe.recipe.label}
-									title={recipe.recipe.label}
-									image={recipe.recipe.image}
-								/>
-							))}
-						</div> */}
+						<ListGroup className="d-flex">{searchResult}</ListGroup>
 					</div>
 				</div>
 			</div>
