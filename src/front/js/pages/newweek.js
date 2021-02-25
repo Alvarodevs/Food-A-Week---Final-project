@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
+//import { Dropdown, DropdownType } from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
 //import { Edamam } from "../component/edamam";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
 //import "../../styles/newweek.scss";
-import { Form, Button, ListGroup } from "react-bootstrap";
+import { Form, Button, ListGroup, ButtonGroup, Dropdown, DropdownType } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 
 //const [recipes, setRecipes] = useState([]);
@@ -34,7 +34,19 @@ export const NewWeek = () => {
 	);
 
 	var searchResult = store.hits.map((item, index) => (
-		<ListGroup.Item key={index}>{item.recipe.label}</ListGroup.Item>
+		<ListGroup.Item key={index}>
+			{item.recipe.label}
+			{/* <Dropdown className="d-flex flex-row m-auto" size="sm">
+				<Dropdown.Toggle className="toggle">Add to:</Dropdown.Toggle>
+				<Dropdown.Menu>
+					<Dropdown.Item>Breakfast</Dropdown.Item>
+					<Dropdown.Item>Sanck</Dropdown.Item>
+					<Dropdown.Item>Lunch</Dropdown.Item>
+					<Dropdown.Item>Snack</Dropdown.Item>
+					<Dropdown.Item>Dinner</Dropdown.Item>
+				</Dropdown.Menu>
+			</Dropdown> */}
+		</ListGroup.Item>
 	));
 
 	console.log(store.hits);
