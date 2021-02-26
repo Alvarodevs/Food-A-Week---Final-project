@@ -36,7 +36,7 @@ class User(db.Model):
     postal_code = db.Column(db.String(20), unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
     
@@ -181,16 +181,15 @@ class DataManager:
         create_user(user_datum)
 
     def create_user(self,data_user):
-      user1 = User(user_name=data_user["user_name"],
-                   email=data_user["email"],
-                   password=data_user["password"],
-                   name=data_user["name"], 
-                   last_name=data_user["last_name"], 
-                   address=data_user["address"], 
-                   postal_code=data_user["postal_code"],
-                   phone=data_user["phone"],
+      user = User(user_name=data_user['user_name'],
+                   email=data_user['email'],
+                   password=data_user['password'],
+                   name=data_user['name'], 
+                   last_name=data_user['last_name'], 
+                   address=data_user['address'], 
+                   postal_code=data_user['postal_code'],
+                   phone=data_user['phone'],
                    is_active=True)
-      user1 = User()
-      db.session.add(user1)
+      db.session.add(user)
       db.session.commit()
       return user
