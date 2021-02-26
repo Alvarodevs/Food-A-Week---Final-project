@@ -1,4 +1,5 @@
-from flask import jsonify, url_for
+from flask import jsonify, url_for, request
+from api.models import db, User
 
 class APIException(Exception):
     status_code = 400
@@ -51,7 +52,24 @@ def create_roles():
   pass
 
 def create_users():
-  pass
+    user = User(user_name="mysuperusername", 
+        email="mysuper@email.com",
+        password="*******",
+        name="Alvaro", 
+        last_name="Garzon", 
+        address="Blabla st.4", 
+        postal_code="11100", 
+        phone="654654654", 
+        is_active="true",
+        role_id="user",
+        menus="menu1, menu2",
+        restricted_ingredients="celery, wheal, lactose")
+        
+    #¿COMO ENVIAR LIST A DATABASE? TypeError: Incompatible collection type: str is not list-like
+    db.session.add(user)
+    db.session.commit()
+
+    return "User data info OK"
 
 def create_ingredients():
   pass

@@ -15,10 +15,10 @@ class Ingredient(db.Model):
 
     def serialize(self):
       return {
-          "id": self.id,
-          "name": self.name,
-          "restriction_id": self.restriction_id, #¿NECESARIO?
-          "user_id": self.user_id, #¿NECESARIO?
+        "id": self.id,
+        "name": self.name,
+        "restriction_id": self.restriction_id, #¿NECESARIO?
+        "user_id": self.user_id, #¿NECESARIO?
       }
 
 class Role(db.Model):

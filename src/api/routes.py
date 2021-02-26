@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction
-from api.utils import generate_sitemap, APIException, seed_data
+from api.utils import generate_sitemap, APIException, seed_data, create_users
 
 api = Blueprint('api', __name__)
 
@@ -63,6 +63,13 @@ def handle_users():
     users = list(map(lambda x: x.serialize(), user_query))
 
     return jsonify(users), 200
+
+    #CREATE USER
+
+@api.route('/users', methods=['POST'])
+def create_user():
+    msg = create_users()
+    return jsonify(msg), 200
 
 ####################################
 
