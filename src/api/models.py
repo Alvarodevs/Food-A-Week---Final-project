@@ -175,7 +175,9 @@ class DataManager:
       pass
 
     def seed_data(self):
-      users_data = []
+      users_data = [{
+        
+      }]
 
       for user_datum in users_data:
         create_user(user_datum)
