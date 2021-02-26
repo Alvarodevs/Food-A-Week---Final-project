@@ -34,18 +34,20 @@ export const NewWeek = () => {
 	);
 
 	var searchResult = store.hits.map((item, index) => (
-		<ListGroup.Item key={index}>
-			{item.recipe.label}
-			{/* <Dropdown className="d-flex flex-row m-auto" size="sm">
-				<Dropdown.Toggle className="toggle">Add to:</Dropdown.Toggle>
-				<Dropdown.Menu>
-					<Dropdown.Item>Breakfast</Dropdown.Item>
-					<Dropdown.Item>Sanck</Dropdown.Item>
-					<Dropdown.Item>Lunch</Dropdown.Item>
-					<Dropdown.Item>Snack</Dropdown.Item>
-					<Dropdown.Item>Dinner</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown> */}
+		<ListGroup.Item key={index} className="d-flex justify-content-between">
+			<div>{item.recipe.label}</div>
+			<div>
+				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
+					<Dropdown.Toggle />
+					<Dropdown.Menu>
+						<Dropdown.Item>Breakfast</Dropdown.Item>
+						<Dropdown.Item>Sanck</Dropdown.Item>
+						<Dropdown.Item>Lunch</Dropdown.Item>
+						<Dropdown.Item>Snack</Dropdown.Item>
+						<Dropdown.Item>Dinner</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+			</div>
 		</ListGroup.Item>
 	));
 
