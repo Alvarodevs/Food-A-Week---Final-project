@@ -70,6 +70,14 @@ def sign_in():
   user1 = DataManager().create_user(json_data)
   return jsonify(user1.serialize()), 200
 
+  user1 = User.query.filter_by(email=email).one_or_none()
+  if not user1 or not user1.check_password(password):
+    return jsonify("Wrong email or password"), 401
+
+  # Notice that we are passing in the actual sqlalchemy user object here
+  access_token = create_access_token(identity=user1.serialize())
+  return jsonify(access_token=access_token)
+
 ####################################
 
 @api.route('/menu', methods=['GET'])
