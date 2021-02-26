@@ -39,23 +39,3 @@ def generate_sitemap(app):
         <p>Start working on your proyect by following the <a href="https://github.com/4GeeksAcademy/flask-rest-hello/blob/master/docs/_QUICK_START.md" target="_blank">Quick Start</a></p>
         <p>Remember to specify a real endpoint path like: </p>
         <ul style="text-align: left;">"""+links_html+"</ul></div>"
-
-
-def seed_data():
-  create_roles()
-  create_users()
-  create_ingredients()
-  create_recipe()
-
-def create_roles():
-  pass
-
-def create_users():
-  pass
-
-def create_ingredients():
-  pass
-
-def create_recipe():
-  # recipe with details
-  pass

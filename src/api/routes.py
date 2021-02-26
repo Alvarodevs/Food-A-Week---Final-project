@@ -2,8 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction
-from api.utils import generate_sitemap, APIException, seed_data
+from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager
+from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
@@ -63,6 +63,12 @@ def handle_users():
     users = list(map(lambda x: x.serialize(), user_query))
 
     return jsonify(users), 200
+
+@api.route('/sign_in', methods=['POST'])
+def sign_in():
+  json_data = request.get_json()
+  user1 = DataManager().create_user(json_data)
+  return jsonify(user1.serialize()), 200
 
 ####################################
 
