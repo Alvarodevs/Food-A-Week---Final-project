@@ -181,15 +181,15 @@ class DataManager:
         create_user(user_datum)
 
     def create_user(self,data_user):
-      user1 = User(data_user["user_name"], 
-                   data_user["email"], 
-                   data_user["password"], 
-                   data_user["name"], 
-                   data_user["last_name"], 
-                   data_user["address"], 
-                   data_user["postal_code"],
-                   data_user["phone"],
-                   True)
+      user1 = User(user_name=data_user["user_name"],
+                   email=data_user["email"],
+                   password=data_user["password"],
+                   name=data_user["name"], 
+                   last_name=data_user["last_name"], 
+                   address=data_user["address"], 
+                   postal_code=data_user["postal_code"],
+                   phone=data_user["phone"],
+                   is_active=True)
       user1 = User()
       db.session.add(user1)
       db.session.commit()
