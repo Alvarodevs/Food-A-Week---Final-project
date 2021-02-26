@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=False, nullable=False)
@@ -36,9 +35,8 @@ class User(db.Model):
     address = db.Column(db.String(120), unique=False, nullable=False)
     postal_code = db.Column(db.String(20), unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=True)
-    #avatar = db.Column(db.String(20), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
     
@@ -55,22 +53,22 @@ class User(db.Model):
             "address": self.address,
             "postal_code": self.postal_code,
             "phone": self.phone,
-        }
+          }
             # do not serialize the password, its a security breach
 
 class Menu(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=False, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    days = db.relationship('Day', backref='menu', lazy=True)
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(100), unique=False, nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+  days = db.relationship('Day', backref='menu', lazy=True)
 
-    def __repr__(self):
-      return '<Menu %r>' % self.id
-    
-    def serialize(self):
-      return{
-          "id": self.id,
-          "name": self.name,
+  def __repr__(self):
+    return '<Menu %r>' % self.id
+  
+  def serialize(self):
+    return{
+        "id": self.id,
+        "name": self.name
       }
 
 
@@ -169,3 +167,30 @@ class Restriction(db.Model):
           "user_id": self.user_id,
           "ingredient_id": self.ingredient_id, #¿NECESARIO?           
       }
+
+class DataManager:
+
+    def __init__(self):
+      pass
+
+    def seed_data(self):
+      users_data = [{
+        
+      }]
+
+      for user_datum in users_data:
+        create_user(user_datum)
+
+    def create_user(self,data_user):
+      user = User(user_name=data_user['user_name'],
+                   email=data_user['email'],
+                   password=data_user['password'],
+                   name=data_user['name'], 
+                   last_name=data_user['last_name'], 
+                   address=data_user['address'], 
+                   postal_code=data_user['postal_code'],
+                   phone=data_user['phone'],
+                   is_active=True)
+      db.session.add(user)
+      db.session.commit()
+      return user
