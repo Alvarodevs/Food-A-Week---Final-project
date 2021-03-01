@@ -1,5 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import safe_str_cmp
 
 db = SQLAlchemy()
 
@@ -55,18 +54,7 @@ class User(db.Model):
             "postal_code": self.postal_code,
             "phone": self.phone,
           }
-    
-    # do not serialize the password, its a security breach
-    # NOTE: In a real application make sure to properly hash and salt passwords
-    # Sources : https://www.programcreek.com/python/example/92986/werkzeug.security.safe_str_cmp
-    def check_password(self, password_param):
-        return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
-    
-    def sign_in_serialize(self):
-      return {
-        "id": self.id,
-        "email": self.email
-      }
+            # do not serialize the password, its a security breach
 
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
