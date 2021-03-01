@@ -56,6 +56,12 @@ class User(db.Model):
           }
             # do not serialize the password, its a security breach
 
+    def sign_in_serialize(self):
+      return {
+        "id": self.id,
+        "email": self.email
+      }
+
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100), unique=False, nullable=False)
