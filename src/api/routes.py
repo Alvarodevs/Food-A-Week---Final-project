@@ -241,3 +241,72 @@ def remove_selectedrecipe():
     print(remove_selected_recipe)
 
     return jsonify(remove_selected_recipe.serialize()), 200
+
+
+
+
+
+@api.route('/newWeek', methods=['POST'])
+def send_new_week():
+    complete_week = request.get_json() #traeme el json del request a python
+    new_selected_week = week(
+        {"user_id": 1,
+        "name":"menu_name",
+        "days": {
+            "monday": 
+                    [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+            "tuesday":
+                    [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+            "wednesday": 
+                    [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+            "thursday": 
+                     [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+            "friday": 
+                     [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+           "saturday": 
+                     [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+            "sunday": 
+                     [{"name":"breakfast", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack1", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"lunch", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"snack2", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    {"name":"dinner", "recipe":{hits.recipe.label}, "url" :hits.recipe.url},
+                    ],
+                }
+        }
+    )
+    #db.session.add(new_selected_recipe) #añadir una receta o tipo datos
+    #db.session.commit() #guardar cambios
+    print(new_selected_week)
+
+    return jsonify(new_selected_week.serialize()), 200
