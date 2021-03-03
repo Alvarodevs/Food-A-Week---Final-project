@@ -30,6 +30,7 @@ const injectContext = PassedComponent => {
 			 **/
 			state.actions.getMessage(); // <---- calling this function from the flux.js actions
 			state.actions.getRecipes();
+			//state.actions.selectNewRecipe(1);
 		}, []);
 
 		// useEffect(

@@ -41,7 +41,7 @@ class User(db.Model):
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
     
     def __repr__(self):
-        return '<User %r>' % self.userName
+        return '<User %r>' % self.user_name
 
     def serialize(self):
         return {
@@ -138,10 +138,10 @@ class SelectedRecipe(db.Model):
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
-      return '<SelectedRecipe %r>' % self.id
+      return '<SelectedRecipe %r>' % self.recipe.name
 
     def serialize(self):
       return {

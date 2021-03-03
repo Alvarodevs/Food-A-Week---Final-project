@@ -209,3 +209,23 @@ def handle_restriction():
 #         return jsonify(user1.serialize()), 200
 #     else:
 #         raise APIException('Missing profile_image on the FormData')
+
+###### API post 
+
+@api.route('/selectedrecipe', methods=['POST'])
+def send_selectedrecipe():
+    payload = request.get_json() #traeme el json del request a python
+    new_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"])
+
+    db.session.add(new_selected_recipe) #añadir una receta o tipo datos
+    db.session.commit() #guardar cambios
+    print(new_selected_recipe)
+
+
+    # # get only the ones named "Joe"
+    # #recipe_query = Recipe.query.filter_by(name='Joe')
+
+    # # map the results and your list of recipes  inside of the recipes variable
+    # selected_recipes = list(map(lambda x: x.serialize(), selected_recipe_query))
+
+    return jsonify(new_selected_recipe.serialize()), 200
