@@ -49,9 +49,6 @@ const Layout = () => {
 						<Route exact path="/userprofile/">
 							<Userprofile />
 						</Route>
-						{/* <Route exact path="/newweek">
-							<NewWeek />
-						</Route> */}
 						<Route exact path="/newweek">
 							<NewWeek />
 						</Route>

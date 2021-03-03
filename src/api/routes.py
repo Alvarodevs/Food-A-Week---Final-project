@@ -186,10 +186,6 @@ def handle_restriction():
 
 
 
-
-
-
-
 # @api.route('/profile/image/<int:user_id>', methods=['PUT'])
 # def handle_upload(user_id):
 
@@ -210,22 +206,38 @@ def handle_restriction():
 #     else:
 #         raise APIException('Missing profile_image on the FormData')
 
+
 ###### API post 
 
 @api.route('/selectedrecipe', methods=['POST'])
 def send_selectedrecipe():
     payload = request.get_json() #traeme el json del request a python
-    new_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"])
+    new_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
 
     db.session.add(new_selected_recipe) #añadir una receta o tipo datos
     db.session.commit() #guardar cambios
     print(new_selected_recipe)
 
-
-    # # get only the ones named "Joe"
-    # #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # # map the results and your list of recipes  inside of the recipes variable
-    # selected_recipes = list(map(lambda x: x.serialize(), selected_recipe_query))
-
     return jsonify(new_selected_recipe.serialize()), 200
+
+@api.route('/selectedrecipe', methods=['PUT'])
+def update_selectedrecipe():
+    payload = request.get_json() #traeme el json del request a python
+    updated_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
+
+    db.session.add(updated_selected_recipe) #añadir una receta o tipo datos
+    db.session.commit() #guardar cambios
+    print(updated_selected_recipe)
+
+    return jsonify(updated_selected_recipe.serialize()), 200
+
+@api.route('/selectedrecipe', methods=['DELETE'])
+def remove_selectedrecipe():
+    payload = request.get_json() #traeme el json del request a python
+    remove_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
+
+    db.session.add(remove_selected_recipe) #añadir una receta o tipo datos
+    db.session.commit() #guardar cambios
+    print(remove_selected_recipe)
+
+    return jsonify(remove_selected_recipe.serialize()), 200

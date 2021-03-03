@@ -32,12 +32,9 @@ export const RecipeDetail = () => {
 			</Modal.Body>
 
 			<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
+				<Button variant="secondary" className="green-button" onClick={handleClose}>
 					Close
 				</Button>
-				<Link to="/newweek">
-					<Button className="green-button d-flex text-center m-auto justify-content-center">Edit</Button>
-				</Link>
 			</Modal.Footer>
 		</Modal.Dialog>
 	);
