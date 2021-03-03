@@ -1,3 +1,5 @@
+const baseUrl = "https://3001-white-hippopotamus-stq1q8um.ws-eu03.gitpod.io/api/";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -56,6 +58,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			selectNewRecipe: selectedRecipe => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify(selectedRecipe);
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`${baseUrl}selectedrecipe`, requestOptions)
+					.then(response => response.text())
+					.then(result => console.log(result))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};
