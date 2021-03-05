@@ -222,12 +222,29 @@ class MenuDataManager:
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
     monday = days_json['monday']
-    create_day(monday, menu)
+    create_day(monday, menu) #así o creamos aquí todos los días? #create_day(monday,tuesday,wednesday,thursday,friday,saturday,sunday,menu)
+    tuesday = days_json['tuesday']
+    create_day(tuesday, menu)
+    tuesday = days_json['wednesday']
+    create_day(wednesday, menu)
+    tuesday = days_json['friday']
+    create_day(friday, menu)
+    tuesday = days_json['saturday']
+    create_day(saturday, menu)
+    tuesday = days_json['sunday']
+    create_day(sunday, menu)
 
   def create_day(self,day_params, menu):
-    pass
+    day_json = day_params['day']
+    breakfast = day_json['breakfast']
+    snack1 = day_json['snack1']
+    lunch = day_json['lunch']
+    snack2 = day_json['snack2']
+    dinner = day_json['dinner']
+    create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
 
   def create_selected_recipe(self, day, selected_recipe_params):
-    pass
+    selected_recipe_json = selected_recipe_params['selected_recipe']
+#aquí va solo el nombre o id único de la receta que viene por api externa ?
 
     
