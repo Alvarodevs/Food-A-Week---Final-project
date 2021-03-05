@@ -202,3 +202,32 @@ class DataManager:
       db.session.add(user)
       db.session.commit()
       return user
+
+class MenuDataManager:
+
+  def __init__(self):
+    pass
+
+  def create_weekly_recipe(self, menu_params, current_user):
+    menu = self.create_menu(menu_params, current_user)
+    days = self.create_menu(menu_params, menu)
+  
+  def create_menu(self, menu_params, current_user):
+    menu = Menu(name=menu_params['name'], user_id=current_user.id)
+    db.session.add(menu)
+    db.session.commit()
+
+    return menu
+
+  def create_days(self, menu_params, menu):
+    days_json = menu_params['days']
+    monday = days_json['monday']
+    create_day(monday, menu)
+
+  def create_day(self,day_params, menu):
+    pass
+
+  def create_selected_recipe(self, day, selected_recipe_params):
+    pass
+
+    

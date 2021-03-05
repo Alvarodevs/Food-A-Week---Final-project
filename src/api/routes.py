@@ -4,6 +4,11 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+import json
+import os
 
 api = Blueprint('api', __name__)
 
@@ -68,11 +73,12 @@ def handle_users():
 def sign_in():
   json_data = request.get_json()
   user1 = User.query.filter_by(email=json_data['email']).one_or_none()
+  password = json_data['password']
   if not user1 or not user1.check_password(password):
     return jsonify("Wrong email or password"), 401
 
   # Notice that we are passing in the actual sqlalchemy user object here
-  access_token = create_access_token(identity=user1.serialize())
+  access_token = create_access_token(identity=user1.sign_in_serialize())
   return jsonify(access_token=access_token)
 
 ####################################
@@ -243,11 +249,16 @@ def remove_selectedrecipe():
 
 
 @api.route('/new_weekly_menu', methods=['POST'])
+@jwt_required()
 def create_new_weekly_menu():
+    user = current_user(get_jwt_identity())
+    script_dir = os.path.dirname(__file__)
+    file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
     #complete_week = request.get_json() #traeme el json del request a python
-    with open('./data/new_weekly_menu.json') as f:
+    with open(file_path) as f:
       data = json.load(f)
-
+    
+    MenuDataManager().create_new_weekly_menu(data, user)
     # # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
     # data
 
@@ -261,3 +272,6 @@ def create_new_weekly_menu():
     # print(new_selected_week)
 
     return jsonify(data), 200
+
+def current_user(identity):
+  return User.query.filter_by(email=identity['email']).one_or_none()
