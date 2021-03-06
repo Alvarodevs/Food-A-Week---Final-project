@@ -4,6 +4,11 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+import json
+import os
 
 api = Blueprint('api', __name__)
 
@@ -67,15 +72,13 @@ def handle_users():
 @api.route('/sign_in', methods=['POST'])
 def sign_in():
   json_data = request.get_json()
-  user1 = DataManager().create_user(json_data)
-  return jsonify(user1.serialize()), 200
-
-  user1 = User.query.filter_by(email=email).one_or_none()
+  user1 = User.query.filter_by(email=json_data['email']).one_or_none()
+  password = json_data['password']
   if not user1 or not user1.check_password(password):
     return jsonify("Wrong email or password"), 401
 
   # Notice that we are passing in the actual sqlalchemy user object here
-  access_token = create_access_token(identity=user1.serialize())
+  access_token = create_access_token(identity=user1.sign_in_serialize())
   return jsonify(access_token=access_token)
 
 ####################################
@@ -241,3 +244,34 @@ def remove_selectedrecipe():
     print(remove_selected_recipe)
 
     return jsonify(remove_selected_recipe.serialize()), 200
+
+
+
+
+@api.route('/new_weekly_menu', methods=['POST'])
+@jwt_required()
+def create_new_weekly_menu():
+    user = current_user(get_jwt_identity())
+    script_dir = os.path.dirname(__file__)
+    file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
+    #complete_week = request.get_json() #traeme el json del request a python
+    with open(file_path) as f:
+      data = json.load(f)
+    
+    MenuDataManager().create_new_weekly_menu(data, user)
+    # # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
+    # data
+
+    # new_menu = Menu(name=complete_week["menu_name"], user_id=complete_week["user_id"])
+    # db.session.add(new_menu) #añadir una receta o tipo datos
+    # db.session.commit() #guardar cambios
+
+    # new_selected_week = ()
+    # #db.session.add(new_selected_recipe) #añadir una receta o tipo datos
+    # #db.session.commit() #guardar cambios
+    # print(new_selected_week)
+
+    return jsonify(data), 200
+
+def current_user(identity):
+  return User.query.filter_by(email=identity['email']).one_or_none()

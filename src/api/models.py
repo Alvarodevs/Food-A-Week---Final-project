@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import safe_str_cmp
 
 db = SQLAlchemy()
 
@@ -54,7 +55,14 @@ class User(db.Model):
             "postal_code": self.postal_code,
             "phone": self.phone,
           }
-            # do not serialize the password, its a security breach
+    def check_password(self, password_param):
+      return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+    
+    def sign_in_serialize(self):
+      return {
+        "id": self.id,
+        "email": self.email
+      }
 
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -194,3 +202,49 @@ class DataManager:
       db.session.add(user)
       db.session.commit()
       return user
+
+class MenuDataManager:
+
+  def __init__(self):
+    pass
+
+  def create_weekly_recipe(self, menu_params, current_user):
+    menu = self.create_menu(menu_params, current_user)
+    days = self.create_menu(menu_params, menu)
+  
+  def create_menu(self, menu_params, current_user):
+    menu = Menu(name=menu_params['name'], user_id=current_user.id)
+    db.session.add(menu)
+    db.session.commit()
+
+    return menu
+
+  def create_days(self, menu_params, menu):
+    days_json = menu_params['days']
+    monday = days_json['monday']
+    create_day(monday, menu) #así o creamos aquí todos los días? #create_day(monday,tuesday,wednesday,thursday,friday,saturday,sunday,menu)
+    tuesday = days_json['tuesday']
+    create_day(tuesday, menu)
+    tuesday = days_json['wednesday']
+    create_day(wednesday, menu)
+    tuesday = days_json['friday']
+    create_day(friday, menu)
+    tuesday = days_json['saturday']
+    create_day(saturday, menu)
+    tuesday = days_json['sunday']
+    create_day(sunday, menu)
+
+  def create_day(self,day_params, menu):
+    day_json = day_params['day']
+    breakfast = day_json['breakfast']
+    snack1 = day_json['snack1']
+    lunch = day_json['lunch']
+    snack2 = day_json['snack2']
+    dinner = day_json['dinner']
+    create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
+
+  def create_selected_recipe(self, day, selected_recipe_params):
+    selected_recipe_json = selected_recipe_params['selected_recipe']
+#aquí va solo el nombre o id único de la receta que viene por api externa ?
+
+    
