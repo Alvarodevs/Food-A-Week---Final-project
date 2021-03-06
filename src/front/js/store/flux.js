@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMondayPlan: monday => {
 				let store = getStore();
-				let newStore = store.monday();
+				let newStore = store.monday;
 				setStore({
 					monday: newStore
 				});

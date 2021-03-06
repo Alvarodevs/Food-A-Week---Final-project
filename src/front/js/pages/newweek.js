@@ -21,7 +21,10 @@ export const NewWeek = () => {
 	// 	event.preventDefault();
 	// 	actions.getRecipes(value);
 	// };
-
+	const addRecipe = event => {
+		// if day-selector == 1 //that means monday
+		//  actions.getMondayPlan(menu)
+	};
 	const handleInput = event => {
 		setValue(event.target.value);
 	};
@@ -40,11 +43,41 @@ export const NewWeek = () => {
 				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
 					<Dropdown.Toggle />
 					<Dropdown.Menu>
-						<Dropdown.Item>Breakfast</Dropdown.Item>
-						<Dropdown.Item>Sanck</Dropdown.Item>
-						<Dropdown.Item>Lunch</Dropdown.Item>
-						<Dropdown.Item>Snack</Dropdown.Item>
-						<Dropdown.Item>Dinner</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => {
+								addRecipe(prop);
+							}}>
+							{" "}
+							Breakfast
+						</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => {
+								addRecipe(prop);
+							}}>
+							{" "}
+							Snack 1
+						</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => {
+								addRecipe(prop);
+							}}>
+							{" "}
+							Lunch
+						</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => {
+								addRecipe(prop);
+							}}>
+							{" "}
+							Snack 2
+						</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => {
+								addRecipe(prop);
+							}}>
+							{" "}
+							Dinner
+						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</div>
@@ -66,7 +99,7 @@ export const NewWeek = () => {
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<Form>
-							<select className="custom-select">
+							<select className="custom-select day-selector">
 								<option selected>Choose a day</option>
 								<option value="1">Monday</option>
 								<option value="2">Tuesday</option>
