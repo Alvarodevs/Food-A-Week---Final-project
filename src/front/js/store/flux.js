@@ -16,8 +16,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			hits: []
-		},
+			hits: [],
+			monday: [],
+			tuesday: [],
+			wednesday: [],
+			thursday: [],
+			friday: [],
+			saturday: [],
+			sunday: []
+		}, //close store
 		actions: {
 			getRecipes: props => {
 				console.log(props);
@@ -32,33 +39,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ hits: data.hits }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getMoreRecipes: props => {
+				console.log(props);
+				//hacer aquí un fetch que pida los siguientes resultados
 			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			getMondayPlan: monday => {
+				let store = getStore();
+				let newStore = store.monday();
+				setStore({
+					monday: newStore
 				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			},
+			getTursdayPlan: props => {},
+			getWednesdayPlan: props => {},
+			getThursdayPlan: props => {},
+			getFridayPlan: props => {},
+			getSaturdayPlan: props => {},
+			getSundayPlan: props => {},
+
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");

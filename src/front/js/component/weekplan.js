@@ -32,12 +32,12 @@ export const Weekplan = props => {
 							</Nav.Item>
 							<Nav.Item>
 								<Nav.Link className="green-button my-2" eventKey="second">
-									{"Tueday"}
+									{"Tuesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
 								<Nav.Link className="green-button my-2" eventKey="third">
-									{"Wedneday"}
+									{"Wednesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
