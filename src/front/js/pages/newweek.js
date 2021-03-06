@@ -111,30 +111,12 @@ export const NewWeek = () => {
 								<option value="4">More than 45 minutes</option>
 							</select>
 						</Form>
-
-						{/* <Dropdown className="bar-body-dropdown">
-							<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
-							<Dropdown.Menu>
-								<Dropdown.Item>Rice</Dropdown.Item>
-								<Dropdown.Item>Pasta</Dropdown.Item>
-								<Dropdown.Item>Fish</Dropdown.Item>
-								<Dropdown.Item>Meat</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-						<Dropdown className="bar-body-dropdown">
-							<Dropdown.Toggle className="toggle">Time cooking</Dropdown.Toggle>
-							<Dropdown.Menu>
-								<Dropdown.Item>{"< 20 minutes"}</Dropdown.Item>
-								<Dropdown.Item>{"20 - 30 minutes"}</Dropdown.Item>
-								<Dropdown.Item>{"30 - 45 minutes"}</Dropdown.Item>
-								<Dropdown.Item>{"> 45 minutes"}</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown> */}
 					</div>
 				</div>
 				<div className="results-body mr-0">
 					<div className="search-result">
 						<ListGroup className="d-flex">{searchResult}</ListGroup>
+						<Button className="d-flex m-auto"> more </Button>
 					</div>
 				</div>
 			</div>

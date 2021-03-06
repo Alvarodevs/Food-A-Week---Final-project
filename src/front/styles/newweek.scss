@@ -85,12 +85,15 @@
 .results-body{
     // display: flex;
     font-family: $montserrat;
-    height:25,5vw;
+    height:135%;
     margin-top:1%;
     border-radius: 5px;
     background-color: #FFFFFF;
     // box-shadow: 2px 2px 2px 2px $pink;
-    border: 2px solid $pink;
+    border: 2px   solid $pink;
+    //border-bottom: 0px;
+    max-height:125%;
+    overflow-y: scroll;
     
     img{
     height: 1rem;
@@ -101,11 +104,7 @@
     height:3rem !important;  
 }
 
-//     .results-search{
-//     border-radius: 5px;
-//     background-color: #FFFFFF;
-//     box-shadow: 2px 2px 2px 2px $pink;
-//     }
+
     
 
 //     .about-recipe{
