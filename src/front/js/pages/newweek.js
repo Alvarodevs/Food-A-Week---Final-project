@@ -65,22 +65,60 @@ export const NewWeek = () => {
 						/>
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
-						<Dropdown className="bar-body-dropdown">
+						<Form>
+							<select className="custom-select">
+								<option selected>Choose a day</option>
+								<option value="1">Monday</option>
+								<option value="2">Tuesday</option>
+								<option value="3">Wednesday</option>
+								<option value="4">Thursday</option>
+								<option value="5">Friday</option>
+								<option value="6">Saturday</option>
+								<option value="7">Sunday</option>
+							</select>
+						</Form>
+						<Form>
+							<select className="custom-select">
+								<option selected>In case you need ideas</option>
+								<option value="1">Rice</option>
+								<option value="2">Pasta</option>
+								<option value="3">Fish</option>
+								<option value="4">Salmon</option>
+								<option value="5">Pork</option>
+								<option value="6">Steak</option>
+								<option value="7">Chicken</option>
+								<option value="8">Soup</option>
+								<option value="9">Potato</option>
+								<option value="10">Lentils</option>
+								<option value="11">Vegetables</option>
+								<option value="12">Soy</option>
+								<option value="13">Curry</option>
+								<option value="14">Tomato</option>
+								<option value="15">Tofu</option>
+								<option value="16">Red</option>
+								<option value="17">White</option>
+								<option value="18">Green</option>
+								<option value="19">Steam</option>
+								<option value="20">Fry</option>
+							</select>
+						</Form>
+						<Form>
+							<select className="custom-select">
+								<option selected>Time</option>
+								<option value="1">Less than 20 minutes</option>
+								<option value="2">20 - 30 minutes</option>
+								<option value="3">30 - 45 minutes</option>
+								<option value="4">More than 45 minutes</option>
+							</select>
+						</Form>
+
+						{/* <Dropdown className="bar-body-dropdown">
 							<Dropdown.Toggle className="toggle">Food type</Dropdown.Toggle>
 							<Dropdown.Menu>
 								<Dropdown.Item>Rice</Dropdown.Item>
 								<Dropdown.Item>Pasta</Dropdown.Item>
 								<Dropdown.Item>Fish</Dropdown.Item>
 								<Dropdown.Item>Meat</Dropdown.Item>
-							</Dropdown.Menu>
-						</Dropdown>
-						<Dropdown className="bar-body-dropdown">
-							<Dropdown.Toggle className="toggle">Allergens</Dropdown.Toggle>
-							<Dropdown.Menu>
-								<Dropdown.Item>Celery</Dropdown.Item>
-								<Dropdown.Item>Gluten</Dropdown.Item>
-								<Dropdown.Item>Shellfish</Dropdown.Item>
-								<Dropdown.Item>Lactose</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 						<Dropdown className="bar-body-dropdown">
@@ -91,7 +129,7 @@ export const NewWeek = () => {
 								<Dropdown.Item>{"30 - 45 minutes"}</Dropdown.Item>
 								<Dropdown.Item>{"> 45 minutes"}</Dropdown.Item>
 							</Dropdown.Menu>
-						</Dropdown>
+						</Dropdown> */}
 					</div>
 				</div>
 				<div className="results-body mr-0">
