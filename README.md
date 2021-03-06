@@ -1,3 +1,8 @@
+Important install
+npm install react react-dom leaflet
+npm install react-leaflet
+npm install debounce
+
 # FoodAWeek project
 
 This is the final project of <a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> and <a href="https://github.com/nitlara"> Anna Lara </a> in the <a href="https://github.com/4GeeksAcademy">4geeksAcademy </a> FullStackDeveloper program.
