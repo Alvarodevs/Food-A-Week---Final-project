@@ -28,11 +28,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			getRecipes: props => {
 				console.log(props);
-				//APP_ID = "";
-				//APP_KEY = "";
+				//APP_ID = ae68e508;
+				//APP_KEY = 62b671a1e444b07116376c2722805bd3;
 				// url='https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}'
 				const store = getStore();
-				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3`;
+				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3&from=0+to=100`;
 				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())
@@ -40,8 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			getMoreRecipes: props => {
-				console.log(props);
 				//hacer aquí un fetch que pida los siguientes resultados
+				console.log(props);
 			},
 			getMondayPlan: monday => {
 				let store = getStore();

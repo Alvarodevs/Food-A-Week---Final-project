@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
-//import { Dropdown, DropdownType } from "react-bootstrap/Dropdown";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
-//import { Edamam } from "../component/edamam";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
-//import "../../styles/newweek.scss";
 import { Form, Button, ListGroup, ButtonGroup, Dropdown, DropdownType } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 

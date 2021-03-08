@@ -76,6 +76,9 @@ Breve
 1. Install the packages:
 ```
 $ npm install
+$ npm i react-leaflet
+$ npm i leaflet
+$ npm i react-geocode
 ```
 2. Create a .env file:
 ```
