@@ -273,5 +273,15 @@ def create_new_weekly_menu():
 
     return jsonify(data), 200
 
+
+@api.route('/get_user_by_email')
+def get_user_by_email():
+    body = request.get_json(force=True)
+    email = body.get('email', None)
+    user = User.get_user_by_email(email)
+    menu = Menu.get_menu_by_user_id(user.id)
+
+    return jsonify(menu.serialize()), 200
+
 def current_user(identity):
   return User.query.filter_by(email=identity['email']).one_or_none()

@@ -8,7 +8,7 @@ class Ingredient(db.Model):
     name = db.Column(db.String(50), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    recipes = db.relationship("Recipe", secondary="recipe_detail")
+    # recipes = db.relationship("Recipe", secondary="recipe_detail")
 
     def __repr__(self):
       return '<Ingredient %r>' % self.id
@@ -63,22 +63,27 @@ class User(db.Model):
         "id": self.id,
         "email": self.email
       }
+    
+    def get_user_by_email(email):
+        return User.query.filter_by(email=email).first_or_404()
 
 class Menu(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(100), unique=False, nullable=False)
-  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-  days = db.relationship('Day', backref='menu', lazy=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    days = db.relationship('Day', backref='menu', lazy=True)
 
-  def __repr__(self):
-    return '<Menu %r>' % self.id
-  
-  def serialize(self):
-    return{
-        "id": self.id,
-        "name": self.name
-      }
+    def __repr__(self):
+        return '<Menu %r>' % self.id
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "name": self.name
+        }
 
+    def get_menu_by_user_id(user_id):
+        return Menu.query.filter_by(user_id=user_id).first_or_404()
 
 class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -101,8 +106,9 @@ class Day(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
+    uri = db.Column(db.String(100), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
-    ingredients = db.relationship("Ingredient", secondary="recipe_detail")
+    # ingredients = db.relationship("Ingredient", secondary="recipe_detail")
     days = db.relationship("Day", secondary="selected_recipe")
 
     def __repr__(self):
@@ -245,6 +251,9 @@ class MenuDataManager:
 
   def create_selected_recipe(self, day, selected_recipe_params):
     selected_recipe_json = selected_recipe_params['selected_recipe']
+    name = selected_recipe_json['name']
+    uri = selected_recipe_json['uri']
+
 #aquí va solo el nombre o id único de la receta que viene por api externa ?
 
     

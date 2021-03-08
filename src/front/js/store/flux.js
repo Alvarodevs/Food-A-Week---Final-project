@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//APP_KEY = 62b671a1e444b07116376c2722805bd3;
 				// url='https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}'
 				const store = getStore();
-				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3&from=0+to=100`;
+				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3`;
 				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())

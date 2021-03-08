@@ -28,7 +28,7 @@ export const Map = () => {
 	let lat = 0;
 	let lng = 0;
 
-	Geocode.fromAddress("Eiffel tower").then(
+	Geocode.fromAddress(value).then(
 		response => {
 			const { lat, lng } = response.results[0].geometry.location;
 			console.log(lat, lng);
