@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/containers.png";
 import Dropdown from "react-bootstrap/Dropdown";
 //import NavigationComponent from "./component/navigationcomponent";
 
 export const Navbar = () => {
+	const [pageTitle, setPageTitle] = useState();
+
+	let pathName = window.location.pathname;
+	console.log(pathName);
+
+	useEffect(() => {
+		if (pathName == "/newweek") {
+			setPageTitle("New Week");
+		} else if (pathName == "/userprofile") {
+			setPageTitle("User Profile");
+		} else if (pathName == "/weeks") {
+			setPageTitle("Weeks");
+		} else if (pathName == "/maps") {
+			setPageTitle("Map");
+		} else {
+			setPageTitle("Home");
+		}
+	});
+
 	return (
 		<nav className="navbar navbar-light background-white mb-1">
 			<div className="navbar-container d-flex">
@@ -16,6 +35,8 @@ export const Navbar = () => {
 				/> */}
 					<img src={logo} alt="Logo" className="d-flex navbar-brand my-2 ml-5" />
 				</Link>
+
+				<h1> {pageTitle} </h1>
 
 				<div className="text-center mt-3 mx-auto">{/* <NavigationComponent /> */}</div>
 				<div className="mr-1">

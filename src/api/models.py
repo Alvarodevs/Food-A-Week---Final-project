@@ -205,7 +205,7 @@ class DataManager:
 
     def seed_data(self):
         script_dir = os.path.dirname(__file__)
-        file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
+        file_path = os.path.join(script_dir, 'data/new_user_and_menu.json')
         with open(file_path) as f:
             data = json.load(f)
         users_data = [data]
@@ -229,8 +229,6 @@ class DataManager:
         menu_params = data_user['days']
         self.menu_manager.create_weekly_recipe(menu_params, user)
 
-
-        
         return user
 
 class MenuDataManager:
