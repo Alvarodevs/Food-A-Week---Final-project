@@ -41,7 +41,7 @@ export const Map = () => {
 	return (
 		<div className="container">
 			<div className="text-center mt-0 d-flex flex-column justify-content-center">
-				<h1>{"Find your local store"}</h1>
+				<h1 className="mt-0">{"Find your local store"}</h1>
 				<Form className="mt-1">
 					<Form.Control
 						placeholder="Search local shops"

@@ -186,9 +186,7 @@ def handle_restriction():
 #     return jsonify(response_body), 200
 
 
-
-
-
+# AVATAR (FOTO DE PERFIL)
 # @api.route('/profile/image/<int:user_id>', methods=['PUT'])
 # def handle_upload(user_id):
 
@@ -211,6 +209,16 @@ def handle_restriction():
 
 
 ###### API post 
+
+@api.route('/seed_data_user', methods=['GET'])
+def handle_seed_data_user():
+    data = DataManager().seed_data() 
+    # AL TRAER DataManager, salta error con "object DataManager has no attribute serialize())
+    # db.session.add(user) 
+    # db.session.commit()   INCLUIDOS EN DataManager
+    return jsonify(data.serialize()), 200
+    #"Print data user se devuelve en el response de postman"
+
 
 @api.route('/selectedrecipe', methods=['POST'])
 def send_selectedrecipe():
@@ -244,8 +252,6 @@ def remove_selectedrecipe():
     print(remove_selected_recipe)
 
     return jsonify(remove_selected_recipe.serialize()), 200
-
-
 
 
 @api.route('/new_weekly_menu', methods=['POST'])

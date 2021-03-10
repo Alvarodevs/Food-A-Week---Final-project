@@ -182,21 +182,39 @@ class Restriction(db.Model):
           "ingredient_id": self.ingredient_id, #¿NECESARIO?           
       }
 
+# ¿ES NECESARIO CREAR LA TABLA AUXILIAR PARA RELATIONS MANY TO MANY: USER - RESTRICITIONS?
+# association_table = Table('allergens', Base.metadata,
+#     Column("user_id", Integer, ForeignKey("User.id")),
+#     Column("restriction_id", Integer, ForeignKey("Restriction.id"))
+# )
+ 
+# INCLUIR EN USER (column)
+# restriction = relationship("Restriction", secondary=allergens back_populates="user")
+# INCLUIR EN USER (return)
+# "restriction": list(map(lambda x: x.serialize(), self.restriction))
+
+# INCLUIR EN RESTRICTION (column)
+# user = relationship("User", secondary=allergens back_populates="restriction")
+# INCLUIR EN RESTRICTION (return)
+# "user": list(map(lambda x: x.serialize(), self.user))
+
 class DataManager:
 
     def __init__(self):
-      pass
+        self.menu_manager = MenuDataManager()
 
     def seed_data(self):
-      users_data = [{
-        
-      }]
+        script_dir = os.path.dirname(__file__)
+        file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
+        with open(file_path) as f:
+            data = json.load(f)
+        users_data = [data]
 
-      for user_datum in users_data:
-        create_user(user_datum)
+        for user_datum in users_data:
+            create_user(user_datum)
 
     def create_user(self,data_user):
-      user = User(user_name=data_user['user_name'],
+        user = User(user_name=data_user['user_name'],
                    email=data_user['email'],
                    password=data_user['password'],
                    name=data_user['name'], 
@@ -205,9 +223,15 @@ class DataManager:
                    postal_code=data_user['postal_code'],
                    phone=data_user['phone'],
                    is_active=True)
-      db.session.add(user)
-      db.session.commit()
-      return user
+        db.session.add(user)
+        db.session.commit()
+
+        menu_params = data_user['days']
+        self.menu_manager.create_weekly_recipe(menu_params, user)
+
+
+        
+        return user
 
 class MenuDataManager:
 
