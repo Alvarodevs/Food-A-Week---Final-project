@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import safe_str_cmp
+import os
+import json
 
 db = SQLAlchemy()
 
@@ -69,7 +71,7 @@ class User(db.Model):
 
 class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=False, nullable=False)
+    title = db.Column(db.String(100), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     days = db.relationship('Day', backref='menu', lazy=True)
 
@@ -79,7 +81,7 @@ class Menu(db.Model):
     def serialize(self):
         return{
             "id": self.id,
-            "name": self.name
+            "title": self.title
         }
 
     def get_menu_by_user_id(user_id):
@@ -198,6 +200,8 @@ class Restriction(db.Model):
 # INCLUIR EN RESTRICTION (return)
 # "user": list(map(lambda x: x.serialize(), self.user))
 
+
+#Se sustituye el "name" del menu, por "title" para que no coincida en con el "name" de usuario. Cambiado en Models.py y los archivos .json
 class DataManager:
 
     def __init__(self):
@@ -211,7 +215,7 @@ class DataManager:
         users_data = [data]
 
         for user_datum in users_data:
-            create_user(user_datum)
+            create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
 
     def create_user(self,data_user):
         user = User(user_name=data_user['user_name'],
@@ -226,7 +230,7 @@ class DataManager:
         db.session.add(user)
         db.session.commit()
 
-        menu_params = data_user['days']
+        menu_params = data_user['days'] #¿Hay que incluir titulo del menu tambien en memu_params? 
         self.menu_manager.create_weekly_recipe(menu_params, user)
 
         return user
@@ -241,7 +245,7 @@ class MenuDataManager:
     days = self.create_menu(menu_params, menu)
   
   def create_menu(self, menu_params, current_user):
-    menu = Menu(name=menu_params['name'], user_id=current_user.id)
+    menu = Menu(title=menu_params['title'], user_id=current_user.id)
     db.session.add(menu)
     db.session.commit()
 
@@ -273,9 +277,10 @@ class MenuDataManager:
 
   def create_selected_recipe(self, day, selected_recipe_params):
     selected_recipe_json = selected_recipe_params['selected_recipe']
-    name = selected_recipe_json['name']
+    #name = selected_recipe_json['name']
     uri = selected_recipe_json['uri']
 
 #aquí va solo el nombre o id único de la receta que viene por api externa ?
+#Segun Erwin, solo id único de la receta, para despues el fetch con el "uri" recuperar toda la info de la receta
 
     

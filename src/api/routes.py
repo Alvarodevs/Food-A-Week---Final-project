@@ -212,13 +212,9 @@ def handle_restriction():
 
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():
-    data = DataManager().seed_data() 
-    # AL TRAER DataManager, salta error con "object DataManager has no attribute serialize())
-    # db.session.add(user) 
-    # db.session.commit()   INCLUIDOS EN DataManager
+    data = DataManager().seed_data()
     return jsonify(data.serialize()), 200
-    #"Print data user se devuelve en el response de postman"
-
+#DA ERROR "NameError: name 'create_user' is not defined", parece que create_user que esta en seed_data, no esta declarado, ¿porqué? ¿Es por hacer el loop antes de la funcion en la clase DataManager?
 
 @api.route('/selectedrecipe', methods=['POST'])
 def send_selectedrecipe():
