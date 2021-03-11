@@ -21,9 +21,7 @@ cloudinary = "*"
 flask-admin = "*"
 flask_jwt_extended="*"
 werkzeug="*"
-react-leaflet = "*"
-leaflet = "*"
-react-geocode = "*"
+
 
 [requires]
 python_version = "3.8"

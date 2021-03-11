@@ -26,6 +26,7 @@ Look for recipes! Make your menus! Save them! reuse them!
 Why not? You are what you eat, fill your fridge with a plan for your stomach! And when you don't feel like it, save a week saved.
 
 
+
 ## For whom it is? & User profile
 
 Insert here some snaps from IU
