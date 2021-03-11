@@ -268,6 +268,7 @@ class MenuDataManager:
     lunch = day_json['lunch']
     snack2 = day_json['snack2']
     dinner = day_json['dinner']
+    #siguiendo la linia de lo hecho en create_days la línia siguiente no tiene mucho sentido, no?
     create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
 
   def create_selected_recipe(self, day, selected_recipe_params):
