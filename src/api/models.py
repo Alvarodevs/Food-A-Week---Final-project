@@ -212,7 +212,7 @@ class DataManager:
         file_path = os.path.join(script_dir, 'data/new_user_and_menu.json')
         with open(file_path) as f:
             data = json.load(f)
-        users_data = [data]
+        users_data = data #el archivo con data new user and menu ya es un arreglo por lo que podríamos traer información de varios usuarios. así que los corchetes de arreglo de este data se eliminan.
 
         for user_datum in users_data:
             create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
@@ -230,7 +230,7 @@ class DataManager:
         db.session.add(user)
         db.session.commit()
 
-        menu_params = data_user['days'] #¿Hay que incluir titulo del menu tambien en memu_params? 
+        menu_params = {'name': data_user["title"], 'days': data_user['days'] }
         self.menu_manager.create_weekly_recipe(menu_params, user)
 
         return user
@@ -242,7 +242,7 @@ class MenuDataManager:
 
   def create_weekly_recipe(self, menu_params, current_user):
     menu = self.create_menu(menu_params, current_user)
-    days = self.create_menu(menu_params, menu)
+    days = self.create_days(menu_params, menu) #llamar metodo
   
   def create_menu(self, menu_params, current_user):
     menu = Menu(title=menu_params['title'], user_id=current_user.id)
@@ -253,18 +253,13 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    monday = days_json['monday']
-    create_day(monday, menu) #así o creamos aquí todos los días? #create_day(monday,tuesday,wednesday,thursday,friday,saturday,sunday,menu)
-    tuesday = days_json['tuesday']
-    create_day(tuesday, menu)
-    tuesday = days_json['wednesday']
-    create_day(wednesday, menu)
-    tuesday = days_json['friday']
-    create_day(friday, menu)
-    tuesday = days_json['saturday']
-    create_day(saturday, menu)
-    tuesday = days_json['sunday']
-    create_day(sunday, menu)
+    day = self.create_day(days_json['monday'], menu) #podemos pasar los parametros directamente al llamar el metodo.
+    day = self.create_day(days_json['tuesday'], menu) 
+    day = self.create_day(days_json['wednesday'], menu) 
+    day = self.create_day(days_json['thursday'], menu) 
+    day = self.create_day(days_json['friday'], menu) 
+    day = self.create_day(days_json['saturday'], menu) 
+    day = self.create_day(days_json['sunday'], menu) 
 
   def create_day(self,day_params, menu):
     day_json = day_params['day']

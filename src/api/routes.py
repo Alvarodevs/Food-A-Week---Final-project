@@ -212,7 +212,7 @@ def handle_restriction():
 
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():
-    data = DataManager().seed_data()
+    DataManager().seed_data()
     return jsonify(user), 200
 #DA ERROR "NameError: name 'create_user' is not defined", parece que create_user que esta en seed_data, no esta declarado, ¿porqué? ¿Es por hacer el loop antes de la funcion en la clase DataManager?
 
