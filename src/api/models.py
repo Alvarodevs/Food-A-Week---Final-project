@@ -263,18 +263,19 @@ class MenuDataManager:
 
   def create_day(self,day_params, menu):
     day_json = day_params['day']
-    breakfast = day_json['breakfast']
-    snack1 = day_json['snack1']
-    lunch = day_json['lunch']
-    snack2 = day_json['snack2']
-    dinner = day_json['dinner']
+    position = self.create_selected_recipe(day_json['breakfast'], menu)
+    position = self.create_selected_recipe(day_json['snack1'], menu)
+    position = self.create_selected_recipe(day_json['lunch'], menu)
+    position = self.create_selected_recipe(day_json['snack2'], menu)
+    position = self.create_selected_recipe(day_json['dinner'], menu)
     #siguiendo la linia de lo hecho en create_days la línia siguiente no tiene mucho sentido, no?
-    create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
+    #create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
 
-  def create_selected_recipe(self, day, selected_recipe_params):
-    selected_recipe_json = selected_recipe_params['selected_recipe']
-    #name = selected_recipe_json['name']
+  def create_selected_recipe(self, selected_recipe_params, menu):
+    selected_recipe_json = selected_recipe_params['position']
     uri = selected_recipe_json['uri']
+    db.session.add(days)
+    db.session.commit()
 
 #aquí va solo el nombre o id único de la receta que viene por api externa ?
 #Segun Erwin, solo id único de la receta, para despues el fetch con el "uri" recuperar toda la info de la receta

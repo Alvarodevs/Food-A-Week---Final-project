@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../img/containers.png";
 import Dropdown from "react-bootstrap/Dropdown";
 //import NavigationComponent from "./component/navigationcomponent";
 
 export const Navbar = () => {
 	const [pageTitle, setPageTitle] = useState();
+	const location = useLocation();
 
-	let pathName = window.location.pathname;
-	console.log(pathName);
-
-	useEffect(() => {
-		if (pathName == "/newweek") {
-			setPageTitle("New Week");
-		} else if (pathName == "/userprofile") {
-			setPageTitle("User Profile");
-		} else if (pathName == "/weeks") {
-			setPageTitle("Weeks");
-		} else if (pathName == "/maps") {
-			setPageTitle("Map");
-		} else {
-			setPageTitle("Home");
-		}
-	});
+	useEffect(
+		() => {
+			if (location.pathname == "/newweek") {
+				setPageTitle("New Week");
+			} else if (location.pathname == "/userprofile") {
+				setPageTitle("User Profile");
+			} else if (location.pathname == "/weeks") {
+				setPageTitle("Weeks");
+			} else if (location.pathname == "/map") {
+				setPageTitle("Find your local store");
+			} else {
+				setPageTitle("Home");
+			}
+		},
+		[location]
+	);
 
 	return (
 		<nav className="navbar navbar-light background-white mb-1">

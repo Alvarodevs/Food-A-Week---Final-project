@@ -6,7 +6,7 @@
   "adress":"Dirección",
   "postal_code":"66666",
   "phone":666666666, 
-"days": {
+  "days": {
     "monday": [
       {
         "name": "breakfast",
@@ -162,5 +162,4 @@
       }
     ]
   }
-}
-]
+}]

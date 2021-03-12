@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager
+from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -80,6 +80,8 @@ def sign_in():
   # Notice that we are passing in the actual sqlalchemy user object here
   access_token = create_access_token(identity=user1.sign_in_serialize())
   return jsonify(access_token=access_token)
+
+
 
 ####################################
 
@@ -260,7 +262,7 @@ def create_new_weekly_menu():
     with open(file_path) as f:
       data = json.load(f)
     
-    MenuDataManager().create_new_weekly_menu(data, user)
+    MenuDataManager().create_weekly_recipe(data, user)
     # # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
     # data
 
