@@ -31,13 +31,13 @@ const injectContext = PassedComponent => {
 			//state.actions.getMessage(); // <---- calling this function from the flux.js actions
 			state.actions.getRecipes();
 			state.actions.getMoreRecipes();
-			state.actions.getMondayPlan();
-			state.actions.getTursdayPlan();
-			state.actions.getWednesdayPlan();
-			state.actions.getThursdayPlan();
-			state.actions.getFridayPlan();
-			state.actions.getSaturdayPlan();
-			state.actions.getSundayPlan();
+			// state.actions.getMondayPlan();
+			// state.actions.getTursdayPlan();
+			// state.actions.getWednesdayPlan();
+			// state.actions.getThursdayPlan();
+			// state.actions.getFridayPlan();
+			// state.actions.getSaturdayPlan();
+			// state.actions.getSundayPlan();
 			//state.actions.selectNewRecipe(1);
 		}, []);
 

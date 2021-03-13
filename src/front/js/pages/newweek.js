@@ -146,7 +146,9 @@ export const NewWeek = () => {
 				<div className="results-body mr-0">
 					<div className="search-result">
 						<ListGroup className="d-flex">{searchResult}</ListGroup>
-						<Button className="d-flex m-auto"> more </Button>
+						<Button className="d-flex m-auto" onClick={() => actions.getMoreRecipes()}>
+							more
+						</Button>
 					</div>
 				</div>
 			</div>
