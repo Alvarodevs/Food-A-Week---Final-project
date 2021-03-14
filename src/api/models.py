@@ -262,7 +262,9 @@ class MenuDataManager:
     day = self.create_day(days_json['sunday'], menu) 
 
   def create_day(self,day_params, menu):
-    day_json = day_params['day']
+    #day_json = day_params['day']
+    for position in day_params:
+        create_selected_recipe(position)
     position = self.create_selected_recipe(day_json['breakfast'], menu)
     position = self.create_selected_recipe(day_json['snack1'], menu)
     position = self.create_selected_recipe(day_json['lunch'], menu)
