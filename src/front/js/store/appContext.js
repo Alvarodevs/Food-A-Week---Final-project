@@ -29,16 +29,8 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			//state.actions.getMessage(); // <---- calling this function from the flux.js actions
-			state.actions.getRecipes();
-			state.actions.getMoreRecipes();
-			// state.actions.getMondayPlan();
-			// state.actions.getTursdayPlan();
-			// state.actions.getWednesdayPlan();
-			// state.actions.getThursdayPlan();
-			// state.actions.getFridayPlan();
-			// state.actions.getSaturdayPlan();
-			// state.actions.getSundayPlan();
-			//state.actions.selectNewRecipe(1);
+			//state.actions.getRecipes(); //si se carga al generar la pantalla ya nos va bien que aparezca vacío
+			//	state.actions.getMoreRecipes();
 		}, []);
 
 		// useEffect(

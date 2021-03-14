@@ -28,20 +28,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			to: 15,
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
-			q: ""
+			q: []
 		}, //close store
 		actions: {
 			getRecipes: props => {
 				console.log(props);
 				let store = getStore();
-				let newStoreTo = store.to;
-				setStore({
-					to: newStoreTo
-				});
-				let newStoreFrom = store.from;
-				setStore({
-					from: newStoreFrom
-				});
+				// let newStoreTo = store.to;
+				// setStore({
+				// 	to: newStoreTo
+				// });
+				// let newStoreFrom = store.from;
+				// setStore({
+				// 	from: newStoreFrom
+				// });
 				//hay que mandar q a context, actualizar con hook
 				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
 					store.APP_ID
@@ -57,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMoreRecipes: () => {
 				// Pendiente añadir el condicional de more == true
 				// si no more es false añadir mensaje = no hay más recetas!
-
+				console.log("getMoreRecipesIN");
 				let store = getStore();
 				var newStoreTo = store.to;
 				newStoreTo = newStoreTo + 16;
@@ -75,7 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
-					.then(data => setStore({ hits: data.hits }))
+					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
 					.catch(error => console.log("Error loading message from backend", error));
 				console.log("more");
 			},
