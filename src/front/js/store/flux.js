@@ -51,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
 					.catch(error => console.log("Error loading message from backend", error));
-				let newStoreQ = store.q;
+				let newStoreQ = props;
 				setStore({ q: newStoreQ });
 			},
 			getMoreRecipes: () => {
