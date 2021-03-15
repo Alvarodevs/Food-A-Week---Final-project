@@ -151,8 +151,9 @@ class RecipeDetail(db.Model):
 class SelectedRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day_id = db.Column(db.Integer, db.ForeignKey('day.id'))
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
+    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
@@ -215,7 +216,9 @@ class DataManager:
         users_data = data #el archivo con data new user and menu ya es un arreglo por lo que podríamos traer información de varios usuarios. así que los corchetes de arreglo de este data se eliminan.
 
         for user_datum in users_data:
-            create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
+          print("ESTA PROCESAND EL USUARIO !!!!!!!!!!!!")
+          print(user_datum)
+          create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
 
     def create_user(self,data_user):
         user = User(user_name=data_user['user_name'],
@@ -229,9 +232,11 @@ class DataManager:
                    is_active=True)
         db.session.add(user)
         db.session.commit()
+        db.session.flush()
 
         menu_params = {'name': data_user["title"], 'days': data_user['days'] }
-        self.menu_manager.create_weekly_recipe(menu_params, user)
+        print(menu_params)
+        #self.menu_manager.create_weekly_recipe(menu_params, user)
 
         return user
 
@@ -248,29 +253,34 @@ class MenuDataManager:
     menu = Menu(title=menu_params['title'], user_id=current_user.id)
     db.session.add(menu)
     db.session.commit()
+    db.session.flush()
 
     return menu
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
     day = self.create_day(days_json['monday'], menu) #podemos pasar los parametros directamente al llamar el metodo.
-    day = self.create_day(days_json['tuesday'], menu) 
-    day = self.create_day(days_json['wednesday'], menu) 
-    day = self.create_day(days_json['thursday'], menu) 
-    day = self.create_day(days_json['friday'], menu) 
-    day = self.create_day(days_json['saturday'], menu) 
-    day = self.create_day(days_json['sunday'], menu) 
+    #day = self.create_day(days_json['tuesday'], menu) 
+    #day = self.create_day(days_json['wednesday'], menu) 
+    #day = self.create_day(days_json['thursday'], menu) 
+    #day = self.create_day(days_json['friday'], menu) 
+    #day = self.create_day(days_json['saturday'], menu) 
+    #day = self.create_day(days_json['sunday'], menu)
 
   def create_day(self,day_params, menu):
     for i, food in enumerate(day_params):
         food["position"] = i
-        days= Days(name=day_params['name'], title=menu_params['title']]) #hay que crear days, he replicado parte de lo que sería el menú l248
-        self.create_selected_recipe(food,menu)
+        day= Day(name=day_params['name'], position=i, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+        db.session.add(day)
+        db.session.commit()
+        db.session.flush()
 
-  def create_selected_recipe(self, selected_recipe_params, menu):
-    selected_recipe_json = selected_recipe_params['position']
-    uri = selected_recipe_json['uri']
+        self.create_selected_recipe(food,day)
+
+  def create_selected_recipe(self, selected_recipe_params, day):
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["uri"])
     
     #esto es correcto? Estamos guardando todo?
-    db.session.add(days)
+    db.session.add(selected_recipe)
     db.session.commit()
+    db.session.flush()
