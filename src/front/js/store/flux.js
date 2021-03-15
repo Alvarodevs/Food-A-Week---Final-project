@@ -17,32 +17,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			hits: [],
-			// monday: [],
-			// tuesday: [],
-			// wednesday: [],
-			// thursday: [],
-			// friday: [],
-			// saturday: [],
-			// sunday: [],
 			from: 0,
 			to: 15,
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
-			q: []
+			q: [],
+            title: "",
+            days: 
 		}, //close store
 		actions: {
 			getRecipes: props => {
 				console.log(props);
 				let store = getStore();
-				// let newStoreTo = store.to;
-				// setStore({
-				// 	to: newStoreTo
-				// });
-				// let newStoreFrom = store.from;
-				// setStore({
-				// 	from: newStoreFrom
-				// });
-				//hay que mandar q a context, actualizar con hook
 				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
 					store.APP_ID
 				}&app_key=${store.APP_KEY}`;
@@ -80,7 +66,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("more");
 			},
 
-
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -100,6 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 			newWeek: newWeek => {
+				let store = getStore();
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
@@ -112,10 +98,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch(`${baseUrl}newweek`, requestOptions)
-					.then(response => response.text())
-					.then(result => console.log(result))
+				fetch(`${baseUrl}new_weekly_menu`, requestOptions)
+					.then(response => response.json())
+					.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
 					.catch(error => console.log("error", error));
+			},
+			addTitleMenu: titleMenu => {
+				let store = getStore();
+				let newTitleMenu = store.title;
+				newTitleMenu = titleMenu;
+				setStore({ title: newTitleMenu });
 			}
 		}
 	};

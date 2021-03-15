@@ -18,9 +18,9 @@ export const NewWeek = () => {
 	// 	event.preventDefault();
 	// 	actions.getRecipes(value);
 	// };
+
 	const addRecipe = event => {
-		// if day-selector == 1 //that means monday
-		//  actions.getMondayPlan(menu)
+		actions.NewWeek;
 	};
 	const handleInput = event => {
 		setValue(event.target.value);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Tab, Row, Col, Nav, Button, FormControl, Form } from "react-bootstrap";
@@ -6,6 +6,16 @@ import { DailyPlan } from "./daily_plan";
 
 export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
+	const [titleMenu, setTitleMenu] = useState("");
+
+	const handleSubmit = event => {
+		actions.addTitleMenu(titleMenu);
+	};
+
+	const handleInputChange = e => {
+		setTitleMenu(e.target.value);
+	};
+
 	return (
 		<div className="container-fluid">
 			<div className="w-100 ">
@@ -15,8 +25,9 @@ export const Weekplan = props => {
 						className="menu-title"
 						placeholder="Week menu title"
 						aria-label="text"
+						onChange={handleInputChange}
 					/>
-					<Button variant="none" className="green-button ml-3">
+					<Button variant="none" className="green-button ml-3" onClick={handleSubmit}>
 						Save
 					</Button>
 				</Form>
