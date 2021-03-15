@@ -1,0 +1,96 @@
+@import "colors";
+@import "fonts";
+
+.page-container{
+    // width: 100%;
+    // height:100%;
+    margin:auto;
+    margin-top:0;
+}
+
+//////page of card information 
+.page-order-weeks{
+    display:flex;
+    flex-direction:row;
+    justify-content:end;
+    align-items:center;
+    margin-left:auto;
+    margin-right:3%;
+}
+.page-order-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}
+
+//////allcards
+.all-cards{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    margin:auto;
+}
+
+//////cards
+.menuWeek{ //aka card
+   background: #fff;
+   //box-shadow: 1px 1px 1px 1px $pink;
+    border: 2px solid $pink;
+    padding: 2px;
+    border-radius: 25px;
+   padding: 3em 2em 0;
+    border-radius: 15px 50px;
+   overflow: visible;
+   width: 25vw;
+   height: 29w;
+   display:flex;
+   flex-direction:column;
+   justify-content:space-between;
+ } 
+//inside cards
+.card-img-top{
+    border-radius: 15px 50px;
+    width:100%;
+    max-height:65%;
+}
+.card-title{
+    font-size: 1.5vw;
+    }
+.card-text{
+    font-size:0.8vw;
+    width:90%;
+    height: 60%;
+    text-overflow: ellipsis;
+ }
+ .align-card-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:65%;
+    margin:auto;
+}
+.weekplan-btn{
+    border-radius: 5px;
+    font-family: $montserrat;
+    font-size:1vw;
+    background-color: $green;
+    color: $gray;  
+    padding:0.5vw;
+    border: none;
+}
+.icon-trash{
+    margin-left:auto;
+    font-size:2rem;
+}
+.weekplan-btn > a  { color: $gray } /* CSS link color (red) */
+//////page of card information 
+.next-previous-weeks{
+    display:flex;
+    justify-content:space-around;
+    margin:auto;
+}
+.next-previous-weeks > div{
+    margin-right:2rem;  
+    margin-bottom:2rem;
+    font-family:$montserrat
+}

@@ -1,15 +1,23 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
-import { NuevaSemana } from "./pages/nuevasemana";
-import injectContext from "./store/appContext";
-
+//components
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import ScrollToTop from "./component/scrollToTop";
+//Pages
+import { Pre } from "./pages/prepage";
+import { Home } from "./pages/home";
+import { WeekJumbo } from "./component/weekjumbotron";
+import { RecipeDetail } from "./component/recipe_detail_jumbo";
+import { Userprofile } from "./pages/userprofile";
+import { NewWeek } from "./pages/newweek";
+import { AllWeeks } from "./pages/weeks";
+import { Map } from "./pages/maps";
+//import { Single} from "";
+
+//Context
+import injectContext from "./store/appContext";
 
 //create your first component
 const Layout = () => {
@@ -26,17 +34,29 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/prepage">
+							<Pre />
 						</Route>
-						<Route exact path="/single/:theid">
+						{/* <Route exact path="/single/:theid">
 							<Single />
+						</Route> */}
+						<Route exact path="/weekjumbotron">
+							<WeekJumbo />
 						</Route>
-						<Route exact path="/nuevasemana">
-							<NuevaSemana />
+						<Route exact path="/recipe_detail_jumbo">
+							<RecipeDetail />
 						</Route>
-						<Route>
-							<h1>Not found!</h1>
+						<Route exact path="/userprofile/">
+							<Userprofile />
+						</Route>
+						<Route exact path="/newweek">
+							<NewWeek />
+						</Route>
+						<Route exact path="/weeks">
+							<AllWeeks />
+						</Route>
+						<Route exact path="/map">
+							<Map />
 						</Route>
 					</Switch>
 					<Footer />

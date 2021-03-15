@@ -1,0 +1,18 @@
+.recipe {
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgb(71, 71, 71);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    align-items: center;
+    min-width: 40%;
+}
+
+.icon-modal-recipe{
+    img{
+        height: 1rem;
+        width: 1rem;
+    }  
+}

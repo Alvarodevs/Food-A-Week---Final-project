@@ -1,2 +1,20 @@
-$border-radius: 5px;
-$border: 1px solid red;
+/* General Styles */
+@import '_colors.scss';
+@import '_fonts.scss';
+@import 'buttons&borders.scss';
+
+/* Components */
+@import 'navbar.scss';
+@import 'footer.scss';
+@import 'weekjumbotron.scss';
+@import 'daily_plan.scss';
+
+/* Pages */
+@import 'prepage.scss';
+@import 'home.scss';
+@import 'userprofile.scss';
+@import 'weeks.scss';
+@import 'newweek.scss';
+@import 'edamam.scss';
+@import 'maps.scss';
+
