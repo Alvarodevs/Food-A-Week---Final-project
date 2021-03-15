@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-white-hippopotamus-stq1q8um.ws-eu03.gitpod.io/api/";
+const baseUrl = "https://3001-teal-crayfish-87w91ixx.ws-eu03.gitpod.io/api/";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -51,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
 					.catch(error => console.log("Error loading message from backend", error));
-				let newStoreQ = store.q;
+				let newStoreQ = props;
 				setStore({ q: newStoreQ });
 			},
 			getMoreRecipes: () => {
@@ -80,19 +80,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("more");
 			},
 
-			// getMondayPlan: monday => {
-			// 	let store = getStore();
-			// 	let newStore = store.monday;
-			// 	setStore({
-			// 		monday: newStore
-			// 	});
-			// },
-			// getTursdayPlan: props => {},
-			// getWednesdayPlan: props => {},
-			// getThursdayPlan: props => {},
-			// getFridayPlan: props => {},
-			// getSaturdayPlan: props => {},
-			// getSundayPlan: props => {},
 
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();

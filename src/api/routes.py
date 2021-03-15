@@ -149,8 +149,8 @@ def handle_recipedetail():
 
 ####################################    
 
-@api.route('/selectedrecipe', methods=['GET'])
-def handle_selectedrecipe():
+@api.route('/selected_recipe', methods=['GET'])
+def handle_selected_recipe():
 
     # get all the recipes
     selected_recipe_query = SelectedRecipe.query.all()
@@ -181,13 +181,6 @@ def handle_restriction():
 
 #############################
 
-# @api.route('/seed_data', methods=['GET'])
-# def handle_users():
-#     seed_data()
-
-#     return jsonify(response_body), 200
-
-
 # AVATAR (FOTO DE PERFIL)
 # @api.route('/profile/image/<int:user_id>', methods=['PUT'])
 # def handle_upload(user_id):
@@ -216,10 +209,9 @@ def handle_restriction():
 def handle_seed_data_user():
     DataManager().seed_data()
     return jsonify(user), 200
-#DA ERROR "NameError: name 'create_user' is not defined", parece que create_user que esta en seed_data, no esta declarado, ¿porqué? ¿Es por hacer el loop antes de la funcion en la clase DataManager?
 
-@api.route('/selectedrecipe', methods=['POST'])
-def send_selectedrecipe():
+@api.route('/selected_recipe', methods=['POST'])
+def send_selected_recipe():
     payload = request.get_json() #traeme el json del request a python
     new_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
 
@@ -229,8 +221,8 @@ def send_selectedrecipe():
 
     return jsonify(new_selected_recipe.serialize()), 200
 
-@api.route('/selectedrecipe', methods=['PUT'])
-def update_selectedrecipe():
+@api.route('/selected_recipe', methods=['PUT'])
+def update_selected_recipe():
     payload = request.get_json() #traeme el json del request a python
     updated_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
 
@@ -240,8 +232,8 @@ def update_selectedrecipe():
 
     return jsonify(updated_selected_recipe.serialize()), 200
 
-@api.route('/selectedrecipe', methods=['DELETE'])
-def remove_selectedrecipe():
+@api.route('/selected_recipe', methods=['DELETE'])
+def remove_selected_recipe():
     payload = request.get_json() #traeme el json del request a python
     remove_selected_recipe = SelectedRecipe(day_id=payload["day_id"], recipe_id=payload["recipe_id"], menu_id=payload["menu_id"], position=payload["position"], user_id=payload["user_id"])
 
