@@ -108,7 +108,7 @@ class Day(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
-    uri = db.Column(db.String(100), unique=True, nullable=False)
+    uri = db.Column(db.String(300), unique=True, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
     # ingredients = db.relationship("Ingredient", secondary="recipe_detail")
     days = db.relationship("Day", secondary="selected_recipe")
@@ -200,7 +200,6 @@ class Restriction(db.Model):
 # INCLUIR EN RESTRICTION (return)
 # "user": list(map(lambda x: x.serialize(), self.user))
 
-
 #Se sustituye el "name" del menu, por "title" para que no coincida en con el "name" de usuario. Cambiado en Models.py y los archivos .json
 class DataManager:
 
@@ -212,6 +211,7 @@ class DataManager:
         file_path = os.path.join(script_dir, 'data/new_user_and_menu.json')
         with open(file_path) as f:
             data = json.load(f)
+
         users_data = data #el archivo con data new user and menu ya es un arreglo por lo que podríamos traer información de varios usuarios. así que los corchetes de arreglo de este data se eliminan.
 
         for user_datum in users_data:
@@ -262,24 +262,17 @@ class MenuDataManager:
     day = self.create_day(days_json['sunday'], menu) 
 
   def create_day(self,day_params, menu):
-    #day_json = day_params['day']
-    for position in day_params:
-        create_selected_recipe(position)
-    position = self.create_selected_recipe(day_json['breakfast'], menu)
-    position = self.create_selected_recipe(day_json['snack1'], menu)
-    position = self.create_selected_recipe(day_json['lunch'], menu)
-    position = self.create_selected_recipe(day_json['snack2'], menu)
-    position = self.create_selected_recipe(day_json['dinner'], menu)
-    #siguiendo la linia de lo hecho en create_days la línia siguiente no tiene mucho sentido, no?
-    #create_selected_recipe(breakfast, snack1, lunch, snack2, dinner, menu)
+    for i, food in enumerate(day_params):
+        food["position"] = i
+        days = Day(name=day_params['name'], uri=self.create_selected_recipe(day_params['uri'], menu)) 
+        #hay que crear days, he replicado parte de lo que sería el menú l248
+        self.create_selected_recipe(days, food, menu)
 
-  def create_selected_recipe(self, selected_recipe_params, menu):
+  def create_selected_recipe(self, days, selected_recipe_params, menu):
     selected_recipe_json = selected_recipe_params['position']
     uri = selected_recipe_json['uri']
+    
+    #esto es correcto? Estamos guardando todo?
     db.session.add(days)
     db.session.commit()
-
-#aquí va solo el nombre o id único de la receta que viene por api externa ?
-#Segun Erwin, solo id único de la receta, para despues el fetch con el "uri" recuperar toda la info de la receta
-
-    
+    return days

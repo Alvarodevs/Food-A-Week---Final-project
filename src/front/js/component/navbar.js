@@ -27,7 +27,7 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-light background-white mb-1">
-			<div className="navbar-container d-flex">
+			<div className="navbar-container d-flex justify-content-between">
 				<Link to="/">
 					{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
 					{/* <img
@@ -39,7 +39,7 @@ export const Navbar = () => {
 
 				<h1> {pageTitle} </h1>
 
-				<div className="text-center mt-3 mx-auto">{/* <NavigationComponent /> */}</div>
+				{/* <div className="text-center mt-3 mx-auto"><NavigationComponent /></div> */}
 				<div className="mr-1">
 					<div className="mr-1">
 						<Dropdown>

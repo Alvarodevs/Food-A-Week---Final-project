@@ -41,7 +41,7 @@ export const Map = () => {
 	return (
 		<div className="container">
 			<div className="text-center mt-0 d-flex flex-column justify-content-center">
-				<h1 className="mt-0">{"Find your local store"}</h1>
+				{/* <h1 className="mt-0">{"Find your local store"}</h1> */}
 				<Form className="mt-1">
 					<Form.Control
 						placeholder="Search local shops"
@@ -51,16 +51,12 @@ export const Map = () => {
 					/>
 				</Form>
 				<div className="d-flex flex-row">
-					{/* <p className="col-4 flex-column">
-						<img className="col-7 d-flex align-items-center" src={planeImageUrl} />
-						
-					</p> */}
 					<div className="col-md-12 mt-3">
 						<MapContainer
 							center={[41.3818, 2.1685]}
 							zoom={13}
 							scrollWheelZoom={true}
-							style={{ height: 300 }}>
+							style={{ height: 350 }}>
 							<TileLayer
 								attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -17,45 +17,82 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			hits: [],
-			monday: [],
-			tuesday: [],
-			wednesday: [],
-			thursday: [],
-			friday: [],
-			saturday: [],
-			sunday: []
+			// monday: [],
+			// tuesday: [],
+			// wednesday: [],
+			// thursday: [],
+			// friday: [],
+			// saturday: [],
+			// sunday: [],
+			from: 0,
+			to: 15,
+			APP_ID: "ae68e508",
+			APP_KEY: "62b671a1e444b07116376c2722805bd3",
+			q: []
 		}, //close store
 		actions: {
 			getRecipes: props => {
 				console.log(props);
-				//APP_ID = ae68e508;
-				//APP_KEY = 62b671a1e444b07116376c2722805bd3;
-				// url='https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&health=${allergens}'
-				const store = getStore();
-				const url = `https://api.edamam.com/search?q=${props}&app_id=ae68e508&app_key=62b671a1e444b07116376c2722805bd3`;
+				let store = getStore();
+				// let newStoreTo = store.to;
+				// setStore({
+				// 	to: newStoreTo
+				// });
+				// let newStoreFrom = store.from;
+				// setStore({
+				// 	from: newStoreFrom
+				// });
+				//hay que mandar q a context, actualizar con hook
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
+					store.APP_ID
+				}&app_key=${store.APP_KEY}`;
 				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
 					.catch(error => console.log("Error loading message from backend", error));
+				let newStoreQ = store.q;
+				setStore({ q: newStoreQ });
 			},
-			getMoreRecipes: props => {
-				//hacer aquí un fetch que pida los siguientes resultados
-				console.log(props);
-			},
-			getMondayPlan: monday => {
+			getMoreRecipes: () => {
+				// Pendiente añadir el condicional de more == true
+				// si no more es false añadir mensaje = no hay más recetas!
+				console.log("getMoreRecipesIN");
 				let store = getStore();
-				let newStore = store.monday;
+				var newStoreTo = store.to;
+				newStoreTo = newStoreTo + 16;
 				setStore({
-					monday: newStore
+					to: newStoreTo
 				});
+				var newStoreFrom = store.from;
+				newStoreFrom = newStoreFrom + 16;
+				setStore({
+					from: newStoreFrom
+				});
+
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${store.q}&app_id=${
+					store.APP_ID
+				}&app_key=${store.APP_KEY}`;
+				fetch(url)
+					.then(resp => resp.json())
+					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
+					.catch(error => console.log("Error loading message from backend", error));
+				console.log("more");
 			},
-			getTursdayPlan: props => {},
-			getWednesdayPlan: props => {},
-			getThursdayPlan: props => {},
-			getFridayPlan: props => {},
-			getSaturdayPlan: props => {},
-			getSundayPlan: props => {},
+
+			// getMondayPlan: monday => {
+			// 	let store = getStore();
+			// 	let newStore = store.monday;
+			// 	setStore({
+			// 		monday: newStore
+			// 	});
+			// },
+			// getTursdayPlan: props => {},
+			// getWednesdayPlan: props => {},
+			// getThursdayPlan: props => {},
+			// getFridayPlan: props => {},
+			// getSaturdayPlan: props => {},
+			// getSundayPlan: props => {},
 
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
