@@ -1,11 +1,13 @@
 [{
   "user_name": "Usuario",
   "email":"correo@electroni.co",
+  "password":"123123123",
   "name": "Nombre",
   "last_name":"Apellido",
-  "adress":"Dirección",
+  "address":"Dirección",
   "postal_code":"66666",
-  "phone":666666666, 
+  "phone":666666666,
+  "title":"First week",
   "days": {
     "monday": [
       {

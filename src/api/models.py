@@ -216,9 +216,7 @@ class DataManager:
         users_data = data #el archivo con data new user and menu ya es un arreglo por lo que podríamos traer información de varios usuarios. así que los corchetes de arreglo de este data se eliminan.
 
         for user_datum in users_data:
-          print("ESTA PROCESAND EL USUARIO !!!!!!!!!!!!")
-          print(user_datum)
-          create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
+          self.create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
 
     def create_user(self,data_user):
         user = User(user_name=data_user['user_name'],
@@ -234,9 +232,8 @@ class DataManager:
         db.session.commit()
         db.session.flush()
 
-        menu_params = {'name': data_user["title"], 'days': data_user['days'] }
-        print(menu_params)
-        #self.menu_manager.create_weekly_recipe(menu_params, user)
+        menu_params = {'title': data_user["title"], 'days': data_user['days'] }
+        self.menu_manager.create_weekly_recipe(menu_params, user)
 
         return user
 
@@ -269,18 +266,15 @@ class MenuDataManager:
 
   def create_day(self,day_params, menu):
     for i, food in enumerate(day_params):
-        food["position"] = i
-        day= Day(name=day_params['name'], position=i, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
-        db.session.add(day)
-        db.session.commit()
-        db.session.flush()
+      day = Day(name=food['name'], position=int(i), menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+      db.session.add(day)
+      db.session.commit()
+      db.session.flush()
 
-        self.create_selected_recipe(food,day)
+      self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["uri"])
-    
-    #esto es correcto? Estamos guardando todo?
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()

@@ -133,7 +133,7 @@ def handle_recipe():
 
 ####################################
 
-@api.route('/recipedetail', methods=['GET'])
+@api.route('/recipe_detail', methods=['GET'])
 def handle_recipedetail():
 
     # get all the recipes
@@ -208,7 +208,7 @@ def handle_restriction():
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():
     DataManager().seed_data()
-    return jsonify(user), 200
+    return jsonify("El seed data fue cargado con éxito!"), 200
 
 @api.route('/selected_recipe', methods=['POST'])
 def send_selected_recipe():
@@ -248,26 +248,15 @@ def remove_selected_recipe():
 @jwt_required()
 def create_new_weekly_menu():
     user = current_user(get_jwt_identity())
-    script_dir = os.path.dirname(__file__)
-    file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
-    #complete_week = request.get_json() #traeme el json del request a python
-    with open(file_path) as f:
-      data = json.load(f)
-    
+    # script_dir = os.path.dirname(__file__)
+    # file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
+    # #complete_week = request.get_json() #traeme el json del request a python
+    # with open(file_path) as f:
+    #   data = json.load(f)
+    data = request.get_json() # {'title': "erwerw", 'days': {....} }
     MenuDataManager().create_weekly_recipe(data, user)
-    # # Output: {'name': 'Bob', 'languages': ['English', 'Fench']}
-    # data
 
-    # new_menu = Menu(name=complete_week["menu_name"], user_id=complete_week["user_id"])
-    # db.session.add(new_menu) #añadir una receta o tipo datos
-    # db.session.commit() #guardar cambios
-
-    # new_selected_week = ()
-    # #db.session.add(new_selected_recipe) #añadir una receta o tipo datos
-    # #db.session.commit() #guardar cambios
-    # print(new_selected_week)
-
-    return jsonify(data), 200
+    return jsonify("El menú fue creado con éxito!"), 200
 
 
 @api.route('/get_user_by_email')
