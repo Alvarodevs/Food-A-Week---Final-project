@@ -12,6 +12,7 @@ import * as Icon from "react-bootstrap-icons";
 export const NewWeek = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
+	const [day, setDay] = useState("");
 	const [query] = useDebounce(value, 1000);
 
 	// const handleSubmit = event => {
@@ -26,6 +27,11 @@ export const NewWeek = () => {
 		setValue(event.target.value);
 	};
 
+	const mySelectDayFunction = value => {
+		actions.Day;
+		setDay(event.target.value);
+		console.log(day);
+	};
 	useEffect(
 		() => {
 			actions.getRecipes(query);
@@ -96,15 +102,18 @@ export const NewWeek = () => {
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<Form>
-							<select className="custom-select day-selector">
+							<select
+								className="custom-select day-selector"
+								id="mySelectDay"
+								onChange={mySelectDayFunction}>
 								<option selected>Choose a day</option>
-								<option value="1">Monday</option>
-								<option value="2">Tuesday</option>
-								<option value="3">Wednesday</option>
-								<option value="4">Thursday</option>
-								<option value="5">Friday</option>
-								<option value="6">Saturday</option>
-								<option value="7">Sunday</option>
+								<option value="Monday">Monday</option>
+								<option value="Tuesday">Tuesday</option>
+								<option value="Wednesday">Wednesday</option>
+								<option value="Thursday">Thursday</option>
+								<option value="Friday">Friday</option>
+								<option value="Saturday">Saturday</option>
+								<option value="Sunday">Sunday</option>
 							</select>
 						</Form>
 						<Form>
