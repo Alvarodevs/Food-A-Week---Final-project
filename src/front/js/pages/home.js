@@ -24,7 +24,7 @@ export const Home = () => {
 					</Button>
 				</Link>
 
-				<Link to="/newweek">
+				<Link to="/new_week">
 					<Button variant="success" className="service-circle" id="newweek">
 						<div className="button-text">{"NEW WEEK MENU"}</div>
 					</Button>

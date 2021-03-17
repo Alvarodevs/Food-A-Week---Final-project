@@ -12,12 +12,11 @@ import * as Icon from "react-bootstrap-icons";
 export const NewWeek = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
-	const [selectedDay, setSelectedDay] = useState("");
+	const [selectedDay, setSelectedDay] = useState("monday");
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		actions.getRecipes(value);
 	};
 
 	const addRecipe = event => {
@@ -29,8 +28,7 @@ export const NewWeek = () => {
 	};
 
 	const selectDay = e => {
-		setSelectedDay({ selectedDay: e.target.value });
-		console.log(selectedDay);
+		setSelectedDay(e.target.value);
 	};
 
 	var searchResult = store.hits.map((item, index) => (

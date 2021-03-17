@@ -11,7 +11,7 @@ import { Home } from "./pages/home";
 import { WeekJumbo } from "./component/weekjumbotron";
 import { RecipeDetail } from "./component/recipe_detail_jumbo";
 import { Userprofile } from "./pages/userprofile";
-import { NewWeek } from "./pages/newweek";
+import { NewWeek } from "./pages/NewWeek";
 import { AllWeeks } from "./pages/weeks";
 import { Map } from "./pages/maps";
 //import { Single} from "";
@@ -49,7 +49,7 @@ const Layout = () => {
 						<Route exact path="/userprofile/">
 							<Userprofile />
 						</Route>
-						<Route exact path="/newweek">
+						<Route exact path="/new_week">
 							<NewWeek />
 						</Route>
 						<Route exact path="/weeks">
