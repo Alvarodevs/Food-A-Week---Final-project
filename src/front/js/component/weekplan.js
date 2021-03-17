@@ -37,7 +37,7 @@ export const Weekplan = props => {
 					<Col sm={3}>
 						<Nav className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="first">
+								<Nav.Link className="green-button my-2" eventKey="first" value={props.name}>
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>

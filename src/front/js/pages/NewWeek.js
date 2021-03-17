@@ -13,77 +13,71 @@ export const NewWeek = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
 	const [selectedDay, setSelectedDay] = useState("monday");
+	const [selectedPosition, setSelectedPosition] = useState("0");
+	const [selectedUri, setSelectedUri] = useState("");
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
 		event.preventDefault();
+		actions.getRecipes(value);
 	};
 
-	const addRecipe = event => {
-		actions.NewWeek;
-	};
+	// const addRecipe = event => {
+	// 	actions.NewWeek;
+	// };
 
 	const handleInput = event => {
 		setValue(event.target.value);
+		event.preventDefault();
 	};
 
 	const selectDay = e => {
 		setSelectedDay(e.target.value);
 	};
 
+	const handlePosition = e => {
+		setSelectedPosition(e.target.value);
+	};
+
+	const handleUri = e => {
+		setSelectedUri(e.target.value);
+	};
+
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<div>
+			<button onClick={handleUri} value={item.recipe.uri} />
+			{/* <div>
 				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
 					<Dropdown.Toggle />
 					<Dropdown.Menu>
-						<Dropdown.Item
-							onClick={() => {
-								addRecipe(prop);
-							}}>
-							{" "}
+						<Dropdown.Item onClick={handlePosition} value="0">
 							Breakfast
 						</Dropdown.Item>
-						<Dropdown.Item
-							onClick={() => {
-								addRecipe(prop);
-							}}>
-							{" "}
+						<Dropdown.Item onClick={handlePosition} value="1">
 							Snack 1
 						</Dropdown.Item>
-						<Dropdown.Item
-							onClick={() => {
-								addRecipe(prop);
-							}}>
-							{" "}
+						<Dropdown.Item onClick={handlePosition} value="2">
 							Lunch
 						</Dropdown.Item>
-						<Dropdown.Item
-							onClick={() => {
-								addRecipe(prop);
-							}}>
-							{" "}
+						<Dropdown.Item onClick={handlePosition} value="3">
 							Snack 2
 						</Dropdown.Item>
-						<Dropdown.Item
-							onClick={() => {
-								addRecipe(prop);
-							}}>
-							{" "}
+						<Dropdown.Item onClick={handlePosition} value="4">
 							Dinner
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
-			</div>
+			</div> */}
 		</ListGroup.Item>
 	));
 
+	console.log(selectedUri);
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
 				<div className="weekplan-body">
-					<Form>
+					<Form onSubmit={handleSubmit}>
 						<Form.Control
 							placeholder="Search Bar"
 							onChange={handleInput}
@@ -92,7 +86,7 @@ export const NewWeek = () => {
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<select
-							className="custom-select day-selector col-3"
+							className="custom-select day-selector col-2"
 							id="mySelectDay"
 							value={selectedDay}
 							onChange={selectDay}>
@@ -104,7 +98,14 @@ export const NewWeek = () => {
 							<option value="saturday">Saturday</option>
 							<option value="sunday">Sunday</option>
 						</select>
-						<select className="custom-select col-3">
+						<select className="custom-select col-2" onChange={handlePosition}>
+							<option value="0">Breakfast</option>
+							<option value="1">Snack 1</option>
+							<option value="2">Lunch</option>
+							<option value="3">Snack 2</option>
+							<option value="4">Dinner</option>
+						</select>
+						<select className="custom-select col-2">
 							<option value="1">Rice</option>
 							<option value="2">Pasta</option>
 							<option value="3">Fish</option>
@@ -126,7 +127,7 @@ export const NewWeek = () => {
 							<option value="19">Steam</option>
 							<option value="20">Fry</option>
 						</select>
-						<select className="custom-select col-3">
+						<select className="custom-select col-4">
 							<option value="1">Less than 20 minutes</option>
 							<option value="2">20 - 30 minutes</option>
 							<option value="3">30 - 45 minutes</option>
@@ -144,7 +145,7 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="d-flex col-6">
-				<Weekplan />
+				<Weekplan name={selectedDay} value={selectedPosition} uri={selectedUri} />
 			</div>
 		</div>
 	);
