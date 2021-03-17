@@ -103,31 +103,15 @@
 .icons-bar{
     height:3rem !important;  
 }
-
-
-    
-
-//     .about-recipe{
-//     display: flex;
-//     flex-direction:column;
-//     text-align: center;
-//    // line-height: 15vw;
-//     margin-left:3%;
-//     width:97%;
-//     height:25vw;
-//     position: relative;
-//     font-family: $montserrat;
-
-        .display-recipe{
-            display: flex;
-            border-radius: 5px;
-            height: 85%;
-            width: 100%;
-            font-family: $montserrat;
-            background-color: #FFFFFF;
-            // box-shadow: 1px 2px 2px 2px $pink;
-            border: 2px solid $pink;
-    }
+.display-recipe{
+    display: flex;
+    border-radius: 5px;
+    height: 85%;
+    width: 100%;
+    font-family: $montserrat;
+    background-color: #FFFFFF;
+    border: 2px solid $pink;
+}
      
     //     .create-recipe-btn{
     //     background: $green;

@@ -110,10 +110,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				newTitleMenu = titleMenu;
 				setStore({ title: newTitleMenu });
 			}
-			// selectDay: value => {
-			// 	let store = getStore();
-			// 	setStore({ day: value });
-			// }
 		}
 	};
 };

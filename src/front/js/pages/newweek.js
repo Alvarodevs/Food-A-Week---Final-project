@@ -12,32 +12,26 @@ import * as Icon from "react-bootstrap-icons";
 export const NewWeek = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
-	const [day, setDay] = useState("");
+	const [selectedDay, setSelectedDay] = useState("");
 	const [query] = useDebounce(value, 1000);
 
-	// const handleSubmit = event => {
-	// 	event.preventDefault();
-	// 	actions.getRecipes(value);
-	// };
+	const handleSubmit = event => {
+		event.preventDefault();
+		actions.getRecipes(value);
+	};
 
 	const addRecipe = event => {
 		actions.NewWeek;
 	};
+
 	const handleInput = event => {
 		setValue(event.target.value);
 	};
 
-	const mySelectDayFunction = value => {
-		actions.Day;
-		setDay(event.target.value);
-		console.log(day);
+	const selectDay = e => {
+		setSelectedDay({ selectedDay: e.target.value });
+		console.log(selectedDay);
 	};
-	useEffect(
-		() => {
-			actions.getRecipes(query);
-		},
-		[query]
-	);
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
@@ -87,8 +81,6 @@ export const NewWeek = () => {
 		</ListGroup.Item>
 	));
 
-	console.log(store.hits);
-
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
@@ -101,55 +93,47 @@ export const NewWeek = () => {
 						/>
 					</Form>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
-						<Form>
-							<select
-								className="custom-select day-selector"
-								id="mySelectDay"
-								onChange={mySelectDayFunction}>
-								<option selected>Choose a day</option>
-								<option value="Monday">Monday</option>
-								<option value="Tuesday">Tuesday</option>
-								<option value="Wednesday">Wednesday</option>
-								<option value="Thursday">Thursday</option>
-								<option value="Friday">Friday</option>
-								<option value="Saturday">Saturday</option>
-								<option value="Sunday">Sunday</option>
-							</select>
-						</Form>
-						<Form>
-							<select className="custom-select">
-								<option selected>In case you need ideas</option>
-								<option value="1">Rice</option>
-								<option value="2">Pasta</option>
-								<option value="3">Fish</option>
-								<option value="4">Salmon</option>
-								<option value="5">Pork</option>
-								<option value="6">Steak</option>
-								<option value="7">Chicken</option>
-								<option value="8">Soup</option>
-								<option value="9">Potato</option>
-								<option value="10">Lentils</option>
-								<option value="11">Vegetables</option>
-								<option value="12">Soy</option>
-								<option value="13">Curry</option>
-								<option value="14">Tomato</option>
-								<option value="15">Tofu</option>
-								<option value="16">Red</option>
-								<option value="17">White</option>
-								<option value="18">Green</option>
-								<option value="19">Steam</option>
-								<option value="20">Fry</option>
-							</select>
-						</Form>
-						<Form>
-							<select className="custom-select">
-								<option selected>Time</option>
-								<option value="1">Less than 20 minutes</option>
-								<option value="2">20 - 30 minutes</option>
-								<option value="3">30 - 45 minutes</option>
-								<option value="4">More than 45 minutes</option>
-							</select>
-						</Form>
+						<select
+							className="custom-select day-selector col-3"
+							id="mySelectDay"
+							value={selectedDay}
+							onChange={selectDay}>
+							<option value="monday">Monday</option>
+							<option value="tuesday">Tuesday</option>
+							<option value="wednesday">Wednesday</option>
+							<option value="thursday">Thursday</option>
+							<option value="friday">Friday</option>
+							<option value="saturday">Saturday</option>
+							<option value="sunday">Sunday</option>
+						</select>
+						<select className="custom-select col-3">
+							<option value="1">Rice</option>
+							<option value="2">Pasta</option>
+							<option value="3">Fish</option>
+							<option value="4">Salmon</option>
+							<option value="5">Pork</option>
+							<option value="6">Steak</option>
+							<option value="7">Chicken</option>
+							<option value="8">Soup</option>
+							<option value="9">Potato</option>
+							<option value="10">Lentils</option>
+							<option value="11">Vegetables</option>
+							<option value="12">Soy</option>
+							<option value="13">Curry</option>
+							<option value="14">Tomato</option>
+							<option value="15">Tofu</option>
+							<option value="16">Red</option>
+							<option value="17">White</option>
+							<option value="18">Green</option>
+							<option value="19">Steam</option>
+							<option value="20">Fry</option>
+						</select>
+						<select className="custom-select col-3">
+							<option value="1">Less than 20 minutes</option>
+							<option value="2">20 - 30 minutes</option>
+							<option value="3">30 - 45 minutes</option>
+							<option value="4">More than 45 minutes</option>
+						</select>
 					</div>
 				</div>
 				<div className="results-body mr-0">
