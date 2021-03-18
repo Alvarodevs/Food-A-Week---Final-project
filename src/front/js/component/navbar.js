@@ -10,7 +10,7 @@ export const Navbar = () => {
 
 	useEffect(
 		() => {
-			if (location.pathname == "/newweek") {
+			if (location.pathname == "/new_week") {
 				setPageTitle("New Week");
 			} else if (location.pathname == "/userprofile") {
 				setPageTitle("User Profile");

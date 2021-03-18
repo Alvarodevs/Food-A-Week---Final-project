@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
@@ -15,6 +16,7 @@ export const NewWeek = () => {
 	const [selectedDay, setSelectedDay] = useState("monday");
 	const [selectedPosition, setSelectedPosition] = useState("0");
 	const [selectedUri, setSelectedUri] = useState("");
+	const [selectedRecipeName, setSelectedRecipeName] = useState("");
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
@@ -41,12 +43,13 @@ export const NewWeek = () => {
 
 	const handleUri = e => {
 		setSelectedUri(e.target.value);
+		setSelectedRecipeName(e.target.title);
 	};
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<button onClick={handleUri} value={item.recipe.uri} />
+			<button onClick={handleUri} value={item.recipe.uri} title={item.recipe.label} />
 			{/* <div>
 				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
 					<Dropdown.Toggle />
@@ -72,7 +75,7 @@ export const NewWeek = () => {
 		</ListGroup.Item>
 	));
 
-	console.log(selectedUri);
+	//console.log(selectedDay, selectedPosition, selectedUri);
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
@@ -145,8 +148,14 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="d-flex col-6">
-				<Weekplan name={selectedDay} value={selectedPosition} uri={selectedUri} />
+				<Weekplan name={selectedDay} value={selectedPosition} uri={selectedUri} title={selectedRecipeName} />
 			</div>
 		</div>
 	);
 };
+
+// NewWeek.prototype = {
+// 	name: PropTypes.string,
+// 	position: PropTypes.string,
+// 	uri: PropTypes.string
+// };
