@@ -7,12 +7,7 @@ import * as Icon from "react-bootstrap-icons";
 
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
-	const [uri, setUri] = useState("");
 
-	const handleUri = props => {
-		setUri(props.uri);
-	};
-	console.log(uri);
 	//var recipeName = store.hits.map((item, index) => <div key={index}>{item.recipe.uri}</div>);
 
 	// const showRecipeName = () => {
@@ -24,87 +19,117 @@ export const DailyPlan = props => {
 	// };
 
 	return (
-		console.log(props),
-		(
-			<div className="container-fluid p-0">
-				<Accordion className="accordion">
-					<Card>
-						<Card.Header className="white-bg">
-							<Accordion.Toggle
-								as={Button}
-								variant="link"
-								eventKey="0"
-								value={props.value}
-								uri={props.uri}>
-								{"Breakfast"} <ChevronDown />
-							</Accordion.Toggle>
-						</Card.Header>
-						<Accordion.Collapse eventKey="0" className="justify-content-between">
-							<Card.Body>
-								<Icon.Save className="mr-3" />
-								<Icon.Eraser className="mr-3" />
-								{props.title}
-							</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-					<Card>
-						<Card.Header className="white-bg">
-							<Accordion.Toggle as={Button} variant="link" eventKey="1">
-								{"Snack"} <ChevronDown />
-							</Accordion.Toggle>
-						</Card.Header>
-						<Accordion.Collapse eventKey="1">
-							<Card.Body>
-								<Icon.Save className="mr-3" />
-								<Icon.Eraser className="mr-3" />
-								{"Recipe name from display"}
-							</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-					<Card>
-						<Card.Header className="white-bg">
-							<Accordion.Toggle as={Button} variant="link" eventKey="2">
-								{"Lunch"} <ChevronDown />
-							</Accordion.Toggle>
-						</Card.Header>
-						<Accordion.Collapse eventKey="2">
-							<Card.Body>
-								<Icon.Save className="mr-3" />
-								<Icon.Eraser className="mr-3" />
-								{"Recipe name from display"}
-							</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-					<Card>
-						<Card.Header className="white-bg">
-							<Accordion.Toggle as={Button} variant="link" eventKey="3">
-								{"Snack"} <ChevronDown />
-							</Accordion.Toggle>
-						</Card.Header>
-						<Accordion.Collapse eventKey="3">
-							<Card.Body>
-								<Icon.Save className="mr-3" />
-								<Icon.Eraser className="mr-3" />
-								{"Recipe name from display"}
-							</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-					<Card>
-						<Card.Header className="white-bg">
-							<Accordion.Toggle as={Button} variant="link" eventKey="4">
-								{"Dinner"} <ChevronDown />
-							</Accordion.Toggle>
-						</Card.Header>
-						<Accordion.Collapse eventKey="4">
-							<Card.Body>
-								<Icon.Save className="mr-3" />
-								<Icon.Eraser className="mr-3" />
-								{"Recipe name from display"}
-							</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-				</Accordion>
-			</div>
-		)
+		//console.log(props),
+		<div className="container-fluid p-0">
+			<Accordion className="accordion">
+				<Card>
+					<Card.Header className="white-bg">
+						<Accordion.Toggle
+							as={Button}
+							variant="link"
+							eventKey="0"
+							name={props.name}
+							value={props.value}
+							uri={props.uri}>
+							{"Breakfast"} <ChevronDown />
+						</Accordion.Toggle>
+					</Card.Header>
+					<Accordion.Collapse eventKey="0" className="justify-content-between">
+						<Card.Body>
+							<i className="fas fa-times mr-3" />
+							{/* <Icon.Trash2Fill className="mr-3" /> */}
+							{props.title}
+						</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+				<Card>
+					<Card.Header className="white-bg">
+						<Accordion.Toggle
+							as={Button}
+							variant="link"
+							eventKey="1"
+							name={props.name}
+							value={props.value}
+							uri={props.uri}>
+							{"Snack"} <ChevronDown />
+						</Accordion.Toggle>
+					</Card.Header>
+					<Accordion.Collapse eventKey="1">
+						<Card.Body>
+							<i className="fas fa-times mr-3" />
+							{/* <Icon.Trash2Fill className="mr-3" /> */}
+							{props.title}
+						</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+				<Card>
+					<Card.Header className="white-bg">
+						<Accordion.Toggle
+							as={Button}
+							variant="link"
+							eventKey="2"
+							name={props.name}
+							value={props.value}
+							uri={props.uri}>
+							{"Lunch"} <ChevronDown />
+						</Accordion.Toggle>
+					</Card.Header>
+					<Accordion.Collapse eventKey="2">
+						<Card.Body>
+							<i className="fas fa-times mr-3" />
+							{/* <Icon.Trash2Fill className="mr-3" /> */}
+							{props.title}
+						</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+				<Card>
+					<Card.Header className="white-bg">
+						<Accordion.Toggle
+							as={Button}
+							variant="link"
+							eventKey="3"
+							name={props.name}
+							value={props.value}
+							uri={props.uri}>
+							{"Snack"} <ChevronDown />
+						</Accordion.Toggle>
+					</Card.Header>
+					<Accordion.Collapse eventKey="3">
+						<Card.Body>
+							<i className="fas fa-times mr-3" />
+							{/* <Icon.Trash2Fill className="mr-3" /> */}
+							{props.title}
+						</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+				<Card>
+					<Card.Header className="white-bg">
+						<Accordion.Toggle
+							as={Button}
+							variant="link"
+							eventKey="4"
+							name={props.name}
+							value={props.value}
+							uri={props.uri}>
+							{"Dinner"} <ChevronDown />
+						</Accordion.Toggle>
+					</Card.Header>
+					<Accordion.Collapse eventKey="4">
+						<Card.Body>
+							<i className="fas fa-times mr-3" />
+							{/* <Icon.Trash2Fill className="mr-3" /> */}
+							{props.title}
+						</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+			</Accordion>
+		</div>
 	);
+};
+
+DailyPlan.propTypes = {
+	name: PropTypes.string,
+	value: PropTypes.string,
+	uri: PropTypes.string,
+	title: PropTypes.string
 };

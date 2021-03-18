@@ -49,7 +49,10 @@ export const NewWeek = () => {
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<button onClick={handleUri} value={item.recipe.uri} title={item.recipe.label} />
+			<i className="fas fa-plus" onClick={handleUri} value={item.recipe.uri} title={item.recipe.label} />
+			{/* <Button onClick={handleUri} value={item.recipe.uri} title={item.recipe.label}>
+				Add it
+			</Button> */}
 			{/* <div>
 				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
 					<Dropdown.Toggle />
@@ -75,21 +78,25 @@ export const NewWeek = () => {
 		</ListGroup.Item>
 	));
 
-	//console.log(selectedDay, selectedPosition, selectedUri);
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
 				<div className="weekplan-body">
-					<Form onSubmit={handleSubmit}>
-						<Form.Control
-							placeholder="Search Bar"
-							onChange={handleInput}
-							className="bar-body-dropdown col-12 p-3 m-auto w-100"
-						/>
-					</Form>
+					<div className="d-flex flex-row">
+						<Form onSubmit={handleSubmit} className="d-flex col-11 pr-1 pl-0">
+							<Form.Control
+								placeholder="Search Bar"
+								onChange={handleInput}
+								className="bar-body-dropdown col-12 p-3 m-auto w-100"
+							/>
+						</Form>
+						<Button className="mr-0" onClick={() => actions.getMoreRecipes()}>
+							more
+						</Button>
+					</div>
 					<div className="btns-bar-body mx-0 w-100 justify-content-between my-4">
 						<select
-							className="custom-select day-selector col-2"
+							className="custom-select day-selector col-3 pr-4"
 							id="mySelectDay"
 							value={selectedDay}
 							onChange={selectDay}>
@@ -108,7 +115,7 @@ export const NewWeek = () => {
 							<option value="3">Snack 2</option>
 							<option value="4">Dinner</option>
 						</select>
-						<select className="custom-select col-2">
+						<select className="custom-select col-2 pr-3">
 							<option value="1">Rice</option>
 							<option value="2">Pasta</option>
 							<option value="3">Fish</option>
@@ -154,8 +161,9 @@ export const NewWeek = () => {
 	);
 };
 
-// NewWeek.prototype = {
-// 	name: PropTypes.string,
-// 	position: PropTypes.string,
-// 	uri: PropTypes.string
-// };
+NewWeek.PropTypes = {
+	name: PropTypes.string,
+	value: PropTypes.string,
+	uri: PropTypes.string,
+	title: PropTypes.string
+};
