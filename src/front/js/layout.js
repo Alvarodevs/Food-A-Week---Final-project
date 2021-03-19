@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //components
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import ScrollToTop from "./component/scrollToTop";
+//import Login from "../Login/login";
+
 //Pages
 import { Pre } from "./pages/prepage";
 import { Home } from "./pages/home";

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager
+from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -69,21 +69,58 @@ def handle_users():
 
     return jsonify(users), 200
 
-@api.route('/sign_in', methods=['POST'])
+# @api.route('/sign_in', methods=['POST'])
+# def sign_in():
+#   json_data = request.get_json()
+#   user1 = User.query.filter_by(email=json_data['email']).one_or_none()
+#   password = json_data['password']
+#   if not user1 or not user1.check_password(password):
+#     return jsonify("Wrong email or password"), 401
+
+#   # Notice that we are passing in the actual sqlalchemy user object here
+#   access_token = create_access_token(identity=user1.sign_in_serialize())
+#   return jsonify(access_token=access_token)
+
+
+# Create a route to authenticate your users and return JWTs. The
+# create_access_token() function is used to actually generate the JWT.
+@api.route("/sign_up", methods=["POST"])
+def sign_up():
+  print("HELLO")
+  name = request.json.get("name", None)
+  last_name = request.json.get("lastName", None)
+  email = request.json.get("email", None)
+  password = request.json.get("password", None)
+
+  user1 = User(name=name, last_name=last_name, email=email, password=password)
+  db.session.add(user1)
+  db.session.commit()
+
+  return jsonify(user1.serialize())
+
+# Create a route to authenticate your users and return JWTs. The
+# create_access_token() function is used to actually generate the JWT.
+@api.route("/sign_in", methods=["POST"])
 def sign_in():
-  json_data = request.get_json()
-  user1 = User.query.filter_by(email=json_data['email']).one_or_none()
-  password = json_data['password']
-  if not user1 or not user1.check_password(password):
-    return jsonify("Wrong email or password"), 401
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
 
-  # Notice that we are passing in the actual sqlalchemy user object here
-  access_token = create_access_token(identity=user1.sign_in_serialize())
-  return jsonify(access_token=access_token)
+    user = User.query.filter_by(email=email).one_or_none()
+    if not user or not user.check_password(password):
+        return jsonify("Wrong email or password"), 401
+
+    # Notice that we are passing in the actual sqlalchemy user object here
+    access_token = create_access_token(identity=user.serialize())
+    return jsonify(access_token=access_token)
+
+@api.route("/me", methods=["GET"])
+@jwt_required()
+def protected():
+    # We can now access our sqlalchemy User object via `current_user`.
+    serialized_data = get_jwt_identity()
+    return jsonify(serialized_data)
 
 
-
-####################################
 
 @api.route('/menu', methods=['GET'])
 def handle_menu():

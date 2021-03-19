@@ -84,6 +84,7 @@
 		"react-login-modal-sm": "^1.0.8",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^5.2.0",
+		"react-toastify": "^7.0.3",
 		"use-debounce": "^5.2.1"
 	}
 }

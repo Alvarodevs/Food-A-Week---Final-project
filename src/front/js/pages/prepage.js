@@ -4,6 +4,9 @@ import { Context } from "../store/appContext";
 import HealthyFoodImg from "../../img/eating.png";
 import PhoneImg from "../../img/phone.png";
 //import { LoginForm } from "..component/login_form";
+//import Login from "../component/login";
+//import FirstLogin from "../component/sign_up_form";
+import { SignUp, SignUpForm } from "../component/signUp";
 
 export const Pre = () => {
 	const { store, actions } = useContext(Context);
@@ -17,11 +20,8 @@ export const Pre = () => {
 					<p className="pre-text ml-5">Make your time more effective & enjoy your food</p>
 				</div>
 				<div className="button-group-pre d-flex flex-column justify-content-end align-items-end">
-					<button type="submit" className="btn btn-lg green-button mb-4 p-2">
-						Login
-					</button>
 					<button type="submit" className="btn btn-lg green-button mb-4 p-2 ">
-						Sign in
+						<SignUp />
 					</button>
 				</div>
 				<div className="d-flex row">
