@@ -8,13 +8,9 @@ import * as Icon from "react-bootstrap-icons";
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
 
-	//var recipeName = store.hits.map((item, index) => <div key={index}>{item.recipe.uri}</div>);
-
-	// const showRecipeName = () => {
-	// 	if ((recipeName = uri)) {
-	// 		{
-	// 			item.recipe.label;
-	// 		}
+	// const showRecipe = props => {
+	// 	if (store.day === props.name) {
+	// 		console.log(props.name);
 	// 	} else null;
 	// };
 

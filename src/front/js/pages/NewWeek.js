@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import injectContext, { Context } from "../store/appContext";
 import { Weekplan } from "../component/weekplan";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
@@ -44,15 +44,36 @@ export const NewWeek = () => {
 	const handleUri = e => {
 		setSelectedUri(e.target.value);
 		setSelectedRecipeName(e.target.title);
+		handleData();
 	};
+
+	//Storing day, & uri position in flux to create JSON
+	const handleData = () => {
+		if (selectedDay == "monday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "tuesday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "wednesday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "thursday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "friday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "saturday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		} else if (selectedDay == "sunday") {
+			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+		}
+	};
+
+	// const storeUri = () => {
+	// 	actions.addUri(selectedUri);
+	// };
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
 			<i className="fas fa-plus" onClick={handleUri} value={item.recipe.uri} title={item.recipe.label} />
-			{/* <Button onClick={handleUri} value={item.recipe.uri} title={item.recipe.label}>
-				Add it
-			</Button> */}
 			{/* <div>
 				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
 					<Dropdown.Toggle />
@@ -161,9 +182,9 @@ export const NewWeek = () => {
 	);
 };
 
-NewWeek.PropTypes = {
-	name: PropTypes.string,
-	value: PropTypes.string,
-	uri: PropTypes.string,
-	title: PropTypes.string
+NewWeek.propTypes = {
+	name: propTypes.string,
+	value: propTypes.string,
+	uri: propTypes.string,
+	title: propTypes.string
 };

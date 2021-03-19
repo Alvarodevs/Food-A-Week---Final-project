@@ -24,16 +24,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			q: [],
 			title: "",
 			day: "",
-			position: ""
+			position: "",
+			uri: ""
 		}, //close store
 		actions: {
 			getRecipes: props => {
-				console.log(props);
 				let store = getStore();
 				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
 					store.APP_ID
 				}&app_key=${store.APP_KEY}`;
-				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
@@ -66,7 +65,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 				console.log("more");
 			},
-
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -104,11 +102,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
 			// 		.catch(error => console.log("error", error));
 			// },
+
 			addTitleMenu: titleMenu => {
 				let store = getStore();
 				let newTitleMenu = store.title;
 				newTitleMenu = titleMenu;
 				setStore({ title: newTitleMenu });
+			},
+			addDay: day => {
+				let store = getStore();
+				let newDay = store.day;
+				newDay = day;
+				setStore({ day: newDay });
+				console.log(day);
+			},
+			addPosition: position => {
+				let store = getStore();
+				let newPosition = store.position;
+				newPosition = position;
+				setStore({ position: newPosition });
+				console.log(position);
+			},
+			addUri: uri => {
+				let store = getStore();
+				let newUri = store.uri;
+				newUri = uri;
+				setStore({ uri: newUri });
+				console.log(uri);
 			}
 		}
 	};

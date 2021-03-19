@@ -38,37 +38,37 @@ export const Weekplan = props => {
 					<Col sm={3}>
 						<Nav className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="first">
+								<Nav.Link className="green-button my-2" eventKey="first" name={props.name}>
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="second">
+								<Nav.Link className="green-button my-2" eventKey="second" name={props.name}>
 									{"Tuesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="third">
+								<Nav.Link className="green-button my-2" eventKey="third" name={props.name}>
 									{"Wednesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fourth">
+								<Nav.Link className="green-button my-2" eventKey="fourth" name={props.name}>
 									{"Thursday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fifth">
+								<Nav.Link className="green-button my-2" eventKey="fifth" name={props.name}>
 									{"Friday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="sixth">
+								<Nav.Link className="green-button my-2" eventKey="sixth" name={props.name}>
 									{"Saturday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="seventh">
+								<Nav.Link className="green-button my-2" eventKey="seventh" name={props.name}>
 									{"Sunday"}
 								</Nav.Link>
 							</Nav.Item>

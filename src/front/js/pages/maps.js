@@ -56,7 +56,7 @@ export const Map = () => {
 							center={[41.3818, 2.1685]}
 							zoom={13}
 							scrollWheelZoom={true}
-							style={{ height: 350 }}>
+							style={{ height: 550 }}>
 							<TileLayer
 								attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
