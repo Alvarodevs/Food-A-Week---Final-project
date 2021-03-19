@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-//import "../../styles/index.scss";
+import "../../styles/index.scss";
 import HealthyFoodImg from "../../img/eating.png";
 import PhoneImg from "../../img/phone.png";
-//import { LoginForm } from "..component/login_form";
-//import Login from "../component/login";
-//import FirstLogin from "../component/sign_up_form";
-import { SignUp, SignUpForm } from "../component/signUp";
+import { SignUp } from "../component/signUp";
 
 export const Pre = () => {
 	const { store, actions } = useContext(Context);

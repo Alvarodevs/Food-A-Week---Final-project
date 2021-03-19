@@ -92,11 +92,13 @@ def sign_up():
   email = request.json.get("email", None)
   password = request.json.get("password", None)
 
-  user1 = User(name=name, last_name=last_name, email=email, password=password)
-  db.session.add(user1)
+  user = User(name=name, last_name=last_name, email=email, password=password)
+  db.session.add(user)
   db.session.commit()
 
-  return jsonify(user1.serialize())
+  return jsonify(user.serialize())
+
+  #devuelve 404 >>
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
