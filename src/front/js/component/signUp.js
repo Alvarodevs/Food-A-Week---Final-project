@@ -31,7 +31,7 @@ const SignUpForm = props => {
 			.then(response => response.text())
 			.then(result => {
 				toast("User was created");
-				history.push("/");
+				history.push("/home");
 				console.log("User was created");
 			})
 			.catch(error => console.log("error", error));

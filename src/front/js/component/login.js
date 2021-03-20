@@ -31,7 +31,7 @@ const LoginForm = props => {
 		fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
 			.then(response => response.text())
 			.then(result => {
-				history.push("/");
+				history.push("/home");
 			})
 			.catch(error => console.log("error", error));
 	};
