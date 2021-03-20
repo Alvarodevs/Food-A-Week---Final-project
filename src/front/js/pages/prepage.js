@@ -22,16 +22,19 @@ export const Pre = () => {
 				<p className="prepage-text">Search your favorite recipes</p>
 				<p className="prepage-text">Assaign recipes for every day</p>
 				<p className="prepage-text align-item-end">Use & reuse</p>
+				<p className="prepage-text" id="last-prepage-text">
+					& enjoy your time
+				</p>
 				<img className="img-prepage" />
 			</div>
 			<div className="d-flex ">
 				<img className="img-prepage2" />
-				<p className="prepage-text">& enjoy your time</p>
 			</div>
-			{/* <div className="hidden">
+
+			{/* <div className="signup">
 				<SignUp />
 			</div>
-			<div>
+			<div className="login">
 				<Login />
 			</div> */}
 

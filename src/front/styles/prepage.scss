@@ -9,27 +9,55 @@
 .buttons-log{
     margin-right:2vw;
 }
+.text-pre-page{
+    margin-top:5%;
+}
 .img-prepage{
     position:absolute;
     width: 31%;
-    height:40%;
+    height:50%;
     margin-right:2vw;
     object-fit: fill;
     z-index: 0;
     margin:0;
     background-image:url('../../front/img/eating.png');
+    background-color: none;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
 }
 
+
+
+
+
 .img-prepage2{
-    margin-top:-10%;
+    margin-top:-15%;
     position:absolute;
     width: 30%;
-    height:40%;
+    height:50%;
     z-index: 0;
     background-image:url('../../front/img/phone.png');
+    background-color: none;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
    
 
 .title-web{
     margin:0;
+}
+
+.signup{
+    width: 60%;
+    height:60%;
+}
+.login{ 
+    width: 60%;
+    height:60%;
+}
+#last-prepage-text{
+    margin-top:5%;
 }
