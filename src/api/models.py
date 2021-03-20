@@ -185,23 +185,6 @@ class Restriction(db.Model):
           "ingredient_id": self.ingredient_id, #¿NECESARIO?
       }
 
-# ¿ES NECESARIO CREAR LA TABLA AUXILIAR PARA RELATIONS MANY TO MANY: USER - RESTRICITIONS?
-# association_table = Table('allergens', Base.metadata,
-#     Column("user_id", Integer, ForeignKey("User.id")),
-#     Column("restriction_id", Integer, ForeignKey("Restriction.id"))
-# )
-
-# INCLUIR EN USER (column)
-# restriction = relationship("Restriction", secondary=allergens back_populates="user")
-# INCLUIR EN USER (return)
-# "restriction": list(map(lambda x: x.serialize(), self.restriction))
-
-# INCLUIR EN RESTRICTION (column)
-# user = relationship("User", secondary=allergens back_populates="restriction")
-# INCLUIR EN RESTRICTION (return)
-# "user": list(map(lambda x: x.serialize(), self.user))
-
-#Se sustituye el "name" del menu, por "title" para que no coincida en con el "name" de usuario. Cambiado en Models.py y los archivos .json
 class DataManager:
 
     def __init__(self):
@@ -257,12 +240,12 @@ class MenuDataManager:
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
     day = self.create_day(days_json['monday'], menu) #podemos pasar los parametros directamente al llamar el metodo.
-    #day = self.create_day(days_json['tuesday'], menu)
-    #day = self.create_day(days_json['wednesday'], menu)
-    #day = self.create_day(days_json['thursday'], menu)
-    #day = self.create_day(days_json['friday'], menu)
-    #day = self.create_day(days_json['saturday'], menu)
-    #day = self.create_day(days_json['sunday'], menu)
+    day = self.create_day(days_json['tuesday'], menu)
+    day = self.create_day(days_json['wednesday'], menu)
+    day = self.create_day(days_json['thursday'], menu)
+    day = self.create_day(days_json['friday'], menu)
+    day = self.create_day(days_json['saturday'], menu)
+    day = self.create_day(days_json['sunday'], menu)
 
   def create_day(self,day_params, menu):
     for i, food in enumerate(day_params):

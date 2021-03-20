@@ -102,8 +102,6 @@ def sign_up():
 
   return jsonify(user1.serialize())
 
-  #devuelve 404 >>
-
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
 @api.route("/sign_in", methods=["POST"])

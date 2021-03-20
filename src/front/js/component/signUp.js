@@ -32,6 +32,7 @@ const SignUpForm = props => {
 			.then(result => {
 				toast("User was created");
 				history.push("/");
+				console.log("User was created");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -93,7 +94,7 @@ const SignUpForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="btn btn-primary">
+			<button type="submit" className="green-button btn">
 				Submit
 			</button>
 		</form>
@@ -107,7 +108,7 @@ export const SignUp = props => {
 			<hr className="my-4" />
 
 			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
+				<span className="green-button btn" href="#" role="button">
 					Back home
 				</span>
 			</Link>

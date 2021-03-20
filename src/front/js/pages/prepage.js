@@ -4,12 +4,14 @@ import "../../styles/index.scss";
 import HealthyFoodImg from "../../img/eating.png";
 import PhoneImg from "../../img/phone.png";
 import { SignUp } from "../component/signUp";
+import { Login } from "../component/login";
+import "../../styles/index.scss";
 
 export const Pre = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container-fluid pre-page-img">
+		<div className="container-fluid pre-page-container">
 			<div className="container">
 				<div className="text-pre-page">
 					<p className="title-web ml-5">Food A Week</p>
@@ -17,9 +19,8 @@ export const Pre = () => {
 					<p className="pre-text ml-5">Make your time more effective & enjoy your food</p>
 				</div>
 				<div className="button-group-pre d-flex flex-column justify-content-end align-items-end">
-					<button type="submit" className="btn btn-lg green-button mb-4 p-2 ">
-						<SignUp />
-					</button>
+					<button className="btn btn-lg green-button">New sign up</button>
+					<button className="btn green-button">Login</button>
 				</div>
 				<div className="d-flex row">
 					<p className="prepage-text">Search your favorites recipes</p>
