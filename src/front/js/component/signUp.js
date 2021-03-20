@@ -39,6 +39,17 @@ const SignUpForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
+				<label htmlFor="exampleInputEmail">User name</label>
+				<input
+					type="user_name"
+					className="form-control"
+					id="user_name"
+					placeholder="Enter your user name"
+					name="user_name"
+					onChange={handleInputChange}
+				/>
+			</div>
+			<div className="form-group">
 				<label htmlFor="exampleInputEmail">Email address</label>
 				<input
 					type="email"
