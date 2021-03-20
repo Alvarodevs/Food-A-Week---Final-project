@@ -10,9 +10,10 @@ const LoginForm = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 
-	const initialInputState = { user: "", password: "" };
+	const initialInputState = { email: "", password: "" };
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
+
 	const handleInputChange = e => {
 		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
 		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
@@ -38,13 +39,13 @@ const LoginForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">User name</label>
+				<label htmlFor="exampleInputEmail">User e-mail</label>
 				<input
-					type="user_name"
+					type="email"
 					className="form-control"
-					id="user_name"
-					placeholder="Enter your user name"
-					name="user_name"
+					id="email"
+					placeholder="Enter your e-mail"
+					name="email"
 					onChange={handleInputChange}
 				/>
 			</div>
@@ -68,7 +69,7 @@ const LoginForm = props => {
 
 export const Login = props => {
 	return (
-		<div className="jumbotron">
+		<div className="card">
 			<LoginForm />
 			<hr className="my-4" />
 

@@ -15,12 +15,15 @@ export const Pre = () => {
 			<div className="container">
 				<div className="text-pre-page">
 					<p className="title-web ml-5">Food A Week</p>
+
 					<p className="pre-text ml-5">Search, Organize and Reuse your work</p>
 					<p className="pre-text ml-5">Make your time more effective & enjoy your food</p>
 				</div>
 				<div className="button-group-pre d-flex flex-column justify-content-end align-items-end">
 					<button className="btn btn-lg green-button">New sign up</button>
+					<SignUp />
 					<button className="btn green-button">Login</button>
+					<Login />
 				</div>
 				<div className="d-flex row">
 					<p className="prepage-text">Search your favorites recipes</p>

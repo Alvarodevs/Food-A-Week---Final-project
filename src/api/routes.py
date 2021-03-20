@@ -69,22 +69,7 @@ def handle_users():
     users = list(map(lambda x: x.serialize(), user_query))
 
     return jsonify(users), 200
-
-# @api.route('/sign_in', methods=['POST'])
-# def sign_in():
-#   json_data = request.get_json()
-#   user1 = User.query.filter_by(email=json_data['email']).one_or_none()
-#   password = json_data['password']
-#   if not user1 or not user1.check_password(password):
-#     return jsonify("Wrong email or password"), 401
-
-#   # Notice that we are passing in the actual sqlalchemy user object here
-#   access_token = create_access_token(identity=user1.sign_in_serialize())
-#   return jsonify(access_token=access_token)
-
-
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
+#necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
   print("HELLO")
@@ -95,19 +80,17 @@ def sign_up():
   email = body.get("email", None)
   password = body.get("password", None)
 
-
   user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
   db.session.add(user1)
   db.session.commit()
 
   return jsonify(user1.serialize())
-
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
+#necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
+    body = request.get_json(force=True)
+    email = body.get("email", None)
+    password = body.get("password", None)
 
     user = User.query.filter_by(email=email).one_or_none()
     if not user or not user.check_password(password):
@@ -117,6 +100,7 @@ def sign_in():
     access_token = create_access_token(identity=user.serialize())
     return jsonify(access_token=access_token)
 
+#WHEN?
 @api.route("/me", methods=["GET"])
 @jwt_required()
 def protected():
