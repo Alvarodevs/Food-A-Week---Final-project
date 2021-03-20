@@ -1,21 +1,35 @@
 // .pre-page-container{
 //     z-index: 2;
 // }
+
+
 .head-prepage{
-    margin-top:5%;
+    margin-top:1%;
 }
 .buttons-log{
-    margin-right:2%;
+    margin-right:2vw;
 }
-.img-first{
-    position:relative;
-     width: 30%;
-     height:35%;
+.img-prepage{
+    position:absolute;
+    width: 31%;
+    height:40%;
+    margin-right:2vw;
+    object-fit: fill;
     z-index: 0;
+    margin:0;
+    background-image:url('../../front/img/eating.png');
 }
-#firstSubtextPrepage{
-    margin-top: 0%;
+
+.img-prepage2{
+    margin-top:-10%;
+    position:absolute;
+    width: 30%;
+    height:40%;
+    z-index: 0;
+    background-image:url('../../front/img/phone.png');
 }
+   
+
 .title-web{
     margin:0;
 }

@@ -23,6 +23,18 @@
     padding: 2px;
     text-decoration: none;    
 }
+
+.prebutton{
+    background-color: $green;
+    color: $gray;
+    border-color: $green;
+    border: 2px solid $green;
+    padding: 2px;
+    text-decoration: none;   
+    width: 15vw; 
+    height: 3vw;
+   
+}
 .green-button:hover{
     text-decoration: none;
     background-color:$green;
