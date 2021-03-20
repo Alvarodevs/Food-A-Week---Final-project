@@ -5,10 +5,15 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { toast } from "react-toastify";
+import { Button, Modal } from "react-bootstrap";
 
 const SignUpForm = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
+
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	const initialInputState = { name: "", lastName: "", email: "", password: "" };
 	const [eachEntry, setEachEntry] = useState(initialInputState);
@@ -104,7 +109,12 @@ const SignUpForm = props => {
 export const SignUp = props => {
 	return (
 		<div className="jumbotron">
-			<SignUpForm />
+			<Modal show={show} onHide={handleClose}>
+				<Modal.Header closeButton />
+				<Modal.Body>
+					<SignUpForm />
+				</Modal.Body>
+			</Modal>
 			<hr className="my-4" />
 
 			<Link to="/">
