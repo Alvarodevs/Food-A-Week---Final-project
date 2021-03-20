@@ -2,11 +2,12 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager 
+from api.models import db, Ingredient, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from flask.globals import request
 import json
 import os
 
@@ -87,16 +88,19 @@ def handle_users():
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
   print("HELLO")
-  name = request.json.get("name", None)
-  last_name = request.json.get("lastName", None)
-  email = request.json.get("email", None)
-  password = request.json.get("password", None)
+  body = request.get_json(force=True)
+  user_name = body.get("user_name", None)
+  name = body.get("name", None)
+  last_name = body.get("lastName", None)
+  email = body.get("email", None)
+  password = body.get("password", None)
 
-  user = User(name=name, last_name=last_name, email=email, password=password)
-  db.session.add(user)
+
+  user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
+  db.session.add(user1)
   db.session.commit()
 
-  return jsonify(user.serialize())
+  return jsonify(user1.serialize())
 
   #devuelve 404 >>
 

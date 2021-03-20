@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { apiBaseUrl } from "constants";
+import { apiBaseUrl } from "../constants";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -18,9 +18,8 @@ const SignUpForm = props => {
 		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
 	};
 
-	const handleFinalSubmit = e => {
+	const handleFinalSubmit = () => {
 		event.preventDefault();
-
 		var raw = JSON.stringify(eachEntry);
 
 		var requestOptions = {
