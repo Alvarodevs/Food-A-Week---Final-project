@@ -1,7 +1,9 @@
 // .pre-page-container{
 //     z-index: 2;
 // }
-
+.container-fluid{
+    padding:0px!important;
+}
 
 .head-prepage{
     margin-top:1%;
@@ -28,10 +30,6 @@
    
 }
 
-
-
-
-
 .img-prepage2{
     margin-top:-15%;
     position:absolute;
@@ -44,7 +42,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-   
 
 .title-web{
     margin:0;
