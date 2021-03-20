@@ -20,7 +20,7 @@ export const Pre = () => {
 			</div>
 			<div className="text-pre-page d-flex flex-column align-items-end ">
 				<p className="prepage-text">Search your favorite recipes</p>
-				<p className="prepage-text">Assaign recipes for every day</p>
+				<p className="prepage-text">Assign recipes for every day</p>
 				<p className="prepage-text align-item-end">Use & reuse</p>
 				<p className="prepage-text" id="last-prepage-text">
 					& enjoy your time
