@@ -31,12 +31,12 @@ export const Pre = () => {
 				<img className="img-prepage2" />
 			</div>
 
-			{/* <div className="signup">
+			<div className="signup">
 				<SignUp />
 			</div>
 			<div className="login">
 				<Login />
-			</div> */}
+			</div>
 
 			<div>
 				<Footer />

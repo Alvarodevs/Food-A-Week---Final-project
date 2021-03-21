@@ -109,12 +109,12 @@ const SignUpForm = props => {
 export const SignUp = props => {
 	return (
 		<div className="jumbotron">
-			<Modal show={show} onHide={handleClose}>
+			{/* <Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton />
-				<Modal.Body>
-					<SignUpForm />
-				</Modal.Body>
-			</Modal>
+				<Modal.Body> */}
+			<SignUpForm />
+			{/* </Modal.Body>
+			</Modal> */}
 			<hr className="my-4" />
 
 			<Link to="/">
