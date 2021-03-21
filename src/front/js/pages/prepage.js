@@ -25,10 +25,10 @@ export const Pre = () => {
 				<p className="prepage-text" id="last-prepage-text">
 					& enjoy your time
 				</p>
-				<img className="img-prepage" />
+				<div className="img-prepage" />
 			</div>
 			<div className="d-flex ">
-				<img className="img-prepage2" />
+				<div className="img-prepage2" />
 			</div>
 
 			<div className="signup">
