@@ -10,6 +10,7 @@ export const Weekplan = props => {
 
 	const handleSubmit = event => {
 		actions.addTitleMenu(titleMenu);
+		//actions.newWeek();
 	};
 
 	const handleInputChange = e => {
@@ -17,7 +18,6 @@ export const Weekplan = props => {
 	};
 
 	return (
-		//console.log(props),
 		<div className="container-fluid">
 			<div className="w-100 ">
 				<Form className="mb-3 d-flex">
@@ -28,6 +28,7 @@ export const Weekplan = props => {
 						aria-label="text"
 						onChange={handleInputChange}
 					/>
+					{/* TRIGGER PARA CREAR EL JSON EN FLUX */}
 					<Button variant="none" className="green-button ml-3" onClick={handleSubmit}>
 						Save
 					</Button>

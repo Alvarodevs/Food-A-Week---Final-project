@@ -22,10 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-			title: "",
-			day: "",
-			position: "",
-			uri: ""
+			newWeeklyMenu: {
+				title: "",
+				days: []
+			}
 		}, //close store
 		actions: {
 			getRecipes: props => {
@@ -83,52 +83,85 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
-			// newWeek: newWeek => {
-			// 	let store = getStore();
-			// 	var myHeaders = new Headers();
-			// 	myHeaders.append("Content-Type", "application/json");
+			newWeek: () => {
+				let store = getStore();
 
-			// 	var raw = JSON.stringify(newWeek);
+				var dataJson = {
+					day: store.day,
+					position: store.position,
+					uri: store.uri
+				};
+				console.log(JSON.stringify(dataJson));
 
-			// 	var requestOptions = {
-			// 		method: "POST",
-			// 		headers: myHeaders,
-			// 		body: raw,
-			// 		redirect: "follow"
-			// 	};
+				// var myHeaders = new Headers();
+				// myHeaders.append("Content-Type", "application/json");
 
-			// 	fetch(`${baseUrl}new_weekly_menu`, requestOptions)
-			// 		.then(response => response.json())
-			// 		.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
-			// 		.catch(error => console.log("error", error));
-			// },
+				// var raw = JSON.stringify(newWeek);
+
+				// var requestOptions = {
+				// 	method: "POST",
+				// 	headers: myHeaders,
+				// 	body: raw,
+				// 	redirect: "follow"
+				// };
+
+				// fetch(`${baseUrl}new_weekly_menu`, requestOptions)
+				// 	.then(response => response.json())
+				// 	.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
+				// 	.catch(error => console.log("error", error));
+			},
 
 			addTitleMenu: titleMenu => {
 				let store = getStore();
-				let newTitleMenu = store.title;
+				let newTitleMenu = store.newWeeklyMenu["title"];
 				newTitleMenu = titleMenu;
-				setStore({ title: newTitleMenu });
+				setStore(newTitleMenu);
+				//Storing title OK;
 			},
+
+			addRecipe: (day, meal, uri) => {
+				let store = getStore();
+				let newNewWeeklyMenu = store.newWeeklyMenu;
+
+				if (!([day] in newNewWeeklyMenu["days"])) {
+					newNewWeeklyMenu["days"][day] = [];
+				}
+
+				console.log(newNewWeeklyMenu);
+
+				// if (!newWeeklyMenu["days"][newElement["day"]].find(meal => meal["name"] === newElement["meal"])) {
+				// 	newWeeklyMenu["days"][newElement["day"]].push({
+				// 		name: newElement["meal"],
+				// 		uri: newElement["recipe"]
+				// 	});
+				// }
+			},
+
 			addDay: day => {
 				let store = getStore();
 				let newDay = store.day;
-				newDay = day;
-				setStore({ day: newDay });
-				console.log(day);
+				//newDay = day;
+				// for (var i = 0; i < newDay.length; i++) {
+				// 	if (day != newDay[i]) setStore(newDay.push(day));
+				// }
+				setStore(newDay.push(day));
+				setStore(newDay.sort());
+				setStore(newDay.slice(0, 6));
+				console.log(newDay);
 			},
 			addPosition: position => {
 				let store = getStore();
 				let newPosition = store.position;
 				newPosition = position;
 				setStore({ position: newPosition });
-				console.log(position);
+				//console.log(position);
 			},
 			addUri: uri => {
 				let store = getStore();
 				let newUri = store.uri;
 				newUri = uri;
 				setStore({ uri: newUri });
-				console.log(uri);
+				//console.log(uri);
 			}
 		}
 	};

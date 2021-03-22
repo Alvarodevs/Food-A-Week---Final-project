@@ -8,12 +8,6 @@ import * as Icon from "react-bootstrap-icons";
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
 
-	// const showRecipe = props => {
-	// 	if (store.day === props.name) {
-	// 		console.log(props.name);
-	// 	} else null;
-	// };
-
 	return (
 		//console.log(props),
 		<div className="container-fluid p-0">

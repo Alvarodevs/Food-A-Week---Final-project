@@ -13,10 +13,14 @@ import * as Icon from "react-bootstrap-icons";
 export const NewWeek = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
-	const [selectedDay, setSelectedDay] = useState("monday");
+	const [selectedDay, setSelectedDay] = useState("0");
 	const [selectedPosition, setSelectedPosition] = useState("0");
 	const [selectedUri, setSelectedUri] = useState("");
 	const [selectedRecipeName, setSelectedRecipeName] = useState("");
+	const [seedDay, setSeedDay] = useState({
+		position: "0",
+		label: ""
+	});
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
@@ -33,69 +37,55 @@ export const NewWeek = () => {
 		event.preventDefault();
 	};
 
-	const selectDay = e => {
+	const handleDay = e => {
 		setSelectedDay(e.target.value);
+		//actions.addDay(selectedDay);
+		//console.log(selectedDay);
 	};
 
 	const handlePosition = e => {
 		setSelectedPosition(e.target.value);
 	};
 
-	const handleUri = e => {
-		setSelectedUri(e.target.value);
+	const handleRecipeName = e => {
 		setSelectedRecipeName(e.target.title);
-		handleData();
 	};
 
-	//Storing day, & uri position in flux to create JSON
+	//Storing in flux to create JSON ---> Convert this values to the JSON REQUIRED to pass it in flux
+
+	// const handleData = () => {
+	// 	if (selectedDay != "") {
+	// 		actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
+	// 	}
+	// };
+
 	const handleData = () => {
-		if (selectedDay == "monday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "tuesday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "wednesday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "thursday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "friday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "saturday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		} else if (selectedDay == "sunday") {
-			actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-		}
+		actions.addRecipe(selectedDay, selectedPosition, selectedRecipeName);
 	};
 
-	// const storeUri = () => {
-	// 	actions.addUri(selectedUri);
+	//getAttribute("dataUri")); //atributo value contiene bien el uri
+	// const handleSeedDay = e => {
+	// 	//setSelectedUri(e.target.value);
+	// 	//No necesario, vendrá del flux para mostrarse en el acordeon diario
+	// 	//setSelectedRecipeName(e.target.title);
+	// 	setSeedDay({
+	// 		position: selectedPosition,
+	// 		//uri: url of uri not got due to data type
+	// 		label: selectedRecipeName
+	// 	});
+	// 	console.log(seedDay);
 	// };
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<i className="fas fa-plus" onClick={handleUri} value={item.recipe.uri} title={item.recipe.label} />
-			{/* <div>
-				<Dropdown className="d-flex flex-row m-auto toggle" size="xs">
-					<Dropdown.Toggle />
-					<Dropdown.Menu>
-						<Dropdown.Item onClick={handlePosition} value="0">
-							Breakfast
-						</Dropdown.Item>
-						<Dropdown.Item onClick={handlePosition} value="1">
-							Snack 1
-						</Dropdown.Item>
-						<Dropdown.Item onClick={handlePosition} value="2">
-							Lunch
-						</Dropdown.Item>
-						<Dropdown.Item onClick={handlePosition} value="3">
-							Snack 2
-						</Dropdown.Item>
-						<Dropdown.Item onClick={handlePosition} value="4">
-							Dinner
-						</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
-			</div> */}
+			<i
+				className="fas fa-plus"
+				onMouseEnter={handleRecipeName}
+				onClick={handleData}
+				data={item.recipe.uri}
+				title={item.recipe.label}
+			/>
 		</ListGroup.Item>
 	));
 
@@ -119,15 +109,15 @@ export const NewWeek = () => {
 						<select
 							className="custom-select day-selector col-3 pr-4"
 							id="mySelectDay"
-							value={selectedDay}
-							onChange={selectDay}>
-							<option value="monday">Monday</option>
-							<option value="tuesday">Tuesday</option>
-							<option value="wednesday">Wednesday</option>
-							<option value="thursday">Thursday</option>
-							<option value="friday">Friday</option>
-							<option value="saturday">Saturday</option>
-							<option value="sunday">Sunday</option>
+							onChange={handleDay}
+							value={selectedDay}>
+							<option value="0">Monday</option>
+							<option value="1">Tuesday</option>
+							<option value="2">Wednesday</option>
+							<option value="3">Thursday</option>
+							<option value="4">Friday</option>
+							<option value="5">Saturday</option>
+							<option value="6">Sunday</option>
 						</select>
 						<select className="custom-select col-2" onChange={handlePosition}>
 							<option value="0">Breakfast</option>
@@ -169,9 +159,6 @@ export const NewWeek = () => {
 				<div className="results-body mr-0">
 					<div className="search-result">
 						<ListGroup className="d-flex">{searchResult}</ListGroup>
-						<Button className="d-flex m-auto" onClick={() => actions.getMoreRecipes()}>
-							more
-						</Button>
 					</div>
 				</div>
 			</div>
