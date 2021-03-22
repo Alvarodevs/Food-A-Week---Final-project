@@ -128,12 +128,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						setStore({ accessToken: data, user: data, userMail: signInParams.email });
+						localStorage.setItem("accessToken", data);
+						localStorage.setItem("email", signInParams.email);
 					})
 					.catch(error => console.log("error", error));
+			},
+			checkLogin: () => {
+				const store = getStore();
+				if (localStorage.accessToken && localStorage.email) {
+					// the user is logged in
+					// { accessToken : 'asdfasdfasdfasdf' }
+					setStore({
+						accessToken: localStorage.getItem("accessToken"),
+						user: localStorage.getItem("accessToken"),
+						userMail: localStorage.getItem("email")
+					});
+
+					// TODO: move this to the logout action
+					//localStorage.removeItem('myData');
+					// localStorage.clear();
+				}
 			},
 			isUserAuthenticated: () => {
 				const store = getStore();
 				return store.accessToken !== null;
+			},
+			logout: () => {
+				const store = getStore();
+				let newToken = store.accessToken;
+				newToken = null;
+				setStore({ accessToken: newToken });
+				//setStore({ accessToken: null });
+				localStorage.clear();
+				console.log("clear all");
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });

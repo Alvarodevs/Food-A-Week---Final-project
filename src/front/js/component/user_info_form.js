@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
 import PropTypes from "prop-types";
+import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 //import "../../styles/index.scss";
 
