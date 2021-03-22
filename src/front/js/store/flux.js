@@ -119,49 +119,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//Storing title OK;
 			},
 
-			addRecipe: (day, meal, uri) => {
+			addRecipe: (day, meal, name, uri) => {
 				let store = getStore();
-				let newNewWeeklyMenu = store.newWeeklyMenu;
+				debugger;
+				let newWeeklyMenu = store.newWeeklyMenu;
 
-				if (!([day] in newNewWeeklyMenu["days"])) {
-					newNewWeeklyMenu["days"][day] = [];
+				if (!newWeeklyMenu.days[day]) {
+					newWeeklyMenu.days[day] = [];
 				}
+				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
 
-				console.log(newNewWeeklyMenu);
-
-				// if (!newWeeklyMenu["days"][newElement["day"]].find(meal => meal["name"] === newElement["meal"])) {
-				// 	newWeeklyMenu["days"][newElement["day"]].push({
-				// 		name: newElement["meal"],
-				// 		uri: newElement["recipe"]
-				// 	});
-				// }
+				setStore({ newWeeklyMenu: newWeeklyMenu });
 			},
-
-			addDay: day => {
-				let store = getStore();
-				let newDay = store.day;
-				//newDay = day;
-				// for (var i = 0; i < newDay.length; i++) {
-				// 	if (day != newDay[i]) setStore(newDay.push(day));
-				// }
-				setStore(newDay.push(day));
-				setStore(newDay.sort());
-				setStore(newDay.slice(0, 6));
-				console.log(newDay);
+			getDayName: dayNumber => {
+				let days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
+				return days[dayNumber];
 			},
-			addPosition: position => {
-				let store = getStore();
-				let newPosition = store.position;
-				newPosition = position;
-				setStore({ position: newPosition });
-				//console.log(position);
-			},
-			addUri: uri => {
-				let store = getStore();
-				let newUri = store.uri;
-				newUri = uri;
-				setStore({ uri: newUri });
-				//console.log(uri);
+			getMealName: mealNumber => {
+				let meals = ["Breakfast", "Snack 01", "Lunch", "Snack 02", "Dinner"];
+				return meals[mealNumber];
 			}
 		}
 	};
