@@ -16,6 +16,8 @@ import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/NewWeek";
 import { AllWeeks } from "./pages/weeks";
 import { Map } from "./pages/maps";
+import { Profile } from "./component/profile";
+
 //import { Single} from "";
 
 //Context
@@ -48,6 +50,9 @@ const Layout = () => {
 			</Route>
 			<Route exact path="/map">
 				<Map />
+			</Route>
+			<Route exact path="/profile">
+				<Profile />
 			</Route>
 
 			<Footer />

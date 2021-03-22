@@ -118,14 +118,14 @@ def protected():
     db.session.commit()
   print(user.serialize())
   return jsonify(user.serialize())
-
-
-
-################ necessary in every route: headers: {Authorization: "Bearer"+ store.accessToken},
 def current_user(identity):
   print(identity["id"])
   return User.query.get(identity["id"])
 
+
+####################################
+
+####################################
 @api.route('/menu', methods=['GET'])
 def handle_menu():
 
@@ -208,13 +208,10 @@ def handle_selected_recipe():
 
 @api.route('/restriction', methods=['GET'])
 def handle_restriction():
-
     # get all the recipes
     restriction_query = Restriction.query.all()
-
     # get only the ones named "Joe"
     #recipe_query = Recipe.query.filter_by(name='Joe')
-
     # map the results and your list of recipes  inside of the recipes variable
     restrictions = list(map(lambda x: x.serialize(), restriction_query))
 
