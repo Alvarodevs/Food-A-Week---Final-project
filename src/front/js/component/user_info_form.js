@@ -1,11 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 //import "../../styles/index.scss";
 
 export const UserData = () => {
-	//const { store, actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
+
+	const options = {
+		body: data, //data is not definied
+		headers: {
+			Authorization: "Bearer " + store.accessToken
+		},
+		method: "GET"
+	};
+
+	fetch(apiBaseUrl + "api/me", options)
+		.then(resp => resp.json())
+		.then(data => {
+			actions.setUser(data);
+			document.getElementById(props.modalId).click(); // https://stackoverflow.com/questions/27064176/typeerror-modal-is-not-a-function-with-bootstrap-modal
+		});
 
 	return (
 		<Form className="m-2">
@@ -34,4 +50,8 @@ export const UserData = () => {
 			</Form.Group>
 		</Form>
 	);
+};
+
+UserData.propTypes = {
+	modalId: PropTypes.string
 };

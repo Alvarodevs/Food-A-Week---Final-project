@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/index.scss";
 import { SignUp } from "../component/signUp";
-import { Login } from "../component/login";
+import SignIn from "../component/login";
 import { Footer } from "../component/footer";
 import "../../styles/index.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Pre = () => {
 	const { store, actions } = useContext(Context);
@@ -35,7 +37,7 @@ export const Pre = () => {
 				<SignUp />
 			</div>
 			<div className="login">
-				<Login />
+				<SignIn />
 			</div>
 
 			<div>

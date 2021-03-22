@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-teal-crayfish-87w91ixx.ws-eu03.gitpod.io/api/";
+import { apiBaseUrl } from "../constants";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -24,7 +24,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			q: [],
 			title: "",
 			day: "",
-			position: ""
+			position: "",
+			notifyMessage: "Hello to FoodAWeek",
+			user: null,
+			accessToken: null,
+			userMail: ""
 		}, //close store
 		actions: {
 			getRecipes: props => {
@@ -109,6 +113,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let newTitleMenu = store.title;
 				newTitleMenu = titleMenu;
 				setStore({ title: newTitleMenu });
+			},
+			getWelcomeMessage: () => {},
+			signInUser: signInParams => {
+				let store = getStore();
+				let raw = JSON.stringify(signInParams);
+				var requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: raw
+				};
+
+				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ accessToken: data, user: data, userMail: signInParams.email });
+					})
+					.catch(error => console.log("error", error));
+			},
+			isUserAuthenticated: () => {
+				const store = getStore();
+				return store.accessToken !== null;
+			},
+			setUser: userParams => {
+				setStore({ user: userParams });
 			}
 		}
 	};

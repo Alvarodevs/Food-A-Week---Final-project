@@ -31,6 +31,7 @@ const injectContext = PassedComponent => {
 			//state.actions.getMessage(); // <---- calling this function from the flux.js actions
 			//state.actions.getRecipes(); //si se carga al generar la pantalla ya nos va bien que aparezca vacío
 			//	state.actions.getMoreRecipes();
+			state.actions.getWelcomeMessage();
 		}, []);
 
 		// useEffect(

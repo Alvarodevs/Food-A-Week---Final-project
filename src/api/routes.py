@@ -94,21 +94,34 @@ def sign_in():
 
     user = User.query.filter_by(email=email).one_or_none()
     if not user or not user.check_password(password):
-        return jsonify("Wrong email or password"), 401
+        return jsonify("Your credentials are wrong, please try again"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
     access_token = create_access_token(identity=user.serialize())
     return jsonify(access_token=access_token)
 
-#WHEN?
-@api.route("/me", methods=["GET"])
+@api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
 def protected():
-    # We can now access our sqlalchemy User object via `current_user`.
-    serialized_data = get_jwt_identity()
-    return jsonify(serialized_data)
+  print(get_jwt_identity())
+  user = current_user(get_jwt_identity())
+  if request.method == 'PUT' and 'avatar' in request.files:
+    result = cloudinary.uploader.upload(request.files['avatar']) # Response metadata : https://cloudinary.com/documentation/django_image_and_video_upload#upload_response
+    
+    if user.avatar_url is not None: #Destroy the previous image only after the new one is uploaded
+      cloudinary.uploader.destroy(user.avatar_public_id())
+    
+    user.avatar_url = result['secure_url']
+    db.session.commit()
+  print(user.serialize())
+  return jsonify(user.serialize())
 
 
+
+################ necessary in every route: headers: {Authorization: "Bearer"+ store.accessToken},
+def current_user(identity):
+  print(identity["id"])
+  return User.query.get(identity["id"])
 
 @api.route('/menu', methods=['GET'])
 def handle_menu():
@@ -204,31 +217,6 @@ def handle_restriction():
 
     return jsonify(restrictions), 200
 
-#############################
-
-# AVATAR (FOTO DE PERFIL)
-# @api.route('/profile/image/<int:user_id>', methods=['PUT'])
-# def handle_upload(user_id):
-
-#     # validate that the front-end request was built correctly
-#     if 'avatar_image' in request.files:
-#         # upload file to uploadcare
-#         result = cloudinary.uploader.upload(request.files['avatar_image'])
-
-#         # fetch for the user
-#         user1 = User.query.get(user_id)
-#         # update the user with the given cloudinary image URL
-#         user1.profile_image_url = result['secure_url']
-
-#         db.session.add(user1)
-#         db.session.commit()
-
-#         return jsonify(user1.serialize()), 200
-#     else:
-#         raise APIException('Missing profile_image on the FormData')
-
-
-###### API post 
 
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():

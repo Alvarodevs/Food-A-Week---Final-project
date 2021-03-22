@@ -33,7 +33,7 @@ const SignUpForm = props => {
 		};
 
 		fetch(`${apiBaseUrl}/api/sign_up`, requestOptions)
-			.then(response => response.text())
+			.then(response => response.json())
 			.then(result => {
 				toast("User was created");
 				history.push("/home");

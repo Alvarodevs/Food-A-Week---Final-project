@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+//import withAuth from "../component/withAuth";
 import { apiBaseUrl } from "../constants";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -6,45 +7,31 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { toast } from "react-toastify";
 
-const LoginForm = props => {
+const SignInForm = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 
 	const initialInputState = { email: "", password: "" };
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
-
 	const handleInputChange = e => {
-		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
 		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
 	};
 
-	const handleFinalSubmit = () => {
+	const handleFinalSubmit = e => {
 		event.preventDefault();
-		var raw = JSON.stringify(eachEntry);
-
-		var requestOptions = {
-			method: "POST",
-			body: raw
-		};
-
-		fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
-			.then(response => response.text())
-			.then(result => {
-				history.push("/home");
-			})
-			.catch(error => console.log("error", error));
+		actions.signInUser(eachEntry);
 	};
 
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">User e-mail</label>
+				<label htmlFor="exampleInputEmail">Email address</label>
 				<input
 					type="email"
 					className="form-control"
-					id="email"
-					placeholder="Enter your e-mail"
+					id="exampleInputEmail"
+					placeholder="Enter email"
 					name="email"
 					onChange={handleInputChange}
 				/>
@@ -60,32 +47,27 @@ const LoginForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="green-button btn">
+			<button type="submit" className="btn btn-primary float-right">
 				Submit
 			</button>
 		</form>
 	);
 };
 
-export const Login = props => {
-	return (
-		<div className="card">
-			<LoginForm />
-			<hr className="my-4" />
+const SignIn = props => {
+	const { store, actions } = useContext(Context);
+	let history = useHistory();
+	if (actions.isUserAuthenticated()) {
+		toast.success("Iniciaste sesión exitosamente!");
+		history.push("/home");
+	}
 
-			<Link to="/">
-				<span className="green-button btn" href="#" role="button">
-					Back home
-				</span>
-			</Link>
+	return (
+		<div className="jumbotron">
+			<h2>Inicio de sesión</h2>
+			<SignInForm />
 		</div>
 	);
 };
 
-Login.propTypes = {
-	match: PropTypes.object
-};
-
-LoginForm.propTypes = {
-	match: PropTypes.object
-};
+export default SignIn;
