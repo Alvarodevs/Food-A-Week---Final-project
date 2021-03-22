@@ -6,22 +6,12 @@ import PropTypes from "prop-types";
 //import "../../styles/index.scss";
 
 export const UserData = () => {
-	const { store, actions } = useContext(Context);
+	//const { store, actions } = useContext(Context);
 
-	const options = {
-		body: data, //data is not definied
-		headers: {
-			Authorization: "Bearer " + store.accessToken
-		},
-		method: "GET"
-	};
-
-	fetch(apiBaseUrl + "api/me", options)
-		.then(resp => resp.json())
-		.then(data => {
-			actions.setUser(data);
-			document.getElementById(props.modalId).click(); // https://stackoverflow.com/questions/27064176/typeerror-modal-is-not-a-function-with-bootstrap-modal
-		});
+	//aquí va un get de la información del usuario en base de datos.
+	// y un put para cambiarla.
+	// además en navbar también debería haber un get para la imagen de perfil
+	// hay que introducir los elementos de perfil aquí.
 
 	return (
 		<Form className="m-2">
@@ -50,8 +40,4 @@ export const UserData = () => {
 			</Form.Group>
 		</Form>
 	);
-};
-
-UserData.propTypes = {
-	modalId: PropTypes.string
 };

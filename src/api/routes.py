@@ -57,18 +57,21 @@ def handle_role():
 ####################################
 
 @api.route('/users', methods=['GET'])
+@jwt_required()
 def handle_users():
 
+
     # get all the recipes
-    user_query = User.query.all()
+    #user_query = User.query.all()
 
     # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
+    recipe_query = Recipe.query.filter_by(name="nitry")
 
     # map the results and your list of recipes  inside of the recipes variable
     users = list(map(lambda x: x.serialize(), user_query))
 
     return jsonify(users), 200
+    
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
