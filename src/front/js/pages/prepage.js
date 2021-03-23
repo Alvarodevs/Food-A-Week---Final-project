@@ -16,8 +16,24 @@ export const Pre = () => {
 			<div className="head-prepage d-flex justify-content-begin">
 				<div className="title-web ml-5 mr-auto p-2">Food A Week</div>
 				<div className="d-flex flex-column buttons-log justify-content-end">
-					<button className="btn prebutton green-button  m-0  p-1">New sign up</button>
-					<button className="btn prebutton green-button mt-1  p-1">Login</button>
+					<button
+						className="btn prebutton green-button mt-1  p-1"
+						type="button"
+						data-toggle="collapse"
+						data-target="#signUpComponent"
+						aria-expanded="false"
+						aria-controls="signUpComponent">
+						New sign up
+					</button>
+					<button
+						className="btn prebutton green-button mt-1  p-1"
+						type="button"
+						data-toggle="collapse"
+						data-target="#logincomponent"
+						aria-expanded="false"
+						aria-controls="logincomponent">
+						Login
+					</button>
 				</div>
 			</div>
 			<div className="text-pre-page d-flex flex-column align-items-end ">
@@ -32,12 +48,14 @@ export const Pre = () => {
 			<div className="d-flex ">
 				<div className="img-prepage2" />
 			</div>
-
-			<div className="signup">
+			<div className="collapse" id="signUpComponent">
 				<SignUp />
 			</div>
-			<div className="login">
-				<SignIn />
+
+			<div className="collapse" id="loginComponent">
+				<div>
+					<SignIn />
+				</div>
 			</div>
 
 			<div>
