@@ -10,7 +10,7 @@ export const Weekplan = props => {
 
 	const handleSubmit = event => {
 		actions.addTitleMenu(titleMenu);
-		//actions.newWeek();
+		actions.newWeek();
 	};
 
 	const handleInputChange = e => {
@@ -26,6 +26,7 @@ export const Weekplan = props => {
 						className="menu-title"
 						placeholder="Week menu title"
 						aria-label="text"
+						onMouseEnter={handleInputChange}
 						onChange={handleInputChange}
 					/>
 					{/* TRIGGER PARA CREAR EL JSON EN FLUX */}

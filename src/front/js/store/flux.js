@@ -83,39 +83,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
-			newWeek: () => {
-				let store = getStore();
-
-				var dataJson = {
-					day: store.day,
-					position: store.position,
-					uri: store.uri
-				};
-				console.log(JSON.stringify(dataJson));
-
-				// var myHeaders = new Headers();
-				// myHeaders.append("Content-Type", "application/json");
-
-				// var raw = JSON.stringify(newWeek);
-
-				// var requestOptions = {
-				// 	method: "POST",
-				// 	headers: myHeaders,
-				// 	body: raw,
-				// 	redirect: "follow"
-				// };
-
-				// fetch(`${baseUrl}new_weekly_menu`, requestOptions)
-				// 	.then(response => response.json())
-				// 	.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
-				// 	.catch(error => console.log("error", error));
-			},
 
 			addTitleMenu: titleMenu => {
 				let store = getStore();
 				let newTitleMenu = store.newWeeklyMenu["title"];
 				newTitleMenu = titleMenu;
 				setStore(newTitleMenu);
+				console.log(newTitleMenu);
 				//Storing title OK;
 			},
 
@@ -135,6 +109,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 		uri: newElement["recipe"]
 				// 	});
 				// }
+			},
+
+			newWeek: () => {
+				let store = getStore();
+				var dataJson = {
+					newWeeklyMenu: store.newWeeklyMenu
+				};
+				console.log(JSON.stringify(dataJson));
+
+				// var myHeaders = new Headers();
+				// myHeaders.append("Content-Type", "application/json");
+
+				// var raw = JSON.stringify(newWeek);
+
+				// var requestOptions = {
+				// 	method: "POST",
+				// 	headers: myHeaders,
+				// 	body: raw,
+				// 	redirect: "follow"
+				// };
+
+				// fetch(`${baseUrl}new_weekly_menu`, requestOptions)
+				// 	.then(response => response.json())
+				// 	.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
+				// 	.catch(error => console.log("error", error));
 			},
 
 			addDay: day => {
