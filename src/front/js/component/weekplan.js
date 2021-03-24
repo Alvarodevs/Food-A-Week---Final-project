@@ -40,37 +40,37 @@ export const Weekplan = props => {
 					<Col sm={3}>
 						<Nav className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="first" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="first">
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="second" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="second">
 									{"Tuesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="third" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="third">
 									{"Wednesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fourth" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="fourth">
 									{"Thursday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fifth" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="fifth">
 									{"Friday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="sixth" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="sixth">
 									{"Saturday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="seventh" name={props.name}>
+								<Nav.Link className="green-button my-2" eventKey="seventh">
 									{"Sunday"}
 								</Nav.Link>
 							</Nav.Item>
@@ -79,25 +79,74 @@ export const Weekplan = props => {
 					<Col sm={9}>
 						<Tab.Content className="mt-2 accord-container">
 							<Tab.Pane eventKey="first" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[0] && (
+									<DailyPlan
+										dayNumber={0}
+										meals={store.newWeeklyMenu.days[0]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="second" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[1] && (
+									<DailyPlan
+										dayNumber={1}
+										meals={store.newWeeklyMenu.days[1]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="third" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[2] && (
+									<DailyPlan
+										dayNumber={2}
+										meals={store.newWeeklyMenu.days[2]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fourth" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[3] && (
+									<DailyPlan
+										dayNumber={3}
+										meals={store.newWeeklyMenu.days[3]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fifth" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[4] && (
+									<DailyPlan
+										dayNumber={4}
+										meals={store.newWeeklyMenu.days[4]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="sixth" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[5] && (
+									<DailyPlan
+										dayNumber={5}
+										meals={store.newWeeklyMenu.days[5]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="seventh" className="accordion">
-								<DailyPlan name={props.name} value={props.value} uri={props.uri} title={props.title} />
+								{(store.newWeeklyMenu.days[6] && (
+									<DailyPlan
+										dayNumber={6}
+										meals={store.newWeeklyMenu.days[6]}
+										mealNumber={props.mealNumber}
+									/>
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 						</Tab.Content>
 					</Col>
@@ -111,5 +160,6 @@ Weekplan.propTypes = {
 	name: PropTypes.string,
 	value: PropTypes.string,
 	uri: PropTypes.string,
-	title: PropTypes.string
+	title: PropTypes.string,
+	mealNumber: PropTypes.string
 };

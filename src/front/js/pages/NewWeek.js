@@ -28,10 +28,6 @@ export const NewWeek = () => {
 		actions.getRecipes(value);
 	};
 
-	// const addRecipe = event => {
-	// 	actions.NewWeek;
-	// };
-
 	const handleInput = event => {
 		setValue(event.target.value);
 		event.preventDefault();
@@ -39,8 +35,6 @@ export const NewWeek = () => {
 
 	const handleDay = e => {
 		setSelectedDay(e.target.value);
-		//actions.addDay(selectedDay);
-		//console.log(selectedDay);
 	};
 
 	const handlePosition = e => {
@@ -51,44 +45,20 @@ export const NewWeek = () => {
 		setSelectedRecipeName(e.target.title);
 	};
 
-	//Storing in flux to create JSON ---> Convert this values to the JSON REQUIRED to pass it in flux
-
-	// const handleData = () => {
-	// 	if (selectedDay != "") {
-	// 		actions.addDay(selectedDay), actions.addPosition(selectedPosition), actions.addUri(selectedUri);
-	// 	}
-	// };
-
-	const handleData = () => {
-		actions.addRecipe(selectedDay, selectedPosition, selectedRecipeName);
+	const handleData = event => {
+		let icon = event.target;
+		let recipeName = icon.getAttribute("data-title");
+		let recipeUri = icon.getAttribute("data-uri");
+		actions.addRecipe(selectedDay, selectedPosition, recipeName, recipeUri);
 	};
-
-	//getAttribute("dataUri")); //atributo value contiene bien el uri
-	// const handleSeedDay = e => {
-	// 	//setSelectedUri(e.target.value);
-	// 	//No necesario, vendrá del flux para mostrarse en el acordeon diario
-	// 	//setSelectedRecipeName(e.target.title);
-	// 	setSeedDay({
-	// 		position: selectedPosition,
-	// 		//uri: url of uri not got due to data type
-	// 		label: selectedRecipeName
-	// 	});
-	// 	console.log(seedDay);
-	// };
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<i
-				className="fas fa-plus"
-				onMouseEnter={handleRecipeName}
-				onClick={handleData}
-				data={item.recipe.uri}
-				title={item.recipe.label}
-			/>
+			<i className="fas fa-plus" onClick={handleData} data-uri={item.recipe.uri} data-title={item.recipe.label} />
 		</ListGroup.Item>
 	));
-
+	console.log(selectedPosition);
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
@@ -163,7 +133,7 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="d-flex col-6">
-				<Weekplan name={selectedDay} value={selectedPosition} uri={selectedUri} title={selectedRecipeName} />
+				<Weekplan title={selectedRecipeName} mealNumber={selectedPosition} />
 			</div>
 		</div>
 	);
