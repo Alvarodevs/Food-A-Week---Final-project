@@ -7,6 +7,21 @@ $gray           : #e3e2df;
 
 $gray-shadow:  #b5b4b2;
 
+
+$theme-colors: (
+  "primary": #468d5e,
+  "danger": #f08e88
+);
+
+
+$primary: #1E79C7;
+$secondary: #E5681A;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+}
+
 .btn-primary:not(:disabled):not(.disabled):active{
     color: #fff; 
     background-color: $green;
