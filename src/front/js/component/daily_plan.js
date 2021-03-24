@@ -18,7 +18,7 @@ export const MealCard = props => {
 					name={props.dayName}
 					value={props.dayNumber}
 					uri={props.uri}>
-					{(props.meals[props.mealNumber] && actions.getMealName(props.mealNumber)) || "Please add a meal"}
+					{props.mealName || "Please add a meal"}
 					<ChevronDown />
 				</Accordion.Toggle>
 			</Card.Header>
@@ -37,35 +37,35 @@ MealCard.propTypes = {
 	dayNumber: PropTypes.number,
 	uri: PropTypes.string,
 	recipeName: PropTypes.string,
-	meals: PropTypes.array,
-	// meals no es object, es array
+	mealName: PropTypes.string,
 	mealNumber: PropTypes.string
 };
 
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
 
-	//if(!store.newWeeklyMenu.days[props.dayNumber][props.mealNumber] &&
-	//for (var i in props.meals) {
+	let mealList = props.meals.map((item, index) => {
+		return (
+			<MealCard
+				key={index}
+				dayName={actions.getDayName(props.dayNumber)}
+				dayNumber={props.dayNumber}
+				mealName={actions.getMealName(index)}
+				mealNumber={index.toString()}
+				uri={item.url}
+				recipeName={item.name}
+			/>
+		);
+	});
+
 	return (
 		<div className="container-fluid p-0">
-			<Accordion className="accordion">
-				<MealCard
-					dayName={actions.getDayName(props.dayNumber)}
-					dayNumber={props.dayNumber}
-					meals={props.meals}
-					mealNumber={props.mealNumber}
-					uri={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["uri"]}
-					recipeName={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["name"]}
-				/>
-			</Accordion>
+			<Accordion className="accordion">{mealList}</Accordion>
 		</div>
 	);
-	//}
 };
 
 DailyPlan.propTypes = {
 	dayNumber: PropTypes.number,
-	meals: PropTypes.array,
-	mealNumber: PropTypes.string
+	meals: PropTypes.array
 };
