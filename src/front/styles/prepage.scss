@@ -10,6 +10,7 @@
 }
 .buttons-log{
     margin-right:2vw;
+    z-index:1;
 }
 .text-pre-page{
     margin-top:5%;
@@ -18,10 +19,12 @@
     position:absolute;
     width: 31%;
     height:50%;
-    margin-right:2vw;
+    margin-left:2vw;
+    margin:20%;
     object-fit: fill;
     z-index: 0;
     margin:0;
+    margin-bottom:3vw;
     background-image:url('../../front/img/eating.png');
     background-color: none;
     background-position: right;
@@ -31,7 +34,7 @@
 }
 
 .img-prepage2{
-    margin-top:-15%;
+    margin-top:0%;
     position:absolute;
     width: 30%;
     height:50%;
