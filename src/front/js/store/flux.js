@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
+
 			title: "",
 			day: "",
 			position: "",
@@ -30,14 +31,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			accessToken: null,
 			userMail: ""
 		}, //close store
+
 		actions: {
 			getRecipes: props => {
-				console.log(props);
 				let store = getStore();
 				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
 					store.APP_ID
 				}&app_key=${store.APP_KEY}`;
-				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
@@ -70,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 				console.log("more");
 			},
-
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -89,29 +88,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
-			// newWeek: newWeek => {
-			// 	let store = getStore();
-			// 	var myHeaders = new Headers();
-			// 	myHeaders.append("Content-Type", "application/json");
 
-			// 	var raw = JSON.stringify(newWeek);
-
-			// 	var requestOptions = {
-			// 		method: "POST",
-			// 		headers: myHeaders,
-			// 		body: raw,
-			// 		redirect: "follow"
-			// 	};
-
-			// 	fetch(`${baseUrl}new_weekly_menu`, requestOptions)
-			// 		.then(response => response.json())
-			// 		.then(result => [{ title: `${store.title}`, days: `${store.hits.title}` }])
-			// 		.catch(error => console.log("error", error));
-			// },
 			addTitleMenu: titleMenu => {
 				let store = getStore();
-				let newTitleMenu = store.title;
+				let newTitleMenu = store.newWeeklyMenu["title"];
 				newTitleMenu = titleMenu;
+
 				setStore({ title: newTitleMenu });
 			},
 			getWelcomeMessage: () => {},
@@ -164,6 +146,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
+
+				setStore(newTitleMenu);
+				//console.log(newTitleMenu);
+				//Storing title OK;
+			},
+
+			addRecipe: (day, meal, name, uri) => {
+				let store = getStore();
+				let newWeeklyMenu = store.newWeeklyMenu;
+
+				if (!newWeeklyMenu.days[day]) {
+					newWeeklyMenu.days[day] = [];
+				}
+				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
+
+				setStore({ newWeeklyMenu: newWeeklyMenu });
+				//console.log(newWeeklyMenu);
+			},
+			getDayName: dayNumber => {
+				let days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
+				return days[dayNumber];
+			},
+			getMealName: mealNumber => {
+				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
+				return meals[mealNumber];
+
 			}
 		}
 	};
