@@ -22,10 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-
-			title: "",
-			day: "",
-			position: "",
+			newWeeklyMenu: {
+				title: "",
+				days: []
+			},
 			notifyMessage: "Hello to FoodAWeek",
 			user: null,
 			accessToken: null,
@@ -171,7 +171,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMealName: mealNumber => {
 				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
 				return meals[mealNumber];
-
 			}
 		}
 	};
