@@ -58,7 +58,7 @@ export const NewWeek = () => {
 			<i className="fas fa-plus" onClick={handleData} data-uri={item.recipe.uri} data-title={item.recipe.label} />
 		</ListGroup.Item>
 	));
-	console.log(selectedPosition);
+
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">

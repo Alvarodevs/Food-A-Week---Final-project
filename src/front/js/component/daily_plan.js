@@ -8,13 +8,6 @@ import * as Icon from "react-bootstrap-icons";
 export const MealCard = props => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(
-		() => {
-			store.newWeeklyMenu.days[props.dayNumber][props.mealNumber] && props.meals[props.mealNumber];
-		},
-		[props.mealNumber]
-	);
-
 	return (
 		<Card>
 			<Card.Header className="white-bg">
@@ -45,29 +38,30 @@ MealCard.propTypes = {
 	uri: PropTypes.string,
 	recipeName: PropTypes.string,
 	meals: PropTypes.array,
+	// meals no es object, es array
 	mealNumber: PropTypes.string
 };
 
 export const DailyPlan = props => {
 	const { store, actions } = useContext(Context);
 
-	//console.log(props.mealNumber);
+	//if(!store.newWeeklyMenu.days[props.dayNumber][props.mealNumber] &&
+	//for (var i in props.meals) {
 	return (
-		store.newWeeklyMenu.days[props.dayNumber][props.mealNumber] && (
-			<div className="container-fluid p-0">
-				<Accordion className="accordion">
-					<MealCard
-						dayName={actions.getDayName(props.dayNumber)}
-						dayNumber={props.dayNumber}
-						meals={props.meals}
-						mealNumber={props.mealNumber}
-						uri={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["uri"]}
-						recipeName={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["name"]}
-					/>
-				</Accordion>
-			</div>
-		)
+		<div className="container-fluid p-0">
+			<Accordion className="accordion">
+				<MealCard
+					dayName={actions.getDayName(props.dayNumber)}
+					dayNumber={props.dayNumber}
+					meals={props.meals}
+					mealNumber={props.mealNumber}
+					uri={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["uri"]}
+					recipeName={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["name"]}
+				/>
+			</Accordion>
+		</div>
 	);
+	//}
 };
 
 DailyPlan.propTypes = {
