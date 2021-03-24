@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Form } from "react-bootstrap";
+import PropTypes from "prop-types";
+import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 //import "../../styles/index.scss";
 
 export const UserData = () => {
 	//const { store, actions } = useContext(Context);
+
+	//aquí va un get de la información del usuario en base de datos.
+	// y un put para cambiarla.
+	// además en navbar también debería haber un get para la imagen de perfil
+	// hay que introducir los elementos de perfil aquí.
 
 	return (
 		<Form className="m-2">

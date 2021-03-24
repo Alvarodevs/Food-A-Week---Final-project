@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../img/containers.png";
 import Dropdown from "react-bootstrap/Dropdown";
 //import NavigationComponent from "./component/navigationcomponent";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	const [pageTitle, setPageTitle] = useState();
 	const location = useLocation();
 
@@ -50,7 +52,9 @@ export const Navbar = () => {
 							<Dropdown.Menu>
 								<Dropdown.Item href="/userprofile">Profile</Dropdown.Item>
 								<Dropdown.Divider />
-								<Dropdown.Item href="/">Logout</Dropdown.Item>
+								<Dropdown.Item href="/" onClick={actions.logout}>
+									Logout
+								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</div>
