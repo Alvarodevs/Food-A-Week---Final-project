@@ -7,7 +7,7 @@ import * as Icon from "react-bootstrap-icons";
 
 export const MealCard = props => {
 	const { store, actions } = useContext(Context);
-
+	debugger;
 	return (
 		<Card>
 			<Card.Header className="white-bg">
