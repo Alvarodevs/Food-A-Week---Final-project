@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 967aa655d039
+Revision ID: b8293c1ae5f8
 Revises: 
-Create Date: 2021-03-22 17:45:16.638584
+Create Date: 2021-03-24 18:10:09.727203
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '967aa655d039'
+revision = 'b8293c1ae5f8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,25 +27,17 @@ def upgrade():
     sa.UniqueConstraint('name'),
     sa.UniqueConstraint('uri')
     )
-    op.create_table('role',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=120), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
-    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_name', sa.String(length=20), nullable=False),
+    sa.Column('user_name', sa.String(length=20), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=80), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('last_name', sa.String(length=30), nullable=False),
-    sa.Column('address', sa.String(length=120), nullable=False),
-    sa.Column('postal_code', sa.String(length=20), nullable=False),
+    sa.Column('address', sa.String(length=120), nullable=True),
+    sa.Column('postal_code', sa.String(length=20), nullable=True),
     sa.Column('phone', sa.Integer(), nullable=True),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
-    sa.Column('role_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('user_name')
@@ -119,6 +111,5 @@ def downgrade():
     op.drop_table('menu')
     op.drop_table('ingredient')
     op.drop_table('user')
-    op.drop_table('role')
     op.drop_table('recipe')
     # ### end Alembic commands ###

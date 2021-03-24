@@ -133,7 +133,7 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="d-flex col-6">
-				<Weekplan title={selectedRecipeName} mealNumber={selectedPosition} />
+				<Weekplan title={selectedRecipeName} />
 			</div>
 		</div>
 	);

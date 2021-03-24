@@ -80,71 +80,43 @@ export const Weekplan = props => {
 						<Tab.Content className="mt-2 accord-container">
 							<Tab.Pane eventKey="first" className="accordion">
 								{(store.newWeeklyMenu.days[0] && (
-									<DailyPlan
-										dayNumber={0}
-										meals={store.newWeeklyMenu.days[0]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={0} meals={store.newWeeklyMenu.days[0]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="second" className="accordion">
 								{(store.newWeeklyMenu.days[1] && (
-									<DailyPlan
-										dayNumber={1}
-										meals={store.newWeeklyMenu.days[1]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={1} meals={store.newWeeklyMenu.days[1]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="third" className="accordion">
 								{(store.newWeeklyMenu.days[2] && (
-									<DailyPlan
-										dayNumber={2}
-										meals={store.newWeeklyMenu.days[2]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={2} meals={store.newWeeklyMenu.days[2]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fourth" className="accordion">
 								{(store.newWeeklyMenu.days[3] && (
-									<DailyPlan
-										dayNumber={3}
-										meals={store.newWeeklyMenu.days[3]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={3} meals={store.newWeeklyMenu.days[3]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fifth" className="accordion">
 								{(store.newWeeklyMenu.days[4] && (
-									<DailyPlan
-										dayNumber={4}
-										meals={store.newWeeklyMenu.days[4]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={4} meals={store.newWeeklyMenu.days[4]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="sixth" className="accordion">
 								{(store.newWeeklyMenu.days[5] && (
-									<DailyPlan
-										dayNumber={5}
-										meals={store.newWeeklyMenu.days[5]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={5} meals={store.newWeeklyMenu.days[5]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="seventh" className="accordion">
 								{(store.newWeeklyMenu.days[6] && (
-									<DailyPlan
-										dayNumber={6}
-										meals={store.newWeeklyMenu.days[6]}
-										mealNumber={props.mealNumber}
-									/>
+									<DailyPlan dayNumber={6} meals={store.newWeeklyMenu.days[6]} />
 								)) ||
 									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>

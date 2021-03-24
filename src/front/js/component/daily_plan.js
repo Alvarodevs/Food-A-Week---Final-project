@@ -7,28 +7,11 @@ import * as Icon from "react-bootstrap-icons";
 
 export const MealCard = props => {
 	const { store, actions } = useContext(Context);
-
+	debugger;
 	return (
-		<Card>
-			<Card.Header className="white-bg">
-				<Accordion.Toggle
-					as={Button}
-					variant="link"
-					eventKey={props.mealNumber}
-					name={props.dayName}
-					value={props.dayNumber}
-					uri={props.uri}>
-					{(props.meals[props.mealNumber] && actions.getMealName(props.mealNumber)) || "Please add a meal"}
-					<ChevronDown />
-				</Accordion.Toggle>
-			</Card.Header>
-			<Accordion.Collapse eventKey={props.mealNumber} className="justify-content-between">
-				<Card.Body>
-					<i className="fas fa-times mr-3" />
-					{props.recipeName}
-				</Card.Body>
-			</Accordion.Collapse>
-		</Card>
+		<li>
+			{props.mealName || "Please add a meal"} : {props.recipeName}
+		</li>
 	);
 };
 
@@ -37,9 +20,8 @@ MealCard.propTypes = {
 	dayNumber: PropTypes.number,
 	uri: PropTypes.string,
 	recipeName: PropTypes.string,
-	meals: PropTypes.array,
-	// meals no es object, es array
-	mealNumber: PropTypes.string
+	mealName: PropTypes.string,
+	mealNumber: PropTypes.number
 };
 
 export const DailyPlan = props => {
@@ -47,18 +29,26 @@ export const DailyPlan = props => {
 
 	//if(!store.newWeeklyMenu.days[props.dayNumber][props.mealNumber] &&
 	//for (var i in props.meals) {
-	return (
-		<div className="container-fluid p-0">
-			<Accordion className="accordion">
+	debugger;
+
+	let mealList = props.meals.map((item, index) => {
+		debugger;
+		return (
+			<ul key={index}>
 				<MealCard
 					dayName={actions.getDayName(props.dayNumber)}
 					dayNumber={props.dayNumber}
-					meals={props.meals}
-					mealNumber={props.mealNumber}
-					uri={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["uri"]}
-					recipeName={store.newWeeklyMenu.days[props.dayNumber][props.mealNumber]["name"]}
+					mealName={actions.getMealName(index)}
+					mealNumber={index}
+					uri={item.url}
+					recipeName={item.name}
 				/>
-			</Accordion>
+			</ul>
+		);
+	});
+	return (
+		<div className="container-fluid p-0">
+			<Accordion className="accordion">{mealList}</Accordion>
 		</div>
 	);
 	//}
@@ -66,6 +56,5 @@ export const DailyPlan = props => {
 
 DailyPlan.propTypes = {
 	dayNumber: PropTypes.number,
-	meals: PropTypes.array,
-	mealNumber: PropTypes.string
+	meals: PropTypes.array
 };
