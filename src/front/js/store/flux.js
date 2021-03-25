@@ -177,14 +177,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				delete meals[mealNumber];
 				alert("Your recipe has been deleted. Select another day, meal or recipe");
 				return meals;
+			},
+			addQuerySelection: userQuery => {
+				let store = getStore();
+				let query = store.q;
+				query = userQuery;
+				setStore({ q: [query] });
 			}
-			// addQuerySelection: userQuery => {
-			// 	let store = getStore();
-			// 	let query = store.q;
-			// 	query = userQuery;
-			// 	setStore({ q: [query] });
-			// 	console.log(query);
-			// }
 		}
 	};
 };

@@ -18,10 +18,7 @@ export const NewWeek = () => {
 	//const [selectedUri, setSelectedUri] = useState("");
 	const [selectedRecipeName, setSelectedRecipeName] = useState("");
 	const [selectedQuery, setSelectedQuery] = useState("");
-	// const [seedDay, setSeedDay] = useState({
-	// 	position: "0",
-	// 	label: ""
-	// });
+
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
@@ -42,13 +39,10 @@ export const NewWeek = () => {
 		setSelectedPosition(e.target.value);
 	};
 
-	// const handleRecipeName = e => {
-	// 	setSelectedRecipeName(e.target.title);
-	// };
-
 	const handleQuery = e => {
+		setSelectedQuery(e.target.value);
 		actions.addQuerySelection(e.target.value);
-		console.log(e.target.value);
+		actions.getRecipes(e.target.value);
 	};
 
 	const handleData = event => {
@@ -103,26 +97,26 @@ export const NewWeek = () => {
 							<option value="4">Dinner</option>
 						</select>
 						<select className="custom-select col-2 pr-3" onChange={handleQuery} value={selectedQuery}>
-							<option value="rice">Rice</option>
-							<option value="pasta">Pasta</option>
-							<option value="fish">Fish</option>
-							<option value="salmon">Salmon</option>
-							<option value="pork">Pork</option>
-							<option value="steak">Steak</option>
-							<option value="chicken">Chicken</option>
-							<option value="soup">Soup</option>
-							<option value="potato">Potato</option>
-							<option value="lentils">Lentils</option>
-							<option value="vegetables">Vegetables</option>
-							<option value="soy">Soy</option>
-							<option value="curry">Curry</option>
-							<option value="tomato">Tomato</option>
-							<option value="tofu">Tofu</option>
-							<option value="red">Red</option>
-							<option value="white">White</option>
-							<option value="green">Green</option>
-							<option value="steam">Steam</option>
-							<option value="fry">Fry</option>
+							<option value="Rice">Rice</option>
+							<option value="Pasta">Pasta</option>
+							<option value="Fish">Fish</option>
+							<option value="Salmon">Salmon</option>
+							<option value="Pork">Pork</option>
+							<option value="Steak">Steak</option>
+							<option value="Chicken">Chicken</option>
+							<option value="Soup">Soup</option>
+							<option value="Potato">Potato</option>
+							<option value="Lentils">Lentils</option>
+							<option value="Vegetables">Vegetables</option>
+							<option value="Soy">Soy</option>
+							<option value="Curry">Curry</option>
+							<option value="Tomato">Tomato</option>
+							<option value="Tofu">Tofu</option>
+							<option value="Red">Red</option>
+							<option value="White">White</option>
+							<option value="Green">Green</option>
+							<option value="Steam">Steam</option>
+							<option value="Fry">Fry</option>
 						</select>
 						<select className="custom-select col-4">
 							<option value="1">Less than 20 minutes</option>
