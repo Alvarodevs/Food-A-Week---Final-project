@@ -183,7 +183,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let query = store.q;
 				query = userQuery;
 				setStore({ q: [query] });
-			}
+            },
+            addNewWeeklyMenu: () => {
+                let store = getStore();
+                var raw =  JSON.stringify(store.newWeeklyMenu),
+                const options = {
+                    method: "POST",
+                    body: raw,
+                    headers: {
+						Authorization: "Bearer" + localStorage.getItem("accessToken")
+					},
+					
+                    
+				};
+				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
+					.then(response => response.json())
+					.then(data => data.result)
+					.catch(error => console.log("error", error));
+            },
 		}
 	};
 };
