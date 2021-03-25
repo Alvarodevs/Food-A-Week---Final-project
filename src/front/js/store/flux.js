@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			newWeeklyMenu: {
 				title: "",
 				days: []
-			},
+            },
 			notifyMessage: "Hello to FoodAWeek",
 			user: null,
 			accessToken: null,

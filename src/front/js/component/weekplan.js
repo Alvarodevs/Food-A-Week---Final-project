@@ -9,13 +9,15 @@ export const Weekplan = props => {
 	const [titleMenu, setTitleMenu] = useState("");
 
 	const handleSubmit = event => {
-		actions.addTitleMenu(titleMenu);
-		actions.newWeek();
+        actions.addTitleMenu(titleMenu);
+        //FETCH TO API
 	};
 
 	const handleInputChange = e => {
 		setTitleMenu(e.target.value);
 	};
+    
+    
 
 	return (
 		<div className="container-fluid">
@@ -26,7 +28,6 @@ export const Weekplan = props => {
 						className="menu-title"
 						placeholder="Week menu title"
 						aria-label="text"
-						onMouseEnter={handleInputChange}
 						onChange={handleInputChange}
 					/>
 					{/* TRIGGER PARA CREAR EL JSON EN FLUX */}
