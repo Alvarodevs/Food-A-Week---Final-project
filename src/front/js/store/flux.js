@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			newWeeklyMenu: {
 				title: "",
 				days: []
-            },
+			},
 			notifyMessage: "Hello to FoodAWeek",
 			user: null,
 			accessToken: null,
@@ -151,7 +151,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//console.log(newTitleMenu);
 				//Storing title OK;
 			},
-
 			addRecipe: (day, meal, name, uri) => {
 				let store = getStore();
 				let newWeeklyMenu = store.newWeeklyMenu;
@@ -162,7 +161,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
 
 				setStore({ newWeeklyMenu: newWeeklyMenu });
-				//console.log(newWeeklyMenu);
+				console.log(newWeeklyMenu);
 			},
 			getDayName: dayNumber => {
 				let days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
@@ -171,7 +170,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMealName: mealNumber => {
 				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
 				return meals[mealNumber];
+			},
+			removeMeal: (dayNumber, mealNumber) => {
+				let store = getStore();
+				let meals = store.newWeeklyMenu.days[dayNumber];
+				delete meals[mealNumber];
+				alert("Your recipe has been deleted. Select another day, meal or recipe");
+				return meals;
 			}
+			// addQuerySelection: userQuery => {
+			// 	let store = getStore();
+			// 	let query = store.q;
+			// 	query = userQuery;
+			// 	setStore({ q: [query] });
+			// 	console.log(query);
+			// }
 		}
 	};
 };

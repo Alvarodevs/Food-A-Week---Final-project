@@ -15,12 +15,13 @@ export const NewWeek = () => {
 	const [value, setValue] = useState("");
 	const [selectedDay, setSelectedDay] = useState("0");
 	const [selectedPosition, setSelectedPosition] = useState("0");
-	const [selectedUri, setSelectedUri] = useState("");
+	//const [selectedUri, setSelectedUri] = useState("");
 	const [selectedRecipeName, setSelectedRecipeName] = useState("");
-	const [seedDay, setSeedDay] = useState({
-		position: "0",
-		label: ""
-	});
+	const [selectedQuery, setSelectedQuery] = useState("");
+	// const [seedDay, setSeedDay] = useState({
+	// 	position: "0",
+	// 	label: ""
+	// });
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
@@ -41,8 +42,13 @@ export const NewWeek = () => {
 		setSelectedPosition(e.target.value);
 	};
 
-	const handleRecipeName = e => {
-		setSelectedRecipeName(e.target.title);
+	// const handleRecipeName = e => {
+	// 	setSelectedRecipeName(e.target.title);
+	// };
+
+	const handleQuery = e => {
+		actions.addQuerySelection(e.target.value);
+		console.log(e.target.value);
 	};
 
 	const handleData = event => {
@@ -96,27 +102,27 @@ export const NewWeek = () => {
 							<option value="3">Snack 2</option>
 							<option value="4">Dinner</option>
 						</select>
-						<select className="custom-select col-2 pr-3">
-							<option value="1">Rice</option>
-							<option value="2">Pasta</option>
-							<option value="3">Fish</option>
-							<option value="4">Salmon</option>
-							<option value="5">Pork</option>
-							<option value="6">Steak</option>
-							<option value="7">Chicken</option>
-							<option value="8">Soup</option>
-							<option value="9">Potato</option>
-							<option value="10">Lentils</option>
-							<option value="11">Vegetables</option>
-							<option value="12">Soy</option>
-							<option value="13">Curry</option>
-							<option value="14">Tomato</option>
-							<option value="15">Tofu</option>
-							<option value="16">Red</option>
-							<option value="17">White</option>
-							<option value="18">Green</option>
-							<option value="19">Steam</option>
-							<option value="20">Fry</option>
+						<select className="custom-select col-2 pr-3" onChange={handleQuery} value={selectedQuery}>
+							<option value="rice">Rice</option>
+							<option value="pasta">Pasta</option>
+							<option value="fish">Fish</option>
+							<option value="salmon">Salmon</option>
+							<option value="pork">Pork</option>
+							<option value="steak">Steak</option>
+							<option value="chicken">Chicken</option>
+							<option value="soup">Soup</option>
+							<option value="potato">Potato</option>
+							<option value="lentils">Lentils</option>
+							<option value="vegetables">Vegetables</option>
+							<option value="soy">Soy</option>
+							<option value="curry">Curry</option>
+							<option value="tomato">Tomato</option>
+							<option value="tofu">Tofu</option>
+							<option value="red">Red</option>
+							<option value="white">White</option>
+							<option value="green">Green</option>
+							<option value="steam">Steam</option>
+							<option value="fry">Fry</option>
 						</select>
 						<select className="custom-select col-4">
 							<option value="1">Less than 20 minutes</option>

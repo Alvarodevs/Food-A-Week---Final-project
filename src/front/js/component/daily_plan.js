@@ -7,7 +7,11 @@ import * as Icon from "react-bootstrap-icons";
 
 export const MealCard = props => {
 	const { store, actions } = useContext(Context);
-	debugger;
+
+	const removeMeal = e => {
+		actions.removeMeal(props.dayNumber, props.mealNumber);
+	};
+
 	return (
 		<Card>
 			<Card.Header className="white-bg">
@@ -24,7 +28,7 @@ export const MealCard = props => {
 			</Card.Header>
 			<Accordion.Collapse eventKey={props.mealNumber} className="justify-content-between">
 				<Card.Body>
-					<i className="fas fa-times mr-3" />
+					<i className="fas fa-times mr-3" onClick={removeMeal} />
 					{props.recipeName}
 				</Card.Body>
 			</Accordion.Collapse>

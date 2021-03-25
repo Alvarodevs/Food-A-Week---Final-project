@@ -9,15 +9,13 @@ export const Weekplan = props => {
 	const [titleMenu, setTitleMenu] = useState("");
 
 	const handleSubmit = event => {
-        actions.addTitleMenu(titleMenu);
-        //FETCH TO API
+		actions.addTitleMenu(titleMenu);
+		actions.addNewWeeklyMenu(); //Trigger para enviar el JSON a /api/new_weekly_menu
 	};
 
 	const handleInputChange = e => {
 		setTitleMenu(e.target.value);
 	};
-    
-    
 
 	return (
 		<div className="container-fluid">
