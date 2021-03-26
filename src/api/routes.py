@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Ingredient, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager 
-from api.utils import generate_sitemap, APIException
+from api.utils import generate_sitemap, APIException, transform_to_day_dict
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -258,16 +258,22 @@ def remove_selected_recipe():
 
 
 @api.route('/new_weekly_menu', methods=['POST'])
-@jwt_required()
 def create_new_weekly_menu():
-    user = current_user(get_jwt_identity())
+    # print(get_jwt_identity())
+    # user = current_user(get_jwt_identity())
     # script_dir = os.path.dirname(__file__)
     # file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
     # #complete_week = request.get_json() #traeme el json del request a python
     # with open(file_path) as f:
     #   data = json.load(f)
+    user = User.query.limit(1).first()
     data = request.get_json() # {'title': "erwerw", 'days': {....} }
-    MenuDataManager().create_weekly_recipe(data, user)
+    print(user)
+    #print(data)
+    data_days = transform_to_day_dict(data['days'])
+    params = {'title': data["title"], 'days': data_days }
+    print(params)
+    MenuDataManager().create_weekly_recipe(params, user)
 
     return jsonify("El menú fue creado con éxito!"), 200
 
@@ -282,4 +288,5 @@ def get_user_by_email():
     return jsonify(menu.serialize()), 200
 
 def current_user(identity):
+  print(identity)
   return User.query.filter_by(email=identity['email']).one_or_none()

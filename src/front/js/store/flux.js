@@ -109,8 +109,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
 					.then(response => response.json())
 					.then(data => {
-						setStore({ accessToken: data, user: data, userMail: signInParams.email });
-						localStorage.setItem("accessToken", data);
+						setStore({ accessToken: data["access_token"], userMail: signInParams.email });
+						localStorage.setItem("accessToken", data["access_token"]);
 						localStorage.setItem("email", signInParams.email);
 					})
 					.catch(error => console.log("error", error));
@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(newWeeklyMenu);
 			},
 			getDayName: dayNumber => {
-				let days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
+				let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 				return days[dayNumber];
 			},
 			getMealName: mealNumber => {
@@ -187,11 +187,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addNewWeeklyMenu: () => {
 				let store = getStore();
 				var raw = JSON.stringify(store.newWeeklyMenu);
+
 				var requestOptions = {
 					method: "POST",
 					body: raw,
 					headers: {
-						Authorization: "Bearer" + localStorage.getItem("accessToken")
+						"Content-Type": "application/json"
 					}
 				};
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)

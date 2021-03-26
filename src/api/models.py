@@ -239,25 +239,21 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    day = self.create_day(days_json['monday'], menu) #podemos pasar los parametros directamente al llamar el metodo.
-    day = self.create_day(days_json['tuesday'], menu)
-    day = self.create_day(days_json['wednesday'], menu)
-    day = self.create_day(days_json['thursday'], menu)
-    day = self.create_day(days_json['friday'], menu)
-    day = self.create_day(days_json['saturday'], menu)
-    day = self.create_day(days_json['sunday'], menu)
+    print(menu_params)
+    for i, day in enumerate(days_json):
+      self.create_day(day,i,days_json[day], menu)
 
-  def create_day(self,day_params, menu):
-    for i, food in enumerate(day_params):
-      day = Day(name=food['name'], position=int(i), menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
-      db.session.add(day)
-      db.session.commit()
-      db.session.flush()
-
+  def create_day(self,name,day_position, meals, menu):
+    day = Day(name=name, position=day_position, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+    db.session.add(day)
+    db.session.commit()
+    db.session.flush()
+    for i, food in enumerate(meals):
+      print(food)
       self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
-    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["uri"])
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
