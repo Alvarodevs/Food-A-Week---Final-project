@@ -16,14 +16,16 @@ export const NewWeek = () => {
 	const [selectedDay, setSelectedDay] = useState("0");
 	const [selectedPosition, setSelectedPosition] = useState("0");
 	//const [selectedUri, setSelectedUri] = useState("");
-	const [selectedRecipeName, setSelectedRecipeName] = useState("");
+	//const [selectedRecipeName, setSelectedRecipeName] = useState("");
 	const [selectedQuery, setSelectedQuery] = useState("");
+	const [selectedTime, setSelectedTime] = useState("");
 
 	const [query] = useDebounce(value, 1000);
 
 	const handleSubmit = event => {
 		event.preventDefault();
 		actions.getRecipes(value);
+		actions.filterByTime(selectedTime);
 	};
 
 	const handleInput = event => {
@@ -45,6 +47,10 @@ export const NewWeek = () => {
 		actions.getRecipes(e.target.value);
 	};
 
+	const handleTime = e => {
+		setSelectedTime(e.target.value);
+	};
+
 	const handleData = event => {
 		let icon = event.target;
 		let recipeName = icon.getAttribute("data-title");
@@ -55,10 +61,19 @@ export const NewWeek = () => {
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
 			<div>{item.recipe.label}</div>
-			<i className="fas fa-plus" onClick={handleData} data-uri={item.recipe.uri} data-title={item.recipe.label} />
+			<div className="d-flex justify-content-end">
+				<div className="mr-1">{item.recipe.totalTime}</div>
+				<div className="mr-2"> mins</div>
+				<i
+					className="fas fa-plus"
+					onClick={handleData}
+					data-uri={item.recipe.uri}
+					data-title={item.recipe.label}
+				/>
+			</div>
 		</ListGroup.Item>
 	));
-
+	//console.log(selectedTime);
 	return (
 		<div className="newweek-container container-fluid d-flex">
 			<div className="container-fluid col-6 m-0">
@@ -118,11 +133,11 @@ export const NewWeek = () => {
 							<option value="Steam">Steam</option>
 							<option value="Fry">Fry</option>
 						</select>
-						<select className="custom-select col-4">
-							<option value="1">Less than 20 minutes</option>
-							<option value="2">20 - 30 minutes</option>
-							<option value="3">30 - 45 minutes</option>
-							<option value="4">More than 45 minutes</option>
+						<select className="custom-select col-4" onChange={handleTime} value={selectedTime}>
+							<option value="1-20">Less than 20 minutes</option>
+							<option value="21-30">20 - 30 minutes</option>
+							<option value="31-45">30 - 45 minutes</option>
+							<option value="45-300">More than 45 minutes</option>
 						</select>
 					</div>
 				</div>
@@ -133,7 +148,7 @@ export const NewWeek = () => {
 				</div>
 			</div>
 			<div className="d-flex col-6">
-				<Weekplan title={selectedRecipeName} />
+				<Weekplan />
 			</div>
 		</div>
 	);
