@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-			timeCooking: "1-20",
+			timeCooking: "1-300",
 			newWeeklyMenu: {
 				title: "",
 				days: []
@@ -190,6 +190,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				time = userTime;
 				setStore({ timeCooking: time });
 			}
+			// filterByAllergens: allergens => {
+			//  let store = getStore();
+			// }
 		}
 	};
 };
