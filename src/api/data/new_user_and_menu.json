@@ -1,164 +1,166 @@
 [{
   "user_name": "Usuario",
   "email":"correo@electroni.co",
+  "password":"123123123",
   "name": "Nombre",
   "last_name":"Apellido",
-  "adress":"Dirección",
+  "address":"Dirección",
   "postal_code":"66666",
-  "phone":666666666, 
+  "phone":666666666,
+  "title":"First week",
   "days": {
     "monday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "tuesday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "wednesday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "thursday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "friday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "saturday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ],
     "sunday": [
       {
         "name": "breakfast",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack1",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "lunch",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "snack2",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       },
       {
         "name": "dinner",
-        "uri": "{hits.recipe.uri}"
+        "url": "{hits.recipe.url}"
       }
     ]
   }

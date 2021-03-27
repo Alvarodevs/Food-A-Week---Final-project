@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 9034ad071390
+Revision ID: e57742e48a0e
 Revises: 
-Create Date: 2021-03-15 18:09:51.534035
+Create Date: 2021-03-27 10:37:51.423762
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9034ad071390'
+revision = 'e57742e48a0e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,31 +21,23 @@ def upgrade():
     op.create_table('recipe',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
-    sa.Column('uri', sa.String(length=100), nullable=False),
+    sa.Column('uri', sa.String(length=300), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name'),
     sa.UniqueConstraint('uri')
     )
-    op.create_table('role',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=120), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
-    )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_name', sa.String(length=20), nullable=False),
+    sa.Column('user_name', sa.String(length=20), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=80), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('last_name', sa.String(length=30), nullable=False),
-    sa.Column('address', sa.String(length=120), nullable=False),
-    sa.Column('postal_code', sa.String(length=20), nullable=False),
+    sa.Column('address', sa.String(length=120), nullable=True),
+    sa.Column('postal_code', sa.String(length=20), nullable=True),
     sa.Column('phone', sa.Integer(), nullable=True),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
-    sa.Column('role_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('user_name')
@@ -119,6 +111,5 @@ def downgrade():
     op.drop_table('menu')
     op.drop_table('ingredient')
     op.drop_table('user')
-    op.drop_table('role')
     op.drop_table('recipe')
     # ### end Alembic commands ###

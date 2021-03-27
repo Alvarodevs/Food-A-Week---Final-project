@@ -13,6 +13,8 @@ export const Home = () => {
 			<div className="text-center ">{/* <h1>{""}</h1> */}</div>
 			<div className="container services-description d-flex justify-content-center text-center text-plain my-4">
 				<h4>
+					Your new baig cooking app. <br />
+					<br />
 					Check the recipes you want and organize your week. When you run out of time, check your saved weeks!
 				</h4>
 			</div>
@@ -24,7 +26,7 @@ export const Home = () => {
 					</Button>
 				</Link>
 
-				<Link to="/newweek">
+				<Link to="/new_week">
 					<Button variant="success" className="service-circle" id="newweek">
 						<div className="button-text">{"NEW WEEK MENU"}</div>
 					</Button>

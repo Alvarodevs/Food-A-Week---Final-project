@@ -1,6 +1,19 @@
 @import "colors";
 @import "fonts";
 
+.avatar-container{
+  text-align: center;
+  .user-avatar{
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+}
+
 .user-profile-titles{
     font-family: $montserrat
 }

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../img/containers.png";
 import Dropdown from "react-bootstrap/Dropdown";
 //import NavigationComponent from "./component/navigationcomponent";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	const [pageTitle, setPageTitle] = useState();
 	const location = useLocation();
 
 	useEffect(
 		() => {
-			if (location.pathname == "/newweek") {
+			if (location.pathname == "/new_week") {
 				setPageTitle("New Week");
 			} else if (location.pathname == "/userprofile") {
 				setPageTitle("User Profile");
@@ -27,7 +29,7 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-light background-white mb-1">
-			<div className="navbar-container d-flex">
+			<div className="navbar-container d-flex justify-content-between">
 				<Link to="/">
 					{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
 					{/* <img
@@ -39,7 +41,7 @@ export const Navbar = () => {
 
 				<h1> {pageTitle} </h1>
 
-				<div className="text-center mt-3 mx-auto">{/* <NavigationComponent /> */}</div>
+				{/* <div className="text-center mt-3 mx-auto"><NavigationComponent /></div> */}
 				<div className="mr-1">
 					<div className="mr-1">
 						<Dropdown>
@@ -50,7 +52,9 @@ export const Navbar = () => {
 							<Dropdown.Menu>
 								<Dropdown.Item href="/userprofile">Profile</Dropdown.Item>
 								<Dropdown.Divider />
-								<Dropdown.Item href="/">Logout</Dropdown.Item>
+								<Dropdown.Item href="/" onClick={actions.logout}>
+									Logout
+								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
 					</div>

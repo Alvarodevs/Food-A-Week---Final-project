@@ -1,4 +1,4 @@
-const baseUrl = "https://3001-white-hippopotamus-stq1q8um.ws-eu03.gitpod.io/api/";
+import { apiBaseUrl } from "../constants";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -17,36 +17,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			hits: [],
-			// monday: [],
-			// tuesday: [],
-			// wednesday: [],
-			// thursday: [],
-			// friday: [],
-			// saturday: [],
-			// sunday: [],
 			from: 0,
 			to: 15,
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
-			q: []
+			q: [],
+			newWeeklyMenu: {
+				title: "",
+				days: []
+			},
+			notifyMessage: "Hello to FoodAWeek",
+			user: null,
+			userMail: ""
 		}, //close store
+
 		actions: {
 			getRecipes: props => {
-				console.log(props);
 				let store = getStore();
-				// let newStoreTo = store.to;
-				// setStore({
-				// 	to: newStoreTo
-				// });
-				// let newStoreFrom = store.from;
-				// setStore({
-				// 	from: newStoreFrom
-				// });
-				//hay que mandar q a context, actualizar con hook
 				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
 					store.APP_ID
 				}&app_key=${store.APP_KEY}`;
-				console.log(url);
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
@@ -79,21 +69,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 				console.log("more");
 			},
-
-			// getMondayPlan: monday => {
-			// 	let store = getStore();
-			// 	let newStore = store.monday;
-			// 	setStore({
-			// 		monday: newStore
-			// 	});
-			// },
-			// getTursdayPlan: props => {},
-			// getWednesdayPlan: props => {},
-			// getThursdayPlan: props => {},
-			// getFridayPlan: props => {},
-			// getSaturdayPlan: props => {},
-			// getSundayPlan: props => {},
-
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -112,22 +87,93 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
-			newWeek: newWeek => {
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
 
-				var raw = JSON.stringify(newWeek);
+			addTitleMenu: titleMenu => {
+				let store = getStore();
+				let newTitleMenu = store.newWeeklyMenu["title"];
+				newTitleMenu = titleMenu;
+
+				setStore({ title: newTitleMenu });
+			},
+			getWelcomeMessage: () => {},
+			signInUser: signInParams => {
+				let store = getStore();
+				let raw = JSON.stringify(signInParams);
+				var requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: raw
+				};
+
+				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						debugger;
+						localStorage.setItem("accessToken", data["accessToken"]);
+					})
+					.catch(error => console.log("error", error));
+			},
+			isUserAuthenticated: () => {
+				return localStorage.getItem("accessToken") !== null;
+			},
+			logout: () => {
+				localStorage.removeItem("accessToken");
+			},
+			setUser: userParams => {
+				setStore({ user: userParams });
+
+				setStore(newTitleMenu);
+				//console.log(newTitleMenu);
+				//Storing title OK;
+			},
+			addRecipe: (day, meal, name, uri) => {
+				let store = getStore();
+				let newWeeklyMenu = store.newWeeklyMenu;
+
+				if (!newWeeklyMenu.days[day]) {
+					newWeeklyMenu.days[day] = [];
+				}
+				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
+
+				setStore({ newWeeklyMenu: newWeeklyMenu });
+				console.log(newWeeklyMenu);
+			},
+			getDayName: dayNumber => {
+				let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+				return days[dayNumber];
+			},
+			getMealName: mealNumber => {
+				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
+				return meals[mealNumber];
+			},
+			removeMeal: (dayNumber, mealNumber) => {
+				let store = getStore();
+				let meals = store.newWeeklyMenu.days[dayNumber];
+				delete meals[mealNumber];
+				alert("Your recipe has been deleted. Select another day, meal or recipe");
+				return meals;
+			},
+			addQuerySelection: userQuery => {
+				let store = getStore();
+				let query = store.q;
+				query = userQuery;
+				setStore({ q: [query] });
+			},
+			addNewWeeklyMenu: () => {
+				let store = getStore();
+				var raw = JSON.stringify(store.newWeeklyMenu);
 
 				var requestOptions = {
 					method: "POST",
-					headers: myHeaders,
 					body: raw,
-					redirect: "follow"
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
 				};
-
-				fetch(`${baseUrl}newweek`, requestOptions)
-					.then(response => response.text())
-					.then(result => console.log(result))
+				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
+					.then(response => response.json())
+					.then(data => data.result)
 					.catch(error => console.log("error", error));
 			}
 		}

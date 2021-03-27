@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Tab, Row, Col, Nav, Button, FormControl, Form } from "react-bootstrap";
@@ -6,6 +6,17 @@ import { DailyPlan } from "./daily_plan";
 
 export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
+	const [titleMenu, setTitleMenu] = useState("");
+
+	const handleSubmit = event => {
+		actions.addTitleMenu(titleMenu);
+		actions.addNewWeeklyMenu(); //Trigger para enviar el JSON a /api/new_weekly_menu
+	};
+
+	const handleInputChange = e => {
+		setTitleMenu(e.target.value);
+	};
+
 	return (
 		<div className="container-fluid">
 			<div className="w-100 ">
@@ -15,8 +26,10 @@ export const Weekplan = props => {
 						className="menu-title"
 						placeholder="Week menu title"
 						aria-label="text"
+						onChange={handleInputChange}
 					/>
-					<Button variant="none" className="green-button ml-3">
+					{/* TRIGGER PARA CREAR EL JSON EN FLUX */}
+					<Button variant="none" className="green-button ml-3" onClick={handleSubmit}>
 						Save
 					</Button>
 				</Form>
@@ -65,25 +78,46 @@ export const Weekplan = props => {
 					<Col sm={9}>
 						<Tab.Content className="mt-2 accord-container">
 							<Tab.Pane eventKey="first" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[0] && (
+									<DailyPlan dayNumber={0} meals={store.newWeeklyMenu.days[0]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="second" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[1] && (
+									<DailyPlan dayNumber={1} meals={store.newWeeklyMenu.days[1]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="third" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[2] && (
+									<DailyPlan dayNumber={2} meals={store.newWeeklyMenu.days[2]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fourth" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[3] && (
+									<DailyPlan dayNumber={3} meals={store.newWeeklyMenu.days[3]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="fifth" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[4] && (
+									<DailyPlan dayNumber={4} meals={store.newWeeklyMenu.days[4]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="sixth" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[5] && (
+									<DailyPlan dayNumber={5} meals={store.newWeeklyMenu.days[5]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 							<Tab.Pane eventKey="seventh" className="accordion">
-								<DailyPlan />
+								{(store.newWeeklyMenu.days[6] && (
+									<DailyPlan dayNumber={6} meals={store.newWeeklyMenu.days[6]} />
+								)) ||
+									"Please add a meal on the day and meal mentioned"}
 							</Tab.Pane>
 						</Tab.Content>
 					</Col>
@@ -91,4 +125,12 @@ export const Weekplan = props => {
 			</Tab.Container>
 		</div>
 	);
+};
+
+Weekplan.propTypes = {
+	name: PropTypes.string,
+	value: PropTypes.string,
+	uri: PropTypes.string,
+	title: PropTypes.string,
+	mealNumber: PropTypes.string
 };

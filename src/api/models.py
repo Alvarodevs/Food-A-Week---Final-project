@@ -23,26 +23,26 @@ class Ingredient(db.Model):
           "user_id": self.user_id, #¿NECESARIO?
         }
 
-class Role(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(120), unique=True, nullable=False)
-  users = db.relationship('User', backref='role', lazy=True)
+# class Role(db.Model):
+#   id = db.Column(db.Integer, primary_key=True)
+#   name = db.Column(db.String(120), unique=True, nullable=False)
+#   users = db.relationship('User', backref='role', lazy=True)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(20), unique=True, nullable=False)
+    user_name = db.Column(db.String(20), unique=True, nullable=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
     last_name = db.Column(db.String(30), unique=False, nullable=False)
-    address = db.Column(db.String(120), unique=False, nullable=False)
-    postal_code = db.Column(db.String(20), unique=False, nullable=False)
+    address = db.Column(db.String(120), unique=False, nullable=True)
+    postal_code = db.Column(db.String(20), unique=False, nullable=True)
     phone = db.Column(db.Integer, unique=False, nullable=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=True)
+    # role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
-    
+
     def __repr__(self):
         return '<User %r>' % self.user_name
 
@@ -57,15 +57,16 @@ class User(db.Model):
             "postal_code": self.postal_code,
             "phone": self.phone,
           }
+
     def check_password(self, password_param):
       return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
-    
+
     def sign_in_serialize(self):
       return {
         "id": self.id,
         "email": self.email
       }
-    
+
     def get_user_by_email(email):
         return User.query.filter_by(email=email).first_or_404()
 
@@ -77,7 +78,7 @@ class Menu(db.Model):
 
     def __repr__(self):
         return '<Menu %r>' % self.id
-    
+
     def serialize(self):
         return{
             "id": self.id,
@@ -96,7 +97,7 @@ class Day(db.Model):
 
     def __repr__(self):
       return '<Day %r>' % self.id
-    
+
     def serialize(self):
       return{
           "id": self.id,
@@ -108,8 +109,8 @@ class Day(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True, nullable=False)
-    uri = db.Column(db.String(100), unique=True, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False) 
+    uri = db.Column(db.String(300), unique=True, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     # ingredients = db.relationship("Ingredient", secondary="recipe_detail")
     days = db.relationship("Day", secondary="selected_recipe")
 
@@ -182,27 +183,9 @@ class Restriction(db.Model):
       return {
           "id": self.id,
           "user_id": self.user_id,
-          "ingredient_id": self.ingredient_id, #¿NECESARIO?           
+          "ingredient_id": self.ingredient_id, #¿NECESARIO?
       }
 
-# ¿ES NECESARIO CREAR LA TABLA AUXILIAR PARA RELATIONS MANY TO MANY: USER - RESTRICITIONS?
-# association_table = Table('allergens', Base.metadata,
-#     Column("user_id", Integer, ForeignKey("User.id")),
-#     Column("restriction_id", Integer, ForeignKey("Restriction.id"))
-# )
- 
-# INCLUIR EN USER (column)
-# restriction = relationship("Restriction", secondary=allergens back_populates="user")
-# INCLUIR EN USER (return)
-# "restriction": list(map(lambda x: x.serialize(), self.restriction))
-
-# INCLUIR EN RESTRICTION (column)
-# user = relationship("User", secondary=allergens back_populates="restriction")
-# INCLUIR EN RESTRICTION (return)
-# "user": list(map(lambda x: x.serialize(), self.user))
-
-
-#Se sustituye el "name" del menu, por "title" para que no coincida en con el "name" de usuario. Cambiado en Models.py y los archivos .json
 class DataManager:
 
     def __init__(self):
@@ -213,20 +196,19 @@ class DataManager:
         file_path = os.path.join(script_dir, 'data/new_user_and_menu.json')
         with open(file_path) as f:
             data = json.load(f)
+
         users_data = data #el archivo con data new user and menu ya es un arreglo por lo que podríamos traer información de varios usuarios. así que los corchetes de arreglo de este data se eliminan.
 
         for user_datum in users_data:
-          print("ESTA PROCESAND EL USUARIO !!!!!!!!!!!!")
-          print(user_datum)
-          create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
+          self.create_user(user_datum) #Este loop es el que esta dando error en el route: handle_seed_data_user().
 
     def create_user(self,data_user):
         user = User(user_name=data_user['user_name'],
                    email=data_user['email'],
                    password=data_user['password'],
-                   name=data_user['name'], 
-                   last_name=data_user['last_name'], 
-                   address=data_user['address'], 
+                   name=data_user['name'],
+                   last_name=data_user['last_name'],
+                   address=data_user['address'],
                    postal_code=data_user['postal_code'],
                    phone=data_user['phone'],
                    is_active=True)
@@ -234,9 +216,8 @@ class DataManager:
         db.session.commit()
         db.session.flush()
 
-        menu_params = {'name': data_user["title"], 'days': data_user['days'] }
-        print(menu_params)
-        #self.menu_manager.create_weekly_recipe(menu_params, user)
+        menu_params = {'title': data_user["title"], 'days': data_user['days'] }
+        self.menu_manager.create_weekly_recipe(menu_params, user)
 
         return user
 
@@ -248,7 +229,7 @@ class MenuDataManager:
   def create_weekly_recipe(self, menu_params, current_user):
     menu = self.create_menu(menu_params, current_user)
     days = self.create_days(menu_params, menu) #llamar metodo
-  
+
   def create_menu(self, menu_params, current_user):
     menu = Menu(title=menu_params['title'], user_id=current_user.id)
     db.session.add(menu)
@@ -259,28 +240,21 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    day = self.create_day(days_json['monday'], menu) #podemos pasar los parametros directamente al llamar el metodo.
-    #day = self.create_day(days_json['tuesday'], menu) 
-    #day = self.create_day(days_json['wednesday'], menu) 
-    #day = self.create_day(days_json['thursday'], menu) 
-    #day = self.create_day(days_json['friday'], menu) 
-    #day = self.create_day(days_json['saturday'], menu) 
-    #day = self.create_day(days_json['sunday'], menu)
+    print(menu_params)
+    for i, day in enumerate(days_json):
+      self.create_day(day,i,days_json[day], menu)
 
-  def create_day(self,day_params, menu):
-    for i, food in enumerate(day_params):
-        food["position"] = i
-        day= Day(name=day_params['name'], position=i, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
-        db.session.add(day)
-        db.session.commit()
-        db.session.flush()
-
-        self.create_selected_recipe(food,day)
+  def create_day(self,name,day_position, meals, menu):
+    day = Day(name=name, position=day_position, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+    db.session.add(day)
+    db.session.commit()
+    db.session.flush()
+    for i, food in enumerate(meals):
+      print(food)
+      self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
-    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["uri"])
-    
-    #esto es correcto? Estamos guardando todo?
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()

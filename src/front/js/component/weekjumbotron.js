@@ -105,7 +105,7 @@ export const WeekJumbo = () => {
 					<div className="cell my-3">SUNDAY</div>
 				</div>
 			</div>
-			<Link to="/newweek">
+			<Link to="/new_week">
 				<Button className="green-button d-flex text-center m-auto justify-content-center">Edit</Button>
 			</Link>
 		</Jumbotron>
