@@ -118,9 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return localStorage.getItem("accessToken") !== null;
 			},
 			logout: () => {
-
 				localStorage.removeItem("accessToken");
-
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
@@ -178,13 +176,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => data.result)
 					.catch(error => console.log("error", error));
-      },
+			},
 			filterByTime: userTime => {
 				let store = getStore();
 				let time = store.timeCooking;
 				time = userTime;
 				setStore({ timeCooking: time });
-
 			}
 		}
 	};
