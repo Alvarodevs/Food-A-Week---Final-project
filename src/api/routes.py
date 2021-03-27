@@ -255,12 +255,12 @@ def remove_selected_recipe():
 
 
 @api.route('/new_weekly_menu', methods=['POST'])
+@jwt_required()
 def create_new_weekly_menu():
-    user = User.query.limit(1).first() #TODO: Replace with the current_user method
+    user = current_user(get_jwt_identity()) #TODO: Replace with the current_user method
     data = request.get_json() # {'title': "erwerw", 'days': {....} }
     data_days = transform_to_day_dict(data['days'])
     params = {'title': data["title"], 'days': data_days }
-    print(params)
     MenuDataManager().create_weekly_recipe(params, user)
 
     return jsonify("El menú fue creado con éxito!"), 200

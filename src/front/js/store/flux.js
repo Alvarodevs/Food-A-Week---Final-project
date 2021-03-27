@@ -167,6 +167,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					body: raw,
 					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
 						"Content-Type": "application/json"
 					}
 				};
