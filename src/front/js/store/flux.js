@@ -29,7 +29,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			notifyMessage: "Hello to FoodAWeek",
 			user: null,
-			accessToken: null,
 			userMail: ""
 		}, //close store
 
@@ -110,40 +109,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
 					.then(response => response.json())
 					.then(data => {
-						setStore({ accessToken: data, user: data, userMail: signInParams.email });
-						localStorage.setItem("accessToken", data);
-						localStorage.setItem("email", signInParams.email);
+						debugger;
+						localStorage.setItem("accessToken", data["accessToken"]);
 					})
 					.catch(error => console.log("error", error));
 			},
-			checkLogin: () => {
-				const store = getStore();
-				if (localStorage.accessToken && localStorage.email) {
-					// the user is logged in
-					// { accessToken : 'asdfasdfasdfasdf' }
-					setStore({
-						accessToken: localStorage.getItem("accessToken"),
-						user: localStorage.getItem("accessToken"),
-						userMail: localStorage.getItem("email")
-					});
-
-					// TODO: move this to the logout action
-					//localStorage.removeItem('myData');
-					// localStorage.clear();
-				}
-			},
 			isUserAuthenticated: () => {
-				const store = getStore();
-				return store.accessToken !== null;
+				return localStorage.getItem("accessToken") !== null;
 			},
 			logout: () => {
-				const store = getStore();
-				let newToken = store.accessToken;
-				newToken = null;
-				setStore({ accessToken: newToken });
-				//setStore({ accessToken: null });
-				localStorage.clear();
-				//console.log("clear all");
+
+				localStorage.removeItem("accessToken");
+
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
@@ -164,7 +141,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ newWeeklyMenu: newWeeklyMenu });
 			},
 			getDayName: dayNumber => {
-				let days = ["Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday"];
+				let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 				return days[dayNumber];
 			},
 			getMealName: mealNumber => {
@@ -184,11 +161,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				query = userQuery;
 				setStore({ q: [query] });
 			},
+
+			addNewWeeklyMenu: () => {
+				let store = getStore();
+				var raw = JSON.stringify(store.newWeeklyMenu);
+
+				var requestOptions = {
+					method: "POST",
+					body: raw,
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
+					.then(response => response.json())
+					.then(data => data.result)
+					.catch(error => console.log("error", error));
+      },
 			filterByTime: userTime => {
 				let store = getStore();
 				let time = store.timeCooking;
 				time = userTime;
 				setStore({ timeCooking: time });
+
 			}
 		}
 	};
