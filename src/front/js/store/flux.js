@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
+			timeCooking: "1-20",
 			newWeeklyMenu: {
 				title: "",
 				days: []
@@ -34,9 +35,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			getRecipes: props => {
 				let store = getStore();
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
-					store.APP_ID
-				}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${
+					store.timeCooking
+				}&q=${props}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
@@ -47,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMoreRecipes: () => {
 				// Pendiente añadir el condicional de more == true
 				// si no more es false añadir mensaje = no hay más recetas!
-				console.log("getMoreRecipesIN");
+				//console.log("getMoreRecipesIN");
 				let store = getStore();
 				var newStoreTo = store.to;
 				newStoreTo = newStoreTo + 16;
@@ -60,14 +61,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					from: newStoreFrom
 				});
 
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${store.q}&app_id=${
-					store.APP_ID
-				}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${
+					store.timeCooking
+				}&q=${store.q}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
 					.catch(error => console.log("Error loading message from backend", error));
-				console.log("more");
+				//console.log("more");
 			},
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
@@ -117,7 +118,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return localStorage.getItem("accessToken") !== null;
 			},
 			logout: () => {
+
 				localStorage.removeItem("accessToken");
+
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
@@ -136,7 +139,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
 
 				setStore({ newWeeklyMenu: newWeeklyMenu });
-				console.log(newWeeklyMenu);
 			},
 			getDayName: dayNumber => {
 				let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -159,6 +161,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				query = userQuery;
 				setStore({ q: [query] });
 			},
+
 			addNewWeeklyMenu: () => {
 				let store = getStore();
 				var raw = JSON.stringify(store.newWeeklyMenu);
@@ -175,6 +178,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => data.result)
 					.catch(error => console.log("error", error));
+      },
+			filterByTime: userTime => {
+				let store = getStore();
+				let time = store.timeCooking;
+				time = userTime;
+				setStore({ timeCooking: time });
+
 			}
 		}
 	};
