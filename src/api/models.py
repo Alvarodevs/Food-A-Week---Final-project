@@ -57,6 +57,7 @@ class User(db.Model):
             "postal_code": self.postal_code,
             "phone": self.phone,
           }
+
     def check_password(self, password_param):
       return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
 

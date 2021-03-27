@@ -75,7 +75,6 @@ def handle_users():
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
-  print("HELLO")
   body = request.get_json(force=True)
   user_name = body.get("user_name", None)
   name = body.get("name", None)
@@ -86,8 +85,10 @@ def sign_up():
   user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
   db.session.add(user1)
   db.session.commit()
+  access_token = create_access_token(identity=user1.sign_in_serialize())
 
-  return jsonify(user1.serialize())
+  return jsonify(user=user1.sign_in_serialize(), accessToken=access_token)
+
 #necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
@@ -100,8 +101,8 @@ def sign_in():
         return jsonify("Your credentials are wrong, please try again"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.serialize())
-    return jsonify(access_token=access_token)
+    access_token = create_access_token(identity=user.sign_in_serialize())
+    return jsonify(accessToken=access_token)
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
@@ -118,10 +119,6 @@ def protected():
     db.session.commit()
   print(user.serialize())
   return jsonify(user.serialize())
-def current_user(identity):
-  print(identity["id"])
-  return User.query.get(identity["id"])
-
 
 ####################################
 
@@ -259,24 +256,14 @@ def remove_selected_recipe():
 
 @api.route('/new_weekly_menu', methods=['POST'])
 def create_new_weekly_menu():
-    # print(get_jwt_identity())
-    # user = current_user(get_jwt_identity())
-    # script_dir = os.path.dirname(__file__)
-    # file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
-    # #complete_week = request.get_json() #traeme el json del request a python
-    # with open(file_path) as f:
-    #   data = json.load(f)
-    user = User.query.limit(1).first()
+    user = User.query.limit(1).first() #TODO: Replace with the current_user method
     data = request.get_json() # {'title': "erwerw", 'days': {....} }
-    print(user)
-    #print(data)
     data_days = transform_to_day_dict(data['days'])
     params = {'title': data["title"], 'days': data_days }
     print(params)
     MenuDataManager().create_weekly_recipe(params, user)
 
     return jsonify("El menú fue creado con éxito!"), 200
-
 
 @api.route('/get_user_by_email')
 def get_user_by_email():
@@ -288,5 +275,4 @@ def get_user_by_email():
     return jsonify(menu.serialize()), 200
 
 def current_user(identity):
-  print(identity)
-  return User.query.filter_by(email=identity['email']).one_or_none()
+  return User.query.get(identity["id"])
