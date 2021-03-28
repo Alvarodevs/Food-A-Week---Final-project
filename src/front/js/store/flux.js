@@ -177,9 +177,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				fetch(`${apiBaseUrl}/api/_get_current_user`, requestOptions)
+				fetch(`${apiBaseUrl}/users/int:id`, requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ user: data.user.user_name }))
+					.then(data => setStore({ user: data }))
 					.catch(error => console.log("error", error));
 			}
 		}

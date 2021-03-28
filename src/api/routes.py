@@ -13,28 +13,19 @@ import os
 
 api = Blueprint('api', __name__)
 
-# @api.route('/me/<int:_id>', methods=['GET'])
-# @jwt_required()
-#     for user in a:
-#       if _id == user['id']:
-#       selected_user = user
-#     return jsonify(selected_user)
+@api.route('/users', methods=['GET'])
+def handle_users():
 
-# @api.route('/_get_current_user')
-# @jwt_required()
-# def get_current_user():
-#     return jsonify(username=user.username,
-#                    email=user.email,
-#                    id=user.id)
-# @api.route('/users', methods=['GET'])
-# @jwt_required()
-# def handle_users():
-#     user_query = User.query.filter_by(user_name=user_name).first_or_404()  
-#     # como filtro para que solo me devuelva el usuario activo
-#     users = list(map(lambda x: x.get_user_serialize(), user))
-#     return jsonify(users),200
+    user = User.query.all()
+    users = list(map(lambda user: user.serialize(), users))
+    return jsonify(users), 200
 
+@api.route('/users/<int:id>', methods=['GET'])
+def handle_user(id):
+    user = User.query.get(id)
+    return jsonify(user.serialize()), 200
 
+#yo quería que me devolviera los datos del usuario , pero solo consigo 404. Pero está autenticado... He hecho el proceso de debugger para validar is autenticated y token.
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
