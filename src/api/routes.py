@@ -58,8 +58,11 @@ def handle_role():
 @api.route('/users', methods=['GET'])
 @jwt_required()
 def handle_users():
-    user1 = User(user_name="user_name")
-    return jsonify(user=user1.serialize()),200
+    # //user = User(user_name=user.user_name)
+    user = User.query.all()
+    users = list(map(lambda x: x.get_user_serialize(), user))
+    return jsonify(users),200
+
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
