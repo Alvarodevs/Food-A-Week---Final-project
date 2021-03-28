@@ -97,23 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ title: newTitleMenu });
 			},
 			getWelcomeMessage: () => {},
-			signInUser: signInParams => {
-				let store = getStore();
-				let raw = JSON.stringify(signInParams);
-				var requestOptions = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: raw
-				};
 
-				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
-					.then(response => response.json())
-					.then(data => {
-						debugger;
-						localStorage.setItem("accessToken", data["accessToken"]);
-					})
-					.catch(error => console.log("error", error));
-			},
 			isUserAuthenticated: () => {
 				return localStorage.getItem("accessToken") !== null;
 			},

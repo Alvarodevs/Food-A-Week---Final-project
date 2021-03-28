@@ -18,9 +18,26 @@ const SignInForm = props => {
 		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
 	};
 
-	const handleFinalSubmit = e => {
+	const handleFinalSubmit = event => {
+		debugger;
 		event.preventDefault();
-		actions.signInUser(eachEntry);
+		var raw = JSON.stringify(eachEntry);
+		var requestOptions = {
+			method: "POST",
+			body: raw,
+			headers: { "Content-Type": "application/json" }
+		};
+		fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				localStorage.setItem("accessToken", result["accessToken"]);
+				debugger;
+				toast("User was logged");
+				history.push("/home");
+				//console.log("User was logged");
+			})
+			.catch(error => console.log("error", error));
 	};
 
 	return (
@@ -57,6 +74,7 @@ const SignInForm = props => {
 const SignIn = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
+
 	if (actions.isUserAuthenticated()) {
 		toast.success("Iniciaste sesión exitosamente!");
 		history.push("/home");
