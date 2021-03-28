@@ -19,7 +19,7 @@ const SignInForm = props => {
 	};
 
 	const handleFinalSubmit = event => {
-		debugger;
+		//debugger;
 		event.preventDefault();
 		var raw = JSON.stringify(eachEntry);
 		var requestOptions = {
@@ -32,7 +32,7 @@ const SignInForm = props => {
 			.then(result => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
-				debugger;
+				//debugger;
 				toast("User was logged");
 				history.push("/home");
 				//console.log("User was logged");

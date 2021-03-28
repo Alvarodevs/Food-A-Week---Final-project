@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-			timeCooking: "1-20",
+			timeCooking: "1-400",
 			newWeeklyMenu: {
 				title: "",
 				days: []
@@ -166,6 +166,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let time = store.timeCooking;
 				time = userTime;
 				setStore({ timeCooking: time });
+			},
+			get_user_name: () => {
+				debugger;
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/api/users`, requestOptions)
+					.then(response => response.json())
+					.then(data => console.log(data))
+					// .then(data => setStore({ user: data.user.user_name }))
+					.catch(error => console.log("error", error));
 			}
 		}
 	};
