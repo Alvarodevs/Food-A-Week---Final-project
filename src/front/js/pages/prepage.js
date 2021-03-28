@@ -13,6 +13,7 @@ export const Pre = () => {
 	const { store, actions } = useContext(Context);
 	const [open, setOpen] = useState(false);
 	const [openLogin, setOpenLogin] = useState(false);
+
 	return (
 		<div className="container-fluid ">
 			<div className="head-prepage d-flex justify-content-begin d-flex ">

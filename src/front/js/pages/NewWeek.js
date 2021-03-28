@@ -73,7 +73,7 @@ export const NewWeek = () => {
 			</div>
 		</ListGroup.Item>
 	));
-	//console.log(selectedTime);
+
 	return (
 		<div className="newweek-container container-fluid">
 			<p className="text-center">
