@@ -58,8 +58,8 @@ def handle_role():
 @api.route('/users', methods=['GET'])
 @jwt_required()
 def handle_users():
-    # //user = User(user_name=user.user_name)
-    user = User.query.all()
+    user_query = User.query.filter_by(user_name=user_name).first_or_404()  
+    # como filtro para que solo me devuelva el usuario activo
     users = list(map(lambda x: x.get_user_serialize(), user))
     return jsonify(users),200
 
