@@ -76,7 +76,7 @@ const SignIn = props => {
 	let history = useHistory();
 
 	if (actions.isUserAuthenticated()) {
-		toast.success("Iniciaste sesión exitosamente!");
+		toast.success("You're logged as");
 		history.push("/home");
 	}
 
