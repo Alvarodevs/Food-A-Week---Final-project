@@ -179,8 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch(`${apiBaseUrl}/api/users`, requestOptions)
 					.then(response => response.json())
-					.then(data => console.log(data))
-					// .then(data => setStore({ user: data.user.user_name }))
+					.then(data => setStore({ user: data.user.user_name }))
 					.catch(error => console.log("error", error));
 			}
 		}

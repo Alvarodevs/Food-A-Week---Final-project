@@ -55,14 +55,12 @@ def handle_role():
     return jsonify(roles), 200
 
 ####################################
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def handle_users():
+    user1 = User(user_name="user_name")
+    return jsonify(user=user1.serialize()),200
 
-# @api.route('/users', methods=['GET'])
-# @jwt_required()
-# def handle_users():
-#     print(get_jwt_identity())
-#     user = current_user(get_jwt_identity())
-#       return jsonify(users=user1.get_user_serialize()), 200
-    
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():

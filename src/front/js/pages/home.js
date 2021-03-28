@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const handleUserName = () => {
-		actions.get_user_name();
+		store.user_name;
 	};
 
 	return (
