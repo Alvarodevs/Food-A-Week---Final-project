@@ -58,10 +58,21 @@ def handle_role():
 @api.route('/users', methods=['GET'])
 @jwt_required()
 def handle_users():
-    user_query = User.query.filter_by(user_name=user_name).first_or_404()  
+    user = current_user(get_jwt_identity())
+    print(user)
     # como filtro para que solo me devuelva el usuario activo
-    users = list(map(lambda x: x.get_user_serialize(), user))
+    users = user.get_user_serialize(), user
     return jsonify(users),200
+
+
+# @api.route('/users', methods=['GET'])
+# @jwt_required()
+# def handle_users():
+#     user_query = User.query.filter_by(user_name=user_name).first_or_404()  
+#     # como filtro para que solo me devuelva el usuario activo
+#     users = list(map(lambda x: x.get_user_serialize(), user))
+#     return jsonify(users),200
+
 
 
 #necessary for sign_up 
@@ -95,15 +106,6 @@ def sign_in():
     # Notice that we are passing in the actual sqlalchemy user object here
     access_token = create_access_token(identity=user.sign_in_serialize())
     return jsonify(accessToken=access_token)
-
-@api.route("/get_user", methods=["GET"])
-@jwt_required()
-def x():
-    print(get_jwt_identity())
-    user = current_user(get_jwt_identity())
-    return jsonify(user=user1.get_user_serialize(), accessToken=access_token), 200
-
-
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
