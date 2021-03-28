@@ -13,8 +13,8 @@ import os
 
 api = Blueprint('api', __name__)
 
+#ENDPOINTS ORDER ¡1 ENDP/METHOD! (from models.py): Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe
 
-#creoQueNoLoEstamosUsando
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -25,7 +25,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 ####################################
-#creoQueNoLoEstamosUsando
+
 @api.route('/ingredient', methods=['GET'])
 def handle_ingredient():
 
@@ -39,7 +39,7 @@ def handle_ingredient():
     ingredients = list(map(lambda x: x.serialize(), ingredient_query))
 
 ####################################
-#creoQueNoLoEstamosUsando
+
 @api.route('/role', methods=['GET'])
 def handle_role():
 
@@ -56,6 +56,21 @@ def handle_role():
 
 ####################################
 
+@api.route('/users', methods=['GET'])
+@jwt_required()
+def handle_users():
+
+
+    # get all the recipes
+    #user_query = User.query.all()
+
+    # get only the ones named "Joe"
+    recipe_query = Recipe.query.filter_by(name="nitry")
+
+    # map the results and your list of recipes  inside of the recipes variable
+    users = list(map(lambda x: x.serialize(), user_query))
+
+    return jsonify(users), 200
     
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
@@ -106,16 +121,7 @@ def protected():
   return jsonify(user.serialize())
 
 ####################################
-#Para retomar las recetas de un usuario
 
-@api.route('/new_weekly_menu', methods=['POST'])
-@jwt_required()
-def menus_from_an_specific_user():
-    user = current_user(get_jwt_identity()) #TODO: Replace with the 
-    menu_query = Recipe.query.filter_by(user)
-    # map the results and your list of recipes  inside of the recipes variable
-    users = list(map(lambda x: x.serialize(), merge_query))
-    return jsonify(users), 200
 ####################################
 @api.route('/menu', methods=['GET'])
 def handle_menu():

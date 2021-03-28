@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-			timeCooking: "1-400",
+			timeCooking: "1-20",
 			newWeeklyMenu: {
 				title: "",
 				days: []
