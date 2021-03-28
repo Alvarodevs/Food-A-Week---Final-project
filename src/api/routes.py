@@ -13,58 +13,19 @@ import os
 
 api = Blueprint('api', __name__)
 
-#ENDPOINTS ORDER ¡1 ENDP/METHOD! (from models.py): Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe
+# @api.route('/me/<int:_id>', methods=['GET'])
+# @jwt_required()
+#     for user in a:
+#       if _id == user['id']:
+#       selected_user = user
+#     return jsonify(selected_user)
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
-
-    return jsonify(response_body), 200
-
-####################################
-
-@api.route('/ingredient', methods=['GET'])
-def handle_ingredient():
-
-    # get all the recipes
-    ingredient_query = Ingredient.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    ingredients = list(map(lambda x: x.serialize(), ingredient_query))
-
-####################################
-
-@api.route('/role', methods=['GET'])
-def handle_role():
-
-    # get all the recipes
-    role_query = Role.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    roles = list(map(lambda x: x.serialize(), role_query))
-
-    return jsonify(roles), 200
-
-####################################
-@api.route('/users', methods=['GET'])
-@jwt_required()
-def handle_users():
-    user = current_user(get_jwt_identity())
-    print(user)
-    # como filtro para que solo me devuelva el usuario activo
-    users = user.get_user_serialize(), user
-    return jsonify(users),200
-
-
+# @api.route('/_get_current_user')
+# @jwt_required()
+# def get_current_user():
+#     return jsonify(username=user.username,
+#                    email=user.email,
+#                    id=user.id)
 # @api.route('/users', methods=['GET'])
 # @jwt_required()
 # def handle_users():
@@ -139,84 +100,6 @@ def handle_menu():
     menus = list(map(lambda x: x.serialize(), menu_query))
 
     return jsonify(menus), 200
-
-####################################
-
-@api.route('/day', methods=['GET'])
-def handle_day():
-
-    # get all the recipes
-    day_query = Day.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    days = list(map(lambda x: x.serialize(), day_query))
-
-    return jsonify(days), 200
-
-####################################
-
-@api.route('/recipe', methods=['GET'])
-def handle_recipe():
-
-    # get all the recipes
-    recipe_query = Recipe.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    recipes = list(map(lambda x: x.serialize(), recipe_query))
-
-    return jsonify(recipes), 200
-
-####################################
-
-@api.route('/recipe_detail', methods=['GET'])
-def handle_recipedetail():
-
-    # get all the recipes
-    recipe_detail_query = RecipeDetail.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    recipe_details = list(map(lambda x: x.serialize(), recipe_detail_query))
-
-    return jsonify(recipe_details), 200
-
-####################################    
-
-@api.route('/selected_recipe', methods=['GET'])
-def handle_selected_recipe():
-
-    # get all the recipes
-    selected_recipe_query = SelectedRecipe.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    selected_recipes = list(map(lambda x: x.serialize(), selected_recipe_query))
-
-    return jsonify(selected_recipes), 200
-
-####################################    
-
-@api.route('/restriction', methods=['GET'])
-def handle_restriction():
-    # get all the recipes
-    restriction_query = Restriction.query.all()
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-    # map the results and your list of recipes  inside of the recipes variable
-    restrictions = list(map(lambda x: x.serialize(), restriction_query))
-
-    return jsonify(restrictions), 200
-
 
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():

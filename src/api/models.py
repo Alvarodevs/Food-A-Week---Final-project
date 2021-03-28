@@ -72,6 +72,7 @@ class User(db.Model):
 
     def get_user_serialize(self):
       return {
+         "id": self.id,
         "user_name": self.user_name
       }
     
