@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Ingredient, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe, Restriction, DataManager, MenuDataManager 
-from api.utils import generate_sitemap, APIException
+from api.utils import generate_sitemap, APIException, transform_to_day_dict
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -13,8 +13,8 @@ import os
 
 api = Blueprint('api', __name__)
 
-#ENDPOINTS ORDER ¡1 ENDP/METHOD! (from models.py): Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe
 
+#creoQueNoLoEstamosUsando
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -25,7 +25,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 ####################################
-
+#creoQueNoLoEstamosUsando
 @api.route('/ingredient', methods=['GET'])
 def handle_ingredient():
 
@@ -39,7 +39,7 @@ def handle_ingredient():
     ingredients = list(map(lambda x: x.serialize(), ingredient_query))
 
 ####################################
-
+#creoQueNoLoEstamosUsando
 @api.route('/role', methods=['GET'])
 def handle_role():
 
@@ -56,26 +56,10 @@ def handle_role():
 
 ####################################
 
-@api.route('/users', methods=['GET'])
-@jwt_required()
-def handle_users():
-
-
-    # get all the recipes
-    #user_query = User.query.all()
-
-    # get only the ones named "Joe"
-    recipe_query = Recipe.query.filter_by(name="nitry")
-
-    # map the results and your list of recipes  inside of the recipes variable
-    users = list(map(lambda x: x.serialize(), user_query))
-
-    return jsonify(users), 200
     
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
-  print("HELLO")
   body = request.get_json(force=True)
   user_name = body.get("user_name", None)
   name = body.get("name", None)
@@ -86,8 +70,10 @@ def sign_up():
   user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
   db.session.add(user1)
   db.session.commit()
+  access_token = create_access_token(identity=user1.sign_in_serialize())
 
-  return jsonify(user1.serialize())
+  return jsonify(user=user1.sign_in_serialize(), accessToken=access_token)
+
 #necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
@@ -100,8 +86,8 @@ def sign_in():
         return jsonify("Your credentials are wrong, please try again"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.serialize())
-    return jsonify(access_token=access_token)
+    access_token = create_access_token(identity=user.sign_in_serialize())
+    return jsonify(accessToken=access_token)
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
@@ -118,13 +104,18 @@ def protected():
     db.session.commit()
   print(user.serialize())
   return jsonify(user.serialize())
-def current_user(identity):
-  print(identity["id"])
-  return User.query.get(identity["id"])
-
 
 ####################################
+#Para retomar las recetas de un usuario
 
+@api.route('/new_weekly_menu', methods=['POST'])
+@jwt_required()
+def menus_from_an_specific_user():
+    user = current_user(get_jwt_identity()) #TODO: Replace with the 
+    menu_query = Recipe.query.filter_by(user)
+    # map the results and your list of recipes  inside of the recipes variable
+    users = list(map(lambda x: x.serialize(), merge_query))
+    return jsonify(users), 200
 ####################################
 @api.route('/menu', methods=['GET'])
 def handle_menu():
@@ -260,17 +251,13 @@ def remove_selected_recipe():
 @api.route('/new_weekly_menu', methods=['POST'])
 @jwt_required()
 def create_new_weekly_menu():
-    user = current_user(get_jwt_identity())
-    # script_dir = os.path.dirname(__file__)
-    # file_path = os.path.join(script_dir, 'data/new_weekly_menu.json')
-    # #complete_week = request.get_json() #traeme el json del request a python
-    # with open(file_path) as f:
-    #   data = json.load(f)
+    user = current_user(get_jwt_identity()) #TODO: Replace with the current_user method
     data = request.get_json() # {'title': "erwerw", 'days': {....} }
-    MenuDataManager().create_weekly_recipe(data, user)
+    data_days = transform_to_day_dict(data['days'])
+    params = {'title': data["title"], 'days': data_days }
+    MenuDataManager().create_weekly_recipe(params, user)
 
     return jsonify("El menú fue creado con éxito!"), 200
-
 
 @api.route('/get_user_by_email')
 def get_user_by_email():
@@ -282,4 +269,4 @@ def get_user_by_email():
     return jsonify(menu.serialize()), 200
 
 def current_user(identity):
-  return User.query.filter_by(email=identity['email']).one_or_none()
+  return User.query.get(identity["id"])

@@ -23,7 +23,8 @@ const SignUpForm = props => {
 		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
 	};
 
-	const handleFinalSubmit = () => {
+	const handleFinalSubmit = event => {
+		debugger;
 		event.preventDefault();
 		var raw = JSON.stringify(eachEntry);
 
@@ -35,9 +36,12 @@ const SignUpForm = props => {
 		fetch(`${apiBaseUrl}/api/sign_up`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
+				console.log(result);
+				localStorage.setItem("accessToken", result["accessToken"]);
+				debugger;
 				toast("User was created");
 				history.push("/home");
-				console.log("User was created");
+				//console.log("User was created");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -109,14 +113,8 @@ const SignUpForm = props => {
 export const SignUp = props => {
 	return (
 		<div className="jumbotron">
-			{/* <Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton />
-				<Modal.Body> */}
 			<SignUpForm />
-			{/* </Modal.Body>
-			</Modal> */}
 			<hr className="my-4" />
-
 			<Link to="/">
 				<span className="green-button btn" href="#" role="button">
 					Back home

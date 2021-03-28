@@ -158,7 +158,7 @@ export const NewWeek = () => {
 					</div>
 				</div>
 				<div className="d-flex col-6">
-					<div>
+					<div className="col-12">
 						<Weekplan />
 					</div>
 				</div>

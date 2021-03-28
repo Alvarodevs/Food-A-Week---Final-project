@@ -35,6 +35,7 @@ export const AllWeeks = () => {
 							</div>
 						</div>
 						<div className="row all-cards ">
+							{/* SINGLE CARD COMPONENT */}
 							<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 								<img
 									className="card-img-top p-0 m-0"
@@ -57,6 +58,7 @@ export const AllWeeks = () => {
 									<Icon.Trash className="icon-trash" />
 								</div>
 							</div>
+							{/* SINGLE CARD COMPONENT */}
 							<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 								<img
 									className="card-img-top p-0 m-0"
