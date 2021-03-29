@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				title: "",
 				days: []
 			},
-			notifyMessage: "Hello to FoodAWeek",
+			notifyMessage: "Wellcome to FoodAWeek",
 			user: null,
 			userMail: ""
 		}, //close store
