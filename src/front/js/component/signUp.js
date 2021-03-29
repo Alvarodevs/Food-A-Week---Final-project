@@ -38,6 +38,7 @@ const SignUpForm = props => {
 			.then(result => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
+				actions.setCurrentUser(result["user"]);
 				//debugger;
 				toast("User was created");
 				history.push("/home");

@@ -32,7 +32,7 @@ const SignInForm = props => {
 			.then(result => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
-				//debugger;
+				actions.setCurrentUser(result["user"]); //debugger;
 				toast("User was logged");
 				history.push("/home");
 				//console.log("User was logged");

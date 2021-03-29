@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				days: []
 			},
 			notifyMessage: "Hello to FoodAWeek",
-			user: "x",
+			user: null,
 			userMail: ""
 		}, //close store
 
@@ -177,10 +177,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				fetch(`${apiBaseUrl}/users/int:id`, requestOptions)
+				fetch(`${apiBaseUrl}/users/me`, requestOptions)
 					.then(response => response.json())
 					.then(data => setStore({ user: data }))
 					.catch(error => console.log("error", error));
+			},
+			setCurrentUser: userData => {
+				//let store = getStore();
+				debugger;
+				setStore({ user: userData });
 			}
 		}
 	};

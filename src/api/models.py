@@ -97,6 +97,7 @@ class Menu(db.Model):
     def get_menu_by_user_id(user_id):
         return Menu.query.filter_by(user_id=user_id).first_or_404()
 
+
 class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=False, nullable=False)

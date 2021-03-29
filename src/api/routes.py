@@ -15,15 +15,23 @@ api = Blueprint('api', __name__)
 
 @api.route('/users', methods=['GET'])
 def handle_users():
-
     user = User.query.all()
     users = list(map(lambda user: user.serialize(), users))
     return jsonify(users), 200
 
-@api.route('/users/<int:id>', methods=['GET'])
+@api.route('/me', methods=['GET'])
 def handle_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize()), 200
+
+
+
+@api.route('/me/menus', methods=['GET'])
+@jwt_required
+def handle_current_user_menus():
+    user = current_user(get_jwt_identity())
+    menus = list(map(lambda menu: menu.serialize(), user.menus))  
+    return jsonify(menus), 200
 
 #yo quería que me devolviera los datos del usuario , pero solo consigo 404. Pero está autenticado... He hecho el proceso de debugger para validar is autenticated y token.
 
@@ -40,9 +48,9 @@ def sign_up():
   user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
   db.session.add(user1)
   db.session.commit()
-  access_token = create_access_token(identity=user1.sign_in_serialize())
+  access_token = create_access_token(identity=user1.serialize())
 
-  return jsonify(user=user1.sign_in_serialize(), accessToken=access_token)
+  return jsonify(user=user1.serialize(), accessToken=access_token)
 
 #necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
@@ -56,8 +64,8 @@ def sign_in():
         return jsonify("Your credentials are wrong, please try again"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.sign_in_serialize())
-    return jsonify(accessToken=access_token)
+    access_token = create_access_token(identity=user.serialize())
+    return jsonify(user=user.serialize(), accessToken=access_token)
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
