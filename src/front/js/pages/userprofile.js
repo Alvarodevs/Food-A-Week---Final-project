@@ -87,21 +87,46 @@ export const AvatarForm = props => {
 
 export const Userprofile = props => {
 	const { store, actions } = useContext(Context);
-	const upPersonalInfo = event => {
-		const options = {
-			body: data,
-			headers: {
-				Authorization: "Bearer " + store.accessToken
-			},
-			method: "PUT"
-		};
+	let history = useHistory();
 
-		fetch(`${baseUrl}api/me`, options)
-			.then(resp => resp.json())
-			.then(data => {
-				actions.setUser(data);
-				document.getElementById(props.modalId).click();
-			});
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	const initialInputState = {
+		user_name: "",
+		name: "",
+		lastName: "",
+		email: "",
+		address: "",
+		postal_code: "",
+		password: ""
+	};
+	const [eachEntry, setEachEntry] = useState(initialInputState);
+	const { player, score } = eachEntry;
+	const handleInputChange = e => {
+		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
+	};
+
+	const handleFinalSubmit = event => {
+		debugger;
+		event.preventDefault();
+		var raw = JSON.stringify(eachEntry);
+		var requestOptions = {
+			method: "POST",
+			body: raw
+		};
+		fetch(`${apiBaseUrl}/api/sign_up`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				//localStorage.setItem("accessToken", result["accessToken"]);
+				actions.setCurrentUser(result["user"]);
+				debugger;
+				history.push("/home");
+				//console.log("User was created");
+			})
+			.catch(error => console.log("error", error));
 	};
 
 	return (
@@ -127,13 +152,14 @@ export const Userprofile = props => {
 			</div>
 			<div className="d-flex flex-row justify-content-around h-60 mt-3">
 				<AvatarForm />
+
 				<div className="col-3 mx-1 d-flex flex-column my-auto">
-					<Form className="m-2">
+					<Form onSubmit={handleFinalSubmit} className="m-2">
 						<Form.Group controlId="UserName">
 							<Form.Control
 								className="form"
 								type="text"
-								placeholder={store.user ? store.user.user_name : "Insert here your name"}
+								placeholder={store.user ? store.user.user_name : "Insert here your user name"}
 							/>
 						</Form.Group>
 						<Form.Group controlId="Name">
@@ -171,9 +197,7 @@ export const Userprofile = props => {
 								placeholder={store.user ? store.user.email : "Insert here your e-mail"}
 							/>
 						</Form.Group>
-						<Button variant="primary" type="submit" onChange={upPersonalInfo}>
-							Save
-						</Button>
+						<Button type="submit">Save</Button>
 					</Form>
 
 					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">

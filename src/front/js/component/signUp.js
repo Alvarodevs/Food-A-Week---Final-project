@@ -58,7 +58,7 @@ const SignUpForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputUserName">User name</label>
+				<label htmlFor="user_name">User name</label>
 				<input
 					type="user_name"
 					className="form-control"
@@ -69,66 +69,66 @@ const SignUpForm = props => {
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">Email address</label>
+				<label htmlFor="email">Email address</label>
 				<input
 					type="email"
 					className="form-control"
-					id="exampleInputEmail"
+					id="email"
 					placeholder="Enter email"
 					name="email"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputName">Name</label>
+				<label htmlFor="name">Name</label>
 				<input
 					type="text"
 					className="form-control"
-					id="exampleInputName"
+					id="name"
 					placeholder="Enter your name"
 					name="name"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputLastName">Last Name</label>
+				<label htmlFor="lastName">Last Name</label>
 				<input
 					type="text"
 					className="form-control"
-					id="exampleInputLastName"
+					id="lastName"
 					placeholder="Enter your last name"
 					name="lastName"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputAddress">Address</label>
+				<label htmlFor="Address">Address</label>
 				<input
-					type="text"
+					type="Address"
 					className="form-control"
-					id="exampleInputAddress"
+					id="Address"
 					placeholder="Enter your address"
 					name="Address"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputCP">Postal Code</label>
+				<label htmlFor="postal_code">Postal Code</label>
 				<input
-					type="text"
+					type="postal_code"
 					className="form-control"
-					id="exampleInputCP"
+					id="postal_code"
 					placeholder="Enter your Postal Code"
 					name="postal_code"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputPassword">Password</label>
+				<label htmlFor="password">Password</label>
 				<input
 					type="password"
 					className="form-control"
-					id="exampleInputPassword"
+					id="password"
 					placeholder="Enter your password"
 					name="password"
 					onChange={handleInputChange}
