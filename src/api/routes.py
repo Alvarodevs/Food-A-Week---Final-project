@@ -13,64 +13,30 @@ import os
 
 api = Blueprint('api', __name__)
 
-#ENDPOINTS ORDER ¡1 ENDP/METHOD! (from models.py): Ingredient,Role, User, Menu, Day, Recipe, RecipeDetail, SelectedRecipe
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend"
-    }
-
-    return jsonify(response_body), 200
-
-####################################
-
-@api.route('/ingredient', methods=['GET'])
-def handle_ingredient():
-
-    # get all the recipes
-    ingredient_query = Ingredient.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    ingredients = list(map(lambda x: x.serialize(), ingredient_query))
-
-####################################
-
-@api.route('/role', methods=['GET'])
-def handle_role():
-
-    # get all the recipes
-    role_query = Role.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    roles = list(map(lambda x: x.serialize(), role_query))
-
-    return jsonify(roles), 200
-
-####################################
-
 @api.route('/users', methods=['GET'])
-@jwt_required()
 def handle_users():
-    user = current_user(get_jwt_identity())
-    # get all the recipes
-    user_query = User.query.all(user)
 
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name="AGD")
-
-    # map the results and your list of recipes  inside of the recipes variable
-    users = list(map(lambda x: x.serialize(), user_query))
-
+    user = User.query.all()
+    users = list(map(lambda user: user.serialize(), users))
     return jsonify(users), 200
-    
+
+@api.route('/me', methods=['GET'])
+def handle_user(id):
+    user = User.query.get(id)
+    return jsonify(user.serialize()), 200
+
+
+
+
+@api.route('/me/menus', methods=['GET'])
+@jwt_required
+def handle_current_user_menus():
+    user = current_user(get_jwt_identity())
+    menus = list(map(lambda menu: menu.serialize(), user.menus))  
+    return jsonify(menus), 200
+
+#yo quería que me devolviera los datos del usuario , pero solo consigo 404. Pero está autenticado... He hecho el proceso de debugger para validar is autenticated y token.
+
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
 def sign_up():
@@ -84,9 +50,9 @@ def sign_up():
   user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
   db.session.add(user1)
   db.session.commit()
-  access_token = create_access_token(identity=user1.sign_in_serialize())
+  access_token = create_access_token(identity=user1.serialize())
 
-  return jsonify(user=user1.sign_in_serialize(), accessToken=access_token)
+  return jsonify(user=user1.serialize(), accessToken=access_token)
 
 #necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
@@ -100,8 +66,8 @@ def sign_in():
         return jsonify("Your credentials are wrong, please try again"), 401
 
     # Notice that we are passing in the actual sqlalchemy user object here
-    access_token = create_access_token(identity=user.sign_in_serialize())
-    return jsonify(accessToken=access_token)
+    access_token = create_access_token(identity=user.serialize())
+    return jsonify(user=user.serialize(), accessToken=access_token)
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
@@ -135,84 +101,6 @@ def handle_menu():
     menus = list(map(lambda x: x.serialize(), menu_query))
 
     return jsonify(menus), 200
-
-####################################
-
-@api.route('/day', methods=['GET'])
-def handle_day():
-
-    # get all the recipes
-    day_query = Day.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    days = list(map(lambda x: x.serialize(), day_query))
-
-    return jsonify(days), 200
-
-####################################
-
-@api.route('/recipe', methods=['GET'])
-def handle_recipe():
-
-    # get all the recipes
-    recipe_query = Recipe.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    recipes = list(map(lambda x: x.serialize(), recipe_query))
-
-    return jsonify(recipes), 200
-
-####################################
-
-@api.route('/recipe_detail', methods=['GET'])
-def handle_recipedetail():
-
-    # get all the recipes
-    recipe_detail_query = RecipeDetail.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    recipe_details = list(map(lambda x: x.serialize(), recipe_detail_query))
-
-    return jsonify(recipe_details), 200
-
-####################################    
-
-@api.route('/selected_recipe', methods=['GET'])
-def handle_selected_recipe():
-
-    # get all the recipes
-    selected_recipe_query = SelectedRecipe.query.all()
-
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-
-    # map the results and your list of recipes  inside of the recipes variable
-    selected_recipes = list(map(lambda x: x.serialize(), selected_recipe_query))
-
-    return jsonify(selected_recipes), 200
-
-####################################    
-
-@api.route('/restriction', methods=['GET'])
-def handle_restriction():
-    # get all the recipes
-    restriction_query = Restriction.query.all()
-    # get only the ones named "Joe"
-    #recipe_query = Recipe.query.filter_by(name='Joe')
-    # map the results and your list of recipes  inside of the recipes variable
-    restrictions = list(map(lambda x: x.serialize(), restriction_query))
-
-    return jsonify(restrictions), 200
-
 
 @api.route('/seed_data_user', methods=['GET'])
 def handle_seed_data_user():
