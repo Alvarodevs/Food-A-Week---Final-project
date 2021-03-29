@@ -169,7 +169,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(data => data.result)
+					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
 			filterByTime: userTime => {
