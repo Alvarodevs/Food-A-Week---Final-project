@@ -50,7 +50,9 @@ export const Navbar = () => {
 								className="dropdown-basic green-button btn btn-circle user-button my-2 mr-5"
 							/>
 							<Dropdown.Menu>
-								<Dropdown.Item href="/userprofile">Profile</Dropdown.Item>
+								<Dropdown.Item href="/userprofile" onClick={actions.get_user_name}>
+									Profile
+								</Dropdown.Item>
 								<Dropdown.Divider />
 								<Dropdown.Item href="/" onClick={actions.logout}>
 									Logout

@@ -178,9 +178,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				time = userTime;
 				setStore({ timeCooking: time });
 			},
-			get_user_name: () => {
-				debugger;
-				//let store = getStore();
+			setCurrentUser: userData => {
+				setStore({ user: userData });
+			},
+			currentUser: () => {
 				var requestOptions = {
 					method: "GET",
 					headers: {
@@ -192,12 +193,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => setStore({ user: data }))
 					.catch(error => console.log("error", error));
-			},
-			setCurrentUser: userData => {
-				//let store = getStore();
-				debugger;
-				setStore({ user: userData });
 			}
+
 			// filterByAllergens: allergens => {
 			//  let store = getStore();
 			// }

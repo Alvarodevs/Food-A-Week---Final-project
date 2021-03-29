@@ -25,17 +25,12 @@ def handle_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize()), 200
 
-
-
-
 @api.route('/me/menus', methods=['GET'])
 @jwt_required
 def handle_current_user_menus():
     user = current_user(get_jwt_identity())
     menus = list(map(lambda menu: menu.serialize(), user.menus))  
     return jsonify(menus), 200
-
-#yo quería que me devolviera los datos del usuario , pero solo consigo 404. Pero está autenticado... He hecho el proceso de debugger para validar is autenticated y token.
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])

@@ -103,6 +103,7 @@ export const Userprofile = props => {
 				document.getElementById(props.modalId).click();
 			});
 	};
+
 	return (
 		<div className="container">
 			<div className="d-flex flex-row user-profile-titles mt-2">
@@ -110,9 +111,9 @@ export const Userprofile = props => {
 				<div className="col-4 text-center">
 					<h3>{"User info"}</h3>
 				</div>
-				<div className="col-4 text-center">
+				{/* <div className="col-4 text-center">
 					<h3>{"Allergies"}</h3>
-				</div>
+				</div> */}
 				<div className="buttons col-2">
 					<div className="d-flex weekplan-buttons-container">
 						<button className="weekplan-btn btn green-button" type="submit">
@@ -131,9 +132,19 @@ export const Userprofile = props => {
 						<Form.Group controlId="Username" />
 
 						<Form.Group controlId="Name">
-							<Form.Control className="form" type="text" placeholder="Name & last name" />
+							<Form.Control
+								className="form"
+								type="text"
+								placeholder={store.user ? store.user.name : "Name"}
+							/>
 						</Form.Group>
-
+						<Form.Group controlId="Name">
+							<Form.Control
+								className="form"
+								type="text"
+								placeholder={store.user ? store.user.lastname : "Lastname"}
+							/>
+						</Form.Group>
 						<Form.Group controlId="Address">
 							<Form.Control className="form" type="text" placeholder="Enter address" />
 						</Form.Group>
@@ -154,9 +165,9 @@ export const Userprofile = props => {
 						</Button>
 					</Form>
 				</div>
-				<div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
+				{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
 					<AllergensTable />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
