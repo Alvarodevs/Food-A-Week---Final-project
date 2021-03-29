@@ -68,7 +68,16 @@ class User(db.Model):
       }
 
     def get_user_by_email(email):
-        return User.query.filter_by(email=email).first_or_404()
+      return User.query.filter_by(email=email).first_or_404()
+
+    def get_user_serialize(self):
+      return {
+         "id": self.id,
+        "user_name": self.user_name
+      }
+    
+
+    
 
 class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -87,6 +96,7 @@ class Menu(db.Model):
 
     def get_menu_by_user_id(user_id):
         return Menu.query.filter_by(user_id=user_id).first_or_404()
+
 
 class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
