@@ -27,7 +27,7 @@ export const AllWeeks = () => {
 				<div className="card-container d-flex justify-content-center mx-auto">
 					<div>
 						<div>
-							<button onClick={recipes}>CLICK</button>
+							<button>CLICK</button>
 						</div>
 						<div className="row">
 							<div className="page-order-weeks">
