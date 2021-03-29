@@ -22,15 +22,14 @@ export const NewWeek = () => {
 
 	const [query] = useDebounce(value, 1000);
 
-	const handleSubmit = event => {
-		event.preventDefault();
-		actions.getRecipes(value);
-		actions.filterByTime(selectedTime);
-	};
-
 	const handleInput = event => {
 		setValue(event.target.value);
 		event.preventDefault();
+	};
+
+	const handleSubmit = event => {
+		actions.getRecipes(value);
+		//actions.filterByTime(selectedTime);
 	};
 
 	const handleDay = e => {
@@ -47,9 +46,9 @@ export const NewWeek = () => {
 		actions.getRecipes(e.target.value);
 	};
 
-	const handleTime = e => {
-		setSelectedTime(e.target.value);
-	};
+	// const handleTime = e => {
+	// 	setSelectedTime(e.target.value);
+	// };
 
 	const handleData = event => {
 		let icon = event.target;
@@ -83,16 +82,17 @@ export const NewWeek = () => {
 				<div className="container-fluid col-6 m-0">
 					<div className="weekplan-body">
 						<div className="d-flex flex-row">
-							<Form onSubmit={handleSubmit} className="d-flex justify-content-around col-12 p-0 ">
+							<Form onSubmit={handleSubmit} className="d-flex justify-content-around col-12 p-0 ml-2">
 								<Form.Control
-									placeholder="Search your recipes here"
+									placeholder="Search your recipes here & press enter"
 									onChange={handleInput}
-									className="bar-body-dropdown col-9 p-0 ml-2 mb-0 w-100"
+									className="bar-body-dropdown col-8 pl-1 ml-0 mb-0 w-100"
 								/>
 								<select
-									className="custom-select col-2 p-0 ml-2"
+									className="custom-select col-3 pl-1 ml-1 bar-body-dropdown"
 									onChange={handleQuery}
 									value={selectedQuery}>
+									<option value="">Suggestions</option>
 									<option value="Rice">Rice</option>
 									<option value="Pasta">Pasta</option>
 									<option value="Fish">Fish</option>
@@ -130,7 +130,7 @@ export const NewWeek = () => {
 								<option value="5">Saturday</option>
 								<option value="6">Sunday</option>
 							</select>
-							<select className="custom-select col-4 p-0" onChange={handlePosition}>
+							<select className="custom-select col-4" onChange={handlePosition}>
 								<option value="0">Breakfast</option>
 								<option value="1">Snack 1</option>
 								<option value="2">Lunch</option>
@@ -138,7 +138,7 @@ export const NewWeek = () => {
 								<option value="4">Dinner</option>
 							</select>
 							<Button
-								className="mr-0 green-button p-0 m-0 col-3"
+								className="mr-0 green-button py-0 m-0 col-3"
 								onClick={() => actions.getMoreRecipes()}>
 								Get more recipes
 							</Button>

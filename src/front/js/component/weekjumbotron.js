@@ -3,15 +3,13 @@ import { Context } from "../store/appContext";
 import { Button, Jumbotron } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-//import "../../styles/index.scss";
-
 export const WeekJumbo = () => {
-	//const { store, actions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 
 	return (
 		<Jumbotron className="container m-auto body-jumbo pt-0 pb-1">
 			<div className="d-flex container-fluid m-auto h-auto justify-content-between">
-				<h3 className="text-center m-auto">Menu title</h3>
+				<h3 className="text-center m-auto">{}</h3>
 
 				<div className="icondelete mt-1 ml-2" onClick={() => closeJumbo()}>
 					<i className="fas fa-times delete-button" />

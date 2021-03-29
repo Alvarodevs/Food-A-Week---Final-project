@@ -15,6 +15,7 @@ api = Blueprint('api', __name__)
 
 @api.route('/users', methods=['GET'])
 def handle_users():
+
     user = User.query.all()
     users = list(map(lambda user: user.serialize(), users))
     return jsonify(users), 200
@@ -23,6 +24,7 @@ def handle_users():
 def handle_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize()), 200
+
 
 
 
@@ -140,9 +142,10 @@ def remove_selected_recipe():
 
 
 @api.route('/new_weekly_menu', methods=['POST'])
-@jwt_required()
+@jwt_required() 
 def create_new_weekly_menu():
     user = current_user(get_jwt_identity()) #TODO: Replace with the current_user method
+    print(user)
     data = request.get_json() # {'title': "erwerw", 'days': {....} }
     data_days = transform_to_day_dict(data['days'])
     params = {'title': data["title"], 'days': data_days }
