@@ -129,45 +129,57 @@ export const Userprofile = props => {
 				<AvatarForm />
 				<div className="col-3 mx-1 d-flex flex-column my-auto">
 					<Form className="m-2">
-						<Form.Group controlId="Username" />
-
-						<Form.Group controlId="Name">
+						<Form.Group controlId="UserName">
 							<Form.Control
 								className="form"
 								type="text"
-								placeholder={store.user ? store.user.name : "Name"}
+								placeholder={store.user ? store.user.user_name : "Insert here your name"}
 							/>
 						</Form.Group>
 						<Form.Group controlId="Name">
 							<Form.Control
 								className="form"
 								type="text"
-								placeholder={store.user ? store.user.lastname : "Lastname"}
+								placeholder={store.user ? store.user.name : "Insert here your name"}
+							/>
+						</Form.Group>
+						<Form.Group controlId="LastName">
+							<Form.Control
+								className="form"
+								type="text"
+								placeholder={store.user ? store.user.last_name : "Insert here your lastname"}
 							/>
 						</Form.Group>
 						<Form.Group controlId="Address">
-							<Form.Control className="form" type="text" placeholder="Enter address" />
+							<Form.Control
+								className="form"
+								type="text"
+								placeholder={store.user ? store.user.address : "Insert here your address"}
+							/>
 						</Form.Group>
-
 						<Form.Group controlId="PostalCode">
-							<Form.Control className="form" type="text" placeholder="Enter postal code" />
+							<Form.Control
+								className="form"
+								type="text"
+								placeholder={store.user ? store.user.postal_code : "Insert here your postal code"}
+							/>
 						</Form.Group>
-
 						<Form.Group controlId="Email">
-							<Form.Control className="form" type="email" placeholder="Enter email" />
-						</Form.Group>
-
-						<Form.Group controlId="PhoneNumber">
-							<Form.Control className="form" type="text" placeholder="Enter phone" />
+							<Form.Control
+								className="form"
+								type="email"
+								placeholder={store.user ? store.user.email : "Insert here your e-mail"}
+							/>
 						</Form.Group>
 						<Button variant="primary" type="submit" onChange={upPersonalInfo}>
 							Save
 						</Button>
 					</Form>
-				</div>
-				{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
+
+					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
 					<AllergensTable />
 				</div> */}
+				</div>
 			</div>
 		</div>
 	);

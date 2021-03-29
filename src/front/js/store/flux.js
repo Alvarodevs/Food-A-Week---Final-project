@@ -180,19 +180,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setCurrentUser: userData => {
 				setStore({ user: userData });
-			},
-			currentUser: () => {
-				var requestOptions = {
-					method: "GET",
-					headers: {
-						Authorization: "Bearer " + localStorage.getItem("accessToken"),
-						"Content-Type": "application/json"
-					}
-				};
-				fetch(`${apiBaseUrl}/users/me`, requestOptions)
-					.then(response => response.json())
-					.then(data => setStore({ user: data }))
-					.catch(error => console.log("error", error));
 			}
 
 			// filterByAllergens: allergens => {

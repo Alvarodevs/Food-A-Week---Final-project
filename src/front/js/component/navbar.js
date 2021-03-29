@@ -30,7 +30,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light background-white mb-1">
 			<div className="navbar-container d-flex justify-content-between">
-				<Link to="/">
+				<Link to="/home">
 					{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
 					{/* <img
 					src="https://image.flaticon.com/icons/png/512/1676/1676708.png"
@@ -50,8 +50,8 @@ export const Navbar = () => {
 								className="dropdown-basic green-button btn btn-circle user-button my-2 mr-5"
 							/>
 							<Dropdown.Menu>
-								<Dropdown.Item href="/userprofile" onClick={actions.get_user_name}>
-									Profile
+								<Dropdown.Item>
+									<Link to="/userprofile">Profile</Link>
 								</Dropdown.Item>
 								<Dropdown.Divider />
 								<Dropdown.Item href="/" onClick={actions.logout}>

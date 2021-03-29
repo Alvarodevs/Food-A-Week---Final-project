@@ -15,7 +15,15 @@ const SignUpForm = props => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const initialInputState = { name: "", lastName: "", email: "", password: "" };
+	const initialInputState = {
+		user_name: "",
+		name: "",
+		lastName: "",
+		email: "",
+		address: "",
+		postal_code: "",
+		password: ""
+	};
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
 	const handleInputChange = e => {
@@ -50,7 +58,7 @@ const SignUpForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">User name</label>
+				<label htmlFor="exampleInputUserName">User name</label>
 				<input
 					type="user_name"
 					className="form-control"
@@ -90,6 +98,28 @@ const SignUpForm = props => {
 					id="exampleInputLastName"
 					placeholder="Enter your last name"
 					name="lastName"
+					onChange={handleInputChange}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="exampleInputAddress">Address</label>
+				<input
+					type="text"
+					className="form-control"
+					id="exampleInputAddress"
+					placeholder="Enter your address"
+					name="Address"
+					onChange={handleInputChange}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="exampleInputCP">Postal Code</label>
+				<input
+					type="text"
+					className="form-control"
+					id="exampleInputCP"
+					placeholder="Enter your Postal Code"
+					name="postal_code"
 					onChange={handleInputChange}
 				/>
 			</div>
