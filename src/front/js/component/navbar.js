@@ -31,11 +31,6 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light background-white mb-1">
 			<div className="navbar-container d-flex justify-content-between">
 				<Link to="/home">
-					{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
-					{/* <img
-					src="https://image.flaticon.com/icons/png/512/1676/1676708.png"
-					className="d-flex navbar-brand mb-0 justify-content-auto"
-				/> */}
 					<img src={logo} alt="Logo" className="d-flex navbar-brand my-2 ml-5" />
 				</Link>
 

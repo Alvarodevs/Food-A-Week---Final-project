@@ -64,6 +64,24 @@ def sign_in():
     access_token = create_access_token(identity=user.serialize())
     return jsonify(user=user.serialize(), accessToken=access_token)
 
+@api.route("/sign_up_post", methods=["POST"])
+def sign_up_post():
+  body = request.get_json(force=True)
+  user_name = body.get("user_name", None)
+  name = body.get("name", None)
+  last_name = body.get("lastName", None)
+  address = body.get("address", None)
+  postal_code = body.get("postalCode", None)
+  
+
+  user1 = User(user_name=user_name, name=name, last_name=last_name, address=address,postal_code=postal_code)
+  db.session.add(user1)
+  db.session.commit()
+  access_token = create_access_token(identity=user1.serialize())
+
+  return jsonify(user=user1.serialize(), accessToken=access_token)
+
+
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
 def protected():

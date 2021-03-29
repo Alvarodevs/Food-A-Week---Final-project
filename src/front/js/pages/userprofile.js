@@ -97,10 +97,8 @@ export const Userprofile = props => {
 		user_name: "",
 		name: "",
 		lastName: "",
-		email: "",
 		address: "",
-		postal_code: "",
-		password: ""
+		postal_code: ""
 	};
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
@@ -113,14 +111,14 @@ export const Userprofile = props => {
 		event.preventDefault();
 		var raw = JSON.stringify(eachEntry);
 		var requestOptions = {
-			method: "POST",
+			method: "PUT",
 			body: raw
 		};
-		fetch(`${apiBaseUrl}/api/sign_up`, requestOptions)
+		fetch(`${apiBaseUrl}/api/sign_up_post`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				//localStorage.setItem("accessToken", result["accessToken"]);
+				localStorage.setItem("accessToken", result["accessToken"]);
 				actions.setCurrentUser(result["user"]);
 				debugger;
 				history.push("/home");
@@ -154,51 +152,67 @@ export const Userprofile = props => {
 				<AvatarForm />
 
 				<div className="col-3 mx-1 d-flex flex-column my-auto">
-					<Form onSubmit={handleFinalSubmit} className="m-2">
-						<Form.Group controlId="UserName">
-							<Form.Control
-								className="form"
-								type="text"
+					<form onSubmit={handleFinalSubmit}>
+						<div className="form-group">
+							<label htmlFor="user_name">User name</label>
+							<input
+								type="user_name"
+								className="form-control"
+								id="user_name"
 								placeholder={store.user ? store.user.user_name : "Insert here your user name"}
+								name="user_name"
+								onChange={handleInputChange}
 							/>
-						</Form.Group>
-						<Form.Group controlId="Name">
-							<Form.Control
-								className="form"
+						</div>
+
+						<div className="form-group">
+							<label htmlFor="name">Name</label>
+							<input
 								type="text"
+								className="form-control"
+								id="name"
 								placeholder={store.user ? store.user.name : "Insert here your name"}
+								name="name"
+								onChange={handleInputChange}
 							/>
-						</Form.Group>
-						<Form.Group controlId="LastName">
-							<Form.Control
-								className="form"
+						</div>
+						<div className="form-group">
+							<label htmlFor="lastName">Last Name</label>
+							<input
 								type="text"
-								placeholder={store.user ? store.user.last_name : "Insert here your lastname"}
+								className="form-control"
+								id="lastName"
+								placeholder={store.user ? store.user.last_name : "Insert here your last name"}
+								name="lastName"
+								onChange={handleInputChange}
 							/>
-						</Form.Group>
-						<Form.Group controlId="Address">
-							<Form.Control
-								className="form"
-								type="text"
+						</div>
+						<div className="form-group">
+							<label htmlFor="Address">Address</label>
+							<input
+								type="Address"
+								className="form-control"
+								id="Address"
 								placeholder={store.user ? store.user.address : "Insert here your address"}
+								name="Address"
+								onChange={handleInputChange}
 							/>
-						</Form.Group>
-						<Form.Group controlId="PostalCode">
-							<Form.Control
-								className="form"
-								type="text"
-								placeholder={store.user ? store.user.postal_code : "Insert here your postal code"}
+						</div>
+						<div className="form-group">
+							<label htmlFor="postal_code">Postal Code</label>
+							<input
+								type="postal_code"
+								className="form-control"
+								id="postal_code"
+								placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
+								name="postal_code"
+								onChange={handleInputChange}
 							/>
-						</Form.Group>
-						<Form.Group controlId="Email">
-							<Form.Control
-								className="form"
-								type="email"
-								placeholder={store.user ? store.user.email : "Insert here your e-mail"}
-							/>
-						</Form.Group>
-						<Button type="submit">Save</Button>
-					</Form>
+						</div>
+						<button type="submit" className="green-button btn">
+							Submit
+						</button>
+					</form>
 
 					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
 					<AllergensTable />
