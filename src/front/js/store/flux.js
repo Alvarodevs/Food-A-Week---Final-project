@@ -29,7 +29,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			notifyMessage: "Wellcome to FoodAWeek",
 			user: null,
-			userMail: ""
+			userMail: "",
+			allUserMenus: [
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
+			]
 		}, //close store
 
 		actions: {
@@ -165,13 +170,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				// console.log(localStorage.getItem("accessToken"));
-				// console.log(store.newWeeklyMenu);
+				//console.log(localStorage.getItem("accessToken"));
+				//console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(result => console.log(result))
+					.then(result =>
+						setStore({
+							newWeeklyMenu: {
+								title: "",
+								days: []
+							}
+						})
+					)
 					.catch(error => console.log("error", error));
 			},
+
 			filterByTime: userTime => {
 				let store = getStore();
 				let time = store.timeCooking;
@@ -179,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ timeCooking: time });
 			},
 			get_user_name: () => {
-				debugger;
+				//debugger;
 				//let store = getStore();
 				var requestOptions = {
 					method: "GET",
@@ -195,8 +208,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setCurrentUser: userData => {
 				//let store = getStore();
-				debugger;
+				//debugger;
 				setStore({ user: userData });
+			},
+			getWeeklyMenus: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				debugger;
+				fetch(`${apiBaseUrl}/me/menu`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Menus are not available now", error));
 			}
 			// filterByAllergens: allergens => {
 			//  let store = getStore();

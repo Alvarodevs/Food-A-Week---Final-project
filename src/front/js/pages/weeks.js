@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+
+import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
 import { Navlink } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -12,6 +14,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 
+	const recipes = () => {
+		actions.getWeeklyMenus();
+	};
+
 	return (
 		<div className="container-fluid">
 			<div className="page-container d-flex">
@@ -20,6 +26,9 @@ export const AllWeeks = () => {
 			</div> */}
 				<div className="card-container d-flex justify-content-center mx-auto">
 					<div>
+						<div>
+							<button onClick={recipes}>CLICK</button>
+						</div>
 						<div className="row">
 							<div className="page-order-weeks">
 								<Dropdown>
@@ -34,6 +43,7 @@ export const AllWeeks = () => {
 								</Dropdown>
 							</div>
 						</div>
+
 						<div className="row all-cards ">
 							{/* SINGLE CARD COMPONENT */}
 							<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -44,7 +54,7 @@ export const AllWeeks = () => {
 								/>
 								<div className=" card-body py-1 justify-content-between align-middle">
 									<div className="card-title pt-2">Semana santa</div>
-									<div className="card-text">The menus this week do not have meat, but fish.</div>
+									<div className="card-text">Nothing</div>
 								</div>
 								<div className="align-card-buttons">
 									<Button className=" weekplan-btn green-button" type="submit">
