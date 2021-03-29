@@ -8,14 +8,17 @@ export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
 	const [titleMenu, setTitleMenu] = useState("");
 
-	const handleSubmit = event => {
-		actions.addTitleMenu(titleMenu);
-		actions.addNewWeeklyMenu(); //Trigger para enviar el JSON a /api/new_weekly_menu
+	const handleSubmit = () => {
+		actions.addNewWeeklyMenu(titleMenu); //Trigger para enviar el JSON a /api/new_weekly_menu
 	};
 
 	const handleInputChange = e => {
 		setTitleMenu(e.target.value);
 	};
+
+	// const addTitle = () => {
+	// 	actions.addTitleMenu(titleMenu);
+	// };
 
 	return (
 		<div className="container-fluid">

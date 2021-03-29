@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
-			timeCooking: "1-400",
+			timeCooking: "1%2B",
 			newWeeklyMenu: {
 				title: "",
 				days: []
@@ -89,31 +89,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			addTitleMenu: titleMenu => {
-				let store = getStore();
-				let newTitleMenu = store.newWeeklyMenu["title"];
-				newTitleMenu = titleMenu;
-
-				setStore({ title: newTitleMenu });
-			},
+			// addTitleMenu: titleMenu => {
+			// 	let store = getStore();
+			// 	let newTitleMenu = store.newWeeklyMenu["title"];
+			// 	newTitleMenu = titleMenu;
+			// 	setStore({ title: newTitleMenu });
+			// 	//console.log(newTitleMenu);
+			// },
 			getWelcomeMessage: () => {},
-			signInUser: signInParams => {
-				let store = getStore();
-				let raw = JSON.stringify(signInParams);
-				var requestOptions = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: raw
-				};
 
-				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
-					.then(response => response.json())
-					.then(data => {
-						//debugger;
-						localStorage.setItem("accessToken", data["accessToken"]);
-					})
-					.catch(error => console.log("error", error));
-			},
 			isUserAuthenticated: () => {
 				return localStorage.getItem("accessToken") !== null;
 			},
@@ -124,9 +108,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ user: userParams });
 
 				setStore(newTitleMenu);
-				//console.log(newTitleMenu);
-				//Storing title OK;
 			},
+
 			addRecipe: (day, meal, name, uri) => {
 				let store = getStore();
 				let newWeeklyMenu = store.newWeeklyMenu;
@@ -160,8 +143,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ q: [query] });
 			},
 
-			addNewWeeklyMenu: () => {
+			addNewWeeklyMenu: titleMenu => {
 				let store = getStore();
+				let newNewWeeklyMenu = store.newWeeklyMenu;
+				let newTitleMenu = store.newWeeklyMenu.title;
+				if (!newTitleMenu) {
+					newTitleMenu = titleMenu;
+				}
+				newNewWeeklyMenu = {
+					title: newTitleMenu,
+					days: store.newWeeklyMenu.days
+				};
+				setStore({ newWeeklyMenu: newNewWeeklyMenu });
 				var raw = JSON.stringify(store.newWeeklyMenu);
 
 				var requestOptions = {
@@ -172,6 +165,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
+				// console.log(localStorage.getItem("accessToken"));
+				// console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
 					.then(data => data.result)
