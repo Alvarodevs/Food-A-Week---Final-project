@@ -106,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
-
+				//aquí que pinta setStoreNewTitleMenu?
 				setStore(newTitleMenu);
 			},
 

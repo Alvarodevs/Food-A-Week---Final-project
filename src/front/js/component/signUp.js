@@ -90,7 +90,7 @@ const SignUpForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<div className="form-group">
+			{/* <div className="form-group">
 				<label htmlFor="lastName">Last Name</label>
 				<input
 					type="text"
@@ -100,15 +100,15 @@ const SignUpForm = props => {
 					name="lastName"
 					onChange={handleInputChange}
 				/>
-			</div>
+			</div> */}
 			<div className="form-group">
-				<label htmlFor="Address">Address</label>
+				<label htmlFor="address">Address</label>
 				<input
-					type="Address"
+					type="address"
 					className="form-control"
-					id="Address"
+					id="address"
 					placeholder="Enter your address"
-					name="Address"
+					name="address"
 					onChange={handleInputChange}
 				/>
 			</div>

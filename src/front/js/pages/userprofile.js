@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UserData } from "../component/user_info_form";
 import { AllergensTable } from "../component/allergenstable";
-import { Avatar } from "../component/avatar";
+//import { Avatar } from "../component/avatar";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
@@ -29,10 +29,11 @@ export const AvatarForm = props => {
 		data.append("avatar", files[0]);
 		const options = {
 			body: data,
+			method: "PUT",
 			headers: {
-				Authorization: "Bearer " + store.accessToken
-			},
-			method: "PUT"
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
 		};
 
 		fetch(`${baseUrl}api/me`, options)
@@ -85,34 +86,31 @@ export const AvatarForm = props => {
 	);
 };
 
-export const Userprofile = props => {
+export const ProfileCard = props => {
 	const { store, actions } = useContext(Context);
-	let history = useHistory();
-
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
-		user_name: "",
-		name: "",
-		lastName: "",
-		address: "",
-		postal_code: ""
+		user_name: store.user.user_name,
+		name: store.user.name,
+		address: store.user.address,
+		postal_code: store.user.postal_code
 	};
-	const [eachEntry, setEachEntry] = useState(initialInputState);
-	const { player, score } = eachEntry;
+	const [eachEntryChanges, setEachEntryChanges] = useState(initialInputState);
+	const { player, score } = eachEntryChanges;
 	const handleInputChange = e => {
-		setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
+		setEachEntryChanges({ ...eachEntryChanges, [e.target.name]: e.target.value });
 	};
 
 	const handleFinalSubmit = event => {
 		debugger;
 		event.preventDefault();
-		var raw = JSON.stringify(eachEntry);
+		// var raw =
 		var requestOptions = {
 			method: "PUT",
-			body: raw
+			body: JSON.stringify(eachEntryChanges)
 		};
 		fetch(`${apiBaseUrl}/api/sign_up_post`, requestOptions)
 			.then(response => response.json())
@@ -128,55 +126,32 @@ export const Userprofile = props => {
 	};
 
 	return (
-		<div className="container">
-			<div className="d-flex flex-row user-profile-titles mt-2">
-				<div className="col-2 " />
-				<div className="col-4 text-center">
-					<h3>{"User info"}</h3>
+		<div>
+			<form onSubmit={handleFinalSubmit}>
+				<div className="form-group">
+					<label htmlFor="user_name">User name</label>
+					<input
+						type="user_name"
+						className="form-control"
+						id="user_name"
+						placeholder={store.user ? store.user.user_name : "Insert here your user name"}
+						name="user_name"
+						onChange={handleInputChange}
+					/>
 				</div>
-				{/* <div className="col-4 text-center">
-					<h3>{"Allergies"}</h3>
-				</div> */}
-				<div className="buttons col-2">
-					<div className="d-flex weekplan-buttons-container">
-						<button className="weekplan-btn btn green-button" type="submit">
-							Save
-						</button>
-						<button className="weekplan-btn btn green-button" type="submit">
-							Clear
-						</button>
-					</div>
+
+				<div className="form-group">
+					<label htmlFor="name">Name</label>
+					<input
+						type="text"
+						className="form-control"
+						id="name"
+						placeholder={store.user ? store.user.name : "Insert here your name"}
+						name="name"
+						onChange={handleInputChange}
+					/>
 				</div>
-			</div>
-			<div className="d-flex flex-row justify-content-around h-60 mt-3">
-				<AvatarForm />
-
-				<div className="col-3 mx-1 d-flex flex-column my-auto">
-					<form onSubmit={handleFinalSubmit}>
-						<div className="form-group">
-							<label htmlFor="user_name">User name</label>
-							<input
-								type="user_name"
-								className="form-control"
-								id="user_name"
-								placeholder={store.user ? store.user.user_name : "Insert here your user name"}
-								name="user_name"
-								onChange={handleInputChange}
-							/>
-						</div>
-
-						<div className="form-group">
-							<label htmlFor="name">Name</label>
-							<input
-								type="text"
-								className="form-control"
-								id="name"
-								placeholder={store.user ? store.user.name : "Insert here your name"}
-								name="name"
-								onChange={handleInputChange}
-							/>
-						</div>
-						<div className="form-group">
+				{/* <div className="form-group">
 							<label htmlFor="lastName">Last Name</label>
 							<input
 								type="text"
@@ -185,43 +160,95 @@ export const Userprofile = props => {
 								placeholder={store.user ? store.user.last_name : "Insert here your last name"}
 								name="lastName"
 								onChange={handleInputChange}
-							/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="Address">Address</label>
-							<input
-								type="Address"
-								className="form-control"
-								id="Address"
-								placeholder={store.user ? store.user.address : "Insert here your address"}
-								name="Address"
-								onChange={handleInputChange}
-							/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="postal_code">Postal Code</label>
-							<input
-								type="postal_code"
-								className="form-control"
-								id="postal_code"
-								placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
-								name="postal_code"
-								onChange={handleInputChange}
-							/>
-						</div>
-						<button type="submit" className="green-button btn">
-							Submit
+							/> 
+						</div>*/}
+				<div className="form-group">
+					<label htmlFor="Address">Address</label>
+					<input
+						type="Address"
+						className="form-control"
+						id="Address"
+						placeholder={store.user ? store.user.address : "Insert here your address"}
+						name="Address"
+						onChange={handleInputChange}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="postal_code">Postal Code</label>
+					<input
+						type="postal_code"
+						className="form-control"
+						id="postal_code"
+						placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
+						name="postal_code"
+						onChange={handleInputChange}
+					/>
+				</div>
+				<button type="submit" className="green-button btn">
+					Save changes
+				</button>
+			</form>
+		</div>
+	);
+};
+
+export const Userprofile = props => {
+	const modalId = "exampleModal";
+	const { store, actions } = useContext(Context);
+	let history = useHistory();
+	if (!actions.isUserAuthenticated()) {
+		toast.info("Please, login!");
+		history.push("/");
+	}
+
+	return (
+		<div className="container">
+			<div className="row user-profile-titles mt-2">
+				<div className="col-2 " />
+				<div className="col-4 text-center">
+					<h3>{"User info"}</h3>
+				</div>
+				{/* <div className="col-4 text-center">
+					<h3>{"Allergies"}</h3>
+				</div> */}
+				{/* <div className="buttons col-2">
+					<div className="d-flex weekplan-buttons-container">
+						<button className="weekplan-btn btn green-button" type="submit">
+							Save
 						</button>
-					</form>
+						<button className="weekplan-btn btn green-button" type="submit">
+							Clear
+						</button>
+					</div>
+				</div> */}
+			</div>
+
+			<div className="row">
+				<div className="d-flex flex-row col-12">
+					<div className="col-5">
+						<ProfileCard />
+					</div>
 
 					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
 					<AllergensTable />
 				</div> */}
+					<div className="col-5">
+						<AvatarForm modalId={modalId} />
+						<p>patata</p>
+					</div>
+					<div className="d-flex align-end mt-auto col-2">
+						<Link to="/home">
+							<span className="btn green-button mt-3" role="button">
+								Back home
+							</span>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
+
 AvatarForm.propTypes = {
 	modalId: PropTypes.string
 };
