@@ -23,7 +23,6 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			state.actions.getWelcomeMessage();
-			state.actions.get_user_name();
 		}, []);
 
 		// useEffect(

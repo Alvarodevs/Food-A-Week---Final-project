@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
-
+				//aquí que pinta setStoreNewTitleMenu?
 				setStore(newTitleMenu);
 			},
 
@@ -191,24 +191,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				time = userTime;
 				setStore({ timeCooking: time });
 			},
-			get_user_name: () => {
-				//debugger;
-				//let store = getStore();
-				var requestOptions = {
-					method: "GET",
-					headers: {
-						Authorization: "Bearer " + localStorage.getItem("accessToken"),
-						"Content-Type": "application/json"
-					}
-				};
-				fetch(`${apiBaseUrl}/users/me`, requestOptions)
-					.then(response => response.json())
-					.then(data => setStore({ user: data }))
-					.catch(error => console.log("error", error));
-			},
+
 			setCurrentUser: userData => {
-				//let store = getStore();
-				//debugger;
+
 				setStore({ user: userData });
 			},
 			getWeeklyMenus: () => {
@@ -226,6 +211,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));
 			}
+
 			// filterByAllergens: allergens => {
 			//  let store = getStore();
 			// }

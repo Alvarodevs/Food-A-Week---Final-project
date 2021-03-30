@@ -34,11 +34,12 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
-    last_name = db.Column(db.String(30), unique=False, nullable=False)
+    last_name = db.Column(db.String(30), unique=False, nullable=True)
     address = db.Column(db.String(120), unique=False, nullable=True)
     postal_code = db.Column(db.String(20), unique=False, nullable=True)
     phone = db.Column(db.Integer, unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=True)
+    avatar_url = db.Column(db.String(500), unique=False, nullable=True)
     # role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
@@ -56,10 +57,18 @@ class User(db.Model):
             "address": self.address,
             "postal_code": self.postal_code,
             "phone": self.phone,
-          }
+            "avatarUrl": self.avatar_url,"avatarPublicId": self.avatar_public_id()
+        }
 
     def check_password(self, password_param):
       return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+
+    
+    def avatar_public_id(self):
+      if self.avatar_url is None: return None
+      file_name = self.avatar_url.split("/")
+      [public_id, extension] = file_name[-1].split(".")
+      return public_id
 
     def sign_in_serialize(self):
       return {
@@ -75,6 +84,7 @@ class User(db.Model):
          "id": self.id,
         "user_name": self.user_name
       }
+    
     
 
     
