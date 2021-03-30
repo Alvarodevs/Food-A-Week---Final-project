@@ -193,7 +193,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			setCurrentUser: userData => {
-
 				setStore({ user: userData });
 			},
 			getWeeklyMenus: () => {

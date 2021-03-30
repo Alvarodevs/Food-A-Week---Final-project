@@ -234,7 +234,7 @@ export const Userprofile = props => {
 				</div> */}
 					<div className="col-5">
 						<AvatarForm modalId={modalId} />
-						<p>patata</p>
+						<p>Avatar Form</p>
 					</div>
 					<div className="d-flex align-end mt-auto col-2">
 						<Link to="/home">
