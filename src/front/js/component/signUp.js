@@ -145,12 +145,6 @@ export const SignUp = props => {
 	return (
 		<div className="jumbotron">
 			<SignUpForm />
-			<hr className="my-4" />
-			<Link to="/">
-				<span className="green-button btn" href="#" role="button">
-					Back home
-				</span>
-			</Link>
 		</div>
 	);
 };
