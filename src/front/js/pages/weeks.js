@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
 import { Navlink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Jumbotron, Table } from "react-bootstrap";
 import WeekJumbo from "../component/weekjumbotron";
 import { Context } from "../store/appContext";
 import * as Icon from "react-bootstrap-icons";
@@ -14,8 +14,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
 	const [newData, setNewData] = useState(null);
-	//const { newLabel, setNewLabel } = useState({});
-	//const { image, setImage } = useState("");
 
 	useEffect(() => {
 		const url = `https://api.edamam.com/search?r=${encodeURIComponent(props.url)}&app_id=${store.APP_ID}&app_key=${
@@ -45,11 +43,13 @@ export const RecipeCard = props => {
 				</div>
 				<div className="align-card-buttons">
 					<Button className=" weekplan-btn green-button mb-3" type="submit">
-						<Link to="/weekjumbotron">Show</Link>
+						<Link to="/weekjumbotron" menu={newData}>
+							Show
+						</Link>
 					</Button>
 					{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
-				</Button> */}
+				    </Button> */}
 					<Icon.Trash className="icon-trash" />
 				</div>
 			</div>
