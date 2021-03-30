@@ -81,8 +81,8 @@ const SignIn = props => {
 	}
 
 	return (
-		<div className="jumbotron">
-			<h2>Inicio de sesión</h2>
+		<div>
+			{/* <h2>Inicio de sesión</h2> */}
 			<SignInForm />
 		</div>
 	);
