@@ -69,25 +69,25 @@ export const Pre = () => {
 					</div>
 				</div>
 				<div className="col-3 mt-5">
-					<Accordion defaultActiveKey="0" className="">
+					<Accordion defaultActiveKey="2" className="">
 						<Card>
 							<Card.Header>
-								<Accordion.Toggle as={Button} variant="link" eventKey="0">
-									Sign up
+								<Accordion.Toggle as={Button} variant="link" eventKey="2">
+									Login
 								</Accordion.Toggle>
 							</Card.Header>
-							<Accordion.Collapse eventKey="0">
-								<SignUp />
+							<Accordion.Collapse eventKey="2">
+								<SignIn />
 							</Accordion.Collapse>
 						</Card>
 						<Card>
 							<Card.Header>
 								<Accordion.Toggle as={Button} variant="link" eventKey="1">
-									Login
+									Sign up
 								</Accordion.Toggle>
 							</Card.Header>
 							<Accordion.Collapse eventKey="1">
-								<SignIn />
+								<SignUp />
 							</Accordion.Collapse>
 						</Card>
 					</Accordion>
