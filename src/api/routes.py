@@ -25,12 +25,14 @@ def handle_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize()), 200
 
-@api.route('/me/menus', methods=['GET'])
-@jwt_required
+
+@api.route('/me/menu', methods=['GET'])
+@jwt_required()
 def handle_current_user_menus():
     user = current_user(get_jwt_identity())
     menus = list(map(lambda menu: menu.serialize(), user.menus))  
     return jsonify(menus), 200
+
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
