@@ -88,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch(`${baseUrl}selectedrecipe`, requestOptions)
+				fetch(`${apibaseUrl}selectedrecipe`, requestOptions)
 					.then(response => response.text())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));

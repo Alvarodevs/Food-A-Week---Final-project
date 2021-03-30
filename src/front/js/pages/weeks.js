@@ -13,44 +13,47 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
+	const [newData, setNewData] = useState(null);
+	//const { newLabel, setNewLabel } = useState({});
+	//const { image, setImage } = useState("");
+
 	useEffect(() => {
 		const url = `https://api.edamam.com/search?r=${encodeURIComponent(props.url)}&app_id=${store.APP_ID}&app_key=${
 			store.APP_KEY
 		}`;
-		debugger;
+		//debugger;
 		fetch(url)
 			.then(resp => resp.json())
 			.then(data => {
-				debugger;
-				console.log(data);
+				setNewData(data);
+				//debugger;
+				//console.log(newData);
 			})
 			.catch(error => {
-				debugger;
+				//debugger;
 				console.log("Error loading message from backend", error);
 			});
 	}, []);
 
 	return (
-		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-			<img
-				className="card-img-top p-0 m-0"
-				src="https://static01.nyt.com/images/2020/01/24/dining/yk-gochujang-chicken-and-vegetables/merlin_167664060_7435c624-7225-4cb1-b104-4d67761185a4-articleLarge.jpg"
-				alt="Card image cap"
-			/>
-			<div className=" card-body py-1 justify-content-between align-middle">
-				<div className="card-title pt-2">Semana santa</div>
-				<div className="card-text">Nothing</div>
-			</div>
-			<div className="align-card-buttons">
-				<Button className=" weekplan-btn green-button" type="submit">
-					<Link to="/weekjumbotron">Show</Link>
-				</Button>
-				<Button className="weekplan-btn  green-button" type="submit">
+		newData != null && (
+			<div className="card menuWeek p-0 m-0 mr-4 mb-4">
+				<img className="card-img-top p-0 m-0" src={newData[0].image} alt="Card image cap" />
+				<div className=" card-body py-1 justify-content-between align-middle">
+					<div className="card-title pt-2">Semana santa</div>
+					<div className="card-text">{newData[0].label}</div>
+				</div>
+				<div className="align-card-buttons">
+					<Button className=" weekplan-btn green-button mb-3" type="submit">
+						<Link to="/weekjumbotron">Show</Link>
+					</Button>
+					{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
-				</Button>
-				<Icon.Trash className="icon-trash" />
+				</Button> */}
+					<Icon.Trash className="icon-trash" />
+				</div>
 			</div>
-		</div>
+		)
 	);
 };
 
@@ -61,7 +64,7 @@ export const AllWeeks = () => {
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
 	]);
-	debugger;
+	//debugger;
 	let recipeList = urls.map((url, index) => {
 		return <RecipeCard key={index} url={url} />;
 	});
@@ -74,9 +77,6 @@ export const AllWeeks = () => {
 			</div> */}
 				<div className="card-container d-flex justify-content-center mx-auto">
 					<div>
-						<div>
-							<button>CLICK</button>
-						</div>
 						<div className="row">
 							<div className="page-order-weeks">
 								<Dropdown>
