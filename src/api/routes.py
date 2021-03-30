@@ -25,14 +25,14 @@ def handle_user(id):
     user = User.query.get(id)
     return jsonify(user.serialize()), 200
 
+
 @api.route('/me/menu', methods=['GET'])
 @jwt_required()
 def handle_current_user_menus():
     user = current_user(get_jwt_identity())
     menus = list(map(lambda menu: menu.serialize(), user.menus))  
     return jsonify(menus), 200
-    
-#yo quería que me devolviera los datos del usuario , pero solo consigo 404. Pero está autenticado... He hecho el proceso de debugger para validar is autenticated y token.
+
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
@@ -40,11 +40,13 @@ def sign_up():
   body = request.get_json(force=True)
   user_name = body.get("user_name", None)
   name = body.get("name", None)
-  last_name = body.get("lastName", None)
+#   last_name = body.get("last_Name", None)
   email = body.get("email", None)
   password = body.get("password", None)
+  address = body.get("address", None)
+  postal_code = body.get("postal_code", None)
 
-  user1 = User(user_name=user_name, name=name, last_name=last_name, email=email, password=password)
+  user1 = User(user_name=user_name, name=name,  email=email, password=password, address=address, postal_code = postal_code)
   db.session.add(user1)
   db.session.commit()
   access_token = create_access_token(identity=user1.serialize())
@@ -65,6 +67,24 @@ def sign_in():
     # Notice that we are passing in the actual sqlalchemy user object here
     access_token = create_access_token(identity=user.serialize())
     return jsonify(user=user.serialize(), accessToken=access_token)
+
+@api.route("/sign_up_post", methods=["POST"])
+def sign_up_post():
+  body = request.get_json(force=True)
+  user_name = body.get("user_name", None)
+  name = body.get("name", None)
+#   last_name = body.get("last_name", None)
+  address = body.get("address", None)
+  postal_code = body.get("postal_code", None)
+  
+
+  user1 = User(user_name=user_name, name=name, address=address, postal_code =postal_code)
+  db.session.add(user1)
+  db.session.commit()
+  access_token = create_access_token(identity=user1.serialize())
+
+  return jsonify(user=user1.serialize(), accessToken=access_token)
+
 
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()

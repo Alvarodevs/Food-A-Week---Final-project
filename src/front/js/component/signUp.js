@@ -15,7 +15,15 @@ const SignUpForm = props => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const initialInputState = { name: "", lastName: "", email: "", password: "" };
+	const initialInputState = {
+		user_name: "",
+		name: "",
+		lastName: "",
+		email: "",
+		address: "",
+		postal_code: "",
+		password: ""
+	};
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
 	const handleInputChange = e => {
@@ -50,7 +58,7 @@ const SignUpForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">User name</label>
+				<label htmlFor="user_name">User name</label>
 				<input
 					type="user_name"
 					className="form-control"
@@ -61,44 +69,66 @@ const SignUpForm = props => {
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">Email address</label>
+				<label htmlFor="email">Email address</label>
 				<input
 					type="email"
 					className="form-control"
-					id="exampleInputEmail"
+					id="email"
 					placeholder="Enter email"
 					name="email"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputName">Name</label>
+				<label htmlFor="name">Name</label>
 				<input
 					type="text"
 					className="form-control"
-					id="exampleInputName"
+					id="name"
 					placeholder="Enter your name"
 					name="name"
 					onChange={handleInputChange}
 				/>
 			</div>
-			<div className="form-group">
-				<label htmlFor="exampleInputLastName">Last Name</label>
+			{/* <div className="form-group">
+				<label htmlFor="lastName">Last Name</label>
 				<input
 					type="text"
 					className="form-control"
-					id="exampleInputLastName"
+					id="lastName"
 					placeholder="Enter your last name"
 					name="lastName"
 					onChange={handleInputChange}
 				/>
+			</div> */}
+			<div className="form-group">
+				<label htmlFor="address">Address</label>
+				<input
+					type="address"
+					className="form-control"
+					id="address"
+					placeholder="Enter your address"
+					name="address"
+					onChange={handleInputChange}
+				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputPassword">Password</label>
+				<label htmlFor="postal_code">Postal Code</label>
+				<input
+					type="postal_code"
+					className="form-control"
+					id="postal_code"
+					placeholder="Enter your Postal Code"
+					name="postal_code"
+					onChange={handleInputChange}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="password">Password</label>
 				<input
 					type="password"
 					className="form-control"
-					id="exampleInputPassword"
+					id="password"
 					placeholder="Enter your password"
 					name="password"
 					onChange={handleInputChange}

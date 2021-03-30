@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UserData } from "../component/user_info_form";
 import { AllergensTable } from "../component/allergenstable";
-import { Avatar } from "../component/avatar";
+//import { Avatar } from "../component/avatar";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
@@ -29,10 +29,11 @@ export const AvatarForm = props => {
 		data.append("avatar", files[0]);
 		const options = {
 			body: data,
+			method: "PUT",
 			headers: {
-				Authorization: "Bearer " + store.accessToken
-			},
-			method: "PUT"
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
 		};
 
 		fetch(`${baseUrl}api/me`, options)
@@ -85,35 +86,132 @@ export const AvatarForm = props => {
 	);
 };
 
-export const Userprofile = props => {
+export const ProfileCard = props => {
 	const { store, actions } = useContext(Context);
-	const upPersonalInfo = event => {
-		const options = {
-			body: data,
-			headers: {
-				Authorization: "Bearer " + store.accessToken
-			},
-			method: "PUT"
-		};
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
-		fetch(`${baseUrl}api/me`, options)
-			.then(resp => resp.json())
-			.then(data => {
-				actions.setUser(data);
-				document.getElementById(props.modalId).click();
-			});
+	const initialInputState = {
+		user_name: store.user.user_name,
+		name: store.user.name,
+		address: store.user.address,
+		postal_code: store.user.postal_code
 	};
+	const [eachEntryChanges, setEachEntryChanges] = useState(initialInputState);
+	const { player, score } = eachEntryChanges;
+	const handleInputChange = e => {
+		setEachEntryChanges({ ...eachEntryChanges, [e.target.name]: e.target.value });
+	};
+
+	const handleFinalSubmit = event => {
+		debugger;
+		event.preventDefault();
+		// var raw =
+		var requestOptions = {
+			method: "PUT",
+			body: JSON.stringify(eachEntryChanges)
+		};
+		fetch(`${apiBaseUrl}/api/sign_up_post`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				localStorage.setItem("accessToken", result["accessToken"]);
+				actions.setCurrentUser(result["user"]);
+				debugger;
+				history.push("/home");
+				//console.log("User was created");
+			})
+			.catch(error => console.log("error", error));
+	};
+
+	return (
+		<div>
+			<form onSubmit={handleFinalSubmit}>
+				<div className="form-group">
+					<label htmlFor="user_name">User name</label>
+					<input
+						type="user_name"
+						className="form-control"
+						id="user_name"
+						placeholder={store.user ? store.user.user_name : "Insert here your user name"}
+						name="user_name"
+						onChange={handleInputChange}
+					/>
+				</div>
+
+				<div className="form-group">
+					<label htmlFor="name">Name</label>
+					<input
+						type="text"
+						className="form-control"
+						id="name"
+						placeholder={store.user ? store.user.name : "Insert here your name"}
+						name="name"
+						onChange={handleInputChange}
+					/>
+				</div>
+				{/* <div className="form-group">
+							<label htmlFor="lastName">Last Name</label>
+							<input
+								type="text"
+								className="form-control"
+								id="lastName"
+								placeholder={store.user ? store.user.last_name : "Insert here your last name"}
+								name="lastName"
+								onChange={handleInputChange}
+							/> 
+						</div>*/}
+				<div className="form-group">
+					<label htmlFor="Address">Address</label>
+					<input
+						type="Address"
+						className="form-control"
+						id="Address"
+						placeholder={store.user ? store.user.address : "Insert here your address"}
+						name="Address"
+						onChange={handleInputChange}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="postal_code">Postal Code</label>
+					<input
+						type="postal_code"
+						className="form-control"
+						id="postal_code"
+						placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
+						name="postal_code"
+						onChange={handleInputChange}
+					/>
+				</div>
+				<button type="submit" className="green-button btn">
+					Save changes
+				</button>
+			</form>
+		</div>
+	);
+};
+
+export const Userprofile = props => {
+	const modalId = "exampleModal";
+	const { store, actions } = useContext(Context);
+	let history = useHistory();
+	if (!actions.isUserAuthenticated()) {
+		toast.info("Please, login!");
+		history.push("/");
+	}
+
 	return (
 		<div className="container">
-			<div className="d-flex flex-row user-profile-titles mt-2">
+			<div className="row user-profile-titles mt-2">
 				<div className="col-2 " />
 				<div className="col-4 text-center">
 					<h3>{"User info"}</h3>
 				</div>
-				<div className="col-4 text-center">
+				{/* <div className="col-4 text-center">
 					<h3>{"Allergies"}</h3>
-				</div>
-				<div className="buttons col-2">
+				</div> */}
+				{/* <div className="buttons col-2">
 					<div className="d-flex weekplan-buttons-container">
 						<button className="weekplan-btn btn green-button" type="submit">
 							Save
@@ -122,45 +220,35 @@ export const Userprofile = props => {
 							Clear
 						</button>
 					</div>
-				</div>
+				</div> */}
 			</div>
-			<div className="d-flex flex-row justify-content-around h-60 mt-3">
-				<AvatarForm />
-				<div className="col-3 mx-1 d-flex flex-column my-auto">
-					<Form className="m-2">
-						<Form.Group controlId="Username" />
 
-						<Form.Group controlId="Name">
-							<Form.Control className="form" type="text" placeholder="Name & last name" />
-						</Form.Group>
+			<div className="row">
+				<div className="d-flex flex-row col-12">
+					<div className="col-5">
+						<ProfileCard />
+					</div>
 
-						<Form.Group controlId="Address">
-							<Form.Control className="form" type="text" placeholder="Enter address" />
-						</Form.Group>
-
-						<Form.Group controlId="PostalCode">
-							<Form.Control className="form" type="text" placeholder="Enter postal code" />
-						</Form.Group>
-
-						<Form.Group controlId="Email">
-							<Form.Control className="form" type="email" placeholder="Enter email" />
-						</Form.Group>
-
-						<Form.Group controlId="PhoneNumber">
-							<Form.Control className="form" type="text" placeholder="Enter phone" />
-						</Form.Group>
-						<Button variant="primary" type="submit" onChange={upPersonalInfo}>
-							Save
-						</Button>
-					</Form>
-				</div>
-				<div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
+					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
 					<AllergensTable />
+				</div> */}
+					<div className="col-5">
+						<AvatarForm modalId={modalId} />
+						<p>Avatar Form</p>
+					</div>
+					<div className="d-flex align-end mt-auto col-2">
+						<Link to="/home">
+							<span className="btn green-button mt-3" role="button">
+								Back home
+							</span>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
+
 AvatarForm.propTypes = {
 	modalId: PropTypes.string
 };
