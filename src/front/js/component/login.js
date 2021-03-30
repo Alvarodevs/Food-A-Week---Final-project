@@ -64,7 +64,7 @@ const SignInForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="btn btn-primary float-right">
+			<button type="submit" className="green-button btn">
 				Submit
 			</button>
 		</form>
@@ -82,7 +82,7 @@ const SignIn = props => {
 
 	return (
 		<div className="jumbotron">
-			<h2>Inicio de sesión</h2>
+			{/* <h2>Inicio de sesión</h2> */}
 			<SignInForm />
 		</div>
 	);
