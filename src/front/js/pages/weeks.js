@@ -51,10 +51,9 @@ export const RecipeCard = props => {
 								}
 							}}> */}
 						Show
-						{/* <WeekJumbo data={newData} /> */}
 						{/* </Link> */}
 					</Button>
-					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} />
+					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={newData} />
 					{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
 				    </Button> */}
@@ -70,9 +69,9 @@ export const AllWeeks = () => {
 	const [urls, setUrls] = useState([
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
-		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
+		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
+		"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f"
 	]);
-	//debugger;
 
 	let recipeList = urls.map((url, index) => {
 		return <RecipeCard key={index} url={url} />;

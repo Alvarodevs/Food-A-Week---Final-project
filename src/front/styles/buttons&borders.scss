@@ -38,7 +38,14 @@
 .green-button:hover{
     text-decoration: none;
     background-color:$green;
+    border-color: $green;
     color: black;
+}
+.green-button:focus {
+    text-decoration: none !important; 
+    background-color:$green !important;
+    border-color: $green !important;
+    color: black !important;
 }
 .weekplan-body{
     .form-control:focus {
@@ -116,7 +123,11 @@
     background-color: $yellow ;
     color: $gray;
 }
-
-
+.modal-header{
+    border: none !important;
+}
+.modal-footer{
+    border: none !important;
+}
 
 

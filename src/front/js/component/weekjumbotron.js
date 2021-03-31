@@ -10,14 +10,9 @@ export const WeekJumbo = props => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-			<Modal.Header closeButton>
+		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
+			<Modal.Header closeButton className="modal-header">
 				<Modal.Title id="contained-modal-title-center">Menu title</Modal.Title>
-				<Link to="/weeks">
-					<div className="icondelete my-3 ml-2">
-						<i className="fas fa-times delete-button" />
-					</div>
-				</Link>
 			</Modal.Header>
 			<Modal.Body>
 				<Table responsive>
@@ -75,7 +70,7 @@ export const WeekJumbo = props => {
 					</tbody>
 				</Table>
 			</Modal.Body>
-			<Modal.Footer>
+			<Modal.Footer className="modal-footer">
 				<Button
 					className="green-button d-flex text-center m-auto justify-content-center"
 					onClick={props.onHide}>
