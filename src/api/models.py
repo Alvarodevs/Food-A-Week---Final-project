@@ -179,13 +179,13 @@ class SelectedRecipe(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
-      return '<SelectedRecipe %r>' % self.recipe.name
+      return '<SelectedRecipe %r>' % self.recipe_code
 
     def serialize(self):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_id": self.recipe_id,
+          "recipe_id": self.recipe_id
       }
 
 class Restriction(db.Model):

@@ -1,34 +1,30 @@
 import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { useDebounce } from "use-debounce";
 import { Link } from "react-router-dom";
-import { Navlink } from "react-router-dom";
+//import { Navlink } from "react-router-dom";
 import { Button, Jumbotron, Table } from "react-bootstrap";
-import WeekJumbo from "../component/weekjumbotron";
 import { Context } from "../store/appContext";
 import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
+import { WeekJumbo } from "../component/weekjumbotron";
 
 //import "../../styles/index.scss";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
 	const [newData, setNewData] = useState(null);
+	const [modalShow, setModalShow] = useState(false);
 
 	useEffect(() => {
 		const url = `https://api.edamam.com/search?r=${encodeURIComponent(props.url)}&app_id=${store.APP_ID}&app_key=${
 			store.APP_KEY
 		}`;
-		//debugger;
 		fetch(url)
 			.then(resp => resp.json())
 			.then(data => {
 				setNewData(data);
-				//debugger;
-				//console.log(newData);
 			})
 			.catch(error => {
-				//debugger;
 				console.log("Error loading message from backend", error);
 			});
 	}, []);
@@ -41,12 +37,24 @@ export const RecipeCard = props => {
 					<div className="card-title pt-2">Semana santa</div>
 					<div className="card-text">{newData[0].label}</div>
 				</div>
+
 				<div className="align-card-buttons">
-					<Button className=" weekplan-btn green-button mb-3" type="submit">
-						<Link to="/weekjumbotron" menu={newData}>
-							Show
-						</Link>
+					<Button
+						className=" weekplan-btn green-button mb-3"
+						type="submit"
+						onClick={() => setModalShow(true)}>
+						{/* <Link
+							to={{
+								pathname: "/weekjumbotron",
+								state: {
+									data: newData
+								}
+							}}> */}
+						Show
+						{/* <WeekJumbo data={newData} /> */}
+						{/* </Link> */}
 					</Button>
+					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} />
 					{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
 				    </Button> */}
@@ -65,6 +73,7 @@ export const AllWeeks = () => {
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
 	]);
 	//debugger;
+
 	let recipeList = urls.map((url, index) => {
 		return <RecipeCard key={index} url={url} />;
 	});

@@ -31,7 +31,15 @@ def handle_user(id):
 def handle_current_user_menus():
     user = current_user(get_jwt_identity())
     menus = list(map(lambda menu: menu.serialize(), user.menus))  
+    
     return jsonify(menus), 200
+
+@api.route('/menu/selected_recipe', methods=['GET'])
+@jwt_required()
+def handle_current_user_selected_recipes():
+    user = current_user(get_jwt_identity())
+    selected_recipe = list(map(lambda selected_recipe: selected_recipe.serialize(), user.selected_recipe))  
+    return jsonify(selected_recipe), 200
 
 
 #necessary for sign_up 
