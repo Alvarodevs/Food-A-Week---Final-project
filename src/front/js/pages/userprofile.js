@@ -6,7 +6,7 @@ import { UserData } from "../component/user_info_form";
 import { AllergensTable } from "../component/allergenstable";
 //import { Avatar } from "../component/avatar";
 import { Form } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Button, AlertMessageBox } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
 import { toast } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
@@ -126,7 +126,7 @@ export const ProfileCard = props => {
 				actions.setCurrentUser(result["user"]);
 				//debugger;
 				//history.push("/home");
-				alert("User was update");
+				alert("Update succesfully");
 			})
 			.catch(error => console.log("error", error));
 	};
