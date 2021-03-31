@@ -77,7 +77,9 @@ def sign_in():
     return jsonify(user=user.serialize(), accessToken=access_token)
 
 @api.route("/sign_up_put", methods=["PUT"])
+@jwt_required()
 def sign_up_post():
+  user = current_user(get_jwt_identity())
   body = request.get_json(force=True)
   name = body.get("name", None)
   address = body.get("address", None)

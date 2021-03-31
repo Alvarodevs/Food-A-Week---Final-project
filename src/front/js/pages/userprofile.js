@@ -93,10 +93,10 @@ export const ProfileCard = props => {
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
-		user_name: store.user.user_name,
-		name: store.user.name,
-		address: store.user.address,
-		postal_code: store.user.postal_code
+		user_name: store.user ? store.user.name : "",
+		name: store.user ? store.user.name : "",
+		address: store.user ? store.user.address : "",
+		postal_code: store.user ? store.user.postal_code : ""
 	};
 	const [eachEntryChanges, setEachEntryChanges] = useState(initialInputState);
 	const { player, score } = eachEntryChanges;
@@ -108,15 +108,20 @@ export const ProfileCard = props => {
 		debugger;
 		event.preventDefault();
 		// var raw =
+
 		var requestOptions = {
 			method: "PUT",
-			body: JSON.stringify(eachEntryChanges)
+			body: JSON.stringify(eachEntryChanges),
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
 		};
 		fetch(`${apiBaseUrl}/api/sign_up_put`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				localStorage.setItem("accessToken", result["accessToken"]);
+				//localStorage.setItem("accessToken", result["accessToken"]);
 				actions.setCurrentUser(result["user"]);
 				debugger;
 				history.push("/home");
