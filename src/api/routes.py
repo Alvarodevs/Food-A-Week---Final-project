@@ -76,18 +76,16 @@ def sign_in():
     access_token = create_access_token(identity=user.serialize())
     return jsonify(user=user.serialize(), accessToken=access_token)
 
-@api.route("/sign_up_post", methods=["POST"])
+@api.route("/sign_up_put", methods=["PUT"])
 def sign_up_post():
   body = request.get_json(force=True)
-  user_name = body.get("user_name", None)
   name = body.get("name", None)
-#   last_name = body.get("last_name", None)
   address = body.get("address", None)
   postal_code = body.get("postal_code", None)
   
 
-  user1 = User(user_name=user_name, name=name, address=address, postal_code =postal_code)
-  db.session.add(user1)
+  user1 = User(name=name, address=address, postal_code =postal_code)
+  #db.session.add(user1)
   db.session.commit()
   access_token = create_access_token(identity=user1.serialize())
 

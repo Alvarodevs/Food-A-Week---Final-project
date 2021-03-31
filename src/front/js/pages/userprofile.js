@@ -112,7 +112,7 @@ export const ProfileCard = props => {
 			method: "PUT",
 			body: JSON.stringify(eachEntryChanges)
 		};
-		fetch(`${apiBaseUrl}/api/sign_up_post`, requestOptions)
+		fetch(`${apiBaseUrl}/api/sign_up_put`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
@@ -128,18 +128,6 @@ export const ProfileCard = props => {
 	return (
 		<div>
 			<form onSubmit={handleFinalSubmit}>
-				<div className="form-group">
-					<label htmlFor="user_name">User name</label>
-					<input
-						type="user_name"
-						className="form-control"
-						id="user_name"
-						placeholder={store.user ? store.user.user_name : "Insert here your user name"}
-						name="user_name"
-						onChange={handleInputChange}
-					/>
-				</div>
-
 				<div className="form-group">
 					<label htmlFor="name">Name</label>
 					<input
@@ -204,9 +192,15 @@ export const Userprofile = props => {
 	return (
 		<div className="container">
 			<div className="row user-profile-titles mt-2">
-				<div className="col-2 " />
-				<div className="col-4 text-center">
-					<h3>{"User info"}</h3>
+				{/* <div className="col-2 " /> */}
+				<div className="col-4 text-left">
+					<h3>
+						<p />
+						Hi {store.user ? store.user.user_name : ""}; <br />
+						<br />
+						<p />
+						<p>You can change your data here:</p>
+					</h3>
 				</div>
 				{/* <div className="col-4 text-center">
 					<h3>{"Allergies"}</h3>
@@ -233,7 +227,7 @@ export const Userprofile = props => {
 					<AllergensTable />
 				</div> */}
 					<div className="col-5">
-						<AvatarForm modalId={modalId} />
+						{/* <AvatarForm modalId={modalId} /> */}
 						<p>Avatar Form</p>
 					</div>
 					<div className="d-flex align-end mt-auto col-2">
