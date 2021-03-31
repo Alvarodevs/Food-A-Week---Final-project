@@ -67,9 +67,6 @@ export const RecipeCard = props => {
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [urls, setUrls] = useState([
-		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
-		"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
-		"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 		"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f"
 	]);
 
@@ -85,7 +82,7 @@ export const AllWeeks = () => {
 			</div> */}
 				<div className="card-container d-flex justify-content-center mx-auto">
 					<div>
-						<div className="row">
+						{/* <div className="row">
 							<div className="page-order-weeks">
 								<Dropdown>
 									<Dropdown.Toggle variant="success" className="dropdown-basic pink-button">
@@ -98,7 +95,7 @@ export const AllWeeks = () => {
 									</Dropdown.Menu>
 								</Dropdown>
 							</div>
-						</div>
+						</div> */}
 
 						<div className="row all-cards ">{recipeList ? recipeList : ""}</div>
 					</div>

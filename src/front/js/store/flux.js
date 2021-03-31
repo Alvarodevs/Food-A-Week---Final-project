@@ -195,7 +195,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCurrentUser: userData => {
 				setStore({ user: userData });
 			},
-			getWeeklyMenus: () => {
+			getAllMenus: () => {
 				//let store = getStore();
 				var requestOptions = {
 					method: "GET",
@@ -205,10 +205,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 				debugger;
-				fetch(`${apiBaseUrl}/me/menu`, requestOptions)
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));
+			},
+			getAllDays: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Days are not available now", error));
+			},
+			getAllSelectedRecipes: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Recipes are not available now", error));
 			}
 
 			// filterByAllergens: allergens => {
