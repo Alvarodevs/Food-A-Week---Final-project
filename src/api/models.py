@@ -96,13 +96,21 @@ class Menu(db.Model):
     days = db.relationship('Day', backref='menu', lazy=True)
 
     def __repr__(self):
-        return '<Menu %r>' % self.id
+      return '<Menu %r>' % self.id
 
     def serialize(self):
-        return{
-            "id": self.id,
-            "title": self.title
-        }
+      return{
+        "id": self.id,
+        "title": self.title
+      }
+
+    def serialize_with_days(self):
+      return{
+        "id": self.id,
+        "title": self.title,
+        "days": list(map(lambda day: day.serialize(), self.days))
+      }
+
 
     def get_menu_by_user_id(user_id):
         return Menu.query.filter_by(user_id=user_id).first_or_404()
@@ -113,17 +121,26 @@ class Day(db.Model):
     name = db.Column(db.String(50), unique=False, nullable=False)
     position = db.Column(db.Integer, unique=False, nullable=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
-    recipes = db.relationship("Recipe", secondary="selected_recipe")
+    selected_recipes = db.relationship("SelectedRecipe", secondary="selected_recipe")
 
     def __repr__(self):
       return '<Day %r>' % self.id
 
     def serialize(self):
       return{
-          "id": self.id,
-          "name": self.name,
-          "position": self.position,
-          "menu_id": self.menu_id
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id
+      }
+
+    def serialize_with_recipes(self):
+      return{
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id,
+        "selected_recipes": list(map(lambda selected_recipe: selected_recipe.serialize(), self.selected_recipes))
       }
 
 class Recipe(db.Model):
