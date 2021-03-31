@@ -185,8 +185,8 @@ class SelectedRecipe(db.Model):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_id": self.recipe_id
-      }
+          "recipe_code": self.recipe_code
+        }
 
 class Restriction(db.Model):
     id = db.Column(db.Integer, primary_key=True)

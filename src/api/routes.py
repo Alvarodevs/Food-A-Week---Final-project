@@ -91,7 +91,7 @@ def sign_up_post():
 
   return jsonify(user=user1.serialize(), accessToken=access_token)
 
-
+#################################### ME SECTION - STARTS #############################
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
 def protected():
@@ -108,7 +108,40 @@ def protected():
   print(user.serialize())
   return jsonify(user.serialize())
 
-####################################
+## Menus - START ##
+@api.route("/me/menus", methods=["GET"])
+@jwt_required
+def handle_me_menus():
+  user = current_user(get_jwt_identity())
+  all_menus = list(map(lambda menu: m.serialize(), user.menus))
+  return jsonify(all_menus), 200
+
+@api.route("/me/menus/<int:id>", methods=["GET"])
+@jwt_required
+def handle_me_menus(id):
+  user = current_user(get_jwt_identity())
+  menu = user.menus.get(id)
+  return jsonify(menu.serialize()), 200
+
+
+@api.route("/me/menus/<int:id>/days", methods=["GET"])
+@jwt_required
+def handle_me_menus(id):
+  user = current_user(get_jwt_identity())
+  menu = user.menus.get(id)
+  all_days = list(map(lambda menu: m.serialize(), menu.days))
+  return jsonify(all_days), 200
+
+@api.route("/me/days/<int:id>/selected_recipes", methods=["GET"])
+@jwt_required
+def handle_me_menus(id):
+  user = current_user(get_jwt_identity())
+  selected_recipes = SelectedRecipe.query.filter_by(day_id=id)
+  all_selected_recipes = list(map(lambda meal: selected_recipes.serialize(), selected_recipes))
+  return jsonify(all_selected_recipes), 200
+
+## Menus - ENDS ##
+#################################### ME SECTION - ENDS #############################
 
 ####################################
 @api.route('/menu', methods=['GET'])
