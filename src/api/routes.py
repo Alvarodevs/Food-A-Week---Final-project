@@ -89,9 +89,9 @@ def sign_up_post():
   user1 = User(name=name, address=address, postal_code =postal_code)
   #db.session.add(user1)
   db.session.commit()
-  access_token = create_access_token(identity=user1.serialize())
+  #access_token = create_access_token(identity=user1.serialize())
 
-  return jsonify(user=user1.serialize(), accessToken=access_token)
+  return jsonify(user1.serialize())
 
 
 @api.route("/me", methods=["GET", "PUT"])

@@ -106,6 +106,7 @@ export const ProfileCard = props => {
 
 	const handleFinalSubmit = event => {
 		debugger;
+		//let history = useHistory();
 		event.preventDefault();
 		// var raw =
 
@@ -123,9 +124,9 @@ export const ProfileCard = props => {
 				console.log(result);
 				//localStorage.setItem("accessToken", result["accessToken"]);
 				actions.setCurrentUser(result["user"]);
-				debugger;
-				history.push("/home");
-				//console.log("User was created");
+				//debugger;
+				//history.push("/home");
+				alert("User was update");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -144,25 +145,14 @@ export const ProfileCard = props => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				{/* <div className="form-group">
-							<label htmlFor="lastName">Last Name</label>
-							<input
-								type="text"
-								className="form-control"
-								id="lastName"
-								placeholder={store.user ? store.user.last_name : "Insert here your last name"}
-								name="lastName"
-								onChange={handleInputChange}
-							/> 
-						</div>*/}
 				<div className="form-group">
-					<label htmlFor="Address">Address</label>
+					<label htmlFor="address">Address</label>
 					<input
-						type="Address"
+						type="address"
 						className="form-control"
-						id="Address"
+						id="address"
 						placeholder={store.user ? store.user.address : "Insert here your address"}
-						name="Address"
+						name="address"
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -179,6 +169,11 @@ export const ProfileCard = props => {
 				</div>
 				<button type="submit" className="green-button btn">
 					Save changes
+					{/* <Link to="/home">
+						<span>
+							Save changes
+						</span>
+					</Link> */}
 				</button>
 			</form>
 		</div>
