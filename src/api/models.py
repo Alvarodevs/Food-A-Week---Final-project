@@ -121,7 +121,7 @@ class Day(db.Model):
     name = db.Column(db.String(50), unique=False, nullable=False)
     position = db.Column(db.Integer, unique=False, nullable=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
-    selected_recipes = db.relationship("SelectedRecipe", secondary="selected_recipe")
+    selected_recipes = db.relationship('SelectedRecipe', backref='selected_recipe', lazy=True)
 
     def __repr__(self):
       return '<Day %r>' % self.id
@@ -189,10 +189,10 @@ class RecipeDetail(db.Model):
 class SelectedRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day_id = db.Column(db.Integer, db.ForeignKey('day.id'))
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
-    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
+    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
