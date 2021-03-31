@@ -15,32 +15,9 @@ api = Blueprint('api', __name__)
 
 @api.route('/users', methods=['GET'])
 def handle_users():
-
     user = User.query.all()
     users = list(map(lambda user: user.serialize(), users))
     return jsonify(users), 200
-
-@api.route('/me', methods=['GET'])
-def handle_user(id):
-    user = User.query.get(id)
-    return jsonify(user.serialize()), 200
-
-
-@api.route('/me/menu', methods=['GET'])
-@jwt_required()
-def handle_current_user_menus():
-    user = current_user(get_jwt_identity())
-    menus = list(map(lambda menu: menu.serialize(), user.menus))  
-    
-    return jsonify(menus), 200
-
-@api.route('/menu/selected_recipe', methods=['GET'])
-@jwt_required()
-def handle_current_user_selected_recipes():
-    user = current_user(get_jwt_identity())
-    selected_recipe = list(map(lambda selected_recipe: selected_recipe.serialize(), user.selected_recipe))  
-    return jsonify(selected_recipe), 200
-
 
 #necessary for sign_up 
 @api.route("/sign_up", methods=["POST"])
@@ -48,7 +25,6 @@ def sign_up():
   body = request.get_json(force=True)
   user_name = body.get("user_name", None)
   name = body.get("name", None)
-#   last_name = body.get("last_Name", None)
   email = body.get("email", None)
   password = body.get("password", None)
   address = body.get("address", None)
@@ -82,8 +58,6 @@ def sign_up_post():
   name = body.get("name", None)
   address = body.get("address", None)
   postal_code = body.get("postal_code", None)
-  
-
   user1 = User(name=name, address=address, postal_code =postal_code)
   #db.session.add(user1)
   db.session.commit()
@@ -95,7 +69,6 @@ def sign_up_post():
 @api.route("/me", methods=["GET", "PUT"])
 @jwt_required()
 def protected():
-  print(get_jwt_identity())
   user = current_user(get_jwt_identity())
   if request.method == 'PUT' and 'avatar' in request.files:
     result = cloudinary.uploader.upload(request.files['avatar']) # Response metadata : https://cloudinary.com/documentation/django_image_and_video_upload#upload_response
@@ -110,31 +83,23 @@ def protected():
 
 ## Menus - START ##
 @api.route("/me/menus", methods=["GET"])
-@jwt_required
+@jwt_required()
 def handle_me_menus():
   user = current_user(get_jwt_identity())
   all_menus = list(map(lambda menu: m.serialize(), user.menus))
   return jsonify(all_menus), 200
 
-@api.route("/me/menus/<int:id>", methods=["GET"])
-@jwt_required
-def handle_me_menus(id):
-  user = current_user(get_jwt_identity())
-  menu = user.menus.get(id)
-  return jsonify(menu.serialize()), 200
-
-
 @api.route("/me/menus/<int:id>/days", methods=["GET"])
-@jwt_required
-def handle_me_menus(id):
+@jwt_required()
+def handle_me_days(id):
   user = current_user(get_jwt_identity())
   menu = user.menus.get(id)
   all_days = list(map(lambda menu: m.serialize(), menu.days))
   return jsonify(all_days), 200
 
 @api.route("/me/days/<int:id>/selected_recipes", methods=["GET"])
-@jwt_required
-def handle_me_menus(id):
+@jwt_required()
+def handle_me_selected_recipes(id):
   user = current_user(get_jwt_identity())
   selected_recipes = SelectedRecipe.query.filter_by(day_id=id)
   all_selected_recipes = list(map(lambda meal: selected_recipes.serialize(), selected_recipes))
