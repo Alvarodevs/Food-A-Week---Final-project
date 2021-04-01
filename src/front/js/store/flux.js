@@ -94,13 +94,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			// addTitleMenu: titleMenu => {
-			// 	let store = getStore();
-			// 	let newTitleMenu = store.newWeeklyMenu["title"];
-			// 	newTitleMenu = titleMenu;
-			// 	setStore({ title: newTitleMenu });
-			// 	//console.log(newTitleMenu);
-			// },
 			getWelcomeMessage: () => {},
 
 			isUserAuthenticated: () => {
@@ -170,11 +163,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				//console.log(localStorage.getItem("accessToken"));
+				console.log(localStorage.getItem("accessToken"));
 				//console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(result =>
+					.then(
+						result => console.log(result),
 						setStore({
 							newWeeklyMenu: {
 								title: "",
@@ -205,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 				debugger;
-				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));

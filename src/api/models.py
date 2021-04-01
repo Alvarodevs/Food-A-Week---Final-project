@@ -96,13 +96,21 @@ class Menu(db.Model):
     days = db.relationship('Day', backref='menu', lazy=True)
 
     def __repr__(self):
-        return '<Menu %r>' % self.id
+      return '<Menu %r>' % self.id
 
     def serialize(self):
-        return{
-            "id": self.id,
-            "title": self.title
-        }
+      return{
+        "id": self.id,
+        "title": self.title
+      }
+
+    def serialize_with_days(self):
+      return{
+        "id": self.id,
+        "title": self.title,
+        "days": list(map(lambda day: day.serialize(), self.days))
+      }
+
 
     def get_menu_by_user_id(user_id):
         return Menu.query.filter_by(user_id=user_id).first_or_404()
@@ -113,17 +121,26 @@ class Day(db.Model):
     name = db.Column(db.String(50), unique=False, nullable=False)
     position = db.Column(db.Integer, unique=False, nullable=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
-    recipes = db.relationship("Recipe", secondary="selected_recipe")
+    selected_recipes = db.relationship('SelectedRecipe', backref='selected_recipe', lazy=True)
 
     def __repr__(self):
       return '<Day %r>' % self.id
 
     def serialize(self):
       return{
-          "id": self.id,
-          "name": self.name,
-          "position": self.position,
-          "menu_id": self.menu_id
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id
+      }
+
+    def serialize_with_recipes(self):
+      return{
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id,
+        "selected_recipes": list(map(lambda selected_recipe: selected_recipe.serialize(), self.selected_recipes))
       }
 
 class Recipe(db.Model):
@@ -172,10 +189,10 @@ class RecipeDetail(db.Model):
 class SelectedRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day_id = db.Column(db.Integer, db.ForeignKey('day.id'))
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
-    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
+    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
@@ -185,8 +202,8 @@ class SelectedRecipe(db.Model):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_id": self.recipe_id
-      }
+          "recipe_code": self.recipe_code
+        }
 
 class Restriction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
