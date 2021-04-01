@@ -93,7 +93,7 @@ export const ProfileCard = props => {
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
-		user_name: store.user ? store.user.name : "",
+		//user_name: store.user ? store.user.user_name : "",
 		name: store.user ? store.user.name : "",
 		address: store.user ? store.user.address : "",
 		postal_code: store.user ? store.user.postal_code : ""
@@ -108,6 +108,8 @@ export const ProfileCard = props => {
 		debugger;
 		//let history = useHistory();
 		event.preventDefault();
+		event.stopPropagation();
+
 		// var raw =
 
 		var requestOptions = {
