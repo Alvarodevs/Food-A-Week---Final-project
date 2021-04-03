@@ -14,24 +14,30 @@ import { WeekJumbo } from "../component/weekjumbotron";
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
 	const [newData, setNewData] = useState(null);
+	const { title, setTitle } = useState("");
 	const [modalShow, setModalShow] = useState(false);
 
-	console.log(props.days);
-	useEffect(props => {
-		//setNewData(days);
-		// const url = `https://api.edamam.com/search?r=${encodeURIComponent(props.url)}&app_id=${store.APP_ID}&app_key=${
-		// 	store.APP_KEY
-		// }`;
-		// fetch(url)
-		// 	.then(resp => resp.json())
-		// 	.then(data => {
-		// 		setNewData(data);
-		// 	})
-		// 	.catch(error => {
-		// 		console.log("Error loading message from backend", error);
-		// 	});
-	}, []);
+	//console.log(props);
 
+	// const handleTitle = () => {
+	// 	setTitle(props.days.title);
+	// };
+	// console.log(title);
+	// let dayData = props.days.map((item, index) => {
+	// 	return useEffect(props => {
+	// 		console.log(props.days);
+	// 		const url = (`${apiBaseUrl}/api/me/menus/${props[index]["id"]}/days/selected_recipes`, requestOptions);
+	// 		fetch(url)
+	// 			.then(resp => resp.json())
+	// 			.then(data => {
+	// 				setNewData(data);
+	// 			})
+	// 			.catch(error => {
+	// 				console.log("Error loading message from backend", error);
+	// 			});
+	// 	}, []);
+	// });
+	// console.log(dayData);
 	return (
 		newData != null && (
 			<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -55,7 +61,7 @@ export const RecipeCard = props => {
 						Show
 						{/* </Link> */}
 					</Button>
-					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={newData} />
+					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} />
 					{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
 				    </Button> */}
@@ -68,12 +74,14 @@ export const RecipeCard = props => {
 
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
-	//const { fullMenu, setFullMenu } = useState();
+	//const [fullMenu, setFullMenu] = useState({}); CON USE STATE ES UN BUCLE INFINITO
+
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
 
 	let fullMenu = [];
+	//console.log(fullMenu); FULL MENU OK
 
 	var requestOptions = {
 		method: "GET",
@@ -96,18 +104,18 @@ export const AllWeeks = () => {
 		)
 		.catch(error => console.log("Menus are not available now", error));
 
-	// let menuList = fullMenu.map((item, index) => {
-	// 	// console.log(item);
-	// 	return <RecipeCard key={index} data={item} />;
-	// });
-
+	//debugger;
+	let menuList = fullMenu.map((item, index) => {
+		return <RecipeCard key={index} data={item} />;
+		console.log(item.title);
+	});
+	console.log(fullMenu);
+	//console.log(menuList);
 	return (
 		<div className="container-fluid">
 			<div className="page-container d-flex">
 				<div className="card-container d-flex justify-content-center mx-auto">
-					<div>
-						<div className="row all-cards ">{fullMenu ? <RecipeCard days={fullMenu} /> : ""}</div>
-					</div>
+					<div className="row all-cards ">{menuList ? menuList : ""}</div>
 				</div>
 			</div>
 		</div>
@@ -115,5 +123,5 @@ export const AllWeeks = () => {
 };
 
 RecipeCard.propTypes = {
-	days: PropTypes.object
+	data: PropTypes.object
 };
