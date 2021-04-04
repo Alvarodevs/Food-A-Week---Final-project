@@ -94,13 +94,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("error", error));
 			},
 
-			// addTitleMenu: titleMenu => {
-			// 	let store = getStore();
-			// 	let newTitleMenu = store.newWeeklyMenu["title"];
-			// 	newTitleMenu = titleMenu;
-			// 	setStore({ title: newTitleMenu });
-			// 	//console.log(newTitleMenu);
-			// },
 			getWelcomeMessage: () => {},
 
 			isUserAuthenticated: () => {
@@ -171,11 +164,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				//console.log(localStorage.getItem("accessToken"));
+				console.log(localStorage.getItem("accessToken"));
 				//console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(result =>
+					.then(
+						result => console.log(result),
 						setStore({
 							newWeeklyMenu: {
 								title: "",
@@ -196,7 +190,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCurrentUser: userData => {
 				setStore({ user: userData });
 			},
-			getWeeklyMenus: () => {
+			getAllMenus: () => {
 				//let store = getStore();
 				var requestOptions = {
 					method: "GET",
@@ -206,10 +200,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 
-				fetch(`${apiBaseUrl}/me/menu`, requestOptions)
+				debugger;
+				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
+
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));
+			},
+			getAllDays: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Days are not available now", error));
+			},
+			getAllSelectedRecipes: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Recipes are not available now", error));
 			}
 		}
 	};
