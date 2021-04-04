@@ -20,6 +20,9 @@ import { Profile } from "./component/profile";
 
 import injectContext from "./store/appContext";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
@@ -70,6 +73,7 @@ const Layout = () => {
 					</Switch>
 				</ScrollToTop>
 			</BrowserRouter>
+			<ToastContainer />
 		</div>
 	);
 };

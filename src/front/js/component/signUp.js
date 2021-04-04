@@ -48,9 +48,14 @@ const SignUpForm = props => {
 				localStorage.setItem("accessToken", result["accessToken"]);
 				actions.setCurrentUser(result["user"]);
 				//debugger;
-				toast("User was created");
+				toast(
+					"Congrat! You already have your own account in FoodAWeek. Create your weekly menus, save them, recover them or find your nearest store to complete your recipes! ",
+					{
+						position: toast.POSITION.BOTTOM_RIGHT
+					},
+					{ autoClose: 6000 }
+				);
 				history.push("/home");
-				//console.log("User was created");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -90,17 +95,7 @@ const SignUpForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			{/* <div className="form-group">
-				<label htmlFor="lastName">Last Name</label>
-				<input
-					type="text"
-					className="form-control"
-					id="lastName"
-					placeholder="Enter your last name"
-					name="lastName"
-					onChange={handleInputChange}
-				/>
-			</div> */}
+
 			<div className="form-group">
 				<label htmlFor="address">Address</label>
 				<input
