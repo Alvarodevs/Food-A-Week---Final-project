@@ -32,10 +32,9 @@ const SignInForm = props => {
 			.then(result => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
-				actions.setCurrentUser(result["user"]); //debugger;
-				toast("User was logged");
+				actions.setCurrentUser(result["user"]);
+				toast.success("You're logged");
 				history.push("/home");
-				//console.log("User was logged");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -76,13 +75,11 @@ const SignIn = props => {
 	let history = useHistory();
 
 	if (actions.isUserAuthenticated()) {
-		toast.success("You're logged as");
 		history.push("/home");
 	}
 
 	return (
 		<div className="jumbotron">
-			{/* <h2>Inicio de sesión</h2> */}
 			<SignInForm />
 		</div>
 	);
