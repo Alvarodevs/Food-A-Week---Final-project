@@ -102,7 +102,6 @@ export const ProfileCard = props => {
 	};
 
 	const handleFinalSubmit = event => {
-		debugger;
 		event.preventDefault();
 
 		var requestOptions = {
@@ -117,6 +116,7 @@ export const ProfileCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
+				toast.success("Guardaste tus cambios exitosamente!");
 				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
