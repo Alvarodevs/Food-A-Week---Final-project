@@ -110,9 +110,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("accessToken");
 			},
 			setUser: userParams => {
+				debugger;
 				setStore({ user: userParams });
 				//aquí que pinta setStoreNewTitleMenu?
-				setStore(newTitleMenu);
+				//setStore(newTitleMenu);
 			},
 
 			addRecipe: (day, meal, name, uri) => {
@@ -204,16 +205,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				debugger;
+
 				fetch(`${apiBaseUrl}/me/menu`, requestOptions)
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));
 			}
-
-			// filterByAllergens: allergens => {
-			//  let store = getStore();
-			// }
 		}
 	};
 };

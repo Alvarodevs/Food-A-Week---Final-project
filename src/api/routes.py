@@ -80,18 +80,20 @@ def sign_in():
 @jwt_required()
 def sign_up_post():
   user = current_user(get_jwt_identity())
-  body = request.get_json(force=True)
+  body = request.get_json(force=True) # Why force=True ?
   name = body.get("name", None)
   address = body.get("address", None)
   postal_code = body.get("postal_code", None)
-  
-
-  user1 = User(name=name, address=address, postal_code =postal_code)
-  #db.session.add(user1)
+  print("My name is ........")
+  print(user.name)
+  user.name = name
+  #user.last_name = last_name
+  user.address = address
+  user.postal_code = postal_code
   db.session.commit()
-  #access_token = create_access_token(identity=user1.serialize())
+  #db.session.flush() It seems is not need
 
-  return jsonify(user1.serialize())
+  return jsonify(user.serialize())
 
 
 @api.route("/me", methods=["GET", "PUT"])

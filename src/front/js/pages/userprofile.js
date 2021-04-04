@@ -15,8 +15,6 @@ export const AvatarForm = props => {
 	const { store, actions } = useContext(Context);
 	const [files, setFiles] = useState([]);
 
-	let history = useHistory();
-
 	const onAvatarChange = event => {
 		console.log("La foto ha cambiado!");
 		console.log(event.target.files);
@@ -93,7 +91,6 @@ export const ProfileCard = props => {
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
-		//user_name: store.user ? store.user.user_name : "",
 		name: store.user ? store.user.name : "",
 		address: store.user ? store.user.address : "",
 		postal_code: store.user ? store.user.postal_code : ""
@@ -106,11 +103,7 @@ export const ProfileCard = props => {
 
 	const handleFinalSubmit = event => {
 		debugger;
-		//let history = useHistory();
 		event.preventDefault();
-		event.stopPropagation();
-
-		// var raw =
 
 		var requestOptions = {
 			method: "PUT",
@@ -124,11 +117,7 @@ export const ProfileCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				//localStorage.setItem("accessToken", result["accessToken"]);
-				actions.setCurrentUser(result["user"]);
-				//debugger;
-				//history.push("/home");
-				alert("Update succesfully");
+				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -144,6 +133,7 @@ export const ProfileCard = props => {
 						id="name"
 						placeholder={store.user ? store.user.name : "Insert here your name"}
 						name="name"
+						value={eachEntryChanges.name}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -155,6 +145,7 @@ export const ProfileCard = props => {
 						id="address"
 						placeholder={store.user ? store.user.address : "Insert here your address"}
 						name="address"
+						value={eachEntryChanges.address}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -166,16 +157,12 @@ export const ProfileCard = props => {
 						id="postal_code"
 						placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
 						name="postal_code"
+						value={eachEntryChanges.postal_code}
 						onChange={handleInputChange}
 					/>
 				</div>
 				<button type="submit" className="green-button btn">
 					Save changes
-					{/* <Link to="/home">
-						<span>
-							Save changes
-						</span>
-					</Link> */}
 				</button>
 			</form>
 		</div>
@@ -204,19 +191,6 @@ export const Userprofile = props => {
 						<p>You can change your data here:</p>
 					</h3>
 				</div>
-				{/* <div className="col-4 text-center">
-					<h3>{"Allergies"}</h3>
-				</div> */}
-				{/* <div className="buttons col-2">
-					<div className="d-flex weekplan-buttons-container">
-						<button className="weekplan-btn btn green-button" type="submit">
-							Save
-						</button>
-						<button className="weekplan-btn btn green-button" type="submit">
-							Clear
-						</button>
-					</div>
-				</div> */}
 			</div>
 
 			<div className="row">
@@ -225,19 +199,9 @@ export const Userprofile = props => {
 						<ProfileCard />
 					</div>
 
-					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
-					<AllergensTable />
-				</div> */}
 					<div className="col-5">
 						{/* <AvatarForm modalId={modalId} /> */}
 						<p>Avatar Form</p>
-					</div>
-					<div className="d-flex align-end mt-auto col-2">
-						<Link to="/home">
-							<span className="btn green-button mt-3" role="button">
-								Back home
-							</span>
-						</Link>
 					</div>
 				</div>
 			</div>
