@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
-
+import { toast } from "react-toastify";
 //import "../../styles/index.scss";
 
 export const RecipeCard = props => {
@@ -79,7 +79,15 @@ export const AllWeeks = () => {
 
 	return (
 		<div className="container-fluid">
-			<div className="page-container d-flex">
+			<div
+				className="page-container d-flex"
+				onClick={toast.info(
+					"Here you will find your saved weekly menus",
+					{
+						position: toast.POSITION.BOTTOM_RIGHT
+					},
+					{ autoClose: 4000 }
+				)}>
 				{/* <div className="text-center mt-0 d-flex row justify-content-center">
 				<h1>{"All your weeks"}</h1>
 			</div> */}

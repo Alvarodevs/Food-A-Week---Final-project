@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { toast } from "react-toastify";
 
 import { Link } from "react-router-dom";
 //import "../../styles/index.scss";
