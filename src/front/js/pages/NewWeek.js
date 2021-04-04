@@ -78,7 +78,7 @@ export const NewWeek = () => {
 		<div className="newweek-container container-fluid">
 			<p
 				className="text-center"
-				onClick={toast.info(
+				onClick={toast(
 					"Here you can search and save your recipes in every meal of the week",
 					{
 						position: toast.POSITION.BOTTOM_RIGHT

@@ -81,12 +81,12 @@ export const AllWeeks = () => {
 		<div className="container-fluid">
 			<div
 				className="page-container d-flex"
-				onClick={toast.info(
+				onClick={toast(
 					"Here you will find your saved weekly menus",
 					{
 						position: toast.POSITION.BOTTOM_RIGHT
 					},
-					{ autoClose: 4000 }
+					{ autoClose: 6000 }
 				)}>
 				{/* <div className="text-center mt-0 d-flex row justify-content-center">
 				<h1>{"All your weeks"}</h1>

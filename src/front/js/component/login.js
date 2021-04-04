@@ -33,11 +33,12 @@ const SignInForm = props => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
 				actions.setCurrentUser(result["user"]);
-				toast.info(
+				toast(
 					"You're logged! Go to your weekly menus, save them, recover them or find your nearest store to complete your recipes!",
 					{
 						position: toast.POSITION.BOTTOM_RIGHT
-					}
+					},
+					{ autoClose: 6000 }
 				);
 				history.push("/home");
 			})
