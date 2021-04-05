@@ -63,6 +63,7 @@ export const NewWeek = () => {
 			<div className="d-flex justify-content-end">
 				<div className="mr-1">{item.recipe.totalTime}</div>
 				<div className="mr-2"> mins</div>
+				<i className="fas fa-eye mr-2" onClick={item.recipe.url} />
 				<i
 					className="fas fa-plus"
 					onClick={handleData}
@@ -118,7 +119,7 @@ export const NewWeek = () => {
 						</div>
 						<div className="btns-bar-body mx-0 w-100 d-flex justify-content-around col-12 mt-3 p-0 ml-2">
 							<select
-								className="custom-select day-selector col-4"
+								className="custom-select day-selector col-4 mt-1"
 								id="mySelectDay"
 								onChange={handleDay}
 								value={selectedDay}>
@@ -130,7 +131,7 @@ export const NewWeek = () => {
 								<option value="5">Saturday</option>
 								<option value="6">Sunday</option>
 							</select>
-							<select className="custom-select col-4" onChange={handlePosition}>
+							<select className="custom-select col-4 mt-1" onChange={handlePosition}>
 								<option value="0">Breakfast</option>
 								<option value="1">Snack 1</option>
 								<option value="2">Lunch</option>
@@ -138,7 +139,7 @@ export const NewWeek = () => {
 								<option value="4">Dinner</option>
 							</select>
 							<Button
-								className="mr-0 green-button py-0 m-0 col-3"
+								className="mr-0 green-button py-0 m-0 col-3 more-recipes"
 								onClick={() => actions.getMoreRecipes()}>
 								Get more recipes
 							</Button>
@@ -151,7 +152,7 @@ export const NewWeek = () => {
 						</select> */}
 						</div>
 					</div>
-					<div className="results-body mr-0 ml-3">
+					<div className="results-body mr-0 ml-3 mt-2">
 						<div className="search-result">
 							<ListGroup className="d-flex">{searchResult}</ListGroup>
 						</div>

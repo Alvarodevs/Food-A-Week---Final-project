@@ -13,16 +13,13 @@ import { WeekJumbo } from "../component/weekjumbotron";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
-	const [newData, setNewData] = useState(null);
-	const { title, setTitle } = useState("");
+	const { newData, setNewData } = useState("");
 	const [modalShow, setModalShow] = useState(false);
 
-	//console.log(props);
-
-	// const handleTitle = () => {
-	// 	setTitle(props.days.title);
-	// };
-	// console.log(title);
+	// useEffect(() => {
+	// 	setNewData(props.title);
+	// });
+	console.log(props.data);
 	// let dayData = props.days.map((item, index) => {
 	// 	return useEffect(props => {
 	// 		console.log(props.days);
@@ -39,49 +36,44 @@ export const RecipeCard = props => {
 	// });
 	// console.log(dayData);
 	return (
-		newData != null && (
-			<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-				<img className="card-img-top p-0 m-0" src={newData[0].image} alt="Card image cap" />
-				<div className=" card-body py-1 justify-content-between align-middle">
-					<div className="card-title pt-2">{newData[0].label}</div>
-				</div>
+		//newData != null && (
+		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
+			<img className="card-img-top p-0 m-0" src={newData.image} alt="Card image cap" />
+			<div className=" card-body py-1 justify-content-between align-middle">
+				<div className="card-title pt-2">{"TITLE"}</div>
+			</div>
 
-				<div className="align-card-buttons">
-					<Button
-						className=" weekplan-btn green-button mb-3"
-						type="submit"
-						onClick={() => setModalShow(true)}>
-						{/* <Link
+			<div className="align-card-buttons">
+				<Button className=" weekplan-btn green-button mb-3" type="submit" onClick={() => setModalShow(true)}>
+					{/* <Link
 							to={{
 								pathname: "/weekjumbotron",
 								state: {
 									data: newData
 								}
 							}}> */}
-						Show
-						{/* </Link> */}
-					</Button>
-					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} />
-					{/* <Button className="weekplan-btn  green-button" type="submit">
+					Show
+					{/* </Link> */}
+				</Button>
+				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
+				{/* <Button className="weekplan-btn  green-button" type="submit">
 					<Link to="/newweek">Edit</Link>
 				    </Button> */}
-					<Icon.Trash className="icon-trash" />
-				</div>
+				<Icon.Trash className="icon-trash" />
 			</div>
-		)
+		</div>
+		//)
 	);
 };
 
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
-	//const [fullMenu, setFullMenu] = useState({}); CON USE STATE ES UN BUCLE INFINITO
+	//const { fullMenu, setFullMenu } = useState({});
+	//CON USE STATE ES UN BUCLE INFINITO
 
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 	// 	"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
-
-	let fullMenu = [];
-	//console.log(fullMenu); FULL MENU OK
 
 	var requestOptions = {
 		method: "GET",
@@ -98,24 +90,23 @@ export const AllWeeks = () => {
 				//GETTING ONE SPECIFIC MENU WITH DAYS OF ONE USER
 				return fetch(`${apiBaseUrl}/api/me/menus/${menus["id"]}/days`, requestOptions)
 					.then(response => response.json())
-					.then(result => fullMenu.push(result))
+					.then(result => {
+						console.log(result);
+					})
 					.catch(error => console.log("Menus are not available now", error));
 			})
 		)
 		.catch(error => console.log("Menus are not available now", error));
 
-	//debugger;
-	let menuList = fullMenu.map((item, index) => {
-		return <RecipeCard key={index} data={item} />;
-		console.log(item.title);
-	});
-	console.log(fullMenu);
-	//console.log(menuList);
+	const mapping = result => {
+		result ? <RecipeCard data={result} /> : "";
+	};
+	console.log(mapping);
 	return (
 		<div className="container-fluid">
 			<div className="page-container d-flex">
 				<div className="card-container d-flex justify-content-center mx-auto">
-					<div className="row all-cards ">{menuList ? menuList : ""}</div>
+					<div className="row all-cards ">{mapping}</div>
 				</div>
 			</div>
 		</div>
@@ -123,5 +114,11 @@ export const AllWeeks = () => {
 };
 
 RecipeCard.propTypes = {
+	// id: PropTypes.number,
+	// days: PropTypes.array,
 	data: PropTypes.object
 };
+
+// WeekJumbo.propTypes = {
+// 	menus: PropTypes.array
+// };
