@@ -1,3 +1,74 @@
+Important install
+npm install react react-dom leaflet
+npm install react-leaflet
+npm install react-geocode
+npm install debounce
+
+# FoodAWeek project
+
+This is the final project of <a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> and <a href="https://github.com/nitlara"> Anna Lara </a> in the <a href="https://github.com/4GeeksAcademy">4geeksAcademy </a> FullStackDeveloper program.
+
+
+
+# About FoodAWeek 
+
+<img src="./src/front/img/eating.png" width="300">![freepik storyset]
+
+## What is it ?
+
+FoodAWeek is a tool to systematize the creation of weekly menus with many recipes at your fingertips.
+
+Look for recipes! Make your menus! Save them! reuse them!
+**Save time to eat great.**
+
+## Why now!?
+
+Why not? You are what you eat, fill your fridge with a plan for your stomach! And when you don't feel like it, save a week saved.
+
+
+
+## For whom it is? & User profile
+
+Insert here some snaps from IU
+
+## Technologies used for the project
+
+### Frontend
+
+CSS
+SASS
+BOOTSTRAP
+REACT JS
+
+### Backend
+
+Alchemy
+
+### Design 
+
+Draw io
+Canva
+
+#### Resources
+
+# How we organize the project
+
+Agile 
+
+
+<img src="./src/front/img/kanbanFAW.jpg" width="800">
+
+# Project extensions
+
+# About us
+<a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> twitter/ linkedin
+
+Breve
+
+<a href="https://github.com/nitlara"> Anna Lara </a> twitter/ linkedin
+
+Breve
+
 # WebApp boilerplate with React JS
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
 
@@ -12,6 +83,9 @@
 1. Install the packages:
 ```
 $ npm install
+$ npm i react-leaflet
+$ npm i leaflet
+$ npm i react-geocode
 ```
 2. Create a .env file:
 ```

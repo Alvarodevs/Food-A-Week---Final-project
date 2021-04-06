@@ -1,0 +1,63 @@
+// .pre-page-container{
+//     z-index: 2;
+// }
+.container-fluid{
+    padding:0px!important;
+}
+
+.head-prepage{
+    margin-top:1%;
+}
+.buttons-log{
+    margin-right:2vw;
+    z-index:1;
+}
+.text-pre-page{
+    margin-top:5%;
+}
+.img-prepage{
+    position:absolute;
+    width: 31%;
+    height:50%;
+    margin-left:2vw;
+    margin:20%;
+    object-fit: fill;
+    z-index: 0;
+    margin:0;
+    margin-bottom:3vw;
+    background-image:url('../../front/img/eating.png');
+    background-color: none;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+
+.img-prepage2{
+    margin-top:0%;
+    position:absolute;
+    width: 30%;
+    height:50%;
+    z-index: 0;
+    background-image:url('../../front/img/phone.png');
+    background-color: none;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-web{
+    margin:0;
+}
+
+.signup{
+    width: 60%;
+    height:60%;
+}
+.login{ 
+    width: 60%;
+    height:60%;
+}
+#last-prepage-text{
+    margin-top:5%;
+}

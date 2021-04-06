@@ -1,0 +1,167 @@
+[{
+  "user_name": "Usuario",
+  "email":"correo@electroni.co",
+  "password":"123123123",
+  "name": "Nombre",
+  "last_name":"Apellido",
+  "address":"Dirección",
+  "postal_code":"66666",
+  "phone":666666666,
+  "title":"First week",
+  "days": {
+    "monday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "tuesday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "wednesday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "thursday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "friday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "saturday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ],
+    "sunday": [
+      {
+        "name": "breakfast",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack1",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "lunch",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "snack2",
+        "url": "{hits.recipe.url}"
+      },
+      {
+        "name": "dinner",
+        "url": "{hits.recipe.url}"
+      }
+    ]
+  }
+}]

@@ -1,0 +1,92 @@
+@import "colors";
+@import "fonts";
+
+.avatar-container{
+  text-align: center;
+  .user-avatar{
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+}
+
+.user-profile-titles{
+    font-family: $montserrat
+}
+.data-container{
+    background-color: white;
+    font-size: 1.7vw;
+    width: 70vw;
+    height: 25vw;
+    border-radius: 5px;
+    color: black;
+    // box-shadow: 1px 2px 2px 2px $green;
+    border: 2px solid $green;
+}
+.avatar {
+    background: white;
+    border-radius: 50%;
+    // margin-top: 2rem;
+    // margin-bottom: 2rem;
+    width: 16vw;
+    height: 16vw;
+    text-align: center;
+    line-height: 10vw;
+    //box-shadow: 1px 2px 2px 2px $green
+    border: 2px solid $green;
+}
+#input-file-avatar{
+    border-radius: 5px;
+    margin: 2%;
+    font-family: $montserrat;
+    background-color: $green;
+    color: $gray;
+    font-size: large;
+}
+// .weekplan-btn{
+//     border-radius: 5px;
+//     margin: 2%;
+//     font-family: $montserrat;
+//     background-color: $green;
+//     color: $gray;
+//     font-size: large;
+// }
+.weekplan-buttons-container{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+.avatar-buttons-container{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+.carousel-menus{
+    background-color: $gray;
+    width: 90vw;
+    height: 15vw;
+    border-radius: 5px;
+}
+div img{
+    size: 2vw;
+}
+.allergen-icon{
+    width: 4vw;
+    height: 4vw;   
+}
+.text-icon{
+    font-size: 0.8vw;
+    text-align: center;
+    font-family:$montserrat;
+}
+.form{
+    background-color: white;
+    color: black;
+    font-family: $montserrat;
+    //box-shadow: 1px 2px 2px 2px $green
+    border: 2px solid $green;
+}
