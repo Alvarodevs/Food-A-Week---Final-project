@@ -7,6 +7,7 @@ import { Weekplan } from "../component/weekplan";
 import { RecipeDetail } from "../component/recipe_detail_jumbo";
 import { Form, Button, ListGroup, ButtonGroup, Dropdown, DropdownType } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 
 //const [recipes, setRecipes] = useState([]);
 
@@ -75,7 +76,15 @@ export const NewWeek = () => {
 
 	return (
 		<div className="newweek-container container-fluid">
-			<p className="text-center">
+			<p
+				className="text-center"
+				onClick={toast(
+					"Here you can search and save your recipes in every meal of the week",
+					{
+						position: toast.POSITION.BOTTOM_RIGHT
+					},
+					{ autoClose: 4000 }
+				)}>
 				You can search for recipes on the left bar and store the recipes on the right board.
 			</p>
 			<div className=" search-big-container d-flex">

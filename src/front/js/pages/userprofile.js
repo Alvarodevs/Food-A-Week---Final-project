@@ -6,7 +6,7 @@ import { UserData } from "../component/user_info_form";
 import { AllergensTable } from "../component/allergenstable";
 //import { Avatar } from "../component/avatar";
 import { Form } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Button, AlertMessageBox } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
 import { toast } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
@@ -14,8 +14,6 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 export const AvatarForm = props => {
 	const { store, actions } = useContext(Context);
 	const [files, setFiles] = useState([]);
-
-	let history = useHistory();
 
 	const onAvatarChange = event => {
 		console.log("La foto ha cambiado!");
@@ -93,10 +91,9 @@ export const ProfileCard = props => {
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
-		user_name: store.user.user_name,
-		name: store.user.name,
-		address: store.user.address,
-		postal_code: store.user.postal_code
+		name: store.user ? store.user.name : "",
+		address: store.user ? store.user.address : "",
+		postal_code: store.user ? store.user.postal_code : ""
 	};
 	const [eachEntryChanges, setEachEntryChanges] = useState(initialInputState);
 	const { player, score } = eachEntryChanges;
@@ -105,28 +102,35 @@ export const ProfileCard = props => {
 	};
 
 	const handleFinalSubmit = event => {
-		debugger;
 		event.preventDefault();
-		// var raw =
+
 		var requestOptions = {
 			method: "PUT",
-			body: JSON.stringify(eachEntryChanges)
+			body: JSON.stringify(eachEntryChanges),
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
 		};
 		fetch(`${apiBaseUrl}/api/sign_up_put`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				localStorage.setItem("accessToken", result["accessToken"]);
-				actions.setCurrentUser(result["user"]);
-				debugger;
-				history.push("/home");
-				//console.log("User was created");
+				toast.success("Guardaste tus cambios exitosamente!");
+				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
 	};
 
 	return (
-		<div>
+		<div
+			onClick={toast(
+				"Remember! You can't change your user name or e-mail",
+				{
+					position: toast.POSITION.BOTTOM_RIGHT
+				},
+				{ autoClose: 4000 }
+			)}>
 			<form onSubmit={handleFinalSubmit}>
 				<div className="form-group">
 					<label htmlFor="name">Name</label>
@@ -136,28 +140,19 @@ export const ProfileCard = props => {
 						id="name"
 						placeholder={store.user ? store.user.name : "Insert here your name"}
 						name="name"
+						value={eachEntryChanges.name}
 						onChange={handleInputChange}
 					/>
 				</div>
-				{/* <div className="form-group">
-							<label htmlFor="lastName">Last Name</label>
-							<input
-								type="text"
-								className="form-control"
-								id="lastName"
-								placeholder={store.user ? store.user.last_name : "Insert here your last name"}
-								name="lastName"
-								onChange={handleInputChange}
-							/> 
-						</div>*/}
 				<div className="form-group">
-					<label htmlFor="Address">Address</label>
+					<label htmlFor="address">Address</label>
 					<input
-						type="Address"
+						type="address"
 						className="form-control"
-						id="Address"
+						id="address"
 						placeholder={store.user ? store.user.address : "Insert here your address"}
-						name="Address"
+						name="address"
+						value={eachEntryChanges.address}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -169,6 +164,7 @@ export const ProfileCard = props => {
 						id="postal_code"
 						placeholder={store.user ? store.user.postal_code : "Insert here your postal_code"}
 						name="postal_code"
+						value={eachEntryChanges.postal_code}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -202,19 +198,6 @@ export const Userprofile = props => {
 						<p>You can change your data here:</p>
 					</h3>
 				</div>
-				{/* <div className="col-4 text-center">
-					<h3>{"Allergies"}</h3>
-				</div> */}
-				{/* <div className="buttons col-2">
-					<div className="d-flex weekplan-buttons-container">
-						<button className="weekplan-btn btn green-button" type="submit">
-							Save
-						</button>
-						<button className="weekplan-btn btn green-button" type="submit">
-							Clear
-						</button>
-					</div>
-				</div> */}
 			</div>
 
 			<div className="row">
@@ -223,19 +206,9 @@ export const Userprofile = props => {
 						<ProfileCard />
 					</div>
 
-					{/* <div className="col-6 mx-1 d-flex flex-column justify-content-center data-container">
-					<AllergensTable />
-				</div> */}
 					<div className="col-5">
 						{/* <AvatarForm modalId={modalId} /> */}
 						<p>Avatar Form</p>
-					</div>
-					<div className="d-flex align-end mt-auto col-2">
-						<Link to="/home">
-							<span className="btn green-button mt-3" role="button">
-								Back home
-							</span>
-						</Link>
 					</div>
 				</div>
 			</div>
