@@ -277,17 +277,17 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    print(menu_params)
+    #print(menu_params, "HOLA")
     for i, day in enumerate(days_json):
       self.create_day(day,i,days_json[day], menu)
 
   def create_day(self,name,day_position, meals, menu):
-    day = Day(name=name, position=day_position, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+    day = Day(name=name, position=day_position, menu_id=menu.id)
     db.session.add(day)
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      print(food)
+      #print(food, "FOOD")
       self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
@@ -295,3 +295,5 @@ class MenuDataManager:
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
+    #Este error no permite POST de todo el JSON a la API, aunque el JSON se monta bien desde el flux. 
+    #TypeError: 'NoneType' object is not subscriptable

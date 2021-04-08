@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => error);
 				let newStoreQ = props;
 				setStore({ q: newStoreQ });
 			},
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => error);
 				//console.log("more");
 			},
 			selectNewRecipe: selectedRecipe => {
@@ -164,12 +164,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				};
-				console.log(localStorage.getItem("accessToken"));
+				//console.log(localStorage.getItem("accessToken"));
 				//console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(
-						result => console.log(result),
+					.then(result =>
+						//console.log(result),
 						setStore({
 							newWeeklyMenu: {
 								title: "",
@@ -177,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							}
 						})
 					)
-					.catch(error => console.log("error", error));
+					.catch(error => error);
 			},
 
 			filterByTime: userTime => {
@@ -200,9 +200,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 
-				debugger;
+				//debugger;
 				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
-
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Menus are not available now", error));

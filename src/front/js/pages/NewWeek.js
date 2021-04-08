@@ -76,7 +76,7 @@ export const NewWeek = () => {
 
 	return (
 		<div className="newweek-container container-fluid">
-			<p
+			{/* <p
 				className="text-center"
 				onClick={toast(
 					"Here you can search and save your recipes in every meal of the week",
@@ -86,7 +86,7 @@ export const NewWeek = () => {
 					{ autoClose: 4000 }
 				)}>
 				You can search for recipes on the left bar and store the recipes on the right board.
-			</p>
+			</p> */}
 			<div className=" search-big-container d-flex">
 				<div className="container-fluid col-6 m-0">
 					<div className="weekplan-body">

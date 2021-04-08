@@ -5,7 +5,7 @@ import { Button, Jumbotron, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const WeekJumbo = props => {
-	console.log(props);
+	//console.log(props);
 
 	const { store, actions } = useContext(Context);
 
