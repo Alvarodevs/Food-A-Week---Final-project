@@ -1,3 +1,13 @@
+  a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover{
+    color:lighten($green,0.2);
+}
+
+
 .pink-button{
     background-color: white;
     //border-radius:1px;
@@ -64,14 +74,18 @@
     outline: 0;
     box-shadow: 0 0 0 0.1rem rgb(70,141,94 / 1%);
 }
+
+
 .nav-pills {
     background-color: white;
     color: black;
+  
     .nav-link.active{   
         background-color: $green;
         color:white;
        // box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
     }
+  
 }
 .btn:focus{
     outline: 0;
