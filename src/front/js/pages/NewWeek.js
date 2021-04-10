@@ -60,7 +60,11 @@ export const NewWeek = () => {
 
 	var searchResult = store.hits.map((item, index) => (
 		<ListGroup.Item key={index} className="d-flex justify-content-between">
-			<div>{item.recipe.label}</div>
+			<div>
+				<a style={{ display: "table-cell" }} href={item.recipe.url} target="_blank" rel="noopener noreferrer">
+					{item.recipe.label}
+				</a>
+			</div>
 			<div className="d-flex justify-content-end">
 				<div className="mr-1">{item.recipe.totalTime}</div>
 				<div className="mr-2"> mins</div>
@@ -180,5 +184,6 @@ NewWeek.propTypes = {
 	name: propTypes.string,
 	value: propTypes.string,
 	uri: propTypes.string,
-	title: propTypes.string
+	title: propTypes.string,
+	url: propTypes.string
 };

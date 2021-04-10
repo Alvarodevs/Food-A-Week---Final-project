@@ -28,7 +28,7 @@ export const RecipeCard = props => {
 		}
 	};
 	//console.log(urlsRecipes);
-
+	//porque hacemos esta ruta en vez de menus directo?
 	useEffect(() => {
 		fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
 			.then(resp => resp.json())
