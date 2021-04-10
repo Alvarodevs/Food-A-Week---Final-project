@@ -287,13 +287,14 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      #print(food, "FOOD")
+      print(food, "FOOD")
       self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
+    print(selected_recipe)
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
-    #Este error no permite POST de todo el JSON a la API, aunque el JSON se monta bien desde el flux. 
-    #TypeError: 'NoneType' object is not subscriptable
+
+    #NO ESTA LLEGANDO DAY.ID A SELECTEDRECIPE, ¿POR ESO NO SE ITERA?

@@ -18,7 +18,7 @@ export const RecipeCard = props => {
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 
-	//console.log(props);
+	console.log(props);
 
 	var requestOptions = {
 		method: "GET",
@@ -51,7 +51,7 @@ export const RecipeCard = props => {
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-			<img className="card-img-top p-0 m-0" alt="Card image cap" />
+			<img className="card-img-top p-0 m-0" src="" alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
 				<div className="card-title pt-2">{props.title}</div>
 			</div>
@@ -70,6 +70,7 @@ export const RecipeCard = props => {
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [listOfMenus, setListOfMenus] = useState([]);
+	//const [allUrls, setAllUrls] = useState([]);
 
 	var requestOptions = {
 		method: "GET",
@@ -88,6 +89,8 @@ export const AllWeeks = () => {
 			.catch(error => console.log("Menus are not available now", error));
 	}, []);
 
+	//console.log(allUrls);
+
 	let dayMenu = listOfMenus.map((item, index) => {
 		// fetch to days
 		fetch(`${apiBaseUrl}/api/me/menus/${item.id}/days`, requestOptions)
@@ -105,10 +108,11 @@ export const AllWeeks = () => {
 				});
 			})
 			.catch(error => console.log("Days are not available now", error));
-		let urls = [];
-		console.log("URLS PROPS ", urls);
+
 		return <RecipeCard key={index} id={item.id} title={item.title} />;
 	});
+	let urls = [];
+	console.log(urls);
 
 	function doFetchSelectedRecipesByDay(IDday) {
 		console.log("doFetchSelectedRecipesByDay" + IDday);
@@ -121,6 +125,8 @@ export const AllWeeks = () => {
 				let recipesUrls = result.selected_recipes.map((itemSelectedRecipes, index) => {
 					// fetch to selected_recipes
 					urls.push(itemSelectedRecipes.recipe_code);
+					//console.log("URLS PROPS ", urls);
+					//setAllUrls(urls);
 				});
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));

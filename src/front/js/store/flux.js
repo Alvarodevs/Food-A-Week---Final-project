@@ -103,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("accessToken");
 			},
 			setUser: userParams => {
-				debugger;
+				//debugger;
 				setStore({ user: userParams });
 				//aquí que pinta setStoreNewTitleMenu?
 				//setStore(newTitleMenu);
@@ -161,15 +161,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: raw,
 					headers: {
 						Authorization: "Bearer " + localStorage.getItem("accessToken"),
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin":
+							"https://3001-teal-crayfish-87w91ixx.ws-eu03.gitpod.io/api/new_weekly_menu"
 					}
 				};
 				//console.log(localStorage.getItem("accessToken"));
 				//console.log(store.newWeeklyMenu);
 				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
 					.then(response => response.json())
-					.then(result =>
-						//console.log(result),
+					.then(
+						result => console.log(result),
 						setStore({
 							newWeeklyMenu: {
 								title: "",
