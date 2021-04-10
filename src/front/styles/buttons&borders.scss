@@ -65,9 +65,12 @@
     box-shadow: 0 0 0 0.1rem rgb(70,141,94 / 1%);
 }
 .nav-pills {
+    background-color: white;
+    color: black;
     .nav-link.active{   
         background-color: $green;
-        box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
+        color:white;
+       // box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
     }
 }
 .btn:focus{
