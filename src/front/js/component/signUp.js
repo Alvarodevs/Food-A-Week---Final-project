@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { toast } from "react-toastify";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Card } from "react-bootstrap";
 
 const SignUpForm = props => {
 	const { store, actions } = useContext(Context);
@@ -84,7 +84,7 @@ const SignUpForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<div className="form-group">
+			{/* <div className="form-group">
 				<label htmlFor="name">Name</label>
 				<input
 					type="text"
@@ -94,9 +94,9 @@ const SignUpForm = props => {
 					name="name"
 					onChange={handleInputChange}
 				/>
-			</div>
+			</div> */}
 
-			<div className="form-group">
+			{/* <div className="form-group">
 				<label htmlFor="address">Address</label>
 				<input
 					type="address"
@@ -117,7 +117,7 @@ const SignUpForm = props => {
 					name="postal_code"
 					onChange={handleInputChange}
 				/>
-			</div>
+			</div> */}
 			<div className="form-group">
 				<label htmlFor="password">Password</label>
 				<input
@@ -129,7 +129,7 @@ const SignUpForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="green-button btn">
+			<button type="submit" className="green-button btn m-4">
 				Submit
 			</button>
 		</form>
@@ -137,11 +137,7 @@ const SignUpForm = props => {
 };
 
 export const SignUp = props => {
-	return (
-		<div className="jumbotron">
-			<SignUpForm />
-		</div>
-	);
+	return <SignUpForm />;
 };
 
 SignUp.propTypes = {
