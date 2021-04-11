@@ -50,6 +50,7 @@
 .signElements{
     margin:auto;
     z-index:3;
+   // margin-left:1px;
     
 }
 
@@ -71,6 +72,8 @@
     width: 100%;
     height:30%;
 }
-#last-prepage-text{
-    margin-top:5%;
+
+body{
+    width:100vw;
+    overflow-x:hidden;
 }

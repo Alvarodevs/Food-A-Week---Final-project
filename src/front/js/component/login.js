@@ -69,7 +69,7 @@ const SignInForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="green-button btn m-4">
+			<button type="submit" className="green-button btn ml-4 mb-1">
 				Submit
 			</button>
 		</form>
