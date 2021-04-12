@@ -34,7 +34,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
-			]
+			],
+			urlsCardImages: []
 		}, //close store
 
 		actions: {
@@ -235,6 +236,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Recipes are not available now", error));
+			},
+			setAllUrlSelectedRecipe: urls => {
+				let store = getStore();
+				let urlsData = store.urlsCardImages;
+				urlsData = urls;
+				//setStore({ urlsCardImages: urlsData });
 			}
 		}
 	};

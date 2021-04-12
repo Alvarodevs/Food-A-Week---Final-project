@@ -36,15 +36,11 @@ h2 {
 .title-web{
     font-family:$hand;
     font-weight:bold;
-    font-size:105px;
-    margin-top:1%;
+    font-size:85px;
+    margin-top:0%;
+    padding:0px;
 }
-.pre-text{
-    font-family:$montserrat;
-    font-size:25px;
-    margin-top:2%;
 
-}
 
 .button-text{
     font-family:$montserrat;
@@ -55,8 +51,9 @@ h2 {
 }
 
 .prepage-text{
-    font-family:$hand;
-    text-align:center;
-    margin:auto;
-    font-size:44px;
+    font-family:$montserrat;
+    text-align:left;
+    margin-top:0%;
+    margin-right:1%;
+    font-size:25px;
 }

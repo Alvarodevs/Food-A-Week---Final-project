@@ -69,7 +69,7 @@ const SignInForm = props => {
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="green-button btn">
+			<button type="submit" className="green-button btn ml-4 mb-1">
 				Submit
 			</button>
 		</form>
@@ -84,11 +84,7 @@ const SignIn = props => {
 		history.push("/home");
 	}
 
-	return (
-		<div className="jumbotron">
-			<SignInForm />
-		</div>
-	);
+	return <SignInForm />;
 };
 
 export default SignIn;

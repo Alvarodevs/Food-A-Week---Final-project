@@ -13,12 +13,27 @@ import { toast } from "react-toastify";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
-	const [newData, setNewData] = useState();
+	const [newData, setNewData] = useState([]);
 	const [dayID, setDayID] = useState();
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 
-	console.log(props);
+	console.log(props.data);
+
+	let allDayData = props.data;
+	let result = [];
+
+	useEffect(() => {
+		allDayData.map((object, index) => {
+			console.log(object);
+			// object.selected_recipes.map((urlToFetch, index) => {
+			// 	urlToFetch.map((item, index) => {
+			// 		console.log(item);
+			// 	});
+			// });
+		});
+	}, []);
+	// console.log(url);
 
 	var requestOptions = {
 		method: "GET",
@@ -27,8 +42,7 @@ export const RecipeCard = props => {
 			"Content-Type": "application/json"
 		}
 	};
-	//console.log(urlsRecipes);
-	//porque hacemos esta ruta en vez de menus directo?
+
 	// useEffect(() => {
 	// 	fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
 	// 		.then(resp => resp.json())
@@ -40,14 +54,6 @@ export const RecipeCard = props => {
 	// 			console.log("Error loading message from backend", error);
 	// 		});
 	// }, []);
-	//console.log(newData);
-
-	//console.log(dayID);
-
-	// let singleDayId = dayID.forEach()
-	// console.log(
-
-	// )
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -70,7 +76,8 @@ export const RecipeCard = props => {
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [listOfMenus, setListOfMenus] = useState([]);
-	const [allUrls, setAllurls] = useState([]);
+
+	let dataObjects = [];
 
 	var requestOptions = {
 		method: "GET",
@@ -90,48 +97,26 @@ export const AllWeeks = () => {
 	}, []);
 
 	let dayMenu = listOfMenus.map((item, index) => {
-		// fetch to days
+		//fetch to days
 		fetch(`${apiBaseUrl}/api/me/menus/${item.id}/days`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log("1st fetch");
-				//console.log(result.days);
 				let daysMenu = result.days.map((itemDay, index) => {
-					// fetch to selected_recipes
-					//console.log(itemDay);
-					//console.log(itemDay.id);
 					doFetchSelectedRecipesByDay(itemDay.id);
-					//console.log(daysMenu);
-					//doFetchGetImage();
 				});
 			})
 			.catch(error => console.log("Days are not available now", error));
-
-		return <RecipeCard key={index} id={item.id} title={item.title} />;
+		return <RecipeCard key={index} id={item.id} title={item.title} data={dataObjects} />;
 	});
 
 	function doFetchSelectedRecipesByDay(IDday) {
-		console.log("doFetchSelectedRecipesByDay" + IDday);
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log("2nd fetch");
-				console.log(result);
-				//console.log(result.selected_recipes);
-				let recipesUrls = result.selected_recipes.map((itemSelectedRecipes, index) => {
-					// fetch to selected_recipes
-
-					urls.push(itemSelectedRecipes.recipe_code);
-				});
+				dataObjects.push(result);
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
-
-	let urls = [];
-	console.log(allUrls);
-	useEffect(urls => {
-		setAllurls(urls);
-	}, []);
 
 	// const doFetchGetImage = dayUrls => {
 	// 	console.log("doFetchGetImage " + dayUrls);
@@ -168,7 +153,7 @@ export const AllWeeks = () => {
 RecipeCard.propTypes = {
 	id: PropTypes.number,
 	title: PropTypes.string,
-	urls: PropTypes.array
+	data: PropTypes.array
 };
 
 // WeekJumbo.propTypes = {
