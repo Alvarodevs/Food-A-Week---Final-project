@@ -123,16 +123,7 @@ export const ProfileCard = props => {
 	};
 
 	return (
-		<div
-			onClick={toast(
-				"Remember! You can't change your user name or e-mail",
-				{
-					position: toast.POSITION.BOTTOM_RIGHT
-				},
-				{ autoClose: 4000 }, 
-				// {limit={1}}
-			)}>
-			
+		<div>
 			<form onSubmit={handleFinalSubmit}>
 				<div className="form-group">
 					<label htmlFor="name">Name</label>
