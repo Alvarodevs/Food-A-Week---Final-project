@@ -28,18 +28,18 @@ export const RecipeCard = props => {
 		}
 	};
 	//console.log(urlsRecipes);
-
-	useEffect(() => {
-		fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
-			.then(resp => resp.json())
-			.then(data => {
-				setNewData(data);
-				setDayID(data.days);
-			})
-			.catch(error => {
-				console.log("Error loading message from backend", error);
-			});
-	}, []);
+	//porque hacemos esta ruta en vez de menus directo?
+	// useEffect(() => {
+	// 	fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
+	// 		.then(resp => resp.json())
+	// 		.then(data => {
+	// 			setNewData(data);
+	// 			setDayID(data.days);
+	// 		})
+	// 		.catch(error => {
+	// 			console.log("Error loading message from backend", error);
+	// 		});
+	// }, []);
 	//console.log(newData);
 
 	//console.log(dayID);
@@ -51,7 +51,7 @@ export const RecipeCard = props => {
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-			<img className="card-img-top p-0 m-0" src="" alt="Card image cap" />
+			<img className="card-img-top p-0 m-0" alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
 				<div className="card-title pt-2">{props.title}</div>
 			</div>
@@ -70,10 +70,7 @@ export const RecipeCard = props => {
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [listOfMenus, setListOfMenus] = useState([]);
-	//const [allUrls, setAllUrls] = useState([]);
-
-	let urls = [];
-	console.log("THESE ARE URLS ", urls);
+	const [allUrls, setAllurls] = useState([]);
 
 	var requestOptions = {
 		method: "GET",
@@ -114,9 +111,6 @@ export const AllWeeks = () => {
 	});
 
 	function doFetchSelectedRecipesByDay(IDday) {
-		// let urls = [];
-		// console.log("THESE ARE URLS ", urls);
-
 		console.log("doFetchSelectedRecipesByDay" + IDday);
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
@@ -125,31 +119,19 @@ export const AllWeeks = () => {
 				console.log(result);
 				//console.log(result.selected_recipes);
 				let recipesUrls = result.selected_recipes.map((itemSelectedRecipes, index) => {
-					let allUrls = [];
-					// console.log(urls);
 					// fetch to selected_recipes
-					allUrls.push(itemSelectedRecipes.recipe_code);
-					//console.log("URLS PROPS ", urls);
-					//setAllUrls(urls);
+
+					urls.push(itemSelectedRecipes.recipe_code);
 				});
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
 
-	// async function doFetchSelectedRecipesByDay(IDday) {
-	// 	try {
-	// 		const res = await (await fetch(
-	// 			`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`,
-	// 			requestOptions
-	// 		)).json();
-	// 		const urls = res.selected_recipes.map((itemSelectedRecipes, index) => {
-	// 			setAllUrls(itemSelectedRecipes.recipe_code);
-	// 		});
-	// 		return { urls };
-	// 	} catch (e) {
-	// 		console.log(e);
-	// 	}
-	// }
+	let urls = [];
+	console.log(allUrls);
+	useEffect(urls => {
+		setAllurls(urls);
+	}, []);
 
 	// const doFetchGetImage = dayUrls => {
 	// 	console.log("doFetchGetImage " + dayUrls);
