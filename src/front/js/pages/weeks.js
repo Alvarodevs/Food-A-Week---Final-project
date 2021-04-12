@@ -72,6 +72,9 @@ export const AllWeeks = () => {
 	const [listOfMenus, setListOfMenus] = useState([]);
 	//const [allUrls, setAllUrls] = useState([]);
 
+	let urls = [];
+	console.log("THESE ARE URLS ", urls);
+
 	var requestOptions = {
 		method: "GET",
 		headers: {
@@ -88,8 +91,6 @@ export const AllWeeks = () => {
 			})
 			.catch(error => console.log("Menus are not available now", error));
 	}, []);
-
-	//console.log(allUrls);
 
 	let dayMenu = listOfMenus.map((item, index) => {
 		// fetch to days
@@ -111,10 +112,11 @@ export const AllWeeks = () => {
 
 		return <RecipeCard key={index} id={item.id} title={item.title} />;
 	});
-	let urls = [];
-	console.log(urls);
 
 	function doFetchSelectedRecipesByDay(IDday) {
+		// let urls = [];
+		// console.log("THESE ARE URLS ", urls);
+
 		console.log("doFetchSelectedRecipesByDay" + IDday);
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
@@ -123,14 +125,31 @@ export const AllWeeks = () => {
 				console.log(result);
 				//console.log(result.selected_recipes);
 				let recipesUrls = result.selected_recipes.map((itemSelectedRecipes, index) => {
+					let allUrls = [];
+					// console.log(urls);
 					// fetch to selected_recipes
-					urls.push(itemSelectedRecipes.recipe_code);
+					allUrls.push(itemSelectedRecipes.recipe_code);
 					//console.log("URLS PROPS ", urls);
 					//setAllUrls(urls);
 				});
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
+
+	// async function doFetchSelectedRecipesByDay(IDday) {
+	// 	try {
+	// 		const res = await (await fetch(
+	// 			`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`,
+	// 			requestOptions
+	// 		)).json();
+	// 		const urls = res.selected_recipes.map((itemSelectedRecipes, index) => {
+	// 			setAllUrls(itemSelectedRecipes.recipe_code);
+	// 		});
+	// 		return { urls };
+	// 	} catch (e) {
+	// 		console.log(e);
+	// 	}
+	// }
 
 	// const doFetchGetImage = dayUrls => {
 	// 	console.log("doFetchGetImage " + dayUrls);
