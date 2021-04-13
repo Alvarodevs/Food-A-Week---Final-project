@@ -13,27 +13,13 @@ import { toast } from "react-toastify";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
-	const [newData, setNewData] = useState([]);
+	let [newData, setNewData] = useState([]);
 	const [dayID, setDayID] = useState();
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [modalShow, setModalShow] = useState(false);
 
-	console.log(props.data);
-
-	let allDayData = props.data;
-	let result = [];
-
-	useEffect(() => {
-		allDayData.map((object, index) => {
-			console.log(object);
-			// object.selected_recipes.map((urlToFetch, index) => {
-			// 	urlToFetch.map((item, index) => {
-			// 		console.log(item);
-			// 	});
-			// });
-		});
-	}, []);
-	// console.log(url);
+	//console.log(props.data);
+	let urlsArrayToFetch = [];
 
 	var requestOptions = {
 		method: "GET",
@@ -42,18 +28,27 @@ export const RecipeCard = props => {
 			"Content-Type": "application/json"
 		}
 	};
+	useEffect(() => {
+		fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				result.days.map((itemDay, index) => {
+					doFetchSelectedRecipesByDay(itemDay.id);
+				});
+			})
+			.catch(error => console.log("Days are not available now", error));
+	}, []);
 
-	// useEffect(() => {
-	// 	fetch(`${apiBaseUrl}/api/me/menus/${props.id}/days`, requestOptions)
-	// 		.then(resp => resp.json())
-	// 		.then(data => {
-	// 			setNewData(data);
-	// 			setDayID(data.days);
-	// 		})
-	// 		.catch(error => {
-	// 			console.log("Error loading message from backend", error);
-	// 		});
-	// }, []);
+	function doFetchSelectedRecipesByDay(IDday) {
+		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				result.selected_recipes ? urlsArrayToFetch.push(result.selected_recipes) : "";
+			})
+			.catch(error => console.log("selected_recipes are not available now", error));
+	}
+
+	console.log("THIS IS FILLED AFTER RENDER", urlsArrayToFetch);
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -61,7 +56,6 @@ export const RecipeCard = props => {
 			<div className=" card-body py-1 justify-content-between align-middle">
 				<div className="card-title pt-2">{props.title}</div>
 			</div>
-
 			<div className="align-card-buttons">
 				<Button className=" weekplan-btn green-button mb-3" type="submit" onClick={() => setModalShow(true)}>
 					Show
@@ -76,8 +70,6 @@ export const RecipeCard = props => {
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [listOfMenus, setListOfMenus] = useState([]);
-
-	let dataObjects = [];
 
 	var requestOptions = {
 		method: "GET",
@@ -98,25 +90,8 @@ export const AllWeeks = () => {
 
 	let dayMenu = listOfMenus.map((item, index) => {
 		//fetch to days
-		fetch(`${apiBaseUrl}/api/me/menus/${item.id}/days`, requestOptions)
-			.then(response => response.json())
-			.then(result => {
-				let daysMenu = result.days.map((itemDay, index) => {
-					doFetchSelectedRecipesByDay(itemDay.id);
-				});
-			})
-			.catch(error => console.log("Days are not available now", error));
-		return <RecipeCard key={index} id={item.id} title={item.title} data={dataObjects} />;
+		return <RecipeCard key={index} id={item.id} title={item.title} />;
 	});
-
-	function doFetchSelectedRecipesByDay(IDday) {
-		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
-			.then(response => response.json())
-			.then(result => {
-				dataObjects.push(result);
-			})
-			.catch(error => console.log("selected_recipes are not available now", error));
-	}
 
 	// const doFetchGetImage = dayUrls => {
 	// 	console.log("doFetchGetImage " + dayUrls);
@@ -152,10 +127,10 @@ export const AllWeeks = () => {
 
 RecipeCard.propTypes = {
 	id: PropTypes.number,
-	title: PropTypes.string,
-	data: PropTypes.array
+	title: PropTypes.string
+	//data: PropTypes.object
 };
 
 // WeekJumbo.propTypes = {
-// 	menus: PropTypes.array
+// 	data: PropTypes.array
 // };
