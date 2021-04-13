@@ -104,8 +104,8 @@ export const ProfileCard = props => {
 					/>
 				</div>
 
-				<div className="d-flex justify-content-end">
-					<button type="submit" className="green-button btn mt-4 py-2 col-10">
+				<div className="d-flex justify-content-center ml-4">
+					<button type="submit" className="green-button btn ml-4 py-2">
 						Save changes
 					</button>
 				</div>
