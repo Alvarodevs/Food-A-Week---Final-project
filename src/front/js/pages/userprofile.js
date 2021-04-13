@@ -11,78 +11,6 @@ import { apiBaseUrl } from "../constants";
 import { toast, ToastContainer } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 //import "../../styles/userprofile.scss";
-export const AvatarForm = props => {
-	const { store, actions } = useContext(Context);
-	const [files, setFiles] = useState([]);
-
-	const onAvatarChange = event => {
-		console.log("La foto ha cambiado!");
-		console.log(event.target.files);
-		setFiles(event.target.files);
-	};
-
-	const onSubmitAvatar = event => {
-		event.preventDefault();
-		const data = new FormData();
-		data.append("avatar", files[0]);
-		const options = {
-			body: data,
-			method: "PUT",
-			headers: {
-				Authorization: "Bearer " + localStorage.getItem("accessToken"),
-				"Content-Type": "application/json"
-			}
-		};
-
-		fetch(`${baseUrl}api/me`, options)
-			.then(resp => resp.json())
-			.then(data => {
-				actions.setUser(data);
-				document.getElementById(props.modalId).click();
-			});
-	};
-
-	return (
-		<div
-			className="modal fade"
-			id={props.modalId}
-			tabIndex="-1"
-			role="dialog"
-			aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div className="modal-dialog" role="document">
-				<div className="modal-content">
-					<div className="modal-header">
-						<h5 className="modal-title" id="exampleModalLabel">
-							Actualiza tu avatar
-						</h5>
-						<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div className="modal-body">
-						<form onSubmit={onSubmitAvatar}>
-							<div className="form-group">
-								<label htmlFor="exampleFormControlFile1">
-									Favor ingresa el archivo que deseas como avatar
-								</label>
-								<input
-									type="file"
-									className="form-control-file"
-									id="exampleFormControlFile1"
-									onChange={onAvatarChange}
-								/>
-							</div>
-							<button className="btn btn-primary float-right" type="submit">
-								Enviar
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
 
 export const ProfileCard = props => {
 	const { store, actions } = useContext(Context);
@@ -91,6 +19,7 @@ export const ProfileCard = props => {
 	const handleShow = () => setShow(true);
 
 	const initialInputState = {
+		user_name: store.user ? store.user.user_name : "",
 		name: store.user ? store.user.name : "",
 		address: store.user ? store.user.address : "",
 		postal_code: store.user ? store.user.postal_code : ""
@@ -116,7 +45,7 @@ export const ProfileCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				toast.success("Guardaste tus cambios exitosamente!");
+				toast.success("You saved your changes successfully!");
 				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
@@ -125,6 +54,19 @@ export const ProfileCard = props => {
 	return (
 		<div>
 			<form onSubmit={handleFinalSubmit}>
+				<div className="form-group">
+					<label htmlFor="user_name">User Name</label>
+
+					<input
+						type="text"
+						className="form-control"
+						id="name"
+						placeholder={store.user ? store.user.user_name : "Insert here your user name"}
+						name="user_name"
+						value={eachEntryChanges.user_name}
+						onChange={handleInputChange}
+					/>
+				</div>
 				<div className="form-group">
 					<label htmlFor="name">Name</label>
 					<input
@@ -198,19 +140,10 @@ export const Userprofile = props => {
 					<div className="col-5">
 						<ProfileCard />
 					</div>
-
-					<div className="col-5">
-						{/* <AvatarForm modalId={modalId} /> */}
-						<p>Avatar Form</p>
-					</div>
 				</div>
 			</div>
 		</div>
 	);
-};
-
-AvatarForm.propTypes = {
-	modalId: PropTypes.string
 };
 
 Userprofile.propTypes = {

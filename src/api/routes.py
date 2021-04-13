@@ -57,12 +57,14 @@ def sign_in():
 def sign_up_post():
   user = current_user(get_jwt_identity())
   body = request.get_json(force=False)
+  user_name = body.get("user_name", None)
   name = body.get("name", None)
   address = body.get("address", None)
   postal_code = body.get("postal_code", None)
 
   print("My name is ........")
   print(user.name)
+  user.user_name = user_name
   user.name = name
   user.address = address
   user.postal_code = postal_code
