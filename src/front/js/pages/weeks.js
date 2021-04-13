@@ -43,12 +43,20 @@ export const RecipeCard = props => {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				result.selected_recipes ? urlsArrayToFetch.push(result.selected_recipes) : "";
+				//console.log(result);
+				result.selected_recipes.map((item, index) => {
+					setUrlsRecipes(item.recipe_code);
+					// 	{
+					// 		item == recipe_code ? urlsArrayToFetch.push(recipe_code) : "";
+					// 	}
+					// });
+				});
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
 
-	console.log("THIS IS FILLED AFTER RENDER", urlsArrayToFetch);
+	console.log(urlsRecipes);
+	//console.log("THIS IS FILLED AFTER RENDER", urlsArrayToFetch);
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
