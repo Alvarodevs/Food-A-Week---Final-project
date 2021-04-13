@@ -42,7 +42,11 @@ const SignInForm = props => {
 				);
 				history.push("/home");
 			})
-			.catch(error => console.log("error", error));
+			.catch(error => {
+				console.log("error", error);
+				toast("Wrong user e-mail or password!");
+				history.push("/");
+			});
 	};
 
 	return (
