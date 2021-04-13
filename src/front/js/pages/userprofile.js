@@ -52,9 +52,9 @@ export const ProfileCard = props => {
 	};
 
 	return (
-		<div>
+		<div className="d-flex justify-content-center">
 			<form onSubmit={handleFinalSubmit}>
-				<div className="form-group">
+				<div className="form-group form-group-user">
 					<label htmlFor="user_name">User Name</label>
 
 					<input
@@ -67,7 +67,7 @@ export const ProfileCard = props => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group form-group-user ">
 					<label htmlFor="name">Name</label>
 					<input
 						type="text"
@@ -79,7 +79,7 @@ export const ProfileCard = props => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group form-group-user">
 					<label htmlFor="address">Address</label>
 					<input
 						type="address"
@@ -91,7 +91,7 @@ export const ProfileCard = props => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group form-group-user">
 					<label htmlFor="postal_code">Postal Code</label>
 					<input
 						type="postal_code"
@@ -103,9 +103,12 @@ export const ProfileCard = props => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<button type="submit" className="green-button btn">
-					Save changes
-				</button>
+
+				<div className="d-flex justify-content-end">
+					<button type="submit" className="green-button btn mt-4 py-2 col-10">
+						Save changes
+					</button>
+				</div>
 			</form>
 		</div>
 	);
@@ -121,10 +124,9 @@ export const Userprofile = props => {
 	}
 
 	return (
-		<div className="container">
-			<div className="row user-profile-titles mt-2">
-				{/* <div className="col-2 " /> */}
-				<div className="col-4 text-left">
+		<div className="container-user">
+			<div className="row-user user-profile-titles mt-2">
+				<div className="text-left">
 					<h3>
 						<p />
 						Hi {store.user ? store.user.user_name : ""}; <br />
@@ -135,11 +137,9 @@ export const Userprofile = props => {
 				</div>
 			</div>
 
-			<div className="row">
-				<div className="d-flex flex-row col-12">
-					<div className="col-5">
-						<ProfileCard />
-					</div>
+			<div className="row items-profile">
+				<div className="d-flex justify-content-center">
+					<ProfileCard />
 				</div>
 			</div>
 		</div>
