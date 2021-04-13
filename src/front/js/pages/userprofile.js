@@ -8,7 +8,7 @@ import { AllergensTable } from "../component/allergenstable";
 import { Form } from "react-bootstrap";
 import { Button, AlertMessageBox } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 //import "../../styles/userprofile.scss";
 export const AvatarForm = props => {
@@ -123,14 +123,7 @@ export const ProfileCard = props => {
 	};
 
 	return (
-		<div
-			onClick={toast(
-				"Remember! You can't change your user name or e-mail",
-				{
-					position: toast.POSITION.BOTTOM_RIGHT
-				},
-				{ autoClose: 4000 }
-			)}>
+		<div>
 			<form onSubmit={handleFinalSubmit}>
 				<div className="form-group">
 					<label htmlFor="name">Name</label>

@@ -73,7 +73,7 @@ const Layout = () => {
 					</Switch>
 				</ScrollToTop>
 			</BrowserRouter>
-			<ToastContainer />
+			<ToastContainer limit={1} />
 		</div>
 	);
 };
