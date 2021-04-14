@@ -9,17 +9,14 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
-//import "../../styles/index.scss";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
-	let [newData, setNewData] = useState([]);
+	const [newData, setNewData] = useState([]);
 	const [dayID, setDayID] = useState();
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
+	const [oneUrlImage, setOneUrlImage] = useState("");
 	const [modalShow, setModalShow] = useState(false);
-
-	//console.log(props.data);
-	let urlsArrayToFetch = [];
 
 	var requestOptions = {
 		method: "GET",
@@ -43,20 +40,25 @@ export const RecipeCard = props => {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				//console.log(result);
 				result.selected_recipes.map((item, index) => {
 					setUrlsRecipes(item.recipe_code);
-					// 	{
-					// 		item == recipe_code ? urlsArrayToFetch.push(recipe_code) : "";
-					// 	}
-					// });
 				});
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
 
-	console.log(urlsRecipes);
-	//console.log("THIS IS FILLED AFTER RENDER", urlsArrayToFetch);
+	let code = encodeURIComponent(urlsRecipes);
+	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
+		.then(response => response.json())
+		.then(result =>
+			result.map((source, index) => {
+				//console.log(source);
+				sources.push(source.image);
+			})
+		);
+
+	let sources = [];
+	console.log(sources);
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -100,18 +102,6 @@ export const AllWeeks = () => {
 		//fetch to days
 		return <RecipeCard key={index} id={item.id} title={item.title} />;
 	});
-
-	// const doFetchGetImage = dayUrls => {
-	// 	console.log("doFetchGetImage " + dayUrls);
-	// 	fetch(dayUrls)
-	// 		.then(response => response.json())
-	// 		.then(result => {
-	// 			console.log("3rd fetch");
-	// 			console.log(result);
-	// 			//console.log(result.selected_recipes);
-	// 		})
-	// 		.catch(error => console.log("Images are not available now", error));
-	// };
 
 	return (
 		<div className="container-fluid">

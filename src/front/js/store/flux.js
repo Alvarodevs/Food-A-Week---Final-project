@@ -73,7 +73,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
 					.catch(error => error);
-				//console.log("more");
 			},
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
@@ -103,10 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("accessToken");
 			},
 			setUser: userParams => {
-				//debugger;
 				setStore({ user: userParams });
-				//aquí que pinta setStoreNewTitleMenu?
-				//setStore(newTitleMenu);
 			},
 
 			addRecipe: (day, meal, name, uri) => {
