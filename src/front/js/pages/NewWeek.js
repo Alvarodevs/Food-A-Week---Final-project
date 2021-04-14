@@ -66,8 +66,6 @@ export const NewWeek = () => {
 			<div className="d-flex justify-content-end">
 				<div className="mr-1">{item.recipe.totalTime}</div>
 				<div className="mr-2"> mins</div>
-				{/* INSERT HERE IN ICON A FUNCTION TO DISPLAY HOW TO MAKE THE RECIPE */}
-				<i className="fas fa-eye mr-2" />
 				<i
 					className="fas fa-plus"
 					onClick={handleData}
