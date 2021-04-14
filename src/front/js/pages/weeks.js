@@ -9,11 +9,10 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
+import { sources } from "webpack";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
-	const [newData, setNewData] = useState([]);
-	const [dayID, setDayID] = useState();
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [oneUrlImage, setOneUrlImage] = useState("");
 	const [modalShow, setModalShow] = useState(false);
@@ -40,25 +39,21 @@ export const RecipeCard = props => {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				result.selected_recipes.map((item, index) => {
-					setUrlsRecipes(item.recipe_code);
-				});
+				//NO HACER MAP, ALMACENAR SOLO UN RECIPE CODE, SI NO, DEMASIADAS PETICIONES A LA API EDAMAM
+				for (var i = 0; i < result.selected_recipes.length; i++) {
+					setUrlsRecipes(result.selected_recipes[0].recipe_code);
+					break;
+				}
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
-
+	let source = "";
 	let code = encodeURIComponent(urlsRecipes);
 	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
 		.then(response => response.json())
-		.then(result =>
-			result.map((source, index) => {
-				//console.log(source);
-				sources.push(source.image);
-			})
-		);
+		.then(result => source == result[0].image);
 
-	let sources = [];
-	console.log(sources);
+	console.log(oneUrlImage);
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
@@ -105,16 +100,7 @@ export const AllWeeks = () => {
 
 	return (
 		<div className="container-fluid">
-			<div
-				className="page-container d-flex"
-				// onClick={toast(
-				// 	"Here you will find your saved weekly menus",
-				// 	{
-				// 		position: toast.POSITION.BOTTOM_RIGHT
-				// 	},
-				// 	{ autoClose: 6000 }
-				// )}
-			>
+			<div className="page-container d-flex">
 				<div className="card-container d-flex justify-content-center mx-auto">
 					<div className="row all-cards ">{dayMenu ? dayMenu : ""}</div>
 				</div>

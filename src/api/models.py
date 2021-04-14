@@ -287,6 +287,7 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
+      # meals no se esta almacenando en bbdd, ¿por eso no se almacena cuando no son correlativos? 
       print(food, "FOOD")
       self.create_selected_recipe(food,day)
 
