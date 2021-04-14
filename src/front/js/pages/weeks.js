@@ -47,11 +47,11 @@ export const RecipeCard = props => {
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
-	let source = "";
+	//let source = "";
 	let code = encodeURIComponent(urlsRecipes);
 	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
 		.then(response => response.json())
-		.then(result => source == result[0].image);
+		.then(result => setOneUrlImage(result[0].image));
 
 	console.log(oneUrlImage);
 
