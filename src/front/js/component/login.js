@@ -30,22 +30,26 @@ const SignInForm = props => {
 		fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
-				localStorage.setItem("accessToken", result["accessToken"]);
-				actions.setCurrentUser(result["user"]);
-				toast(
-					"You're logged! Go to your weekly menus, save them, recover them or find your nearest store to complete your recipes!",
-					{
-						position: toast.POSITION.BOTTOM_RIGHT
-					},
-					{ autoClose: 6000 }
-				);
-				history.push("/home");
+				console.log("OK: ", result);
+				console.log(result["status"]);
+				if (result["status"] == "KO") {
+					toast("Wrong user e-mail or password!");
+					history.push("/");
+				} else {
+					localStorage.setItem("accessToken", result["accessToken"]);
+					actions.setCurrentUser(result["user"]);
+					toast(
+						"You're logged! Go to your weekly menus, save them, recover them or find your nearest store to complete your recipes!",
+						{
+							position: toast.POSITION.BOTTOM_RIGHT
+						},
+						{ autoClose: 6000 }
+					);
+					history.push("/home");
+				}
 			})
 			.catch(error => {
-				console.log("error", error);
-				toast("Wrong user e-mail or password!");
-				history.push("/");
+				console.log("Error: ", error);
 			});
 	};
 

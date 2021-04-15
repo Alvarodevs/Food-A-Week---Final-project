@@ -40,17 +40,19 @@ def sign_up():
 #necessary for sign_in
 @api.route("/sign_in", methods=["POST"])
 def sign_in():
+    status = "KO"
     body = request.get_json(force=True)
     email = body.get("email", None)
     password = body.get("password", None)
 
     user = User.query.filter_by(email=email).one_or_none()
     if not user or not user.check_password(password):
-        return jsonify("Your credentials are wrong, please try again"), 401
-
+      #return jsonify("Your credentials are wrong, please try again"), 401
+      return jsonify({"status": status, "msg": "Bad username or password"}), 401
     # Notice that we are passing in the actual sqlalchemy user object here
+    status = "OK"
     access_token = create_access_token(identity=user.serialize())
-    return jsonify(user=user.serialize(), accessToken=access_token)
+    return jsonify(status=status, user=user.serialize(), accessToken=access_token)
 
 @api.route("/sign_up_put", methods=["PUT"])
 @jwt_required()
