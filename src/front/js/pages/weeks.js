@@ -42,7 +42,7 @@ export const RecipeCard = props => {
 				//NO HACER MAP, ALMACENAR SOLO UN RECIPE CODE, SI NO, DEMASIADAS PETICIONES A LA API EDAMAM
 				for (var i = 0; i < result.selected_recipes.length; i++) {
 					setUrlsRecipes(result.selected_recipes[0].recipe_code);
-					console.log(urlsRecipes);
+					//console.log(urlsRecipes);
 					break;
 				}
 			})
@@ -118,5 +118,6 @@ RecipeCard.propTypes = {
 };
 
 // WeekJumbo.propTypes = {
-// 	data: PropTypes.array
+// 	onHide: PropTypes.object
+// 	//data: PropTypes.array
 // };

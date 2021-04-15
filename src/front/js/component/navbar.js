@@ -10,22 +10,19 @@ export const Navbar = () => {
 	const [pageTitle, setPageTitle] = useState();
 	const location = useLocation();
 
-	useEffect(
-		() => {
-			if (location.pathname == "/new_week") {
-				setPageTitle("New Week");
-			} else if (location.pathname == "/userprofile") {
-				setPageTitle("User Profile");
-			} else if (location.pathname == "/weeks") {
-				setPageTitle("Weeks");
-			} else if (location.pathname == "/map") {
-				setPageTitle("Find your local store");
-			} else {
-				setPageTitle("Home");
-			}
-		},
-		[location]
-	);
+	useEffect(() => {
+		if (location.pathname == "/new_week") {
+			setPageTitle("New Week");
+		} else if (location.pathname == "/userprofile") {
+			setPageTitle("User Profile");
+		} else if (location.pathname == "/weeks") {
+			setPageTitle("Weeks");
+		} else if (location.pathname == "/map") {
+			setPageTitle("Find your local store");
+		} else {
+			setPageTitle("Home");
+		}
+	}, [location]);
 
 	return (
 		<nav className="navbar navbar-light background-white mb-1">

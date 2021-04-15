@@ -8,7 +8,7 @@ export const WeekJumbo = props => {
 	//console.log(props);
 
 	const { store, actions } = useContext(Context);
-
+	console.log(props);
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">

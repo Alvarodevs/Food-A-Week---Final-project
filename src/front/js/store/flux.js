@@ -40,9 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			getRecipes: props => {
 				let store = getStore();
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${
-					store.timeCooking
-				}&q=${props}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${store.timeCooking}&q=${props}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
@@ -66,9 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					from: newStoreFrom
 				});
 
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${
-					store.timeCooking
-				}&q=${store.q}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${store.timeCooking}&q=${store.q}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: store.hits.concat(data.hits) }))

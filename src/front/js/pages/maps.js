@@ -58,7 +58,7 @@ export const Map = () => {
 							scrollWheelZoom={true}
 							style={{ height: 550 }}>
 							<TileLayer
-								attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+								attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							/>
 							<Marker position={{ lat, lng }}>
