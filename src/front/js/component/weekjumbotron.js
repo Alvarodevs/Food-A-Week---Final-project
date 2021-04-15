@@ -73,7 +73,8 @@ export const WeekJumbo = props => {
 			<Modal.Footer className="modal-footer">
 				<Button
 					className="green-button d-flex text-center m-auto justify-content-center"
-					onClick={props.onHide}>
+					//onClick={props.onHide}
+				>
 					Back
 				</Button>
 			</Modal.Footer>

@@ -9,7 +9,7 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
-import { sources } from "webpack";
+//import { sources } from "webpack";
 
 export const RecipeCard = props => {
 	const { store, actions } = useContext(Context);
