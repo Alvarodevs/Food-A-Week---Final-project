@@ -1,0 +1,267 @@
+[33mcommit 15cbcf45df8ee50302beab5b0d49a27c41a92a43[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/development[m[33m)[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Apr 14 23:04:58 2021 +0000
+
+    .
+
+[33mcommit b7d39036114808241e01d51cf7165b3abb089b8b[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Apr 14 23:04:19 2021 +0000
+
+    Attempt to display pic in cards, webpack error
+
+[33mcommit 2bbaf5f887c39dc33000fd8913c6cf20a62ed7d6[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Apr 14 12:49:05 2021 +0000
+
+    Deleted eye icon
+
+[33mcommit 23c11c79b96e8fbc7d91a45e8345ba0c2a31d7e8[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Apr 14 12:45:25 2021 +0000
+
+    Eye icon in newWeek & storing urls of image to map for source
+
+[33mcommit 0e54c008f6b73896491e75cdcad67735b7e28a3b[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Tue Apr 13 21:34:01 2021 +0000
+
+    Setting uris in useState variable
+
+[33mcommit 5b051823ec8c36ae7ca6f83bf7370836468992b7[m
+Merge: 4ca1bd6 690b82c
+Author: Anna <nitlara@gmail.com>
+Date:   Tue Apr 13 17:23:54 2021 +0200
+
+    Merge pull request #26 from Alvarodevs/dev_2
+    
+    Principalmente cambios esteticos de prepage
+
+[33mcommit 4ca1bd6f4553a0f95482036447b66b6575f01de5[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Tue Apr 13 12:46:34 2021 +0000
+
+    Not storing already urls to fetch for getting images
+
+[33mcommit a184eed1c45d76bf710b772e4baf8b7bee884cb5[m
+Merge: 252ced0 1202799
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Mon Apr 12 23:19:53 2021 +0000
+
+    Props in RecipeCard to be mapped
+
+[33mcommit 690b82cf4dcc5c28383f1a3459f4f9044cc8e944[m[33m ([m[1;31morigin/dev_2[m[33m)[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Mon Apr 12 19:00:57 2021 +0000
+
+    toast - quitados algunos
+
+[33mcommit 7e7a72b0b9b64f29453c18ab514bee83ab665845[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Mon Apr 12 18:50:03 2021 +0000
+
+    cambiado nombre en home como dato mostrado tras los cambios en sign in
+
+[33mcommit 252ced0a8827ff37976feb30f04e41579d5a07f6[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Mon Apr 12 15:00:04 2021 +0000
+
+    .
+
+[33mcommit e9d9042f91f1d1bce68f5b277c58381bcbb457cc[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Mon Apr 12 09:35:44 2021 +0000
+
+    Urls props missing
+
+[33mcommit 12027994dbaa8facedaa857e21c89739c0a40482[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sun Apr 11 09:18:00 2021 +0000
+
+    login and singup margins ajusted
+
+[33mcommit b7fe181767d47cfcb2f72e6d8af69b3d3764f859[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sun Apr 11 08:50:30 2021 +0000
+
+    prepage reorganizated
+
+[33mcommit 8a3632118bbfd7340c53d4e0c70d6996cc4012bd[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sat Apr 10 16:11:41 2021 +0000
+
+    a and a:hover modify --> now a - black and a:hover green
+
+[33mcommit 684e61db511c97d5fc9bd47033c2e37b3e2e839e[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Sat Apr 10 15:59:26 2021 +0000
+
+    Rendering cards, missing urls as props
+
+[33mcommit 4dde561fb93417650ab995835511ef3af8d5e032[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sat Apr 10 15:07:53 2021 +0000
+
+     cambiado el color por defecto de nav-pills a blanco y el active reducido el tamaño que se amplia y este si se pone en verde
+
+[33mcommit 6793e2a5396823f6cb2f673e2126a2f6218979ef[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sat Apr 10 14:42:24 2021 +0000
+
+    incluido en link de la receta en el visor, lleva a un enlace externo que se habre en un nuevo tab
+
+[33mcommit 0cbe8a02b086e4f83c173263fc4b568c29b114c1[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Thu Apr 8 22:24:51 2021 +0000
+
+    Getting urls to pass as props to child RecipeCard
+
+[33mcommit 738afa838d6690d4da3df1968e6fe0b7f605eb0e[m
+Merge: c2125a2 8db68e2
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Tue Apr 6 07:38:01 2021 +0000
+
+    Merge branch 'development' of https://github.com/Alvarodevs/Eat-A-Week---Final-project into development
+
+[33mcommit c2125a20977d452fe44c4f1ff9ad238465973423[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Tue Apr 6 07:37:41 2021 +0000
+
+    New session
+
+[33mcommit 8db68e2e2a9971c49de48c0dec1cd4aaec132d95[m
+Merge: 0846903 52f65ae
+Author: Anna <nitlara@gmail.com>
+Date:   Sun Apr 4 19:01:34 2021 +0200
+
+    Merge pull request #25 from Alvarodevs/dev_anna
+    
+    PUT user data + toast
+
+[33mcommit 52f65aedbfa7e3f5b4749435b630a3e2c49f3dd7[m[33m ([m[1;31morigin/dev_anna[m[33m)[m
+Merge: 5792943 0846903
+Author: Anna <nitlara@gmail.com>
+Date:   Sun Apr 4 19:01:27 2021 +0200
+
+    Merge branch 'development' into dev_anna
+
+[33mcommit 5792943d5c56f7cbdfd58b996cc0dd453ea10a94[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sun Apr 4 16:58:01 2021 +0000
+
+    toast to default
+
+[33mcommit d234640604e49c010f47a0e26a1e84a613d2571a[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sun Apr 4 16:42:19 2021 +0000
+
+    some basic toast included.
+
+[33mcommit aab92bb9d363c7ad8bd9dda3f330b21cb2a03ac2[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Sun Apr 4 08:45:46 2021 +0000
+
+    some changes in toast options
+
+[33mcommit 89f1aaa0b6a70f0991646012c632f92f018b12bf[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Sun Apr 4 08:34:44 2021 +0000
+
+    Fix toast imported
+
+[33mcommit d2a8c6260aab83d4783d254e13791441b877e8ac[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Sun Apr 4 07:53:37 2021 +0000
+
+    Update form fixed for input values
+
+[33mcommit 08469031b98988d25c465db55b84cf16f86d68ae[m
+Merge: 631d0ec 5e294ba
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Thu Apr 1 23:02:23 2021 +0000
+
+    Array of objects with days in RecipeCard component
+
+[33mcommit 73708ae486ff95583e8611e4d45506137d9bd4e5[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Thu Apr 1 18:50:08 2021 +0000
+
+    changes in initialInputState commented user_name and insert event.stopPropagation()
+
+[33mcommit 631d0ec9b911403a28091499abed558aef55f751[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Mar 31 18:55:13 2021 +0000
+
+    Structure actions attempted
+
+[33mcommit 5e294ba721833a3177bb5b4b705630729d99e91c[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Wed Mar 31 18:43:59 2021 +0000
+
+    Fix the relationship with selected recipes
+
+[33mcommit 422621ec4bbe153ec166403f229228bb673826e0[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Wed Mar 31 18:06:14 2021 +0000
+
+    Fix the relationship between day and selected recipe
+
+[33mcommit 5b8263e3514a5cf357fe2d5f5febce8da46b4712[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Wed Mar 31 17:47:37 2021 +0000
+
+    corregido elemento de alert por un basico
+
+[33mcommit abbabd1525c759b472000680fea292c7ea9bd81e[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Wed Mar 31 17:41:33 2021 +0000
+
+    changes in address
+
+[33mcommit 2794a379a87e765f30d65740734bc422c0363d93[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Wed Mar 31 17:12:42 2021 +0000
+
+    put about user information returns 200
+
+[33mcommit c8ff21dacf8030209608cbd447b98f113cb37ccd[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Wed Mar 31 17:10:26 2021 +0000
+
+    Fix me end points declaration
+
+[33mcommit 9c2696ae4a3bc3fea47ab9a44e1aacfb744ebc25[m
+Author: enaguero <enaguero@gmail.com>
+Date:   Wed Mar 31 17:03:22 2021 +0000
+
+    First version to recovery menus and selected recipes
+
+[33mcommit d0ddcea6b37bc9b54d05e74cd9bea8cd0ee53d91[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Wed Mar 31 16:05:21 2021 +0000
+
+    put about user data response 200
+
+[33mcommit d8318dfbddb37647c260f12ea7b5c6557c631174[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Mar 31 15:23:33 2021 +0000
+
+    Layout modal done
+
+[33mcommit 89b273a979966d855271bccf6fa5548b0f875113[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Wed Mar 31 11:32:02 2021 +0000
+
+    Modal Weekmenu in process
+
+[33mcommit 13dd8e4c6923d1342d0d1408338efe2ca5ecfa56[m
+Author: Alvarodevs <alvaro.develops@gmail.com>
+Date:   Tue Mar 30 14:16:59 2021 +0000
+
+    Update
+
+[33mcommit 3c56db6859a177bfb11f39b4f9a0638b4ed118eb[m
+Author: nitlara <nitlara@gmail.com>
+Date:   Tue Mar 30 11:45:41 2021 +0000
+
+    back button dele

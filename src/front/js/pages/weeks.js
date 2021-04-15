@@ -42,11 +42,13 @@ export const RecipeCard = props => {
 				//NO HACER MAP, ALMACENAR SOLO UN RECIPE CODE, SI NO, DEMASIADAS PETICIONES A LA API EDAMAM
 				for (var i = 0; i < result.selected_recipes.length; i++) {
 					setUrlsRecipes(result.selected_recipes[0].recipe_code);
+					console.log(urlsRecipes);
 					break;
 				}
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
+
 	//let source = "";
 	let code = encodeURIComponent(urlsRecipes);
 	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
@@ -57,7 +59,7 @@ export const RecipeCard = props => {
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-			<img className="card-img-top p-0 m-0" alt="Card image cap" />
+			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
 				<div className="card-title pt-2">{props.title}</div>
 			</div>
