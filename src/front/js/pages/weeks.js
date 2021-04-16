@@ -58,8 +58,6 @@ export const RecipeCard = props => {
 	console.log(oneUrlImage);
 
 	const deleteMenu = e => {
-		console.log("deleteMenu");
-
 		var requestOptions = {
 			method: "DELETE",
 			headers: {
@@ -67,36 +65,29 @@ export const RecipeCard = props => {
 				"Content-Type": "application/json"
 			}
 		};
-		useEffect(() => {
-			fetch(`${apiBaseUrl}/api/me/menus/${props.id}`, requestOptions)
-				.then(response => response.json())
-				.then(result => {
-					console.log("delete menu: ", result);
-				})
-				.catch(error => error);
-		}, []);
-
-		//elimina el menú pero hay que conseguir que renderize de nuevo... o se sigue mostrando todo el contenido
-
-		return (
-			<div className="card menuWeek p-0 m-0 mr-4 mb-4">
-				<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
-				<div className=" card-body py-1 justify-content-between align-middle">
-					<div className="card-title pt-2">{props.title}</div>
-				</div>
-				<div className="align-card-buttons">
-					<Button
-						className=" weekplan-btn green-button mb-3"
-						type="submit"
-						onClick={() => setModalShow(true)}>
-						Show
-					</Button>
-					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
-					<Icon.Trash className="icon-trash" onClick={deleteMenu} />
-				</div>
-			</div>
-		);
+		fetch(`${apiBaseUrl}/api/me/menus/${props.id}`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log("delete menu: ", result);
+			})
+			.catch(error => error);
 	};
+
+	return (
+		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
+			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
+			<div className=" card-body py-1 justify-content-between align-middle">
+				<div className="card-title pt-2">{props.title}</div>
+			</div>
+			<div className="align-card-buttons">
+				<Button className=" weekplan-btn green-button mb-3" type="submit" onClick={() => setModalShow(true)}>
+					Show
+				</Button>
+				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
+				<Icon.Trash className="icon-trash" onClick={deleteMenu} />
+			</div>
+		</div>
+	);
 };
 
 export const AllWeeks = () => {
