@@ -9,9 +9,11 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 //import { sources } from "webpack";
 
 export const RecipeCard = props => {
+	let history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [oneUrlImage, setOneUrlImage] = useState("");
@@ -69,6 +71,8 @@ export const RecipeCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log("delete menu: ", result);
+				toast.info("You have deleted one of your weekly menus");
+				history.push("/home");
 			})
 			.catch(error => error);
 	};
