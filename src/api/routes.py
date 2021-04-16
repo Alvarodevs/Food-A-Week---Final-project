@@ -129,10 +129,12 @@ def handle_me_selected_recipes(id):
 def delete_one_menu(id):
   user = current_user(get_jwt_identity())
   menu = Menu.query.get(id)
-  return jsonify(menu.serialize()), 200
+
   print(menu)
   db.session.delete(menu)
   db.session.commit()
+  
+  return jsonify(menu.serialize()), 200
 ####################################
 @api.route('/menu', methods=['GET'])
 def handle_menu():

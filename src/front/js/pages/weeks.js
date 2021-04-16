@@ -59,27 +59,23 @@ export const RecipeCard = props => {
 
 	const deleteMenu = e => {
 		console.log("deleteMenu");
-		
+	useEffect(() => {
 		var requestOptions = {
 			method: "DELETE",
-			body: JSON.stringify(),
 			headers: {
 				Authorization: "Bearer " + localStorage.getItem("accessToken"),
 				"Content-Type": "application/json"
 			}
 		};
-		fetch(`${apiBaseUrl}/api/me/menus/<int:id`, requestOptions)
+		fetch(`${apiBaseUrl}/api/me/menus/${props.id}`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				console.log("delete menu: ", result);
 			})
 			.catch(error => {
 				console.log("Error: ", error);
-			});
-
-		//faltaría identificar menu?
-		//error Error:  SyntaxError: Unexpected token < in JSON at position 0
-	};
+			}, []);
+		//elimina el menú pero hay que conseguir que renderize de nuevo... o se sigue mostrando todo el contenido 
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
