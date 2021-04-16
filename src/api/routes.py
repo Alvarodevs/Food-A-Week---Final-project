@@ -123,7 +123,16 @@ def handle_me_selected_recipes(id):
 
 ## Menus - ENDS ##
 #################################### ME SECTION - ENDS #############################
-
+#eliminar menú desde el weeks (ANNA DOING)
+@api.route("/me/menus/<int:id>", methods=["DELETE"])
+@jwt_required()
+def delete_one_menu(id):
+  user = current_user(get_jwt_identity())
+  menu = Menu.query.get(id)
+  return jsonify(menu.serialize()), 200
+  print(menu)
+  db.session.delete(menu)
+  db.session.commit()
 ####################################
 @api.route('/menu', methods=['GET'])
 def handle_menu():
