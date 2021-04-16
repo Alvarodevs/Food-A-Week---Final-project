@@ -9,9 +9,11 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 //import { sources } from "webpack";
 
 export const RecipeCard = props => {
+	let history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
 	const [oneUrlImage, setOneUrlImage] = useState("");
@@ -57,6 +59,24 @@ export const RecipeCard = props => {
 
 	console.log(oneUrlImage);
 
+	const deleteMenu = e => {
+		var requestOptions = {
+			method: "DELETE",
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
+		};
+		fetch(`${apiBaseUrl}/api/me/menus/${props.id}`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log("delete menu: ", result);
+				toast.info("You have deleted one of your weekly menus");
+				history.push("/home");
+			})
+			.catch(error => error);
+	};
+
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
@@ -68,7 +88,7 @@ export const RecipeCard = props => {
 					Show
 				</Button>
 				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
-				<Icon.Trash className="icon-trash" />
+				<Icon.Trash className="icon-trash" onClick={deleteMenu} />
 			</div>
 		</div>
 	);
