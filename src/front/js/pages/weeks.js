@@ -39,35 +39,37 @@ export const RecipeCard = props => {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
-				//NO HACER MAP, ALMACENAR SOLO UN RECIPE CODE, SI NO, DEMASIADAS PETICIONES A LA API EDAMAM
+				dayData.push(result);
+
 				for (var i = 0; i < result.selected_recipes.length; i++) {
 					setUrlsRecipes(result.selected_recipes[0].recipe_code);
-					//console.log(urlsRecipes);
 					break;
 				}
 			})
 			.catch(error => console.log("selected_recipes are not available now", error));
 	}
 
-	//let source = "";
 	let code = encodeURIComponent(urlsRecipes);
 	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
 		.then(response => response.json())
 		.then(result => setOneUrlImage(result[0].image));
 
-	console.log(oneUrlImage);
+	//console.log(oneUrlImage);
+
+	let dayData = [];
+	console.log(dayData);
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
-				<div className="card-title pt-2">{props.title}</div>
+				<div className="card-title pt-2 justify-content-between align-middle">{props.title}</div>
 			</div>
-			<div className="align-card-buttons">
-				<Button className=" weekplan-btn green-button mb-3" type="submit" onClick={() => setModalShow(true)}>
+			<div className="align-card-buttons my-0">
+				<Button className=" weekplan-btn green-button" type="submit" onClick={() => setModalShow(true)}>
 					Show
 				</Button>
-				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
+				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} />
 				<Icon.Trash className="icon-trash" />
 			</div>
 		</div>
@@ -114,10 +116,4 @@ export const AllWeeks = () => {
 RecipeCard.propTypes = {
 	id: PropTypes.number,
 	title: PropTypes.string
-	//data: PropTypes.object
 };
-
-// WeekJumbo.propTypes = {
-// 	onHide: PropTypes.object
-// 	//data: PropTypes.array
-// };
