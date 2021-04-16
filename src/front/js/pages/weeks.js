@@ -57,6 +57,26 @@ export const RecipeCard = props => {
 
 	console.log(oneUrlImage);
 
+	const deleteMenu = e => {
+		console.log("deleteMenu");
+		//	var raw = JSON.stringify(eachEntry);
+
+		// 	method: "DELETE",
+		// 	body: JSON.stringify([""]),
+		// 	headers: { "Content-Type": "application/json" }
+		// };
+		// fetch(`${apiBaseUrl}/api/me/menus/<int:id`, requestOptions)
+		// 	.then(response => response.json())
+		// 	.then(result => {
+		// 		console.log("delete menu: ", result);
+		// 	})
+		// 	.catch(error => {
+		// 		console.log("Error: ", error);
+		// 	});
+
+		//faltaría identificar menu?
+	};
+
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
@@ -68,12 +88,11 @@ export const RecipeCard = props => {
 					Show
 				</Button>
 				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={props} />
-				<Icon.Trash className="icon-trash" />
+				<Icon.Trash className="icon-trash" onClick={deleteMenu} />
 			</div>
 		</div>
 	);
 };
-
 export const AllWeeks = () => {
 	const { store, actions } = useContext(Context);
 	const [listOfMenus, setListOfMenus] = useState([]);
