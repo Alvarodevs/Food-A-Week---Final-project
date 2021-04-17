@@ -7,20 +7,12 @@ import { Link } from "react-router-dom";
 export const WeekJumbo = props => {
 	const [dataLength, setDataLength] = useState([]);
 	const { store, actions } = useContext(Context);
-	//console.log(props.data);
 
 	useEffect(() => {
-		//props.data.sort();
-		setDataLength(props.data.sort());
+		setDataLength(props.data);
 	}, []);
 
-	// let obtainLength = () => {
-	// 	setDataLength(props.data.length);
-	// };
-
-	//let setLength = "";
-	console.log(dataLength);
-	//console.log(dataLength.position);
+	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -32,7 +24,7 @@ export const WeekJumbo = props => {
 					<thead>
 						<tr>
 							<th />
-							{dataLength.map((item, index) => (
+							{sortedArray.map((item, index) => (
 								<th key={index} className="text-center">
 									{actions.getDayName(item.position)}
 								</th>
