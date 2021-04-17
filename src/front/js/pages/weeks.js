@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useContext } from "react";
 import { apiBaseUrl } from "../constants";
 import PropTypes, { func } from "prop-types";
-import { Link } from "react-router-dom";
-//import { Navlink } from "react-router-dom";
 import { Button, Jumbotron, Table } from "react-bootstrap";
 import { Context } from "../store/appContext";
 import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
-//import { sources } from "webpack";
+import { useHistory } from "react-router-dom";
 
 export const RecipeCard = props => {
+	let history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [urlsRecipes, setUrlsRecipes] = useState([]);
+	const [daysData, setDaysData] = useState([]);
 	const [oneUrlImage, setOneUrlImage] = useState("");
 	const [modalShow, setModalShow] = useState(false);
 
@@ -35,12 +35,14 @@ export const RecipeCard = props => {
 			.catch(error => console.log("Days are not available now", error));
 	}, []);
 
+	let dayData = [];
+	//console.log(dayData);
+
 	function doFetchSelectedRecipesByDay(IDday) {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())
 			.then(result => {
 				dayData.push(result);
-
 				for (var i = 0; i < result.selected_recipes.length; i++) {
 					setUrlsRecipes(result.selected_recipes[0].recipe_code);
 					break;
@@ -54,23 +56,36 @@ export const RecipeCard = props => {
 		.then(response => response.json())
 		.then(result => setOneUrlImage(result[0].image));
 
-	//console.log(oneUrlImage);
-
-	let dayData = [];
-	console.log(dayData);
+	const deleteMenu = e => {
+		var requestOptions = {
+			method: "DELETE",
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("accessToken"),
+				"Content-Type": "application/json"
+			}
+		};
+		fetch(`${apiBaseUrl}/api/me/menus/${props.id}`, requestOptions)
+			.then(response => response.json())
+			.then(result => {
+				console.log("delete menu: ", result);
+				toast.info("You have deleted one of your weekly menus");
+				history.push("/home");
+			})
+			.catch(error => error);
+	};
 
 	return (
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
-				<div className="card-title pt-2 justify-content-between align-middle">{props.title}</div>
+				<div className="card-title pt-2">{props.title}</div>
 			</div>
 			<div className="align-card-buttons my-0">
 				<Button className=" weekplan-btn green-button" type="submit" onClick={() => setModalShow(true)}>
 					Show
 				</Button>
-				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} />
-				<Icon.Trash className="icon-trash" />
+				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} title={props.title} />
+				<Icon.Trash className="icon-trash" onClick={deleteMenu} />
 			</div>
 		</div>
 	);

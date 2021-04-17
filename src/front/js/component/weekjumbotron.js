@@ -5,21 +5,36 @@ import { Button, Jumbotron, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const WeekJumbo = props => {
+	const [dataLength, setDataLength] = useState([]);
 	const { store, actions } = useContext(Context);
-	console.log(props);
+	//console.log(props.data);
+
+	useEffect(() => {
+		//props.data.sort();
+		setDataLength(props.data.sort());
+	}, []);
+
+	// let obtainLength = () => {
+	// 	setDataLength(props.data.length);
+	// };
+
+	//let setLength = "";
+	console.log(dataLength);
+	//console.log(dataLength.position);
+
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">
-				<Modal.Title id="contained-modal-title-center">Menu title</Modal.Title>
+				<Modal.Title id="contained-modal-title-center">{props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Table responsive>
 					<thead>
 						<tr>
 							<th />
-							{Array.from({ length: 7 }).map((_, index) => (
+							{dataLength.map((item, index) => (
 								<th key={index} className="text-center">
-									{actions.getDayName(index)}
+									{actions.getDayName(item.position)}
 								</th>
 							))}
 						</tr>
@@ -27,7 +42,7 @@ export const WeekJumbo = props => {
 					<tbody>
 						<tr>
 							<td>Breakfast</td>
-							{Array.from({ length: 7 }).map((_, index) => (
+							{Array.from({ length: dataLength.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -35,7 +50,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Snack 01</td>
-							{Array.from({ length: 7 }).map((_, index) => (
+							{Array.from({ length: dataLength.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -43,7 +58,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Lunch</td>
-							{Array.from({ length: 7 }).map((_, index) => (
+							{Array.from({ length: dataLength.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -51,7 +66,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Snack 02</td>
-							{Array.from({ length: 7 }).map((_, index) => (
+							{Array.from({ length: dataLength.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -59,7 +74,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Dinner</td>
-							{Array.from({ length: 7 }).map((_, index) => (
+							{Array.from({ length: dataLength.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -81,5 +96,6 @@ export const WeekJumbo = props => {
 
 WeekJumbo.propTypes = {
 	data: PropTypes.array,
-	onHide: PropTypes.func
+	onHide: PropTypes.func,
+	title: PropTypes.string
 };

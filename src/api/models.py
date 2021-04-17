@@ -93,7 +93,7 @@ class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    days = db.relationship('Day', backref='menu', lazy=True)
+    days = db.relationship('Day', cascade="all,delete", backref='menu', lazy=True)
 
     def __repr__(self):
       return '<Menu %r>' % self.id
@@ -121,7 +121,7 @@ class Day(db.Model):
     name = db.Column(db.String(50), unique=False, nullable=False)
     position = db.Column(db.Integer, unique=False, nullable=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
-    selected_recipes = db.relationship('SelectedRecipe', backref='selected_recipe', lazy=True)
+    selected_recipes = db.relationship('SelectedRecipe', cascade="all,delete", backref='selected_recipe', lazy=True)
 
     def __repr__(self):
       return '<Day %r>' % self.id
