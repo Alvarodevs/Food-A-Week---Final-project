@@ -18,18 +18,17 @@ import { AllWeeks } from "./pages/weeks";
 import { Map } from "./pages/maps";
 import { Profile } from "./component/profile";
 
-//import { Single} from "";
-
-//Context
 import injectContext from "./store/appContext";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	const DefaultContainer = () => (
-		<div>
+		<>
 			<Navbar />
-
 			<Route exact path="/home">
 				<Home />
 			</Route>
@@ -54,16 +53,15 @@ const Layout = () => {
 			<Route exact path="/profile">
 				<Profile />
 			</Route>
-
 			<Footer />
-		</div>
+		</>
 	);
 	const LoginContainer = () => (
-		<div>
+		<>
 			<Route exact path="/">
 				<Pre />
 			</Route>
-		</div>
+		</>
 	);
 	return (
 		<div className="d-flex flex-column h-100">
@@ -75,6 +73,7 @@ const Layout = () => {
 					</Switch>
 				</ScrollToTop>
 			</BrowserRouter>
+			<ToastContainer limit={1} />
 		</div>
 	);
 };

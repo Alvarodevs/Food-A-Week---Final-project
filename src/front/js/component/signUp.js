@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { toast } from "react-toastify";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Card } from "react-bootstrap";
 
 const SignUpForm = props => {
 	const { store, actions } = useContext(Context);
@@ -15,7 +15,15 @@ const SignUpForm = props => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-	const initialInputState = { name: "", lastName: "", email: "", password: "" };
+	const initialInputState = {
+		user_name: "",
+		name: "",
+		lastName: "",
+		email: "",
+		address: "",
+		postal_code: "",
+		password: ""
+	};
 	const [eachEntry, setEachEntry] = useState(initialInputState);
 	const { player, score } = eachEntry;
 	const handleInputChange = e => {
@@ -24,7 +32,7 @@ const SignUpForm = props => {
 	};
 
 	const handleFinalSubmit = event => {
-		debugger;
+		//debugger;
 		event.preventDefault();
 		var raw = JSON.stringify(eachEntry);
 
@@ -38,10 +46,16 @@ const SignUpForm = props => {
 			.then(result => {
 				console.log(result);
 				localStorage.setItem("accessToken", result["accessToken"]);
-				debugger;
-				toast("User was created");
+				actions.setCurrentUser(result["user"]);
+				//debugger;
+				toast(
+					"Congrat! You already have your own account in FoodAWeek. Create your weekly menus, save them, recover them or find your nearest store to complete your recipes! ",
+					{
+						position: toast.POSITION.BOTTOM_RIGHT
+					},
+					{ autoClose: 6000 }
+				);
 				history.push("/home");
-				//console.log("User was created");
 			})
 			.catch(error => console.log("error", error));
 	};
@@ -49,7 +63,7 @@ const SignUpForm = props => {
 	return (
 		<form onSubmit={handleFinalSubmit}>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">User name</label>
+				<label htmlFor="user_name">User name</label>
 				<input
 					type="user_name"
 					className="form-control"
@@ -60,50 +74,62 @@ const SignUpForm = props => {
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputEmail">Email address</label>
+				<label htmlFor="email">Email address</label>
 				<input
 					type="email"
 					className="form-control"
-					id="exampleInputEmail"
+					id="email"
 					placeholder="Enter email"
 					name="email"
 					onChange={handleInputChange}
 				/>
 			</div>
-			<div className="form-group">
-				<label htmlFor="exampleInputName">Name</label>
+			{/* <div className="form-group">
+				<label htmlFor="name">Name</label>
 				<input
 					type="text"
 					className="form-control"
-					id="exampleInputName"
+					id="name"
 					placeholder="Enter your name"
 					name="name"
 					onChange={handleInputChange}
 				/>
-			</div>
-			<div className="form-group">
-				<label htmlFor="exampleInputLastName">Last Name</label>
+			</div> */}
+
+			{/* <div className="form-group">
+				<label htmlFor="address">Address</label>
 				<input
-					type="text"
+					type="address"
 					className="form-control"
-					id="exampleInputLastName"
-					placeholder="Enter your last name"
-					name="lastName"
+					id="address"
+					placeholder="Enter your address"
+					name="address"
 					onChange={handleInputChange}
 				/>
 			</div>
 			<div className="form-group">
-				<label htmlFor="exampleInputPassword">Password</label>
+				<label htmlFor="postal_code">Postal Code</label>
+				<input
+					type="postal_code"
+					className="form-control"
+					id="postal_code"
+					placeholder="Enter your Postal Code"
+					name="postal_code"
+					onChange={handleInputChange}
+				/>
+			</div> */}
+			<div className="form-group">
+				<label htmlFor="password">Password</label>
 				<input
 					type="password"
 					className="form-control"
-					id="exampleInputPassword"
+					id="password"
 					placeholder="Enter your password"
 					name="password"
 					onChange={handleInputChange}
 				/>
 			</div>
-			<button type="submit" className="green-button btn">
+			<button type="submit" className="green-button btn ml-4 mb-1">
 				Submit
 			</button>
 		</form>
@@ -111,17 +137,7 @@ const SignUpForm = props => {
 };
 
 export const SignUp = props => {
-	return (
-		<div className="jumbotron">
-			<SignUpForm />
-			<hr className="my-4" />
-			<Link to="/">
-				<span className="green-button btn" href="#" role="button">
-					Back home
-				</span>
-			</Link>
-		</div>
-	);
+	return <SignUpForm />;
 };
 
 SignUp.propTypes = {

@@ -13,37 +13,45 @@
     z-index:1;
 }
 .text-pre-page{
-    margin-top:5%;
-}
-.img-prepage{
-    position:absolute;
-    width: 31%;
-    height:50%;
-    margin-left:2vw;
-    margin:20%;
-    object-fit: fill;
-    z-index: 0;
-    margin:0;
-    margin-bottom:3vw;
-    background-image:url('../../front/img/eating.png');
-    background-color: none;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin-top:1%;
    
 }
 
-.img-prepage2{
-    margin-top:0%;
+.container-prepage::before {
+    content: "";
+    display: block;
     position:absolute;
-    width: 30%;
-    height:50%;
-    z-index: 0;
-    background-image:url('../../front/img/phone.png');
+    left: 60%;
+    width: 40%;
+    height:75%;
+    margin:auto;
+    background-image:url('../../front/img/eating.png');
     background-color: none;
-    background-position: right;
+    background-position: top right;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+} 
+
+ .container-prepage::after {
+    content: "";
+    display: block;
+    position:absolute;
+    right: 45%;
+    top:35%;
+    width: 55%;
+    height:55%;
+    
+    background-image:url('../../front/img/phone.png');
+    background-color:none;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+.signElements{
+    margin:auto;
+    z-index:3;
+   // margin-left:1px;
+    
 }
 
 .title-web{
@@ -51,13 +59,21 @@
 }
 
 .signup{
-    width: 60%;
-    height:60%;
+    width: 100%;
+    height:30%;
+}
+
+.form-group{
+    width: 85%;
+    margin-left:2vw;
+    margin-top:1vw;
 }
 .login{ 
-    width: 60%;
-    height:60%;
+    width: 100%;
+    height:30%;
 }
-#last-prepage-text{
-    margin-top:5%;
+
+body{
+    width:100vw;
+    overflow-x:hidden;
 }

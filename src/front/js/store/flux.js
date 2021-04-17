@@ -22,32 +22,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			APP_ID: "ae68e508",
 			APP_KEY: "62b671a1e444b07116376c2722805bd3",
 			q: [],
+			timeCooking: "1-400",
 			newWeeklyMenu: {
 				title: "",
 				days: []
 			},
-			notifyMessage: "Hello to FoodAWeek",
+			notifyMessage: "Wellcome to FoodAWeek",
 			user: null,
-			userMail: ""
+			userMail: "",
+			allUserMenus: [
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
+				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
+			]
 		}, //close store
 
 		actions: {
 			getRecipes: props => {
 				let store = getStore();
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${props}&app_id=${
-					store.APP_ID
-				}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${store.timeCooking}&q=${props}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: data.hits }))
-					.catch(error => console.log("Error loading message from backend", error));
+					.catch(error => error);
 				let newStoreQ = props;
 				setStore({ q: newStoreQ });
 			},
 			getMoreRecipes: () => {
 				// Pendiente añadir el condicional de more == true
 				// si no more es false añadir mensaje = no hay más recetas!
-				console.log("getMoreRecipesIN");
+				//console.log("getMoreRecipesIN");
 				let store = getStore();
 				var newStoreTo = store.to;
 				newStoreTo = newStoreTo + 16;
@@ -60,14 +64,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					from: newStoreFrom
 				});
 
-				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&q=${store.q}&app_id=${
-					store.APP_ID
-				}&app_key=${store.APP_KEY}`;
+				const url = `https://api.edamam.com/search?from=${store.from}&to=${store.to}&time=${store.timeCooking}&q=${store.q}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`;
 				fetch(url)
 					.then(resp => resp.json())
 					.then(data => setStore({ hits: store.hits.concat(data.hits) }))
-					.catch(error => console.log("Error loading message from backend", error));
-				console.log("more");
+					.catch(error => error);
 			},
 			selectNewRecipe: selectedRecipe => {
 				var myHeaders = new Headers();
@@ -82,37 +83,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch(`${baseUrl}selectedrecipe`, requestOptions)
+				fetch(`${apibaseUrl}selectedrecipe`, requestOptions)
 					.then(response => response.text())
 					.then(result => console.log(result))
 					.catch(error => console.log("error", error));
 			},
 
-			addTitleMenu: titleMenu => {
-				let store = getStore();
-				let newTitleMenu = store.newWeeklyMenu["title"];
-				newTitleMenu = titleMenu;
-
-				setStore({ title: newTitleMenu });
-			},
 			getWelcomeMessage: () => {},
-			signInUser: signInParams => {
-				let store = getStore();
-				let raw = JSON.stringify(signInParams);
-				var requestOptions = {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: raw
-				};
 
-				fetch(`${apiBaseUrl}/api/sign_in`, requestOptions)
-					.then(response => response.json())
-					.then(data => {
-						debugger;
-						localStorage.setItem("accessToken", data["accessToken"]);
-					})
-					.catch(error => console.log("error", error));
-			},
 			isUserAuthenticated: () => {
 				return localStorage.getItem("accessToken") !== null;
 			},
@@ -121,11 +99,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setUser: userParams => {
 				setStore({ user: userParams });
-
-				setStore(newTitleMenu);
-				//console.log(newTitleMenu);
-				//Storing title OK;
 			},
+
 			addRecipe: (day, meal, name, uri) => {
 				let store = getStore();
 				let newWeeklyMenu = store.newWeeklyMenu;
@@ -136,7 +111,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				newWeeklyMenu.days[day][meal] = { name: name, url: uri };
 
 				setStore({ newWeeklyMenu: newWeeklyMenu });
-				console.log(newWeeklyMenu);
 			},
 			getDayName: dayNumber => {
 				let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -159,8 +133,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				query = userQuery;
 				setStore({ q: [query] });
 			},
-			addNewWeeklyMenu: () => {
+
+			addNewWeeklyMenu: titleMenu => {
 				let store = getStore();
+				let newNewWeeklyMenu = store.newWeeklyMenu;
+				let newTitleMenu = store.newWeeklyMenu.title;
+				if (!newTitleMenu) {
+					newTitleMenu = titleMenu;
+				}
+				newNewWeeklyMenu = {
+					title: newTitleMenu,
+					days: store.newWeeklyMenu.days
+				};
+				setStore({ newWeeklyMenu: newNewWeeklyMenu });
 				var raw = JSON.stringify(store.newWeeklyMenu);
 
 				var requestOptions = {
@@ -168,13 +153,80 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: raw,
 					headers: {
 						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin":
+							"https://3001-teal-crayfish-87w91ixx.ws-eu03.gitpod.io/api/new_weekly_menu"
+					}
+				};
+				//console.log(localStorage.getItem("accessToken"));
+				//console.log(store.newWeeklyMenu);
+				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
+					.then(response => response.json())
+					.then(
+						result => console.log(result),
+						setStore({
+							newWeeklyMenu: {
+								title: "",
+								days: []
+							}
+						})
+					)
+					.catch(error => error);
+			},
+
+			filterByTime: userTime => {
+				let store = getStore();
+				let time = store.timeCooking;
+				time = userTime;
+				setStore({ timeCooking: time });
+			},
+
+			setCurrentUser: userData => {
+				setStore({ user: userData });
+			},
+			getAllMenus: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
 						"Content-Type": "application/json"
 					}
 				};
-				fetch(`${apiBaseUrl}/api/new_weekly_menu`, requestOptions)
+
+				//debugger;
+				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
 					.then(response => response.json())
-					.then(data => data.result)
-					.catch(error => console.log("error", error));
+					.then(result => console.log(result))
+					.catch(error => console.log("Menus are not available now", error));
+			},
+			getAllDays: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Days are not available now", error));
+			},
+			getAllSelectedRecipes: () => {
+				//let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+				fetch(`${apiBaseUrl}/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => console.log(result))
+					.catch(error => console.log("Recipes are not available now", error));
 			}
 		}
 	};

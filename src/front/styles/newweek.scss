@@ -73,13 +73,13 @@
     border: none;
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgb(70,141,94 / 1%);
+    //box-shadow: 0 0 0 0.2rem rgb(70,141,94 / 1%);
     color:white;
     background-color:$green;
     border-color: $green;
 }
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-    box-shadow: 0 0 0 0.2rem rgb(70,141,94 / 1%);
+    //box-shadow: 0 0 0 0.2rem rgb(70,141,94 / 1%);
     color:white;
     background-color:white;
     border-color: white;
@@ -87,7 +87,7 @@
 .results-body{
     // display: flex;
     font-family: $montserrat;
-    height:135%;
+    height:33vw;
     margin-top:1%;
     border-radius: 5px;
     background-color: #FFFFFF;

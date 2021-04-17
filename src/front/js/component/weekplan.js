@@ -8,14 +8,17 @@ export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
 	const [titleMenu, setTitleMenu] = useState("");
 
-	const handleSubmit = event => {
-		actions.addTitleMenu(titleMenu);
-		actions.addNewWeeklyMenu(); //Trigger para enviar el JSON a /api/new_weekly_menu
+	const handleSubmit = () => {
+		actions.addNewWeeklyMenu(titleMenu); //Trigger para enviar el JSON a /api/new_weekly_menu
 	};
 
 	const handleInputChange = e => {
 		setTitleMenu(e.target.value);
 	};
+
+	// const addTitle = () => {
+	// 	actions.addTitleMenu(titleMenu);
+	// };
 
 	return (
 		<div className="container-fluid">
@@ -39,37 +42,37 @@ export const Weekplan = props => {
 					<Col sm={3}>
 						<Nav className="nav-pills flex-column">
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="first">
+								<Nav.Link className="white-button my-2" eventKey="first">
 									{"Monday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="second">
+								<Nav.Link className="white-button my-2" eventKey="second">
 									{"Tuesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="third">
+								<Nav.Link className="white-button my-2" eventKey="third">
 									{"Wednesday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fourth">
+								<Nav.Link className="white-button my-2" eventKey="fourth">
 									{"Thursday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="fifth">
+								<Nav.Link className="white-button my-2" eventKey="fifth">
 									{"Friday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="sixth">
+								<Nav.Link className="white-button my-2" eventKey="sixth">
 									{"Saturday"}
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item>
-								<Nav.Link className="green-button my-2" eventKey="seventh">
+								<Nav.Link className="white-button my-2" eventKey="seventh">
 									{"Sunday"}
 								</Nav.Link>
 							</Nav.Item>

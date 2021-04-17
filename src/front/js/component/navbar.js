@@ -10,32 +10,24 @@ export const Navbar = () => {
 	const [pageTitle, setPageTitle] = useState();
 	const location = useLocation();
 
-	useEffect(
-		() => {
-			if (location.pathname == "/new_week") {
-				setPageTitle("New Week");
-			} else if (location.pathname == "/userprofile") {
-				setPageTitle("User Profile");
-			} else if (location.pathname == "/weeks") {
-				setPageTitle("Weeks");
-			} else if (location.pathname == "/map") {
-				setPageTitle("Find your local store");
-			} else {
-				setPageTitle("Home");
-			}
-		},
-		[location]
-	);
+	useEffect(() => {
+		if (location.pathname == "/new_week") {
+			setPageTitle("New Week");
+		} else if (location.pathname == "/userprofile") {
+			setPageTitle("User Profile");
+		} else if (location.pathname == "/weeks") {
+			setPageTitle("Weeks");
+		} else if (location.pathname == "/map") {
+			setPageTitle("Find your local store");
+		} else {
+			setPageTitle("Home");
+		}
+	}, [location]);
 
 	return (
 		<nav className="navbar navbar-light background-white mb-1">
 			<div className="navbar-container d-flex justify-content-between">
-				<Link to="/">
-					{/*<span className="navbar-brand mb-0 h1">Home ICON</span> */}
-					{/* <img
-					src="https://image.flaticon.com/icons/png/512/1676/1676708.png"
-					className="d-flex navbar-brand mb-0 justify-content-auto"
-				/> */}
+				<Link to="/home">
 					<img src={logo} alt="Logo" className="d-flex navbar-brand my-2 ml-5" />
 				</Link>
 
@@ -50,7 +42,9 @@ export const Navbar = () => {
 								className="dropdown-basic green-button btn btn-circle user-button my-2 mr-5"
 							/>
 							<Dropdown.Menu>
-								<Dropdown.Item href="/userprofile">Profile</Dropdown.Item>
+								<Dropdown.Item>
+									<Link to="/userprofile">Profile</Link>
+								</Dropdown.Item>
 								<Dropdown.Divider />
 								<Dropdown.Item href="/" onClick={actions.logout}>
 									Logout

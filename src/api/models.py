@@ -34,11 +34,12 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
-    last_name = db.Column(db.String(30), unique=False, nullable=False)
+    last_name = db.Column(db.String(30), unique=False, nullable=True)
     address = db.Column(db.String(120), unique=False, nullable=True)
     postal_code = db.Column(db.String(20), unique=False, nullable=True)
     phone = db.Column(db.Integer, unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=True)
+    avatar_url = db.Column(db.String(500), unique=False, nullable=True)
     # role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
     restricted_ingredients = db.relationship("Ingredient", secondary="restriction")
@@ -56,10 +57,18 @@ class User(db.Model):
             "address": self.address,
             "postal_code": self.postal_code,
             "phone": self.phone,
-          }
+            "avatarUrl": self.avatar_url,"avatarPublicId": self.avatar_public_id()
+        }
 
     def check_password(self, password_param):
       return safe_str_cmp(self.password.encode('utf-8'), password_param.encode('utf-8'))
+
+    
+    def avatar_public_id(self):
+      if self.avatar_url is None: return None
+      file_name = self.avatar_url.split("/")
+      [public_id, extension] = file_name[-1].split(".")
+      return public_id
 
     def sign_in_serialize(self):
       return {
@@ -68,42 +77,70 @@ class User(db.Model):
       }
 
     def get_user_by_email(email):
-        return User.query.filter_by(email=email).first_or_404()
+      return User.query.filter_by(email=email).first_or_404()
+
+    def get_user_serialize(self):
+      return {
+         "id": self.id,
+        "user_name": self.user_name
+      }
+    
+    
+
+    
 
 class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    days = db.relationship('Day', backref='menu', lazy=True)
+    days = db.relationship('Day', cascade="all,delete", backref='menu', lazy=True)
 
     def __repr__(self):
-        return '<Menu %r>' % self.id
+      return '<Menu %r>' % self.id
 
     def serialize(self):
-        return{
-            "id": self.id,
-            "title": self.title
-        }
+      return{
+        "id": self.id,
+        "title": self.title
+      }
+
+    def serialize_with_days(self):
+      return{
+        "id": self.id,
+        "title": self.title,
+        "days": list(map(lambda day: day.serialize(), self.days))
+      }
+
 
     def get_menu_by_user_id(user_id):
         return Menu.query.filter_by(user_id=user_id).first_or_404()
+
 
 class Day(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=False, nullable=False)
     position = db.Column(db.Integer, unique=False, nullable=True)
     menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
-    recipes = db.relationship("Recipe", secondary="selected_recipe")
+    selected_recipes = db.relationship('SelectedRecipe', cascade="all,delete", backref='selected_recipe', lazy=True)
 
     def __repr__(self):
       return '<Day %r>' % self.id
 
     def serialize(self):
       return{
-          "id": self.id,
-          "name": self.name,
-          "position": self.position,
-          "menu_id": self.menu_id
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id
+      }
+
+    def serialize_with_recipes(self):
+      return{
+        "id": self.id,
+        "name": self.name,
+        "position": self.position,
+        "menu_id": self.menu_id,
+        "selected_recipes": list(map(lambda selected_recipe: selected_recipe.serialize(), self.selected_recipes))
       }
 
 class Recipe(db.Model):
@@ -152,21 +189,21 @@ class RecipeDetail(db.Model):
 class SelectedRecipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     day_id = db.Column(db.Integer, db.ForeignKey('day.id'))
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
-    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
+    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
-      return '<SelectedRecipe %r>' % self.recipe.name
+      return '<SelectedRecipe %r>' % self.recipe_code
 
     def serialize(self):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_id": self.recipe_id,
-      }
+          "recipe_code": self.recipe_code
+        }
 
 class Restriction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -240,21 +277,27 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    print(menu_params)
+    #print(menu_params, "HOLA")
     for i, day in enumerate(days_json):
-      self.create_day(day,i,days_json[day], menu)
+      if days_json[day] is not None:
+        self.create_day(day,i,days_json[day], menu)
 
   def create_day(self,name,day_position, meals, menu):
-    day = Day(name=name, position=day_position, menu_id=menu.id) #hay que crear days, he replicado parte de lo que sería el menú l248
+    day = Day(name=name, position=day_position, menu_id=menu.id)
     db.session.add(day)
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      print(food)
-      self.create_selected_recipe(food,day)
+      # meals no se esta almacenando en bbdd, ¿por eso no se almacena cuando no son correlativos? 
+      print(food, "FOOD")
+      if food is not None:
+        self.create_selected_recipe(food,day)
 
   def create_selected_recipe(self, selected_recipe_params, day):
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
+    print(selected_recipe)
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
+
+    #NO ESTA LLEGANDO DAY.ID A SELECTEDRECIPE, ¿POR ESO NO SE ITERA?

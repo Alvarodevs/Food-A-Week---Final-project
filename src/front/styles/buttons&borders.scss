@@ -1,3 +1,13 @@
+  a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover{
+    color:lighten($green,0.2);
+}
+
+
 .pink-button{
     background-color: white;
     //border-radius:1px;
@@ -24,6 +34,14 @@
     text-decoration: none;    
 }
 
+#button-0menus{
+    background-color: $green;
+    color: $gray!important;
+    border-color: $green;
+    border: 2px solid $green;
+    padding: 2px;
+    text-decoration: none;    
+}
 .prebutton{
     background-color: $green;
     color: $gray;
@@ -38,7 +56,14 @@
 .green-button:hover{
     text-decoration: none;
     background-color:$green;
+    border-color: $green;
     color: black;
+}
+.green-button:focus {
+    text-decoration: none !important; 
+    background-color:$green !important;
+    border-color: $green !important;
+    color: black !important;
 }
 .weekplan-body{
     .form-control:focus {
@@ -57,11 +82,18 @@
     outline: 0;
     box-shadow: 0 0 0 0.1rem rgb(70,141,94 / 1%);
 }
+
+
 .nav-pills {
+    background-color: white;
+    color: black;
+  
     .nav-link.active{   
         background-color: $green;
-        box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
+        color:white;
+       // box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
     }
+  
 }
 .btn:focus{
     outline: 0;
@@ -116,7 +148,11 @@
     background-color: $yellow ;
     color: $gray;
 }
-
-
+.modal-header{
+    border: none !important;
+}
+.modal-footer{
+    border: none !important;
+}
 
 
