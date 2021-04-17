@@ -74,6 +74,7 @@ export const RecipeCard = props => {
 				toast.info("You have deleted one of your weekly menus");
 				history.push("/home");
 				history.push("/weeks");
+				actions.getAllMenusCount();
 			})
 			.catch(error => error);
 	};
