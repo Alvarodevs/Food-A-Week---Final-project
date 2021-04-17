@@ -73,6 +73,7 @@ export const RecipeCard = props => {
 				console.log("delete menu: ", result);
 				toast.info("You have deleted one of your weekly menus");
 				history.push("/home");
+				history.push("/weeks");
 			})
 			.catch(error => error);
 	};
