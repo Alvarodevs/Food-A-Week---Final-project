@@ -246,10 +246,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => {
 						console.log("there is --> ", result.length, " menus");
 						setStore({ countmenus: result });
-						if (result.length == 0) {
-							store.thereismenus = "N";
-						} else {
+						if (result.length != 0) {
 							store.thereismenus = "Y";
+						} else {
+							store.thereismenus = "N";
 						}
 					})
 					.catch(error => console.log("Menus are not available now", error));
