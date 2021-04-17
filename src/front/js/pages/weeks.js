@@ -122,15 +122,35 @@ export const AllWeeks = () => {
 		return <RecipeCard key={index} id={item.id} title={item.title} />;
 	});
 
-	return (
-		<div className="container-fluid">
-			<div className="page-container d-flex">
-				<div className="card-container d-flex justify-content-center mx-auto">
-					<div className="row all-cards ">{dayMenu ? dayMenu : ""}</div>
+	console.log("there is menus (weeks)?", store.thereismenus);
+	if (store.thereismenus == "Y") {
+		return (
+			<div className="container-fluid">
+				<div className="page-container d-flex">
+					<div className="card-container d-flex justify-content-center mx-auto">
+						<div className="row all-cards ">{dayMenu ? dayMenu : ""}</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className="container-fluid">
+				<div className="page-container d-flex flex-column justify-content-center mx-auto pt-5">
+					<div className="card-container mx-auto ">
+						<p className="justify-content-center mx-auto ">
+							<h3>{"You still don't have weekly menus saved"}</h3>
+						</p>
+						<div className="d-flex mx-auto justify-content-center ">
+							<button className="green-button btn p-2" id="button-0menus">
+								<Link to="/new_week">New week</Link>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 };
 
 RecipeCard.propTypes = {

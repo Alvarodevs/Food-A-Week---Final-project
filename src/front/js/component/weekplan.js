@@ -10,6 +10,7 @@ export const Weekplan = props => {
 
 	const handleSubmit = () => {
 		actions.addNewWeeklyMenu(titleMenu); //Trigger para enviar el JSON a /api/new_weekly_menu
+		actions.getAllMenusCount();
 	};
 
 	const handleInputChange = e => {
