@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Button, Jumbotron, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+
 export const WeekJumbo = props => {
 	const [dataLength, setDataLength] = useState([]);
 	const { store, actions } = useContext(Context);
@@ -21,13 +22,23 @@ export const WeekJumbo = props => {
 		);
 	}
 
+	//hacer un listado con todas las recetas
+	//ordenadas
+	//ubicar dentro del modal maquetado
+
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">
 				<Modal.Title id="contained-modal-title-center">{props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Table responsive>
+				<WeeklyMenu>
+				
+				
+				
+				
+				
+								{/* <Table responsive>
 					<thead>
 						<tr>
 							<th />
@@ -80,7 +91,7 @@ export const WeekJumbo = props => {
 							))}
 						</tr>
 					</tbody>
-				</Table>
+				</Table> */}
 			</Modal.Body>
 			<Modal.Footer className="modal-footer">
 				<Button
