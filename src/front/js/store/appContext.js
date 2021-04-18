@@ -23,6 +23,7 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			state.actions.getWelcomeMessage();
+			state.actions.getAllMenusCount();
 		}, []);
 
 		// useEffect(

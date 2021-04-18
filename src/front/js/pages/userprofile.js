@@ -45,7 +45,7 @@ export const ProfileCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				toast.success("You saved your changes successfully!");
+				toast("You saved your changes successfully!");
 				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
@@ -119,7 +119,7 @@ export const Userprofile = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 	if (!actions.isUserAuthenticated()) {
-		toast.info("Please, login!");
+		toast("Please, login!");
 		history.push("/");
 	}
 
