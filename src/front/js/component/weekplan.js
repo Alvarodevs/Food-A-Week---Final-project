@@ -11,9 +11,8 @@ export const Weekplan = props => {
 
 	const handleSubmit = () => {
 		actions.addNewWeeklyMenu(titleMenu); //Trigger para enviar el JSON a /api/new_weekly_menu
-		actions.getAllMenusCount();
-		store.thereismenus = "Y";
 		toast.success("You saved your menu!");
+		store.thereismenus = "Y";
 	};
 
 	const handleInputChange = e => {
