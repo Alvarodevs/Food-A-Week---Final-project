@@ -21,7 +21,9 @@ export const MealCard = props => {
 					eventKey={props.mealNumber}
 					name={props.dayName}
 					value={props.dayNumber}
-					uri={props.uri}>
+					uri={props.uri}
+					label={props.label}
+					image={props.image}>
 					{props.mealName || "Please add a meal"}
 					<ChevronDown />
 				</Accordion.Toggle>
@@ -40,6 +42,8 @@ MealCard.propTypes = {
 	dayName: PropTypes.string,
 	dayNumber: PropTypes.number,
 	uri: PropTypes.string,
+	label: PropTypes.string,
+	image: PropTypes.string,
 	recipeName: PropTypes.string,
 	mealName: PropTypes.string,
 	mealNumber: PropTypes.string

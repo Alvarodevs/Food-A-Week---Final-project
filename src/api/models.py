@@ -145,8 +145,9 @@ class Day(db.Model):
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), unique=True, nullable=False)
+    name = db.Column(db.String(30), unique=False, nullable=False)
     uri = db.Column(db.String(300), unique=True, nullable=False)
+    image = db.Column(db.String(300), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     # ingredients = db.relationship("Ingredient", secondary="recipe_detail")
     days = db.relationship("Day", secondary="selected_recipe")
@@ -158,7 +159,6 @@ class Recipe(db.Model):
       return {
           "id": self.id,
           "name": self.name,
-          "image": self.image,
           "recipeDetail_id": self.recipeDetail_id,
       }
 
@@ -199,12 +199,15 @@ class SelectedRecipe(db.Model):
 
     def __repr__(self):
       return '<SelectedRecipe %r>' % self.recipe_code
+      
 
     def serialize(self):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_code": self.recipe_code
+          "recipe_code": self.recipe_code, 
+          "recipe_label": self.recipe_label,
+        
         }
 
 class Restriction(db.Model):
@@ -295,11 +298,11 @@ class MenuDataManager:
       if food is not None:
         self.create_selected_recipe(food, day, meals)
 
-  def create_selected_recipe(self, selected_recipe_params,selected_recipe_label, selected_recipe_image, day, meals):
+  def create_selected_recipe(self, selected_recipe_params,selected_recipe_label, day, meals):
     print(meals, "MEALS")
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"],
-    recipe_label=selected_recipe_label["label"],
-    recipe_image=selected_recipe_image["image"])
+    recipe_label=selected_recipe_label["name"],
+    
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
