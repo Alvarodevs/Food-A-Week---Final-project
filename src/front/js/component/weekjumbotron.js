@@ -14,6 +14,13 @@ export const WeekJumbo = props => {
 
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
+	if (dataLength && dataLength[0] && dataLength[0].selected_recipes[0]) {
+		console.log(
+			"aquí va el nombre de la primera receta de cada menú",
+			dataLength[0].selected_recipes[0].recipe_label
+		);
+	}
+
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">
@@ -79,7 +86,7 @@ export const WeekJumbo = props => {
 				<Button
 					className="green-button d-flex text-center m-auto justify-content-center"
 					onClick={props.onHide}>
-					Back
+					<Link to="/weeks">Back</Link>
 				</Button>
 			</Modal.Footer>
 		</Modal>
