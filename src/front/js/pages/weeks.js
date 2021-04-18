@@ -7,7 +7,7 @@ import * as Icon from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import { WeekJumbo } from "../component/weekjumbotron";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 export const RecipeCard = props => {
 	let history = useHistory();
