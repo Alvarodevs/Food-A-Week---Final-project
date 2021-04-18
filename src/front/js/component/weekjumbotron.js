@@ -10,9 +10,12 @@ export const WeekJumbo = props => {
 
 	useEffect(() => {
 		setDataLength(props.data);
+		console.log(props.data);
 	}, []);
 
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
+
+	console.log("propsdata", props.data);
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>

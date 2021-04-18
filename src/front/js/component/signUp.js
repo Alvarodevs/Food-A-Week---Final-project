@@ -57,7 +57,6 @@ const SignUpForm = props => {
 				);
 				history.push("/home");
 				actions.getAllMenusCount();
-				
 			})
 			.catch(error => console.log("error", error));
 	};

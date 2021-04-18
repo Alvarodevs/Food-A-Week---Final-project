@@ -16,6 +16,7 @@ export const RecipeCard = props => {
 	const [daysData, setDaysData] = useState([]);
 	const [oneUrlImage, setOneUrlImage] = useState("");
 	const [modalShow, setModalShow] = useState(false);
+	const [nameRecipes, setNameRecipes] = useState([]);
 
 	var requestOptions = {
 		method: "GET",
@@ -36,7 +37,7 @@ export const RecipeCard = props => {
 	}, []);
 
 	let dayData = [];
-	//console.log(dayData);
+	console.log(dayData);
 
 	function doFetchSelectedRecipesByDay(IDday) {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
@@ -54,7 +55,11 @@ export const RecipeCard = props => {
 	let code = encodeURIComponent(urlsRecipes);
 	fetch(`https://api.edamam.com/search?r=${code}&app_id=${store.APP_ID}&app_key=${store.APP_KEY}`)
 		.then(response => response.json())
-		.then(result => setOneUrlImage(result[0].image));
+		.then(result => {
+			setOneUrlImage(result[0].image);
+			console.log("aquí viene el nombre de la receta: ", result[0].label);
+			setNameRecipes(result.label);
+		});
 
 	const deleteMenu = e => {
 		var requestOptions = {

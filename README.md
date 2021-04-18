@@ -46,19 +46,19 @@ Debounce
 Python
 SQLAlchemy
 Flask jwt
-werkzeug="*"
+werkzeug
 
 ## Resources
 
 ### Design 
 
-Draw io
+Draw io, 
 Canva
 
 
 ### How we organize the project
 
-Trello 
+Trello , 
 Github
 
 <img src="./src/front/img/kanbanFAW.jpg" width="800">
@@ -74,7 +74,7 @@ Insert here some snaps from IU
 
 ## Thanks for the advice and patience to our tutor, and mentors
 
-@enaguero
-citar luis
-citar Sergio
-citar Diego
+@enaguero, 
+citar luis, 
+citar Sergio, 
+citar Diego.

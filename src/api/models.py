@@ -192,7 +192,9 @@ class SelectedRecipe(db.Model):
     day = db.relationship('Day', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
-    recipe_code = db.Column(db.String(250), unique=False, nullable=True)
+    recipe_code = db.Column(db.String(250), unique=False, nullable=True),
+    recipe_label = db.Column(db.String(250), unique=False, nullable=True),
+    recipe_image = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
 
     def __repr__(self):
@@ -293,9 +295,11 @@ class MenuDataManager:
       if food is not None:
         self.create_selected_recipe(food, day, meals)
 
-  def create_selected_recipe(self, selected_recipe_params, day, meals):
+  def create_selected_recipe(self, selected_recipe_params,selected_recipe_label, selected_recipe_image, day, meals):
     print(meals, "MEALS")
-    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"],
+    recipe_label=selected_recipe_label["label"],
+    recipe_image=selected_recipe_image["image"])
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
