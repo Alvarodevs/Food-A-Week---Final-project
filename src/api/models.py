@@ -290,9 +290,9 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-  
-      if food is not None:
-        self.create_selected_recipe(food, day, meals)
+      # for j, food in enumerate(position): <-- Quizás algo parecido esto pero con los conceptos que pertoque?!
+        if food is not None:
+          self.create_selected_recipe(food, day, meals)
 
   def create_selected_recipe(self, selected_recipe_params, day, meals):
     print(meals, "MEALS")
