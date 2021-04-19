@@ -69,7 +69,7 @@ export const RecipeCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log("delete menu: ", result);
-				toast.info("You have deleted one of your weekly menus");
+				toast("You have deleted one of your weekly menus");
 				history.push("/home");
 				history.push("/weeks");
 				actions.getAllMenusCount();

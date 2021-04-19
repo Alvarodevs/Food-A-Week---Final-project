@@ -14,14 +14,14 @@ export const WeekJumbo = props => {
 
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
-	if (dataLength && dataLength[0] && dataLength[0].selected_recipes[0]) {
-		console.log(
-			"aquí va el nombre de la primera receta de cada menú",
-			dataLength[0].selected_recipes[0].recipe_label
-		);
+	//ver todos los nombres de recetas guardadas
+
+	for (let i = 0; i < dataLength.length; i++) {
+		if (dataLength[i].selected_recipes[0]) {
+			console.log(dataLength[i].selected_recipes[0].recipe_label);
+		}
 	}
 
-	//hacer un listado con todas las recetas
 	//ordenadas
 	//ubicar dentro del modal maquetado
 
@@ -32,7 +32,7 @@ export const WeekJumbo = props => {
 			</Modal.Header>
 			<Modal.Body>
 				WeeklyMenu
-				{/* <Table responsive>
+				<Table responsive>
 					<thead>
 						<tr>
 							<th />
@@ -85,7 +85,7 @@ export const WeekJumbo = props => {
 							))}
 						</tr>
 					</tbody>
-				</Table> */}
+				</Table>{" "}
 			</Modal.Body>
 			<Modal.Footer className="modal-footer">
 				<Button
