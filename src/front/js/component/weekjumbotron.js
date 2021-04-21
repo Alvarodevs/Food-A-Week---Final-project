@@ -12,8 +12,8 @@ export const WeekJumbo = props => {
 		setDataLength(props.data);
 	}, []);
 
-	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
-
+	let sortedData = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
+	console.log(sortedData);
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">
@@ -24,7 +24,7 @@ export const WeekJumbo = props => {
 					<thead>
 						<tr>
 							<th />
-							{sortedArray.map((item, index) => (
+							{sortedData.map((item, index) => (
 								<th key={index} className="text-center">
 									{actions.getDayName(item.position)}
 								</th>
@@ -32,17 +32,17 @@ export const WeekJumbo = props => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						{/* <tr>
 							<td>Breakfast</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
+							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
 							))}
-						</tr>
+						</tr> */}
 						<tr>
 							<td>Snack 01</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
+							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -50,7 +50,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Lunch</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
+							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -58,7 +58,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Snack 02</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
+							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
@@ -66,7 +66,7 @@ export const WeekJumbo = props => {
 						</tr>
 						<tr>
 							<td>Dinner</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
+							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>

@@ -79,14 +79,14 @@ export const RecipeCard = props => {
 		<div className="card menuWeek p-0 m-0 mr-4 mb-4">
 			<img className="card-img-top p-0 m-0" src={oneUrlImage} alt="Card image cap" />
 			<div className=" card-body py-1 justify-content-between align-middle">
-				<div className="card-title pt-2">{props.title}</div>
-			</div>
-			<div className="align-card-buttons my-0">
-				<Button className=" weekplan-btn green-button" type="submit" onClick={() => setModalShow(true)}>
-					Show
-				</Button>
-				<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} title={props.title} />
-				<Icon.Trash className="icon-trash" onClick={deleteMenu} />
+				<div className="card-title pt-2 mt-2">{props.title}</div>
+				<div className="align-card-buttons mb-1 mt-4">
+					<Button className=" weekplan-btn green-button" type="submit" onClick={() => setModalShow(true)}>
+						Show
+					</Button>
+					<WeekJumbo show={modalShow} onHide={() => setModalShow(false)} data={dayData} title={props.title} />
+					<Icon.Trash className="icon-trash" onClick={deleteMenu} />
+				</div>
 			</div>
 		</div>
 	);

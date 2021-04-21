@@ -277,7 +277,6 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    #print(menu_params, "HOLA")
     for i, day in enumerate(days_json):
       if days_json[day] is not None:
         self.create_day(day,i,days_json[day], menu)
@@ -288,13 +287,12 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      # meals no se esta almacenando en bbdd, ¿por eso no se almacena cuando no son correlativos? 
-      #print(food, "FOOD")
       if food is not None:
-        self.create_selected_recipe(food, day, meals)
+        self.create_selected_recipe(food, day)
+    print("FOOD", food)
 
-  def create_selected_recipe(self, selected_recipe_params, day, meals):
-    print(meals, "MEALS")
+  def create_selected_recipe(self, selected_recipe_params, day):
+    
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
     db.session.add(selected_recipe)
     db.session.commit()
