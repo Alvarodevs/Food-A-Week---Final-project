@@ -32,14 +32,14 @@ export const WeekJumbo = props => {
 						</tr>
 					</thead>
 					<tbody>
-						{/* <tr>
+						<tr>
 							<td>Breakfast</td>
 							{Array.from({ length: sortedData.length }).map((_, index) => (
 								<td key={index} className="text-center">
 									Meal {index}
 								</td>
 							))}
-						</tr> */}
+						</tr>
 						<tr>
 							<td>Snack 01</td>
 							{Array.from({ length: sortedData.length }).map((_, index) => (

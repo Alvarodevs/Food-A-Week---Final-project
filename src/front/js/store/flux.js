@@ -34,7 +34,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
-			]
+			],
+			allmenus: null,
+			countmenus: [],
+			thereismenus: ""
 		}, //close store
 
 		actions: {
@@ -228,6 +231,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Recipes are not available now", error));
+			},
+			getAllMenusCount: () => {
+				let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+
+				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						console.log("there is --> ", result.length, " menus");
+						setStore({ countmenus: result });
+						if (result.length != 0) {
+							store.thereismenus = "Y";
+						} else {
+							store.thereismenus = "N";
+						}
+					})
+					.catch(error => console.log("Menus are not available now", error));
+
+				console.log("there is menus? ", store.thereismenus);
 			}
 		}
 	};

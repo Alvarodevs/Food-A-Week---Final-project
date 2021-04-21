@@ -104,7 +104,7 @@ export const Profile = props => {
 
 	let history = useHistory();
 	if (!actions.isUserAuthenticated()) {
-		toast.info("Favor inicia sesión!");
+		toast("Favor inicia sesión!");
 		history.push("/profile");
 		console.log(store.accessToken);
 	}
