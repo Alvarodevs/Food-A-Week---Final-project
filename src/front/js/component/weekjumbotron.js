@@ -15,7 +15,15 @@ export const WeekJumbo = props => {
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
 	//ver todos los nombres de recetas guardadas
-	console.log(dataLength); // no recoge position aquí, pero en cambio si en bd, como esto viene de Weeks hay que lo traigamos todo
+	// pendiente aquí listar por ejemplo desayunos
+	console.log(dataLength);
+	for (let i = 0; i < dataLength.length; i++) {
+		for (let j = 0; j < dataLength.length[i].selected_recipes.length; j++) {
+			if (dataLength[i].selected_recipes[j].position == 0) {
+				console.log("Breakfast", dataLength[i].selected_recipes[j].recipe_label[0]);
+			}
+		}
+	}
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
