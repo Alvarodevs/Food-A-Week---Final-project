@@ -195,6 +195,7 @@ class SelectedRecipe(db.Model):
     recipe_code = db.Column(db.String(250), unique=False, nullable=True)
     recipe_label = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
+    position = db.Column(db.Integer, unique=False, nullable=True)
 
     def __repr__(self):
       return '<SelectedRecipe %r>' % self.recipe_code
@@ -292,11 +293,12 @@ class MenuDataManager:
     for i, food in enumerate(meals):
       # for j, food in enumerate(position): <-- Quizás algo parecido esto pero con los conceptos que pertoque?!
         if food is not None:
-          self.create_selected_recipe(food, day, meals)
+          self.create_selected_recipe(food, day, meals, i)
 
-  def create_selected_recipe(self, selected_recipe_params, day, meals):
+  def create_selected_recipe(self, selected_recipe_params, day, meals, position):
     print(meals, "MEALS")
-    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"], recipe_label=selected_recipe_params["name"])
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"], recipe_label=selected_recipe_params["name"],
+    position=position)
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
