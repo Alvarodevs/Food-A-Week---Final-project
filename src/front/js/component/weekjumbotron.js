@@ -15,7 +15,7 @@ export const WeekJumbo = props => {
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
 	//ver todos los nombres de recetas guardadas
-	//console.log(dataLength);
+	console.log(dataLength);
 
 	// 	for (let i = 0; i < dataLength.length; i++) {
 	// 		for ( let j = 0; j < dataLength.length[i].selected_recipes.length; j++){
