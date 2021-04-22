@@ -206,6 +206,7 @@ class SelectedRecipe(db.Model):
           "day_id": self.day_id,
           "recipe_code": self.recipe_code,
           "recipe_label": self.recipe_label,
+          "position": self.position,
         }
 
 class Restriction(db.Model):
