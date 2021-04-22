@@ -140,9 +140,9 @@ export const AllWeeks = () => {
 							<h3>{"You still don't have weekly menus saved"}</h3>
 						</p>
 						<div className="d-flex mx-auto justify-content-center ">
-							<button className="green-button btn p-2" id="button-0menus">
-								<Link to="/new_week">New week</Link>
-							</button>
+							<Link to="/new_week" className="green-button btn p-2" id="button-0menus">
+								New week
+							</Link>
 						</div>
 					</div>
 				</div>

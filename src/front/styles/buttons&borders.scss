@@ -57,7 +57,7 @@ a:hover{
     text-decoration: none;
     background-color:$green;
     border-color: $green;
-    color: black;
+    color: $gray;
 }
 .green-button:focus {
     text-decoration: none !important; 
@@ -77,7 +77,7 @@ a:hover{
 
 .form-control:focus {
     color: #495057;
-    background-color: #fff;
+    background-color: white;
     border-color: $green;
     outline: 0;
     box-shadow: 0 0 0 0.1rem rgb(70,141,94 / 1%);
@@ -90,7 +90,7 @@ a:hover{
   
     .nav-link.active{   
         background-color: $green;
-        color:white;
+        color: $gray;
        // box-shadow: 0 0 0 0.3rem rgb(70,141,94 / 1%);
     }
   
