@@ -20,21 +20,23 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export const Map = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
-	const [state, setState] = useState({
-		longitude: 41.3818,
-		latitude: 2.1685
+	const [currentLocation, setCurrentLocation] = useState({
+		latitude: -6.2033719,
+		longitude: 36.4559651
 	});
 
 	//const location =useLocation();
-	console.log(state);
+	//console.log(currentLocation);
 
-	useEffect(() => {
+	function setNewLocation() {
 		navigator.geolocation.getCurrentPosition(
 			function(position) {
-				setState({
-					longitude: position.coords.longitude,
-					latitude: position.coords.latitude
+				//if (currentLocation.latitude && currentLocation.longitude) {
+				setCurrentLocation({
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
 				});
+				//}
 			},
 			function(error) {
 				console.log(error);
@@ -43,15 +45,11 @@ export const Map = () => {
 				enableHighAccuracy: true
 			}
 		);
-	}, []);
+	}
 
 	const handleInput = event => {
 		setValue(event.target.value);
 	};
-	//Hay que definir lat y lng, si no, da error en Geocode.fromAddress, que aun no funciona.
-	// let lat = 0;
-	// let lng = 0;
-
 	// Geocode.fromAddress(value).then(
 	// 	response => {
 	// 		const { lat, lng } = response.results[0].geometry.location;
@@ -61,9 +59,9 @@ export const Map = () => {
 	// 		console.error(error);
 	// 	}
 	// );
-
 	//POSITION ORIGINAL: 41.3818, 2.1685
 
+	//setNewLocation();
 	return (
 		<div className="container">
 			<div className="text-center mt-0 d-flex flex-column justify-content-center">
@@ -79,7 +77,7 @@ export const Map = () => {
 				<div className="d-flex flex-row">
 					<div className="col-md-12 mt-3">
 						<MapContainer
-							center={[state.longitude, state.latitude]}
+							center={[currentLocation.longitude, currentLocation.latitude]}
 							zoom={13}
 							scrollWheelZoom={true}
 							style={{ height: 550 }}>
