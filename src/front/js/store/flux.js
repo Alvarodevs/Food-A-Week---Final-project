@@ -123,6 +123,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
 				return meals[mealNumber];
 			},
+			getMealContent: (mealArray, dayNumber, mealNumber) => {
+				if (mealArray[dayNumber] && mealArray[dayNumber].selected_recipes) {
+					for (var i = 0; i < mealArray[dayNumber].selected_recipes.length; i++) {
+						if (mealArray[dayNumber].selected_recipes[i].position == mealNumber) {
+							return mealArray[dayNumber].selected_recipes[i].recipe_label;
+						}
+					}
+				}
+				return "";
+			},
 			removeMeal: (dayNumber, mealNumber) => {
 				let store = getStore();
 				let meals = store.newWeeklyMenu.days[dayNumber];

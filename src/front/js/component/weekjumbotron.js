@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export const WeekJumbo = props => {
 	const [dataLength, setDataLength] = useState([]);
+	//const [sortedArray, setSortedArray] = useContext;
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
@@ -16,14 +17,6 @@ export const WeekJumbo = props => {
 
 	//ver todos los nombres de recetas guardadas
 	// pendiente aquí listar por ejemplo desayunos
-	console.log(dataLength);
-	for (let i = 0; i < dataLength.length; i++) {
-		for (let j = 0; j < dataLength.length[i].selected_recipes.length; j++) {
-			if (dataLength[i].selected_recipes[j].position == 0) {
-				console.log("Breakfast", dataLength[i].selected_recipes[j].recipe_label[0]);
-			}
-		}
-	}
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -35,7 +28,7 @@ export const WeekJumbo = props => {
 				<Table responsive>
 					<thead>
 						<tr>
-							<th />
+							<th></th>
 							{sortedArray.map((item, index) => (
 								<th key={index} className="text-center">
 									{actions.getDayName(item.position)}
@@ -44,55 +37,24 @@ export const WeekJumbo = props => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Breakfast</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Snack 01</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Lunch</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Snack 02</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Dinner</td>
-							{Array.from({ length: dataLength.length }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
+						{["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "].map((mealName, index2) => (
+							<tr key={index2} className="text-center">
+								<td>{mealName}</td>
+								{sortedArray.map((item2, index3) => (
+									<td key={index3}>{actions.getMealContent(sortedArray, index3, index2)}</td>
+								))}
+							</tr>
+						))}
 					</tbody>
 				</Table>{" "}
 			</Modal.Body>
 			<Modal.Footer className="modal-footer">
-				<Button
+				<Link
 					className="green-button d-flex text-center m-auto justify-content-center"
-					onClick={props.onHide}>
-					<Link to="/weeks">Back</Link>
-				</Button>
+					onClick={props.onHide}
+					to="/weeks">
+					Back
+				</Link>
 			</Modal.Footer>
 		</Modal>
 	);
