@@ -28,10 +28,14 @@ export const Map = () => {
 	let lat = 0;
 	let lng = 0;
 
+	const newLocal = "AIzaSyAgDriMkcFYcX0ig-PudseWJxrVhszTzAM";
+	Geocode.setApiKey(newLocal);
+
 	Geocode.fromAddress(value).then(
 		response => {
 			const { lat, lng } = response.results[0].geometry.location;
 			console.log(lat, lng);
+			L.latLng(lat, lng);
 		},
 		error => {
 			console.error(error);
