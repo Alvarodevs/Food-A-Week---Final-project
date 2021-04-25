@@ -281,7 +281,7 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-   
+
     for i, day in enumerate(days_json):
       if days_json[day] is not None:
         self.create_day(day,i,days_json[day], menu)
@@ -292,7 +292,6 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      # for j, food in enumerate(position): <-- Quizás algo parecido esto pero con los conceptos que pertoque?!
         if food is not None:
           self.create_selected_recipe(food, day, meals, i)
 
@@ -300,6 +299,7 @@ class MenuDataManager:
     print(meals, "MEALS")
     selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"], recipe_label=selected_recipe_params["name"],
     position=position)
+
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()

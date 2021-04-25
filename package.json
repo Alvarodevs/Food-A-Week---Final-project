@@ -76,6 +76,7 @@
 		"font-awesome": "^4.7.0",
 		"fs": "0.0.1-security",
 		"leaflet": "^1.7.1",
+		"leaflet-geosearch": "^3.3.1",
 		"module": "^1.2.5",
 		"prop-types": "^15.7.2",
 		"react": "^16.14.0",

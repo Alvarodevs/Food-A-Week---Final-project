@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { toast } from "react-toastify";
 
@@ -8,7 +8,30 @@ import { Button } from "react-bootstrap";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+	// const [location, setLocation] = useState({
+	// 	longitude: 41.3818,
+	// 	latitude: 2.1685
+	// });
 
+	// useEffect(() => {
+	// 	navigator.geolocation.getCurrentPosition(
+	// 		function(position) {
+	// 			if (location.latitude && location.longitude) {
+	// 				setLocation({
+	// 					longitude: position.coords.longitude,
+	// 					latitude: position.coords.latitude
+	// 				});
+	// 			}
+	// 		},
+	// 		function(error) {
+	// 			console.log(error);
+	// 		},
+	// 		{
+	// 			enableHighAccuracy: true
+	// 		}
+	// 	);
+	// }, []);
+	// console.log(location);
 	return (
 		<div className="container">
 			<div className="container services-description d-flex justify-content-center text-center text-plain my-4">

@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/index.scss";
-import planeImageUrl from "../../img/plane.png";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -20,6 +20,32 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export const Map = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
+	const [currentLocation, setCurrentLocation] = useState({
+		latitude: -6.2033719,
+		longitude: 36.4559651
+	});
+
+	//const location =useLocation();
+	//console.log(currentLocation);
+
+	function setNewLocation() {
+		navigator.geolocation.getCurrentPosition(
+			function(position) {
+				//if (currentLocation.latitude && currentLocation.longitude) {
+				setCurrentLocation({
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
+				});
+				//}
+			},
+			function(error) {
+				console.log(error);
+			},
+			{
+				enableHighAccuracy: true
+			}
+		);
+	}
 
 	const handleInput = event => {
 		setValue(event.target.value);
@@ -42,6 +68,7 @@ export const Map = () => {
 		}
 	);
 
+	//setNewLocation();
 	return (
 		<div className="container">
 			<div className="text-center mt-0 d-flex flex-column justify-content-center">
@@ -57,7 +84,7 @@ export const Map = () => {
 				<div className="d-flex flex-row">
 					<div className="col-md-12 mt-3">
 						<MapContainer
-							center={[41.3818, 2.1685]}
+							center={[currentLocation.longitude, currentLocation.latitude]}
 							zoom={13}
 							scrollWheelZoom={true}
 							style={{ height: 550 }}>
@@ -65,11 +92,12 @@ export const Map = () => {
 								attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 								url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							/>
-							<Marker position={{ lat, lng }}>
+
+							{/* <Marker position={{ lat, lng }}>
 								<Popup>
 									A pretty CSS3 popup. <br /> Easily customizable.
 								</Popup>
-							</Marker>
+							</Marker> */}
 						</MapContainer>
 					</div>
 				</div>

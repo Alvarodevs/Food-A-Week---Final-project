@@ -158,6 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					title: newTitleMenu,
 					days: store.newWeeklyMenu.days
 				};
+				//console.log(newNewWeeklyMenu);
 				setStore({ newWeeklyMenu: newNewWeeklyMenu });
 				var raw = JSON.stringify(store.newWeeklyMenu);
 
