@@ -24,7 +24,7 @@ export const Map = () => {
 		latitude: -6.2033719,
 		longitude: 36.4559651
 	});
-
+	setNewLocation();
 	//const location =useLocation();
 	//console.log(currentLocation);
 
@@ -51,11 +51,11 @@ export const Map = () => {
 		setValue(event.target.value);
 	};
 	//Hay que definir lat y lng, si no, da error en Geocode.fromAddress, que aun no funciona.
-	let lat = 0;
-	let lng = 0;
+	// let lat = 0;
+	// let lng = 0;
 
-	const newLocal = "AIzaSyAgDriMkcFYcX0ig-PudseWJxrVhszTzAM";
-	Geocode.setApiKey(newLocal);
+	//const newLocal = "AIzaSyAgDriMkcFYcX0ig-PudseWJxrVhszTzAM";
+	//Geocode.setApiKey(newLocal);
 
 	Geocode.fromAddress(value).then(
 		response => {
@@ -68,7 +68,6 @@ export const Map = () => {
 		}
 	);
 
-	//setNewLocation();
 	return (
 		<div className="container">
 			<div className="text-center mt-0 d-flex flex-column justify-content-center">

@@ -83,6 +83,9 @@
     margin-left:auto;
     font-size:2rem;
 }
+.icon-trash:hover{
+    color: $green;
+}
 .weekplan-btn > a  { color: $gray } /* CSS link color (red) */
 //////page of card information 
 .next-previous-weeks{

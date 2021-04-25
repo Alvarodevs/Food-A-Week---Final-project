@@ -37,8 +37,6 @@ export const RecipeCard = props => {
 
 	let dayData = [];
 
-	console.log(dayData);
-
 	function doFetchSelectedRecipesByDay(IDday) {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
 			.then(response => response.json())

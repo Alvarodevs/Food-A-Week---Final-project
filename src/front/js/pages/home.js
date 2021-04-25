@@ -53,11 +53,11 @@ export const Home = () => {
 						<div className="button-text">{"NEW WEEK MENU"}</div>
 					</Button>
 				</Link>
-				<Link to="/map">
+				{/* <Link to="/map">
 					<Button variant="success" className="service-circle" id="localshops">
 						<div className="button-text">{"LOCAL SHOPS"}</div>
 					</Button>
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);
