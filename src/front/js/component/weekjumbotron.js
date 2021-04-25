@@ -13,12 +13,10 @@ export const WeekJumbo = props => {
 		setDataLength(props.data);
 	}, []);
 
-
 	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
 
 	//ver todos los nombres de recetas guardadas
 	// pendiente aquí listar por ejemplo desayunos
-
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -26,14 +24,11 @@ export const WeekJumbo = props => {
 				<Modal.Title id="contained-modal-title-center">Weekly menu: {props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				WeeklyMenu
 				<Table responsive>
 					<thead>
 						<tr>
-
 							<th></th>
 							{sortedArray.map((item, index) => (
-
 								<th key={index} className="text-center">
 									{actions.getDayName(item.position)}
 								</th>
@@ -41,7 +36,6 @@ export const WeekJumbo = props => {
 						</tr>
 					</thead>
 					<tbody>
-
 						{["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "].map((mealName, index2) => (
 							<tr key={index2} className="text-center">
 								<td>{mealName}</td>
@@ -50,7 +44,6 @@ export const WeekJumbo = props => {
 								))}
 							</tr>
 						))}
-
 					</tbody>
 				</Table>{" "}
 			</Modal.Body>
