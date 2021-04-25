@@ -36,7 +36,8 @@ export const RecipeCard = props => {
 	}, []);
 
 	let dayData = [];
-	//console.log(dayData);
+
+	console.log(dayData);
 
 	function doFetchSelectedRecipesByDay(IDday) {
 		fetch(`${apiBaseUrl}/api/me/days/${IDday}/selected_recipes`, requestOptions)
@@ -68,7 +69,7 @@ export const RecipeCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log("delete menu: ", result);
-				toast.info("You have deleted one of your weekly menus");
+				toast("You have deleted one of your weekly menus");
 				history.push("/home");
 				history.push("/weeks");
 				actions.getAllMenusCount();
@@ -139,9 +140,9 @@ export const AllWeeks = () => {
 							<h3>{"You still don't have weekly menus saved"}</h3>
 						</p>
 						<div className="d-flex mx-auto justify-content-center ">
-							<button className="green-button btn p-2" id="button-0menus">
-								<Link to="/new_week">New week</Link>
-							</button>
+							<Link to="/new_week" className="green-button btn p-2" id="button-0menus">
+								New week
+							</Link>
 						</div>
 					</div>
 				</div>

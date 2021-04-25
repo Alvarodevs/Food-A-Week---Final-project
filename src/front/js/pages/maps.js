@@ -50,16 +50,23 @@ export const Map = () => {
 	const handleInput = event => {
 		setValue(event.target.value);
 	};
-	// Geocode.fromAddress(value).then(
-	// 	response => {
-	// 		const { lat, lng } = response.results[0].geometry.location;
-	// 		console.log(lat, lng);
-	// 	},
-	// 	error => {
-	// 		console.error(error);
-	// 	}
-	// );
-	//POSITION ORIGINAL: 41.3818, 2.1685
+	//Hay que definir lat y lng, si no, da error en Geocode.fromAddress, que aun no funciona.
+	let lat = 0;
+	let lng = 0;
+
+	const newLocal = "AIzaSyAgDriMkcFYcX0ig-PudseWJxrVhszTzAM";
+	Geocode.setApiKey(newLocal);
+
+	Geocode.fromAddress(value).then(
+		response => {
+			const { lat, lng } = response.results[0].geometry.location;
+			console.log(lat, lng);
+			L.latLng(lat, lng);
+		},
+		error => {
+			console.error(error);
+		}
+	);
 
 	//setNewLocation();
 	return (

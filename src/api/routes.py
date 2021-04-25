@@ -123,7 +123,7 @@ def handle_me_selected_recipes(id):
 
 ## Menus - ENDS ##
 #################################### ME SECTION - ENDS #############################
-#eliminar menú desde el weeks (ANNA DOING)
+
 @api.route("/me/menus/<int:id>", methods=["DELETE"])
 @jwt_required()
 def delete_one_menu(id):
