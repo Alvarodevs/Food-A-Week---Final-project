@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UserData } from "../component/user_info_form";
-import { AllergensTable } from "../component/allergenstable";
-//import { Avatar } from "../component/avatar";
+
 import { Form } from "react-bootstrap";
 import { Button, AlertMessageBox } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
 import { toast, ToastContainer } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-//import "../../styles/userprofile.scss";
 
 export const ProfileCard = props => {
 	const { store, actions } = useContext(Context);

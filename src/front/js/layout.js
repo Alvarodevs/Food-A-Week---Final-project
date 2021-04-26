@@ -15,7 +15,7 @@ import { RecipeDetail } from "./component/recipe_detail_jumbo";
 import { Userprofile } from "./pages/userprofile";
 import { NewWeek } from "./pages/NewWeek";
 import { AllWeeks } from "./pages/weeks";
-import { Map } from "./pages/maps";
+
 import { Profile } from "./component/profile";
 
 import injectContext from "./store/appContext";
@@ -47,9 +47,7 @@ const Layout = () => {
 			<Route exact path="/weeks">
 				<AllWeeks />
 			</Route>
-			<Route exact path="/map">
-				<Map />
-			</Route>
+
 			<Route exact path="/profile">
 				<Profile />
 			</Route>
