@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3e34d7aac77c
+Revision ID: f39898b81494
 Revises: 
-Create Date: 2021-04-06 07:40:47.428288
+Create Date: 2021-04-26 13:34:40.466011
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3e34d7aac77c'
+revision = 'f39898b81494'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,11 +33,12 @@ def upgrade():
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=80), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
-    sa.Column('last_name', sa.String(length=30), nullable=False),
+    sa.Column('last_name', sa.String(length=30), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('postal_code', sa.String(length=20), nullable=True),
     sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('avatar_url', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('user_name')
@@ -94,7 +95,9 @@ def upgrade():
     sa.Column('day_id', sa.Integer(), nullable=True),
     sa.Column('recipe_id', sa.Integer(), nullable=True),
     sa.Column('recipe_code', sa.String(length=250), nullable=True),
+    sa.Column('recipe_label', sa.String(length=250), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=False),
+    sa.Column('position', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['day_id'], ['day.id'], ),
     sa.ForeignKeyConstraint(['recipe_id'], ['recipe.id'], ),
     sa.PrimaryKeyConstraint('id')
