@@ -137,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				let meals = store.newWeeklyMenu.days[dayNumber];
 				delete meals[mealNumber];
-				alert("Your recipe has been deleted. Select another day, meal or recipe");
+				//toast("Your recipe has been deleted. Select another day, meal or recipe");
 				return meals;
 			},
 			addQuerySelection: userQuery => {
