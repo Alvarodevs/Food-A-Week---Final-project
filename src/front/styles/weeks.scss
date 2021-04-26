@@ -42,7 +42,7 @@
     border-radius: 15px 50px;
    overflow: visible;
    width: 25vw;
-   height: 29w;
+   height: 50vh;
    display:flex;
    flex-direction:column;
    justify-content:space-between;
@@ -56,6 +56,7 @@
 .card-title{
     font-size: 1.5vw;
     }
+
 .card-text{
     font-size:0.8vw;
     width:90%;
@@ -81,6 +82,9 @@
 .icon-trash{
     margin-left:auto;
     font-size:2rem;
+}
+.icon-trash:hover{
+    color: $green;
 }
 .weekplan-btn > a  { color: $gray } /* CSS link color (red) */
 //////page of card information 

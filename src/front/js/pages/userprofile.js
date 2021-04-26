@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UserData } from "../component/user_info_form";
-import { AllergensTable } from "../component/allergenstable";
-//import { Avatar } from "../component/avatar";
+
 import { Form } from "react-bootstrap";
 import { Button, AlertMessageBox } from "react-bootstrap";
 import { apiBaseUrl } from "../constants";
 import { toast, ToastContainer } from "react-toastify";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-//import "../../styles/userprofile.scss";
 
 export const ProfileCard = props => {
 	const { store, actions } = useContext(Context);
@@ -45,7 +43,7 @@ export const ProfileCard = props => {
 			.then(response => response.json())
 			.then(result => {
 				console.log(result);
-				toast.success("You saved your changes successfully!");
+				toast("You saved your changes successfully!");
 				actions.setCurrentUser(result);
 			})
 			.catch(error => console.log("error", error));
@@ -119,7 +117,7 @@ export const Userprofile = props => {
 	const { store, actions } = useContext(Context);
 	let history = useHistory();
 	if (!actions.isUserAuthenticated()) {
-		toast.info("Please, login!");
+		toast("Please, login!");
 		history.push("/");
 	}
 

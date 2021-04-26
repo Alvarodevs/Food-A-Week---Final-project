@@ -78,17 +78,6 @@ export const NewWeek = () => {
 
 	return (
 		<div className="newweek-container container-fluid">
-			{/* <p
-				className="text-center"
-				onClick={toast(
-					"Here you can search and save your recipes in every meal of the week",
-					{
-						position: toast.POSITION.BOTTOM_RIGHT
-					},
-					{ autoClose: 4000 }
-				)}>
-				You can search for recipes on the left bar and store the recipes on the right board.
-			</p> */}
 			<div className=" search-big-container d-flex">
 				<div className="container-fluid col-6 m-0">
 					<div className="weekplan-body">
@@ -129,7 +118,7 @@ export const NewWeek = () => {
 						</div>
 						<div className="btns-bar-body mx-0 w-100 d-flex justify-content-around col-12 mt-3 p-0 ml-2">
 							<select
-								className="custom-select day-selector col-4"
+								className="custom-select day-selector col-4 mt-1"
 								id="mySelectDay"
 								onChange={handleDay}
 								value={selectedDay}>
@@ -141,7 +130,7 @@ export const NewWeek = () => {
 								<option value="5">Saturday</option>
 								<option value="6">Sunday</option>
 							</select>
-							<select className="custom-select col-4" onChange={handlePosition}>
+							<select className="custom-select col-4 mt-1" onChange={handlePosition}>
 								<option value="0">Breakfast</option>
 								<option value="1">Snack 1</option>
 								<option value="2">Lunch</option>

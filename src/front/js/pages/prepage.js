@@ -29,7 +29,7 @@ export const Pre = () => {
 				</div>
 			</div>
 
-			<div className="col-4 signElements">
+			<div className="col-3 signElements mt-5">
 				<Accordion>
 					<Card>
 						<Card.Header>

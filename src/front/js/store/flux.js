@@ -34,7 +34,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_62f902aa94f7c6040c736bb8550a107f",
 				"http://www.edamam.com/ontologies/edamam.owl#recipe_e2044086d8346319d6c46b4273edf586"
-			]
+			],
+			allmenus: null,
+			countmenus: [],
+			thereismenus: ""
 		}, //close store
 
 		actions: {
@@ -120,6 +123,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let meals = ["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "];
 				return meals[mealNumber];
 			},
+			getMealContent: (mealArray, dayNumber, mealNumber) => {
+				if (mealArray[dayNumber] && mealArray[dayNumber].selected_recipes) {
+					for (var i = 0; i < mealArray[dayNumber].selected_recipes.length; i++) {
+						if (mealArray[dayNumber].selected_recipes[i].position == mealNumber) {
+							return mealArray[dayNumber].selected_recipes[i].recipe_label;
+						}
+					}
+				}
+				return "";
+			},
 			removeMeal: (dayNumber, mealNumber) => {
 				let store = getStore();
 				let meals = store.newWeeklyMenu.days[dayNumber];
@@ -145,6 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					title: newTitleMenu,
 					days: store.newWeeklyMenu.days
 				};
+				//console.log(newNewWeeklyMenu);
 				setStore({ newWeeklyMenu: newNewWeeklyMenu });
 				var raw = JSON.stringify(store.newWeeklyMenu);
 
@@ -227,6 +241,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(result => console.log(result))
 					.catch(error => console.log("Recipes are not available now", error));
+			},
+			getAllMenusCount: () => {
+				let store = getStore();
+				var requestOptions = {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem("accessToken"),
+						"Content-Type": "application/json"
+					}
+				};
+
+				fetch(`${apiBaseUrl}/api/me/menus`, requestOptions)
+					.then(response => response.json())
+					.then(result => {
+						console.log("there is --> ", result.length, " menus");
+						setStore({ countmenus: result });
+						if (result.length != 0) {
+							store.thereismenus = "Y";
+						} else {
+							store.thereismenus = "N";
+						}
+					})
+					.catch(error => console.log("Menus are not available now", error));
+
+				console.log("there is menus? ", store.thereismenus);
 			}
 		}
 	};

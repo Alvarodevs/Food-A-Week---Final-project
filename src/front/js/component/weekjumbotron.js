@@ -5,153 +5,62 @@ import { Button, Jumbotron, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const WeekJumbo = props => {
-	//console.log(props);
-
+	const [dataLength, setDataLength] = useState([]);
+	//const [sortedArray, setSortedArray] = useContext;
 	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		setDataLength(props.data);
+	}, []);
+
+	let sortedArray = dataLength.sort((a, b) => (a.position > b.position ? 1 : -1));
+
+	//ver todos los nombres de recetas guardadas
+	// pendiente aquí listar por ejemplo desayunos
 
 	return (
 		<Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
 			<Modal.Header closeButton className="modal-header">
-				<Modal.Title id="contained-modal-title-center">Menu title</Modal.Title>
+				<Modal.Title id="contained-modal-title-center">Weekly menu: {props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Table responsive>
 					<thead>
 						<tr>
-							<th />
-							{Array.from({ length: 7 }).map((_, index) => (
+							<th></th>
+							{sortedArray.map((item, index) => (
 								<th key={index} className="text-center">
-									{actions.getDayName(index)}
+									{actions.getDayName(item.position)}
 								</th>
 							))}
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Breakfast</td>
-							{Array.from({ length: 7 }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Snack 01</td>
-							{Array.from({ length: 7 }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Lunch</td>
-							{Array.from({ length: 7 }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Snack 02</td>
-							{Array.from({ length: 7 }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
-						<tr>
-							<td>Dinner</td>
-							{Array.from({ length: 7 }).map((_, index) => (
-								<td key={index} className="text-center">
-									Meal {index}
-								</td>
-							))}
-						</tr>
+						{["Breakfast ", "Snack 01 ", "Lunch ", "Snack 02 ", "Dinner "].map((mealName, index2) => (
+							<tr key={index2} className="text-center">
+								<td>{mealName}</td>
+								{sortedArray.map((item2, index3) => (
+									<td key={index3}>{actions.getMealContent(sortedArray, index3, index2)}</td>
+								))}
+							</tr>
+						))}
 					</tbody>
-				</Table>
+				</Table>{" "}
 			</Modal.Body>
 			<Modal.Footer className="modal-footer">
-				<Button
+				<Link
 					className="green-button d-flex text-center m-auto justify-content-center"
-					//onClick={props.onHide}
-				>
+					onClick={props.onHide}
+					to="/weeks">
 					Back
-				</Button>
+				</Link>
 			</Modal.Footer>
 		</Modal>
-		// <Jumbotron className="container m-auto body-jumbo pt-0 pb-1">
-		// 	<div className="d-flex container-fluid m-auto h-auto justify-content-between">
-		// 		<h3 className="text-center m-auto">{}</h3>
-
-		// 		<Link to="/weeks">
-		// 			<div className="icondelete my-3 ml-2">
-		// 				<i className="fas fa-times delete-button" />
-		// 			</div>
-		// 		</Link>
-		// 	</div>
-
-		// 	<Table responsive>
-		// 		<thead>
-		// 			<tr>
-		// 				<th />
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<th key={index} className="text-center">
-		// 						{actions.getDayName(index)}
-		// 					</th>
-		// 				))}
-		// 			</tr>
-		// 		</thead>
-		// 		<tbody>
-		// 			<tr>
-		// 				<td>Breakfast</td>
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<td key={index} className="text-center">
-		// 						Meal {index}
-		// 						{/* ({props[index]} && {props.label} */}
-		// 					</td>
-		// 				))}
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Snack 01</td>
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<td key={index} className="text-center">
-		// 						Meal {index}
-		// 					</td>
-		// 				))}
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Lunch</td>
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<td key={index} className="text-center">
-		// 						Meal {index}
-		// 					</td>
-		// 				))}
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Snack 02</td>
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<td key={index} className="text-center">
-		// 						Meal {index}
-		// 					</td>
-		// 				))}
-		// 			</tr>
-		// 			<tr>
-		// 				<td>Dinner</td>
-		// 				{Array.from({ length: 7 }).map((_, index) => (
-		// 					<td key={index} className="text-center">
-		// 						Meal {index}
-		// 					</td>
-		// 				))}
-		// 			</tr>
-		// 		</tbody>
-		// 	</Table>
-		// 	<Link to="/weeks">
-		// 		<Button className="green-button d-flex text-center m-auto justify-content-center">Back</Button>
-		// 	</Link>
-		// </Jumbotron>
 	);
 };
 
 WeekJumbo.propTypes = {
-	data: PropTypes.object
+	data: PropTypes.array,
+	onHide: PropTypes.func,
+	title: PropTypes.string
 };

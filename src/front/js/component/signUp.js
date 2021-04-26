@@ -56,6 +56,7 @@ const SignUpForm = props => {
 					{ autoClose: 6000 }
 				);
 				history.push("/home");
+				actions.getAllMenusCount();
 			})
 			.catch(error => console.log("error", error));
 	};

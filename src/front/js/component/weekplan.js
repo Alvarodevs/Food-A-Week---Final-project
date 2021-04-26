@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Tab, Row, Col, Nav, Button, FormControl, Form } from "react-bootstrap";
 import { DailyPlan } from "./daily_plan";
+import { toast, ToastContainer } from "react-toastify";
 
 export const Weekplan = props => {
 	const { store, actions } = useContext(Context);
@@ -10,6 +11,8 @@ export const Weekplan = props => {
 
 	const handleSubmit = () => {
 		actions.addNewWeeklyMenu(titleMenu); //Trigger para enviar el JSON a /api/new_weekly_menu
+		toast("You saved your menu!");
+		store.thereismenus = "Y";
 	};
 
 	const handleInputChange = e => {

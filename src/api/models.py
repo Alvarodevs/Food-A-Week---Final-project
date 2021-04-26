@@ -193,7 +193,9 @@ class SelectedRecipe(db.Model):
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'), nullable=True)
     recipe = db.relationship('Recipe', backref=db.backref("selected_recipe", cascade="all, delete-orphan"))
     recipe_code = db.Column(db.String(250), unique=False, nullable=True)
+    recipe_label = db.Column(db.String(250), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
+    position = db.Column(db.Integer, unique=False, nullable=True)
 
     def __repr__(self):
       return '<SelectedRecipe %r>' % self.recipe_code
@@ -202,7 +204,9 @@ class SelectedRecipe(db.Model):
       return {
           "id": self.id,
           "day_id": self.day_id,
-          "recipe_code": self.recipe_code
+          "recipe_code": self.recipe_code,
+          "recipe_label": self.recipe_label,
+          "position": self.position,
         }
 
 class Restriction(db.Model):
@@ -220,7 +224,7 @@ class Restriction(db.Model):
       return {
           "id": self.id,
           "user_id": self.user_id,
-          "ingredient_id": self.ingredient_id, #¿NECESARIO?
+          "ingredient_id": self.ingredient_id, 
       }
 
 class DataManager:
@@ -277,7 +281,7 @@ class MenuDataManager:
 
   def create_days(self, menu_params, menu):
     days_json = menu_params['days']
-    #print(menu_params, "HOLA")
+
     for i, day in enumerate(days_json):
       if days_json[day] is not None:
         self.create_day(day,i,days_json[day], menu)
@@ -288,16 +292,15 @@ class MenuDataManager:
     db.session.commit()
     db.session.flush()
     for i, food in enumerate(meals):
-      # meals no se esta almacenando en bbdd, ¿por eso no se almacena cuando no son correlativos? 
-      print(food, "FOOD")
-      if food is not None:
-        self.create_selected_recipe(food,day)
+        if food is not None:
+          self.create_selected_recipe(food, day, meals, i)
 
-  def create_selected_recipe(self, selected_recipe_params, day):
-    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"])
-    print(selected_recipe)
+  def create_selected_recipe(self, selected_recipe_params, day, meals, position):
+    print(meals, "MEALS")
+    selected_recipe = SelectedRecipe(day_id=day.id, recipe_code=selected_recipe_params["url"], recipe_label=selected_recipe_params["name"],
+    position=position)
+
     db.session.add(selected_recipe)
     db.session.commit()
     db.session.flush()
 
-    #NO ESTA LLEGANDO DAY.ID A SELECTEDRECIPE, ¿POR ESO NO SE ITERA?
