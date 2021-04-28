@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import injectContext, { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 import { Card, Accordion, Button } from "react-bootstrap";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 import * as Icon from "react-bootstrap-icons";
 
 export const MealCard = props => {
@@ -10,6 +12,7 @@ export const MealCard = props => {
 
 	const removeMeal = e => {
 		actions.removeMeal(props.dayNumber, props.mealNumber);
+		toast("Your recipe has been deleted. Select another day, meal or recipe");
 	};
 
 	return (
