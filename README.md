@@ -20,13 +20,13 @@ Why not? You are what you eat, fill your fridge with a plan for your stomach! An
 
 
 # About us
-<a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> twitter/ linkedin
+<a href="https://github.com/Alvarodevs"> Alvaro Garzón </a> 
 
-Breve
 
-<a href="https://github.com/nitlara"> Anna Lara </a> twitter/ linkedin
 
-Breve
+<a href="https://github.com/nitlara"> Anna Lara </a>
+
+
 
 ## Languages & Technologies & main libraries used for the project
 
@@ -68,11 +68,7 @@ Github
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
 
 
-## For whom it is? & User profile
-
-Insert here some snaps from IU
-
-## Thanks for the advice and patience to our tutor, and mentors
+## Thanks for the advice and patience to our tutor and mentors
 
 @enaguero, 
 @LuisSanchezArevaloRionegro, 
